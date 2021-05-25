@@ -6,7 +6,9 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ../:/app
+      - mvn-data:/root/.m2
     stdin_open: true
     tty: true
 
-
+volumes:
+  mvn-data:
