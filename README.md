@@ -14,60 +14,29 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 Corrector: **{Corrector}**
 
-### Pre-requisitos
+## Empaquetamiento
 
-Listado de software/herramientas necesarias para el proyecto
-
-1. [docker](https://docs.docker.com/get-docker/)
-1. [docker-compose](https://docs.docker.com/compose/install/)
-
-### Levantando el contenedor
+Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](./releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
 
 ```bash
-  docker/up.sh
+$ git tag v0.0.1 "La mejor versión hasta el momento"  # Genera el tag sobre el commit actual
+$ git push --tags  # Pushea el tag al repo, lo que genera el release automático
 ```
 
-Una vez dentro del contenedor, podemos ejecutar los siguientes comandos:
+## Distribución
 
-### Ejecutando las pruebas
+El archivo `.jar` generado en el release contiene la aplicación empaquetada y puede distribuirse. Luego puede ejecutarse en Windos, Mac o Linux con:
 
 ```bash
-    scripts/build.sh
+$ java -jar <archivo.jar>
 ```
 
-o
+## Desarrollo
 
-```bash
-    mvn test
-```
+Existen distintas maneras de configurar el ambiente de desarrollo:
 
-Este comando crea el reporte de cobertura para CI y el reporte HTML que pueden abrir de la siguiente manera:
-
-```bash
-    <browser> ./target/site/jacoco/index.html
-```
-
-### Empaquetando la aplicación
-
-```bash
-    scripts/package.sh
-```
-
-Luego (desde afuera del contenedor) podemos ejecutar la aplicación con:
-
-```bash
-    java -jar target/tp2-1.0-SNAPSHOT.jar
-```
-
-### Deteniendo el contenedor
-
-```bash
-    docker/down.sh
-```
-
-## Releases
-
-Simplemente creando un nuevo tag que comience con `v` (ejemplo `v0.0.1`) se creará un release nuevo con dicho nombre de tag. Este incluirá el empaquetado que podrá ser ejecutado en linux, mac y windows.
+- [Docker](docs/Docker.md)
+- [Nativa](docs/Nativa.md)
 
 ## Licencia
 
