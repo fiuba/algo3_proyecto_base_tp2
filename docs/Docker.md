@@ -4,7 +4,7 @@ Esta guia presenta los pasos necesarios para configurar el ambiente de desarroll
 
 ## Pre-requisitos
 
-Listado de software/herramientas necesarias para el proyecto
+Lista de herramientas necesarias:
 
 1. [docker](https://docs.docker.com/get-docker/)
 1. [docker-compose](https://docs.docker.com/compose/install/)

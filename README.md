@@ -16,16 +16,18 @@ Corrector: **{Corrector}**
 
 ## Empaquetamiento
 
-Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](./releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
+Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/fiuba/algo3_proyecto_base_tp2/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
 
 ```bash
-$ git tag v0.0.1 "La mejor versión hasta el momento"  # Genera el tag sobre el commit actual
-$ git push --tags  # Pushea el tag al repo, lo que genera el release automático
+$ git tag v0.0.1   # Genera el tag sobre el commit actual
+$ git push --tags  # Pushea el tag al repo, iniciando el release automático
 ```
+
+Para más información sobre cómo generar tags ver la [documentación de git](https://git-scm.com/book/es/v2/Fundamentos-de-Git-Etiquetado).
 
 ## Distribución
 
-El archivo `.jar` generado en el release contiene la aplicación empaquetada y puede distribuirse. Luego puede ejecutarse en Windos, Mac o Linux con:
+El archivo `.jar` generado en el release contiene la aplicación empaquetada y puede distribuirse. Luego puede ejecutarse en Windows, Mac o Linux con:
 
 ```bash
 $ java -jar <archivo.jar>
@@ -40,6 +42,6 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 ## Licencia
 
-Este repositorio está bajo la Licencia MIT
+Este repositorio se encuentra bajo la Licencia MIT.
 
 
