@@ -38,7 +38,8 @@ $ java -jar <archivo.jar>
 Existen distintas maneras de configurar el ambiente de desarrollo:
 
 - [Docker](docs/Docker.md)
-- [Nativa](docs/Nativa.md)
+- [Nativo](docs/Nativo.md)
+- Adicionalmente se puede configurar el IDE [IntelliJ](docs/IntelliJ.md)
 
 ## Licencia
 
