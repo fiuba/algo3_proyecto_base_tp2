@@ -26,7 +26,7 @@ $ scripts/build.sh
 
 Este comando crea el reporte de cobertura para CI y el reporte HTML, que se puede encontrar en `target/site/jacoco/index.html`
 
-### 2. Empaquetar la aplicación
+### 2. Empaquetado
 
 ```bash
 $ scripts/package.sh
@@ -34,7 +34,7 @@ $ scripts/package.sh
 
 Esto genera el empaquetado en `target/tp2-1.0-SNAPSHOT.jar`.
 
-### 3. Correr la aplicación
+### 3. Ejecución de la aplicación
 
 Luego (desde afuera del contenedor) podemos ejecutar la aplicación con:
 
@@ -42,7 +42,7 @@ Luego (desde afuera del contenedor) podemos ejecutar la aplicación con:
 $ java -jar target/tp2-0.0.1.jar
 ```
 
-## Finalizar
+## Finalización
 
 Para finarlizar el contenedor:
 
