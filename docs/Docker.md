@@ -16,7 +16,7 @@ $ docker/up.sh   # En Linux/Mac
 $ docker\up.cmd  # En Windows
 ```
 
-Una vez dentro del contenedor, podemos ejecutar los siguientes comandos (es un contenedor linux):
+Una vez dentro del contenedor, podemos ejecutar los siguientes comandos (es un contenedor Linux):
 
 ### 1. Pruebas
 
@@ -24,7 +24,7 @@ Una vez dentro del contenedor, podemos ejecutar los siguientes comandos (es un c
 $ scripts/build.sh
 ```
 
-Este comando crea el reporte de cobertura para CI y el reporte HTML, que se puede encontrar en `target/site/jacoco/index.html`
+Este comando crea el reporte de cobertura para CI y el reporte HTML, que se puede encontrar en `target/site/jacoco/index.html`.
 
 ### 2. Empaquetado
 
@@ -32,7 +32,7 @@ Este comando crea el reporte de cobertura para CI y el reporte HTML, que se pued
 $ scripts/package.sh
 ```
 
-Esto genera el empaquetado en `target/tp2-1.0-SNAPSHOT.jar`.
+Esto genera el empaquetado en `target/tp2-0.0.1.jar`.
 
 ### 3. Ejecución de la aplicación
 

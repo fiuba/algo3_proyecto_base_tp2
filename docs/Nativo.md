@@ -1,4 +1,4 @@
-# Nativa
+# Nativo
 
 Esta guia presenta los pasos necesarios para configurar el ambiente de desarrollo de forma nativa.
 
@@ -15,10 +15,19 @@ Para compilar y correr las pruebas, ubicarse en el mismo directorio que el archi
 $ mvn clean test
 ```
 
-### 2. Ejecutar la aplicación
+### 2. Empaquetado
+
+```bash
+$ mvn clean package -DskipTests
+```
+
+Esto genera el empaquetado en `target/tp2-0.0.1.jar.
+
+### 3. Ejecutción de la aplicación
 
 ```shell script
 $ mvn clean javafx:run
 ```
 
 La tarea `clean` se encarga de limpiar archivos de compilaciones anteriores. `javafx:run` compila y ejecuta la aplicación.
+
