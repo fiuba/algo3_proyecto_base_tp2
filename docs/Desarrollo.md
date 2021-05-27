@@ -8,7 +8,7 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 - [Nativo](./Nativo.md)
 - [Docker](./Docker.md)
-- Adicionalmente se puede configurar el IDE [IntelliJ](docs/IntelliJ.md)
+- Adicionalmente se puede configurar el IDE [IntelliJ](./IntelliJ.md)
 
 ## Empaquetado
 
