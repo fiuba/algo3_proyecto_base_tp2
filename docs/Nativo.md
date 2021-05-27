@@ -18,12 +18,12 @@ $ mvn clean test
 ### 2. Empaquetado
 
 ```bash
-$ mvn clean package -DskipTests
+$ mvn clean package -DskipTests -Ppackage
 ```
 
-Esto genera el empaquetado en `target/tp2-0.0.1.jar.
+Esto genera el empaquetado en `target/tp2-0.0.1.jar`.
 
-### 3. Ejecutción de la aplicación
+### 3. Ejecución de la aplicación
 
 ```shell script
 $ mvn clean javafx:run
