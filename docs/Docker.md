@@ -44,11 +44,10 @@ $ java -jar target/tp2-0.0.1.jar
 
 ## Finalización
 
-Para finarlizar el contenedor:
+Para finalizar el contenedor (desde otra terminal fuera del contenedor):
 
 ```bash
 $ docker/down.sh   # En Linux/Mac
 $ docker\down.cmd  # En Windows
 ```
-
 
