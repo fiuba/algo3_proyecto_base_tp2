@@ -21,7 +21,7 @@ La versión más reciente de la aplicación puede encontrarse en la pestaña [re
 $ java -jar <archivo.jar>
 ```
 
-## Desarrollo
+## DESARROLLO
 
 Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
 
