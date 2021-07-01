@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Diego Sánchez** - [integrante1](https://github.com/integrante1)
 * **Integrante 2** - [integrante2](https://github.com/integrante2)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Carlos** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
 
