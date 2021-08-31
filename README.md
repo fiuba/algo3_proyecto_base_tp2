@@ -21,11 +21,6 @@ La versión más reciente de la aplicación puede encontrarse en la pestaña [re
 $ java -jar <archivo.jar>
 ```
 
-### Diagramas
-
-[Plantuml](https://plantuml.com/) soporta un mecanísmo que les facilitará la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir [guía de PlantUML](./docs/PLANTUML.md)
-
-
 ## Desarrollo
 
 Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
