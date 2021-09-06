@@ -5,8 +5,6 @@ import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.lang.ArchRule;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 public class ModelDependenciesTest {
@@ -18,8 +16,7 @@ public class ModelDependenciesTest {
     public void elModeloSoloPuedeReferenciarClasesDelModeloAdemasJavaAdemasJunit() {
         JavaClasses importedClasses = new ClassFileImporter().importPackages("edu.fiuba.algo3.modelo");
 
-        var listOfPackages = Arrays.asList(MODEL, JAVA_LANG, JUNIT)
-                .stream().toArray(String[]::new);
+        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT};
 
         ArchRule myRule = classes().that().resideInAPackage(MODEL)
                 .should().onlyDependOnClassesThat().resideInAnyPackage(listOfPackages);
