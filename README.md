@@ -11,8 +11,8 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 3** - [Agustina Germinario](https://github.com/agus-germi)
 * **Integrante 4** - [Maria Galindez](https://github.com/mariagalindez)
 * **Integrante 5** - [integrante5](https://github.com/integrante4)
-lol otra prueba mas
-Corrector: **{Corrector}**
+
+* Corrector: **{Corrector}**
 
 ## Aplicación
 
