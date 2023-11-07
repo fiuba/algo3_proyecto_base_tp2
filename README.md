@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [Florencia Pratto](https://github.com/fnpratto)
 * **Integrante 2** - [Sebastián Kraglievich](https://github.com/Sebakrag)
 * **Integrante 3** - [Agustina Germinario](https://github.com/agus-germi)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 4** - [Maria Galindez](https://github.com/mariagalindez)
 * **Integrante 5** - [integrante5](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
