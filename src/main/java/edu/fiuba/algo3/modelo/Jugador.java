@@ -18,7 +18,7 @@ public class Jugador {
     public void disminuirEnergia(int energia) {
         this.energia -= energia;
     }
-
+//a
     public boolean tieneEnergia(int energia) {
         return (this.energia == energia);
     }
