@@ -1,6 +1,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fnpratto/algo3_tp2/build.yml)
 
-[![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
+[![codecov](https://codecov.io/gh/fnpratto/algo3_tp2/graph/badge.svg?token=B2OXAK4X52)](https://codecov.io/gh/fnpratto/algo3_tp2)
 
 # TP2 Algoritmos 3: {Grupo 2}
 
