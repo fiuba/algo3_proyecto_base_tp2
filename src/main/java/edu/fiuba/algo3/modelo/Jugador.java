@@ -5,9 +5,21 @@ public class Jugador {
     private String seniority;
     private String equipamiento;
 
-    public Jugador(){
+    public Jugador() {
         this.energia = 20;
         this.seniority = "Novato";
         this.equipamiento = null;
+    }
+
+    public void aumentarEnergia(int energia) {
+        this.energia += energia;
+    }
+
+    public void disminuirEnergia(int energia) {
+        this.energia -= energia;
+    }
+
+    public boolean tieneEnergia(int energia) {
+        return (this.energia == energia);
     }
 }
