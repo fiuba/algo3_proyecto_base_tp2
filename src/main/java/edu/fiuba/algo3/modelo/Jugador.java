@@ -1,25 +1,15 @@
 package edu.fiuba.algo3.modelo;
+
 import java.util;
+
+//Decorator pattern para equipamiento ?¿
 public class Jugador {
     private int energia;
-    private String seniority;
-    private String equipamiento;
+    private Gladiador gladiador;
 
-    public Jugador() {
-        this.energia = 20;
-        this.seniority = "Novato";
-        this.equipamiento = null;
+    public Jugador(Gladiador gladiador) {
+        this.gladiador = gladiador;
     }
 
-    public void aumentarEnergia(int energia) {
-        this.energia += energia;
-    }
 
-    public void disminuirEnergia(int energia) {
-        this.energia -= energia;
-    }
-//uu
-    public boolean tieneEnergia(int energia) {
-        return (this.energia == energia);
-    }
 }
