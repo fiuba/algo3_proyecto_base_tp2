@@ -5,10 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CasosDeUsoSemana1Test {
     @Test
-    public void test01seInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
+    public void test01SeInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
-
 
     }
     @Test
