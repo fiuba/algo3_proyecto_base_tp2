@@ -29,12 +29,14 @@ public class Jugador{
             this.casillaActual++;
             this.turnos++;
         }
-        else{
 
-        }
     }
 
     public int getCasillaActual() {
         return  this.casillaActual;
+    }
+
+    public void recibirDanio(int danio){
+        this.gladiador.disminuirEnergia(danio);
     }
 }

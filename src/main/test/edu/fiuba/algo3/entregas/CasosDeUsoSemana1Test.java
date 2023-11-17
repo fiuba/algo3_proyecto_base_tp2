@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.equipamientos.Desequipado;
+import edu.fiuba.algo3.modelo.afectantes.Fiera;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,10 +32,15 @@ public class CasosDeUsoSemana1Test {
 
     @Test
     public void test03UnJugadorSinEnergiaPierdeElTurno(){
-        //Gladiador gladiador = new Gladiador();
-        //Jugador jugador = new Jugador(gladiador);
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Fiera fiera = new Fiera();
 
-        //Assertions.assertTrue(jugador.avanzar());
+        fiera.afectar(jugador);
+        jugador.avanzar();
+
+        Assertions.assertEquals(0, jugador.getCasillaActual());
+
 
     }
 
