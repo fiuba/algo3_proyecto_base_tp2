@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo.Seniority;
+package edu.fiuba.algo3.modelo.seniorities;
+
+import edu.fiuba.algo3.modelo.Seniority;
 
 public class Novato implements Seniority {
     public Seniority ascender(int turno) {

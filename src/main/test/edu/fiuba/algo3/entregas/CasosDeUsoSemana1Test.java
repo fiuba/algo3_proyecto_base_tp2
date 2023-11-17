@@ -1,15 +1,22 @@
 package edu.fiuba.algo3.entregas;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CasosDeUsoSemana1Test {
     @Test
     public void test01SeInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
+
+        int energiaInicial = 20;
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
 
+        Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
     }
+
     @Test
     public void test02JugadorSaleCorrectamenteDeLaCasillaInicial() {
     }
