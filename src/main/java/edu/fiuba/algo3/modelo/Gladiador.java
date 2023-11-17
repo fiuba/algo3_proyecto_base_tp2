@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.equipamientos.Desequipado;
 public class Gladiador {
     //Declaramos constantes ?
     private static final int ENERGIA_INICIAL = 20;
+    private static final int SIN_ENERGIA = 0;
+
 
     private int energia;
     private Seniority seniority;
@@ -29,11 +31,14 @@ public class Gladiador {
         return this.energia == energia;
     }
 
+    public boolean tieneEnergia(){
+        return this.energia > SIN_ENERGIA;
+    }
+
     public Equipamiento equipamientoGladiador(){
         return this.equipamiento;
     }
 
-   // public void recibirAtaque(Obstaculo unObstaculo){
-    //    this.energia -= unObstaculo.reducirEnergia(this.equipamiento);
-    //}
+
+
 }
