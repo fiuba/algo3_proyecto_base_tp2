@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-public interface Equipamiento {
+import edu.fiuba.algo3.modelo.Afectante;
+
+public interface Equipamiento extends Afectante {
     public Equipamiento mejorarEquipamiento();
 }

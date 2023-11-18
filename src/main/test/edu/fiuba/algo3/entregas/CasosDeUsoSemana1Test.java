@@ -4,14 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.equipamientos.Desequipado;
-import edu.fiuba.algo3.modelo.afectantes.Fiera;
+import edu.fiuba.algo3.modelo.afectantes.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CasosDeUsoSemana1Test {
     @Test
     public void test01SeInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
-
         int energiaInicial = 20;
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
@@ -25,31 +24,42 @@ public class CasosDeUsoSemana1Test {
     public void test02JugadorSaleCorrectamenteDeLaCasillaInicial(){
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
+        int casillaEsperada = 1;
+
         jugador.avanzar();
 
-        Assertions.assertEquals(1, jugador.getCasillaActual());
+        Assertions.assertEquals(casillaEsperada, jugador.getCasillaActual());
     }
 
     @Test
     public void test03UnJugadorSinEnergiaPierdeElTurno(){
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
-        Fiera fiera = new Fiera();
+        Afectante fiera = new Fiera();
+        int casillaInicial = 0;
 
         fiera.afectar(jugador);
         jugador.avanzar();
 
-        Assertions.assertEquals(0, jugador.getCasillaActual());
-
-
+        Assertions.assertEquals(casillaInicial, jugador.getCasillaActual());
     }
 
     @Test
     public void test04AlRecibirComidaSuEnergiaIncrementaEnQuince() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante comida = new Comida();
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial + 15;
+
+        comida.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
     public void test05AlRecibirUnPremioPorPrimeraVezRecibeUnCasco() {
+
     }
 
     @Test
