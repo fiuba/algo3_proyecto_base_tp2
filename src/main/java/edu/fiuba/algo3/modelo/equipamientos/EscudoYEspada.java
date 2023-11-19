@@ -5,11 +5,15 @@ import edu.fiuba.algo3.modelo.Equipamiento;
 import edu.fiuba.algo3.modelo.Jugador;
 
 public class EscudoYEspada implements Equipamiento, Afectante {
+    private static final int DANIO = 2;
     public Equipamiento mejorarEquipamiento() {
         return new Llave();
     }
 
     public void afectar(Jugador jugador) {
 
+    }
+    public int recibirAtaque(){
+        return DANIO;
     }
 }

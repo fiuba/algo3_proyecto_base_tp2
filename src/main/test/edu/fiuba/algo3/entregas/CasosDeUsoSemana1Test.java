@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.entregas;
 
+import edu.fiuba.algo3.modelo.seniorities.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.equipamientos.Desequipado;
+import edu.fiuba.algo3.modelo.equipamientos.*;
 import edu.fiuba.algo3.modelo.afectantes.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +17,7 @@ public class CasosDeUsoSemana1Test {
         Jugador jugador = new Jugador(gladiador);
 
         Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
-        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof Desequipado); // Double dispatch ¿?
+        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof Desequipado);
         //Chequear si es Novato ??
     }
 
@@ -61,24 +62,48 @@ public class CasosDeUsoSemana1Test {
     public void test05AlRecibirUnPremioPorPrimeraVezRecibeUnCasco() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
-        Afectante equipamiento = new Equipamiento();
+        Afectante mejora = new MejorarEquipamiento();
 
-        equipamiento.afectar(jugador);
-
-
+        mejora.afectar(jugador);
+        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof Casco);
     }
 
     @Test
     public void test06AlRecibirUnPremioPorTerceraVezObtieneEscudoYEspada() {
-    }
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante mejora = new MejorarEquipamiento();
 
+        mejora.afectar(jugador);
+        mejora.afectar(jugador);
+        mejora.afectar(jugador);
+        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof EscudoYEspada);
+    }
 
     @Test
     public void test07AlHaberUnCombateConFieraSiTieneCascoPierdeQuincePuntosDeEnergia() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Fiera fiera = new Fiera();
+        Afectante mejora = new MejorarEquipamiento();
+        int energiaEsperada = 5;
+
+        mejora.afectar(jugador);
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
     public void test08AlPasarOchoTurnosElGladiadorPasaDeNovatoAsemiSenior() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+
+        for(int i = 0; i < 9; i++){
+            jugador.avanzar();
+        }
+
+        Assertions.assertTrue(jugador.seniorityGladiador() instanceof SemiSenior);
     }
 
     @Test
@@ -97,3 +122,5 @@ public class CasosDeUsoSemana1Test {
     public void test12AlPasarTreintaTurnosYnadieLlegaAlaMetaSeTerminoElJuego() {
     }
 }
+
+

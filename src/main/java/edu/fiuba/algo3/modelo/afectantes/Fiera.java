@@ -5,7 +5,9 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 public class Fiera implements Afectante {
 
-    public void afectar(Jugador jugador) {
-        jugador.recibirDanio(20);
+    public void afectar(Jugador jugador){
+        jugador.recibirAtaque();
     }
 }
+
+

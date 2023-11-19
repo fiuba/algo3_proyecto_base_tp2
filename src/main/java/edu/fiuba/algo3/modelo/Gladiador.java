@@ -8,7 +8,6 @@ public class Gladiador {
     private static final int ENERGIA_INICIAL = 20;
     private static final int SIN_ENERGIA = 0;
 
-
     private int energia;
     private Seniority seniority;
     private Equipamiento equipamiento;
@@ -39,6 +38,15 @@ public class Gladiador {
         return this.equipamiento;
     }
 
+    public Seniority seniorityGladiador(){
+        return this.seniority;
+    }
 
+    public void mejorarEquipamiento(){
+        this.equipamiento = this.equipamiento.mejorarEquipamiento();
+    }
 
+    public void mejorarSeniority(int turnos){
+        this.seniority = this.seniority.ascender(turnos);
+    }
 }
