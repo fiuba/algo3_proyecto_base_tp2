@@ -59,6 +59,12 @@ public class CasosDeUsoSemana1Test {
 
     @Test
     public void test05AlRecibirUnPremioPorPrimeraVezRecibeUnCasco() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante equipamiento = new Equipamiento();
+
+        equipamiento.afectar(jugador);
+
 
     }
 
