@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.seniorities;
 import edu.fiuba.algo3.modelo.Seniority;
 
 public class SemiSenior implements Seniority {
-    public static final int AUMENTO_ENERGIA = 5;
+    private static final int AUMENTO_ENERGIA = 5;
 
     public Seniority ascender(int turno) {
         if (turno == 12) {

@@ -62,9 +62,11 @@ public class Jugador {
     }
 
     private int tirarDado() {
+        int CARAS_DADO = 6;
+
         if (this.gladiador.tieneEnergia()) {
             Random random = new Random();
-            return random.nextInt(6) + 1;
+            return random.nextInt(CARAS_DADO) + 1;
         }
         return 0;
     }

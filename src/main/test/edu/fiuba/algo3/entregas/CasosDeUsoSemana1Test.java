@@ -12,17 +12,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CasosDeUsoSemana1Test {
     @Test
     public void test01SeInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
+
         int energiaInicial = 20;
         int energiaLuegoDeSerAtacado = 0;
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
         Fiera fiera = new Fiera();
 
-        Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
+        // sigue arrange act y assert. A que costo ? je
+        boolean jugadorAlCrearseTieneEnergiaInicial = jugador.energiaIgualA(energiaInicial);
 
         //Probamos el comportamiento de un Gladiador desequipado (asi se debe instanciar).
         fiera.afectar(jugador);
 
+        Assertions.assertTrue(jugadorAlCrearseTieneEnergiaInicial);
         Assertions.assertTrue(jugador.energiaIgualA(energiaLuegoDeSerAtacado));
     }
 
