@@ -6,7 +6,9 @@ public class SemiSenior implements Seniority {
     private static final int AUMENTO_ENERGIA = 5;
 
     public Seniority ascender(int turno) {
-        if (turno == 12) {
+        int turnosAscenso = 12;
+
+        if (turno == turnosAscenso) {
             return new Senior();
         }
         return this;

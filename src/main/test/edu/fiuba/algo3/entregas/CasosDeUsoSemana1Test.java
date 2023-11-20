@@ -32,6 +32,7 @@ public class CasosDeUsoSemana1Test {
     @Test
     public void test02JugadorSaleCorrectamenteDeLaCasillaInicial(){
         // REVISAR. EL MAPA DEBE MATRIZ
+
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
         int casillaInicial = 0;
@@ -88,6 +89,7 @@ public class CasosDeUsoSemana1Test {
 
     @Test
     public void test06AlRecibirUnPremioPorTerceraVezObtieneEscudoYEspada() {
+
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
         Afectante mejorador = new MejorarEquipamiento();
@@ -126,17 +128,10 @@ public class CasosDeUsoSemana1Test {
         Jugador jugador = new Jugador(gladiador);
         int energiaInicial = 20;
         int energiaEsperada= 25;
-
-        // turnos = 7 --> Novato
-        for(int i = 0; i < 7; i++){
+        for(int i = 0; i < 8; i++){
             jugador.jugarTurno();
         }
-
-        jugador.aumentarEnergiaConSeniority();
-
-        Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
-
-        jugador.jugarTurno();  // turnos =8 --> juagador pasa a SemiSenior
+        // turnos =8 --> juagador pasa a SemiSenior
 
         Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }

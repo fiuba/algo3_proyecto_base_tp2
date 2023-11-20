@@ -6,7 +6,9 @@ public class Novato implements Seniority {
     private  static final int AUMENTO_ENERGIA = 0;
 
     public Seniority ascender(int turno) {
-        if (turno == 8) {
+        int turnosAscenso = 8;
+
+        if (turno == turnosAscenso) {
             return new SemiSenior();
         }
         return this;
