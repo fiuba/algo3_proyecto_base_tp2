@@ -17,22 +17,7 @@ public class Jugador {
         this.casillaActual = 0;
     }
 
-    public Equipamiento equipamientoGladiador(){
-        return this.gladiador.equipamientoGladiador();
-    }
-
-    public Seniority seniorityGladiador(){
-        return this.gladiador.getSeniority();
-    }
-
-    public int getTurnos(){
-        return this.turnos;
-    }
-
-    public int getCasillaActual() {
-        return  this.casillaActual;
-    }
-
+    // -------------------------------- PUBLICOS -------------------------------- //
     public void jugarTurno() {
         int cantidadAAvanzar = this.tirarDado();
         this.avanzar(cantidadAAvanzar);
@@ -41,20 +26,8 @@ public class Jugador {
         this.aumentarEnergiaConSeniority();
     }
 
-    public void aumentarEnergiaConSeniority () {
+    public void aumentarEnergiaConSeniority() {
         this.gladiador.aumentarEnergiaConSeniority();
-    }
-
-    public void avanzar(int cantidad){
-        this.casillaActual += cantidad;
-    }
-
-    public int tirarDado() {
-        if (this.gladiador.tieneEnergia()) {
-            Random random = new Random();
-            return random.nextInt(6) + 1;
-        }
-        return 0;
     }
 
     public boolean tieneTurnosIgualA(int cantidad) {
@@ -69,13 +42,7 @@ public class Jugador {
         return (this.casillaActual == numeroCasilla);
     }
 
-    public void recibirDanio(int danio){
-        this.gladiador.disminuirEnergia(danio);
-    }
-
-    public void recibirEnergia(int aumentoEnergia){
-        this.gladiador.aumentarEnergia(aumentoEnergia);
-    }
+    public void recibirEnergia(int aumentoEnergia){ this.gladiador.recibirEnergia(aumentoEnergia); }
 
     public void mejorarEquipamiento() {
         this.gladiador.mejorarEquipamiento();
@@ -84,4 +51,86 @@ public class Jugador {
     public void recibirAtaque(){
         this.gladiador.recibirAtaque();
     }
+
+    public void recibirDanio(int danio){
+        this.gladiador.recibirDanio(danio);
+    }
+
+    // -------------------------------- PRIVADOS -------------------------------- //
+    private void avanzar(int cantidad){
+        this.casillaActual += cantidad;
+    }
+
+    private int tirarDado() {
+        if (this.gladiador.tieneEnergia()) {
+            Random random = new Random();
+            return random.nextInt(6) + 1;
+        }
+        return 0;
+    }
 }
+
+
+// Los metodos recibirAtaque y recibirDanio deberian ser el mismo. Quizas podemos usar Double Dispatch.
+// De hecho, quizas podemos hacer Double Dispatch con un metodo que se llame recibirEfecto. De esta manera
+// lograriamos que Jugador solo tenga un metodo que se llame recibirImpacto(Afectante afectante) que sea:
+//
+// public void recibirImpacto(Afectante afectante) {
+//      this.gladiador.recibirImpacto(afectante);
+//}
+// Con este metodo reemplazariamos los metodos de:
+//                      mejorarEquipamiento()
+//                      recibirAtaque()
+//                      recibirDanio()
+//                      recibirEnergia()
+
+// Entonces Gladiador tendria:
+// public void recibirImpacto(Fiera fiera) {      // Este metodo reemplaza el metodo 'recibirAtaque()' de Gladiador
+//      this.disminuirEnergia(this.equipamiento.recibirAtaque());
+// }
+//
+// public void recibirImpacto(Bacanal bacanal) {      // Este metodo reemplaza el metodo 'recibirDanio()' de Gladiador
+//      this.disminuirEnergia(bacanal.calcularEnergia);
+// }
+//
+// public void recibirImpacto(Lesion lesion) {
+//      // PROBLEMA con la propuesta de cambio:
+//      // Aqui el Jugador en el siguiente turno no avanza.
+//      // Esta logica quizas es conveniente que este en Jugador por el hecho de que un
+//      // jugador tiene la cantidad de turnos.
+// }
+//
+// public void recibirImpacto(Comida comida) {      // Este metodo reemplaza el metodo 'recibirEnergia()' de Gladiador
+//       this.aumentarEnergia(comida.calcularEnergia);
+// }
+//
+// public void recibirImpacto(MejorarEquipamiento mejorador) {  // Este metodo reemplaza el metodo 'mejorarEquipamiento()' de Gladiador
+//       this.equipamiento = this.equipamiento.mejorarEquipamiento;
+// }
+//
+
+// En BACANAL tendriamos que introducir el metodo:
+// public int calcularEnergia() {
+//     //Aca el jugador tendria que tirar los dados. Pensar si hay una solucion posible.
+//     int cantidadCopas = random.nextInt(CANTIDAD_COPAS_TOTAL) + 1;
+//     return (ENERGIA_POR_COPA * cantidadCopas);
+// }
+//
+
+// En COMIDA tendriamos que introducir el metodo:
+// public int calcularEnergia() {
+//      return this.aumentoEnergia;
+// }
+//
+
+
+// NOTA APARTE:
+// No implementamos Personaje.
+// Si creamos esta abstraccion e implementamos el metodo recibirImpacto como esta planteado arriba
+// podriamos extender nuestro codigo a que tenga distintos tipos de personajes que reaccionen de distinta manera
+// a los afectantes.
+// Esto se veria como:
+// public void recibirImpacto(Afectante afectante) {
+//      this.personaje.recibirImpacto(afectante);
+//}
+// Entonces cada tipo de personaje tendria su propio metodo ante cada tipo de Afectante.

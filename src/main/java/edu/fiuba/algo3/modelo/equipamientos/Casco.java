@@ -11,6 +11,7 @@ public class Casco extends DecoradorEquipamiento {
     public Casco(Equipamiento equipamiento) {
         this.equipamiento = equipamiento;
     }
+
     public Equipamiento mejorarEquipamiento() {
         return new Armadura(this);
     }

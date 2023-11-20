@@ -6,5 +6,6 @@ public abstract class DecoradorEquipamiento extends Equipamiento {
     protected Equipamiento equipamiento;
 
     public abstract Equipamiento mejorarEquipamiento();
+
     public abstract int recibirAtaque();
 }

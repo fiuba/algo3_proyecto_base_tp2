@@ -18,16 +18,9 @@ public class Gladiador {
         this.equipamiento = new Desequipado();
     }
 
-    public void aumentarEnergia(int energia) {
-        this.energia += energia;
-    }
-
+    // -------------------------------- PUBLICOS -------------------------------- //
     public void aumentarEnergiaConSeniority(){
         this.energia += this.seniority.aumentarEnergia();
-    }
-
-    public void disminuirEnergia(int energia) {
-        this.energia -= energia;
     }
 
     public boolean energiaIgualA(int energia) {
@@ -38,16 +31,11 @@ public class Gladiador {
         return this.energia > SIN_ENERGIA;
     }
 
-    public Equipamiento equipamientoGladiador(){
-        return this.equipamiento;
-    }
-
-    public Seniority getSeniority() {
-        return this.seniority;
-    }
     public void recibirAtaque(){
         this.disminuirEnergia(this.equipamiento.recibirAtaque());
     }
+
+    public void recibirDanio(int danio) { this.disminuirEnergia(danio); }
 
     public void mejorarEquipamiento(){
         this.equipamiento = this.equipamiento.mejorarEquipamiento();
@@ -55,5 +43,17 @@ public class Gladiador {
 
     public void mejorarSeniority(int turnos){
         this.seniority = this.seniority.ascender(turnos);
+    }
+
+    public void recibirEnergia(int energia) { this.aumentarEnergia(energia); }
+
+
+    // -------------------------------- PRIVADOS -------------------------------- //
+    private void disminuirEnergia(int energia) {
+        this.energia -= energia;
+    }
+
+    private void aumentarEnergia(int energia) {
+        this.energia += energia;
     }
 }

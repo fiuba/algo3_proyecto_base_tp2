@@ -10,6 +10,7 @@ public class Comida implements Afectante {
     public Comida() {
         this.aumentoEnergia = 15;
     }
+
     public void afectar(Jugador jugador) {
         jugador.recibirEnergia(this.aumentoEnergia);
     }

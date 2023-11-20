@@ -12,10 +12,12 @@ public class Bacanal implements Afectante {
 
     private Random random = new Random();
 
+    // Deberiamos tener un constructor de bacanal? En principio parece que si pq
+    // tiene que haber una instancia concreta en una casilla.
+
     public void afectar(Jugador jugador){
         //Deberiamos implementar un dado ¿?
         int cantidadCopas = random.nextInt(CANTIDAD_COPAS_TOTAL) + 1;
         jugador.recibirDanio(ENERGIA_POR_COPA * cantidadCopas);
     }
-
 }

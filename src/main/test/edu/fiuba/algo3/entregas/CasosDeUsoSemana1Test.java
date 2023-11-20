@@ -188,5 +188,3 @@ public class CasosDeUsoSemana1Test {
         // Logica de ganar.
     }
 }
-
-
