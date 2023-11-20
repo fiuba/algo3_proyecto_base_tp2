@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Equipamiento;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.equipamientos.DecoradorEquipamiento;
 
+
 public class EscudoYEspada extends DecoradorEquipamiento {
     private static final int DANIO = 2;
 

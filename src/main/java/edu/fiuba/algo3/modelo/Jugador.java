@@ -34,7 +34,7 @@ public class Jugador {
         return (this.turnos == cantidad);
     }
 
-    public boolean energiaIgualA(int energia){
+    public boolean energiaIgualA(int energia) {
         return this.gladiador.energiaIgualA(energia);
     }
 
@@ -42,27 +42,29 @@ public class Jugador {
         return (this.casillaActual == numeroCasilla);
     }
 
-    public void recibirEnergia(int aumentoEnergia){ this.gladiador.recibirEnergia(aumentoEnergia); }
+    public void recibirEnergia(int aumentoEnergia) {
+        this.gladiador.recibirEnergia(aumentoEnergia);
+    }
 
     public void mejorarEquipamiento() {
         this.gladiador.mejorarEquipamiento();
     }
 
-    public void recibirAtaque(){
+    public void recibirAtaque() {
         this.gladiador.recibirAtaque();
     }
 
-    public void recibirDanio(int danio){
+    public void recibirDanio(int danio) {
         this.gladiador.recibirDanio(danio);
     }
 
     // -------------------------------- PRIVADOS -------------------------------- //
-    private void avanzar(int cantidad){
+    private void avanzar(int cantidad) {
         this.casillaActual += cantidad;
     }
 
     private int tirarDado() {
-        int CARAS_DADO = 6;
+        final int CARAS_DADO = 6;
 
         if (this.gladiador.tieneEnergia()) {
             Random random = new Random();

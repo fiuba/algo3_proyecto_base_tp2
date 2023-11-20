@@ -32,7 +32,7 @@ public class Gladiador {
     }
 
     public void recibirAtaque(){
-        this.disminuirEnergia(this.equipamiento.recibirAtaque());
+        this.disminuirEnergia(this.equipamiento.recibirAtaque()); //ROMPE ENCAPSULAMIENTO
     }
 
     public void recibirDanio(int danio) { this.disminuirEnergia(danio); }
@@ -46,7 +46,6 @@ public class Gladiador {
     }
 
     public void recibirEnergia(int energia) { this.aumentarEnergia(energia); }
-
 
     // -------------------------------- PRIVADOS -------------------------------- //
     private void disminuirEnergia(int energia) {
