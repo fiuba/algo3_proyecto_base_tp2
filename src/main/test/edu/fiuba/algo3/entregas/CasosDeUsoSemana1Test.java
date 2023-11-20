@@ -6,30 +6,36 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.equipamientos.*;
 import edu.fiuba.algo3.modelo.afectantes.*;
-
+import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CasosDeUsoSemana1Test {
     @Test
     public void test01SeInicializaUnJugadorConLaEnergiaYElEquipamientoCorrecto() {
         int energiaInicial = 20;
+        int energiaLuegoDeSerAtacado = 0;
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
+        Fiera fiera = new Fiera();
 
         Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
-        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof Desequipado);
-        //Chequear si es Novato ??
+
+        //Probamos el comportamiento de un Gladiador desequipado (asi se debe instanciar).
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaLuegoDeSerAtacado));
     }
 
     @Test
     public void test02JugadorSaleCorrectamenteDeLaCasillaInicial(){
+        // REVISAR. EL MAPA DEBE MATRIZ
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
-        int casillaEsperada = 1;
+        int casillaInicial = 0;
 
-        jugador.avanzar();
+        jugador.jugarTurno();
 
-        Assertions.assertEquals(casillaEsperada, jugador.getCasillaActual());
+        Assertions.assertFalse(jugador.estaEnCasilla(casillaInicial));
     }
 
     @Test
@@ -37,12 +43,16 @@ public class CasosDeUsoSemana1Test {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
         Afectante fiera = new Fiera();
-        int casillaInicial = 0;
+        int casillaInicial = 0;  // TENEMOS QUE CAMBIAR POR COORDENADAS.
+        int cantidadTurnosEsperado = 1;
 
         fiera.afectar(jugador);
-        jugador.avanzar();
 
-        Assertions.assertEquals(casillaInicial, jugador.getCasillaActual());
+        // Verificar que no pueda tirar el dado, y que turnos++.
+        jugador.jugarTurno();
+
+        Assertions.assertTrue(jugador.estaEnCasilla(casillaInicial));
+        Assertions.assertTrue(jugador.tieneTurnosIgualA(cantidadTurnosEsperado));
     }
 
     @Test
@@ -62,64 +72,120 @@ public class CasosDeUsoSemana1Test {
     public void test05AlRecibirUnPremioPorPrimeraVezRecibeUnCasco() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
-        Afectante mejora = new MejorarEquipamiento();
-
-        mejora.afectar(jugador);
-        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof Casco);
-    }
-
-    @Test
-    public void test06AlRecibirUnPremioPorTerceraVezObtieneEscudoYEspada() {
-        Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador);
-        Afectante mejora = new MejorarEquipamiento();
-
-        mejora.afectar(jugador);
-        mejora.afectar(jugador);
-        mejora.afectar(jugador);
-        Assertions.assertTrue(jugador.equipamientoGladiador() instanceof EscudoYEspada);
-    }
-
-    @Test
-    public void test07AlHaberUnCombateConFieraSiTieneCascoPierdeQuincePuntosDeEnergia() {
-        Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador);
+        Afectante mejorador = new MejorarEquipamiento();
         Fiera fiera = new Fiera();
-        Afectante mejora = new MejorarEquipamiento();
-        int energiaEsperada = 5;
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial - 15;
 
-        mejora.afectar(jugador);
+        mejorador.afectar(jugador);  // El jugador obtiene un casco.
         fiera.afectar(jugador);
 
         Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
-    public void test08AlPasarOchoTurnosElGladiadorPasaDeNovatoAsemiSenior() {
+    public void test06AlRecibirUnPremioPorTerceraVezObtieneEscudoYEspada() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador);
+        Afectante mejorador = new MejorarEquipamiento();
+        Fiera fiera = new Fiera();
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial - 2;
 
-        for(int i = 0; i < 9; i++){
-            jugador.avanzar();
+        // El jugador obtiene un Escudo Y Espada.
+        for (int i = 0; i < 3; i++) {
+            mejorador.afectar(jugador);
         }
 
-        Assertions.assertTrue(jugador.seniorityGladiador() instanceof SemiSenior);
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
+    }
+
+    @Test
+    public void test07AlHaberUnCombateConFieraSiTieneCascoPierdeQuincePuntosDeEnergia() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante mejorador = new MejorarEquipamiento();
+        Fiera fiera = new Fiera();
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial - 15;
+
+        mejorador.afectar(jugador);  // El jugador obtiene un casco.
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
+    }
+
+    @Test
+    public void test08AlPasarOchoTurnosElGladiadorPasaDeNovatoASemiSenior() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        int energiaInicial = 20;
+        int energiaEsperada= 25;
+
+        // turnos = 7 --> Novato
+        for(int i = 0; i < 7; i++){
+            jugador.jugarTurno();
+        }
+
+        jugador.aumentarEnergiaConSeniority();
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaInicial));
+
+        jugador.jugarTurno();  // turnos =8 --> juagador pasa a SemiSenior
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
     public void test09AlLlegarAlaMetaSinLaLlaveRetrocedeAlaMitadDeLasCasillas() {
+        //PREGUNTAR. Hay que hacer la logica de ganar.
     }
 
     @Test
-    public void test10AlSerAtacadoPorUnaFieraYconTodoElEquipamientoNoPierdeEnergia() {
+    public void test10AlSerAtacadoPorUnaFieraYConTodoElEquipamientoNoPierdeEnergia() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante mejorador = new MejorarEquipamiento();
+        Fiera fiera = new Fiera();
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial;
+
+        // El jugador obtiene la llave
+        for (int i = 0; i < 4; i++) {
+            mejorador.afectar(jugador);
+        }
+
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
     public void test11AlTenerLaLlaveYrecibirOtroPremioNoCambiaNada() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador);
+        Afectante mejorador = new MejorarEquipamiento();
+        Fiera fiera = new Fiera();
+        int energiaInicial = 20;
+        int energiaEsperada = energiaInicial;
+
+        // El jugador obtiene la llave
+        for (int i = 0; i < 4; i++) {
+            mejorador.afectar(jugador);
+        }
+
+        mejorador.afectar(jugador); //No recibe nada
+
+        fiera.afectar(jugador);
+
+        Assertions.assertTrue(jugador.energiaIgualA(energiaEsperada));
     }
 
     @Test
     public void test12AlPasarTreintaTurnosYnadieLlegaAlaMetaSeTerminoElJuego() {
+        // Logica de ganar.
     }
 }
 

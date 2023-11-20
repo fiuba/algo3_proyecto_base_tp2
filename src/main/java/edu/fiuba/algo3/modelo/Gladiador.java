@@ -22,6 +22,10 @@ public class Gladiador {
         this.energia += energia;
     }
 
+    public void aumentarEnergiaConSeniority(){
+        this.energia += this.seniority.aumentarEnergia();
+    }
+
     public void disminuirEnergia(int energia) {
         this.energia -= energia;
     }
@@ -38,8 +42,11 @@ public class Gladiador {
         return this.equipamiento;
     }
 
-    public Seniority seniorityGladiador(){
+    public Seniority getSeniority() {
         return this.seniority;
+    }
+    public void recibirAtaque(){
+        this.disminuirEnergia(this.equipamiento.recibirAtaque());
     }
 
     public void mejorarEquipamiento(){
