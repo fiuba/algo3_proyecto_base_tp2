@@ -1,0 +1,23 @@
+@startuml secuenciaTentativo0
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor ":GestorTurnos" as g
+participant ":Jugador" as j
+participant ":PreguntaVF" as p
+
+g -> j: obtenerOpcion()
+activate j
+    j --> g: unaOpcion
+deactivate j
+
+g -> p: verificarRespuesta(unaOpcion)
+activate p
+
+    j <- p: sumarPuntaje(puntajeBase)
+    activate j
+    deactivate j
+deactivate p
+@enduml

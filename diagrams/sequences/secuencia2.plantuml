@@ -1,0 +1,38 @@
+@startuml secuenciaTentativo2
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor ":GestorTurnos" as g
+participant "gp:GestorPreguntas" as gp
+participant ":Turno" as t
+participant "j:Jugador" as j
+participant "p:PreguntaVF" as p
+participant "r:Respuesta" as r
+
+create t
+g -> t: Turno(gp)
+activate t
+    t -> gp: obtenerSiguientePregunta()
+    activate gp
+        t <-- gp: p
+    deactivate gp
+
+    t -> j: obtenerJugada()
+    activate j
+        t <-- j: unaJugada
+    deactivate j
+
+    t -> p: validarOpcion(unaJugada)
+    activate p
+        create r
+        p -> r: Respuesta(unPuntaje,unaJugada)
+        t <-- p: r
+    deactivate p
+    activate t
+    t -> t: registrarRespuesta(r)
+    
+deactivate t
+
+@enduml

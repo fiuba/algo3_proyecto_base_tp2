@@ -14,13 +14,11 @@ Abstract Pregunta {
 }
 
 class Turno {
-    - respuestasObtenidas: Puntaje []
     - anulador: Anulador
     - exclusividad: Exclusividad
-    + responder(opcion, )
 }
 
-class ListaDePreguntas {
+class GestorPreguntas {
     - preguntas: Pregunta[]
 }
 
@@ -29,20 +27,18 @@ class Jugador {
 
 }
 
-class GUI {
-
+class Respuesta {
+    - puntaje: int
+    - multiplicador: Multiplicador
 }
 
-class AlgoHoot {
-
-}
-
-Jugador <-up- GestorDeTurnos
-GestorDeTurnos -down-> ListaDePreguntas
-GestorDeTurnos -> GUI
-GUI ..> Jugador
-Pregunta -up-> GUI
-ListaDePreguntas -down-> "*" Turno
-Turno *-> Pregunta
+Jugador <- GestorDeTurnos
+GestorDeTurnos -down-> GestorPreguntas
+GestorDeTurnos -down-> "*" Turno
+GestorPreguntas *-->"*" Pregunta
+Turno --> Pregunta
+Turno .> GestorPreguntas
+Turno --> "*" Respuesta
+Respuesta --> Jugador
 
 @enduml
