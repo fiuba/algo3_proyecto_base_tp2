@@ -10,6 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 2** - [integrante2](https://github.com/integrante2)
 * **Integrante 3** - [Patricio Ibar](https://github.com/patricioibar)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 5** - [Nahuel Soles](https://github.com/Nahu2412)
 
 Corrector: **Diego Sánchez**
 
