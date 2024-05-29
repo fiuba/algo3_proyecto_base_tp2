@@ -1,0 +1,51 @@
+@startuml tentativo
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+class Jugador {
+    - respuestas: Respuesta[]
+}
+
+class Pregunta {
+    - categoria: str
+    - opciones: Opciones []
+    - pregunta: str
+    + obtenerOpciones(): Opciones[]
+    + validarOpciones(Opcion[]): Respuesta
+}
+
+class GestorDeTurnos {
+    - jugadores: Jugador[]
+}
+
+class GestorDePreguntas {
+    - preguntas: Pregunta[]
+}
+
+class CargadorPreguntas {
+
+}
+
+class CalculadorDePuntajes {
+
+}
+
+class Respuesta {
+    - pregunta: Pregunta
+    - puntajeBase: Puntaje
+    - modificador: Modificador
+}
+
+abstract Modificador {
+
+}
+
+
+Jugador <-up- GestorDeTurnos
+GestorDeTurnos -down-> GestorDePreguntas
+GestorDePreguntas -down-> "*" Pregunta
+GestorDeTurnos ..> Pregunta
+
+@enduml

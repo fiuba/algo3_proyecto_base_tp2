@@ -1,0 +1,48 @@
+@startuml tentativo2
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+Abstract Pregunta {
+    - categoria: str
+    - opciones: Opciones []
+    - pregunta: str
+    + obtenerOpciones(): Opciones[]
+    + validarOpciones(Opcion[]): Puntaje
+    + validarOpciones(Opcion): Puntaje
+}
+
+class Turno {
+    - respuestasObtenidas: Puntaje []
+    - anulador: Anulador
+    - exclusividad: Exclusividad
+    + responder(opcion, )
+}
+
+class ListaDePreguntas {
+    - preguntas: Pregunta[]
+}
+
+class Jugador {
+
+
+}
+
+class GUI {
+
+}
+
+class AlgoHoot {
+
+}
+
+Jugador <-up- GestorDeTurnos
+GestorDeTurnos -down-> ListaDePreguntas
+GestorDeTurnos -> GUI
+GUI ..> Jugador
+Pregunta -up-> GUI
+ListaDePreguntas -down-> "*" Turno
+Turno *-> Pregunta
+
+@enduml

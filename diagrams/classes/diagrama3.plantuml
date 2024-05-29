@@ -1,0 +1,11 @@
+@startuml secuenciaTentativo
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+Actor ":TestCase" as test
+participant ":Jugador" as j
+participant ":PreguntaVF" as p
+
+
+@enduml
