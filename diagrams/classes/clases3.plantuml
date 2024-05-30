@@ -1,0 +1,71 @@
+@startuml tentativoPreguntas
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract Pregunta <<Abstract>> {
+    - pregunta: String
+    - tematica: String
+    - opciones: List<Opcion>
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+
+class VerdaderoFalso {
+    - opcionCorrecta: Opcion
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+
+}
+
+class MultipleChoice {
+    - opcionesCorrectas
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+
+}
+
+class OrderedChoice {
+    - ordenCorrecto
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+
+}
+
+class GroupChoice {
+    - separacionCorrecta
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+
+}
+
+Pregunta <|- VerdaderoFalso
+Pregunta <|-left- MultipleChoice
+Pregunta <|-- OrderedChoice
+Pregunta <|-- GroupChoice
+
+interface TipoVF <<Interface>> {
+}
+class VFClasico {
+}
+class VFPenalidad {
+}
+
+VerdaderoFalso -> TipoVF
+TipoVF <|.. VFClasico
+TipoVF <|.. VFPenalidad
+
+interface TipoMC <<Interface>> {
+}
+class MCClasico {
+}
+class MCParcial {
+}
+class MCPenalidad {
+}
+TipoMC <- MultipleChoice
+TipoMC <|.. MCClasico
+TipoMC <|.. MCParcial
+TipoMC <|.. MCPenalidad
+@enduml
