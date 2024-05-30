@@ -9,8 +9,9 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [Valentín Marturet](https://github.com/ValentinMarturet)
 * **Integrante 2** - [Esteban Davila](https://github.com/Estebandavila98)
 * **Integrante 3** - [Patricio Ibar](https://github.com/patricioibar)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 4** - [Maria Agustina Fontana](https://github.com/agusfffff)
 * **Integrante 5** - [Nahuel Soles](https://github.com/Nahu2412)
+
 
 Corrector: **Diego Sánchez**
 
