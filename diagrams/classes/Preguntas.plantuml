@@ -1,4 +1,4 @@
-@startuml tentativoPreguntas
+@startuml Preguntas
 
 skinparam monochrome true
 hide circle

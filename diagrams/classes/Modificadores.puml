@@ -1,0 +1,24 @@
+@startuml Modificadores
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+interface Modificador <<Inteface>>{
+    + modificarPuntaje()
+}
+
+
+Class PorCero implements Modificador{
+    + modificarPuntaje()
+}
+Class PorUno implements Modificador{
+    + modificarPuntaje()
+}
+Class PorDos implements Modificador{
+    + modificarPuntaje()
+}
+Class PorTres implements Modificador{
+    + modificarPuntaje()
+}
+@enduml

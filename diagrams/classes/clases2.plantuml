@@ -8,14 +8,13 @@ Abstract Pregunta {
     - categoria: str
     - opciones: Opciones []
     - pregunta: str
-    + obtenerOpciones(): Opciones[]
-    + validarOpciones(Opcion[]): Puntaje
-    + validarOpciones(Opcion): Puntaje
+    + validarSeleccion(jugada: Jugada): Respuesta
 }
 
 class Turno {
     - anulador: Anulador
     - exclusividad: Exclusividad
+    + jugarTurno(lista: Jugador[])
 }
 
 class GestorPreguntas {
@@ -23,13 +22,21 @@ class GestorPreguntas {
 }
 
 class Jugador {
-
+    - nombre: str
+    - puntajeTotal: Puntaje
+    + obtenerJugada(): Jugada
 
 }
 
 class Respuesta {
     - puntaje: int
-    - multiplicador: Multiplicador
+    - modificadores: Modificador[]
+    + Respuesta(p: Puntaje, m: Modificador, j: Jugador)
+    + actualizarPuntajeDelJugador()
+}
+
+class AlgoHoot {
+
 }
 
 Jugador <- GestorDeTurnos

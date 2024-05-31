@@ -1,0 +1,53 @@
+@startuml secuenciaTentativo2
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor ":GestorTurnos" as g
+participant "gp:GestorPreguntas" as gp
+participant ":Turno" as t
+participant "j:Jugador" as j
+participant "p:PreguntaVF" as p
+participant "r:Respuesta" as r
+participant ":Exclusividad" as e
+participant ":Anulador" as an
+
+g -> gp:obtenerSiguientePregunta()
+    activate gp
+        g <-- gp: p
+    deactivate gp
+
+create t
+g -> t: Turno(p)
+
+
+g -> t: jugarTurno(listaJugadores)
+activate t
+loop para cada jugador de la lista
+    t -> j: obtenerJugada()
+    activate j
+        t <-- j: seleccion,modificador,exclusividad,anulador
+    deactivate j
+
+    t -> p: validarOpcion(seleccion)
+    activate p
+
+        t <-- p: puntaje
+    deactivate p
+    create r
+    t -> r: Respuesta(puntaje,modificador,jugador)
+    t -> t: registrarRespuesta(r)
+
+end
+
+t -> e: aplicarExclusividad(listaRespuestas)
+
+t -> an: aplicarAnulador()
+
+loop para cada respuesta registrada
+    t -> r: actualizarPuntajeDelJugador()
+end
+
+deactivate t
+@enduml
