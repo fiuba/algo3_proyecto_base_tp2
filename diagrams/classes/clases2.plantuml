@@ -1,4 +1,4 @@
-@startuml tentativo2
+@startuml clasesGenerales
 
 skinparam monochrome true
 hide circle
@@ -8,7 +8,12 @@ Abstract Pregunta {
     - categoria: str
     - opciones: Opciones []
     - pregunta: str
-    + validarSeleccion(jugada: Jugada): Respuesta
+    + mostrarPanel()
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+
+class GestorDeTurnos {
+    + iniciarJuego()
 }
 
 class Turno {
@@ -36,7 +41,8 @@ class Respuesta {
 }
 
 class AlgoHoot {
-
+    - GUI: Gui
+    + manejarInputsConsola()
 }
 
 Jugador <- GestorDeTurnos
@@ -44,8 +50,8 @@ GestorDeTurnos -down-> GestorPreguntas
 GestorDeTurnos -down-> "*" Turno
 GestorPreguntas *-->"*" Pregunta
 Turno --> Pregunta
-Turno .> GestorPreguntas
 Turno --> "*" Respuesta
 Respuesta --> Jugador
+AlgoHoot --> GestorDeTurnos
 
 @enduml

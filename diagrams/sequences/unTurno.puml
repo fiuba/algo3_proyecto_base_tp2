@@ -1,4 +1,4 @@
-@startuml secuenciaTentativo2
+@startuml unTurno
 skinparam monochrome true
 hide footbox
 skinparam classAttributeIconSize 0
