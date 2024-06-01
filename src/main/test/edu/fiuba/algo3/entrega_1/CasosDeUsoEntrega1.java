@@ -47,8 +47,7 @@ public class CasosDeUsoEntrega1 {
         // Act
         turno.jugarTurno(listaJugadores);
         List<Number> puntajesObtenidos = listaJugadores.stream()
-                .mapToInt(Jugador::obtenerPuntaje)
-                .boxed()                                            // Convertir de IntStream a Stream<Integer>
+                .map(Jugador::obtenerPuntaje)
                 .collect(Collectors.toCollection(ArrayList::new));  // Coleccionar en ArrayList<Number>;
 
         // Assert
