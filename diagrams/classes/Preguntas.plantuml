@@ -20,7 +20,6 @@ class VerdaderoFalso {
 }
 
 class MultipleChoice {
-    - opcionesCorrectas
     + mostrarPanel()
     + validarSeleccion(s: Seleccion): Puntaje
 
@@ -59,16 +58,22 @@ VerdaderoFalso -> TipoVF
 TipoVF <|.. VFClasico
 TipoVF <|.. VFPenalidad
 
-interface TipoMC <<Interface>> {
+abstract TipoMC <<Abstract>> {
+    - opcionesCorrectas
+    + TipoMC(opcionesCorrectas)
+    + validarSeleccion(s: Seleccion): Puntaje
 }
 class MCClasico {
+    + validarSeleccion(s: Seleccion): Puntaje
 }
 class MCParcial {
+    + validarSeleccion(s: Seleccion): Puntaje
 }
 class MCPenalidad {
+    + validarSeleccion(s: Seleccion): Puntaje
 }
 TipoMC <- MultipleChoice
-TipoMC <|.. MCClasico
-TipoMC <|.. MCParcial
-TipoMC <|.. MCPenalidad
+TipoMC <|-- MCClasico
+TipoMC <|-- MCParcial
+TipoMC <|-- MCPenalidad
 @enduml
