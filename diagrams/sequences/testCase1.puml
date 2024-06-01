@@ -1,0 +1,43 @@
+@startuml testCase1
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor ":TestCase" as g
+participant ":Turno" as t
+participant "j:Jugador" as j
+participant "p:PreguntaVF" as p
+participant "r:Respuesta" as r
+
+
+create t
+g -> t: Turno(p)
+
+
+g -> t: jugarTurno(listaJugadores)
+activate t
+loop para cada jugador de la lista
+    t -> j: obtenerJugada()
+    activate j
+        t <-- j: seleccion
+    deactivate j
+
+    t -> p: validarOpcion(seleccion)
+    activate p
+
+        t <-- p: puntaje
+    deactivate p
+    create r
+    t -> r: Respuesta(puntaje,jugador)
+    t -> t: registrarRespuesta(r)
+
+end
+
+
+loop para cada respuesta registrada
+    t -> r: actualizarPuntajeDelJugador()
+end
+
+deactivate t
+@enduml

@@ -1,0 +1,22 @@
+@startuml Selecciones
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+interface Seleccion <<Inteface>>{
+
+}
+
+
+Class SeleccionBool implements Seleccion{
+
+}
+Class SeleccionConjunto implements Seleccion{
+
+}
+Class SeleccionOrden implements Seleccion{
+
+}
+
+@enduml
