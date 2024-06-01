@@ -7,6 +7,10 @@ public abstract class Pregunta {
     protected String tematica;
     protected List<String> opciones;
 
+    public Pregunta(String pregunta, String tematica) {
+        this.pregunta = pregunta;
+        this.tematica = tematica;
+    }
 
     public void mostrarPanel() {}
     public abstract int validarSeleccion(List<Number> seleccion);
