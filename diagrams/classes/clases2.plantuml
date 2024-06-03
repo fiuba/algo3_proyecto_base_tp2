@@ -5,11 +5,12 @@ hide circle
 skinparam classAttributeIconSize 0
 
 Abstract Pregunta {
-    - categoria: str
-    - opciones: Opciones []
     - pregunta: str
-    + mostrarPanel()
-    + validarSeleccion(s: Seleccion): Puntaje
+    - tematica: str
+    - opciones: List<str>
+    + Pregunta(pregunta:str,tematica:str)
+    + {abstract} mostrarPanel()
+    + {abstract} validarSeleccion(seleccion:List<int>): int
 }
 
 class GestorDeTurnos {
@@ -17,27 +18,32 @@ class GestorDeTurnos {
 }
 
 class Turno {
+    - pregunta: Pregunta
     - anulador: Anulador
     - exclusividad: Exclusividad
-    + jugarTurno(lista: Jugador[])
+    + Turno(pregunta:Pregunta)
+    + jugarTurno(listaJugadores:List<Jugador>):void
 }
 
 class GestorPreguntas {
-    - preguntas: Pregunta[]
+    +GestorPreguntas(preguntas:List<Pregunta>)
+    +obtenerSiguientePregunta(): Pregunta
 }
 
 class Jugador {
     - nombre: str
-    - puntajeTotal: Puntaje
+    - puntajeTotal: int
+    + Jugador(nombre:str):void
     + obtenerJugada(): Jugada
-
+    + obtenerPuntaje(): int
+    + sumarPuntaje(puntaje:int):void
 }
 
 class Respuesta {
-    - puntaje: int
-    - modificadores: Modificador[]
+    - puntajeBase: int
+    - modificadores: Modificador
     + Respuesta(p: Puntaje, m: Modificador, j: Jugador)
-    + actualizarPuntajeDelJugador()
+    + actualizarPuntajeDelJugador(): void
 }
 
 class AlgoHoot {
@@ -45,7 +51,7 @@ class AlgoHoot {
     + manejarInputsConsola()
 }
 
-Jugador <- GestorDeTurnos
+Jugador "*" <- GestorDeTurnos
 GestorDeTurnos -down-> GestorPreguntas
 GestorDeTurnos -down-> "*" Turno
 GestorPreguntas *-->"*" Pregunta
