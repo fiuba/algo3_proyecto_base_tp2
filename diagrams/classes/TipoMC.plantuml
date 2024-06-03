@@ -1,0 +1,25 @@
+@startuml Preguntas
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract TipoMC <<Abstract>> {
+    - opcionesCorrectas
+    + TipoMC(opcionesCorrectas)
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+class MCClasico {
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+class MCParcial {
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+class MCPenalidad {
+    + validarSeleccion(s: Seleccion): Puntaje
+}
+
+TipoMC <|-- MCClasico
+TipoMC <|-- MCParcial
+TipoMC <|-- MCPenalidad
+@enduml

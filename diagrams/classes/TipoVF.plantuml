@@ -1,0 +1,19 @@
+@startuml Preguntas
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+interface TipoVF <<Interface>> {
+    + devolverPuntaje(Boolean acierta): Puntaje
+}
+class VFClasico {
+    + devolverPuntaje(Boolean acierta): Puntaje
+}
+class VFPenalidad {
+    + devolverPuntaje(Boolean acierta): Puntaje
+}
+
+TipoVF <|.. VFClasico
+TipoVF <|.. VFPenalidad
+@enduml
