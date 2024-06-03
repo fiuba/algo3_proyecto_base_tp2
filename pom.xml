@@ -4,6 +4,15 @@
     <groupId>edu.fiuba.algo3</groupId>
     <artifactId>tp2</artifactId>
     <version>0.0.1</version>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub ValentinMarturet Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ValentinMarturet/ALGO3-TP2</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
