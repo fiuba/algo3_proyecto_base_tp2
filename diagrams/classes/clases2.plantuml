@@ -18,7 +18,6 @@ class GestorDeTurnos {
 }
 
 class Turno {
-    - pregunta: Pregunta
     - anulador: Anulador
     - exclusividad: Exclusividad
     + Turno(pregunta:Pregunta)
