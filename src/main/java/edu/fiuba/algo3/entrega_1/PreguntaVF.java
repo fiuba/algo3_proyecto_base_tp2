@@ -1,24 +1,20 @@
 package edu.fiuba.algo3.entrega_1;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-public class PreguntaVF extends Pregunta {
-    private TipoVF tipo;
-    private Number opcionCorrecta;
+public class PreguntaVF {
+    private String pregunta;
+    private OpcionCorrecta opcionCorrecta;
+    private OpcionIncorrecta opcionIncorrecta;
 
-    public PreguntaVF(String pregunta, String tematica, Number opcionCorrecta, TipoVF tipo) {
-        super(pregunta, tematica);
-        this.opciones = new ArrayList<String>();
-        this.opciones.add("Falso");
-        this.opciones.add("Verdadero");
+    public PreguntaVF(String pregunta, OpcionCorrecta opcionCorrecta, OpcionIncorrecta opcionIncorrecta) {
+        this.pregunta = pregunta;
         this.opcionCorrecta = opcionCorrecta;
-        this.tipo = tipo;
+        this.opcionIncorrecta = opcionIncorrecta;
     }
 
-    @Override
-    public int validarSeleccion(List<Number> seleccion) {
-        Boolean acierta = opcionCorrecta.equals( seleccion.get(0) );
-        return tipo.devolverPuntaje(acierta);
+    public Puntaje responder(Respuesta respuesta) {
+        return opcionCorrecta.compararseCon(respuesta);
     }
 }

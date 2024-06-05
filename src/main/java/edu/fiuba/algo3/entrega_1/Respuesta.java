@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 public class Respuesta {
-    private Jugador jugador;
-    private int puntajeBase;
+    private String respuesta;
 
-    public Respuesta(Jugador jugador, int puntajeBase) {
-        this.jugador = jugador;
-        this.puntajeBase = puntajeBase;
+    public Respuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
-    public void actualizarPuntajeDelJugador() {
-        jugador.sumarPuntaje(puntajeBase);
+    public Boolean equals(String otroString) {
+        return respuesta.equals(otroString);
     }
 }

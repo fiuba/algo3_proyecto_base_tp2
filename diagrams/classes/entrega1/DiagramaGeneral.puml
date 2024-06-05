@@ -1,0 +1,45 @@
+@startuml DiagramaGeneral
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+class PreguntaVF {
+    - pregunta: String
+    + PreguntaVF(p: String, op1: OpcionCorrecta, op2: OpcionIncorrecta)
+    + responder(r: Respuesta): Puntaje
+}
+
+class Puntaje {
+    - puntaje: Int
+    + sumar(Puntaje)
+}
+
+interface Opcion <<Interface>> {
+    {abstract} + compararse(r: Respuesta): Puntaje
+}
+
+class OpcionCorrecta extends Opcion {
+    - opcion: String
+    + compararse(r: Respuesta): Puntaje
+}
+
+class OpcionIncorrecta extends Opcion {
+    - opcion: String
+    + compararse(r: Respuesta): Puntaje
+}
+
+class Respuesta {
+
+}
+
+class Jugador {
+    +Jugador()
+    +aumentarPuntaje(p:Puntaje)
+}
+
+PreguntaVF .> Respuesta
+PreguntaVF --> "*" Opcion
+Opcion ..left> Puntaje
+Jugador --> Puntaje
+@enduml
