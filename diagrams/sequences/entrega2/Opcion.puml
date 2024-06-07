@@ -1,0 +1,24 @@
+@startuml Opcion1
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+actor ":TestCase" as tc
+participant "s:Pregunta" as p
+participant "s:Solucion" as s
+participant "r:Respuesta" as r
+participant "eR:Eleccion" as eR
+participant "eP:Eleccion" as eP
+
+tc -> p: responder(r)
+p -> s: puntuar(r)
+s -> r: equals(eP)
+r -> eR: equals(eP)
+
+r <- eR: true/false
+s <- r: true/false
+p <- s: unPuntaje
+tc <- p: unPuntaje
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml DiagramaGroupChoice
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+
+interface Solucion {
+    + puntuar(r: Respuesta): Puntaje
+}
+
+interface Opcion {
+    + equals(o: Opcion): bool
+}
+
+
+OpcionCorrecta -down-|> Opcion
+OpcionIncorrecta -down-|> Opcion
+class OpcionCorrecta implements Solucion
+class OpcionIncorrecta implements Solucion
+class Orden implements Solucion
+class Grupo implements Solucion
+
+Solucion <- Pregunta
+
+class Orden {
+    - orden: OrderedList<Opcion>
+    + puntuar(o: Opcion): Puntaje
+    + equals(o: Opcion): bool
+}
+
+class Grupo {
+    - grupo: Set<Opcion>
+    + puntuar(o: Opcion): Puntaje
+    + equals(o: Opcion): bool
+}
+Orden .down.|> Eleccion
+Grupo .down.|> Eleccion
+Opcion .down.|> Eleccion
+Respuesta -> Eleccion
+@enduml

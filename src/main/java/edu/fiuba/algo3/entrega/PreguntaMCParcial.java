@@ -1,12 +1,12 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega;
 
 import java.util.*;
 
-public class PreguntaMC {
+public class PreguntaMCParcial {
     private String pregunta;
     private List<Opcion> opciones;
 
-    public PreguntaMC(String pregunta, Opcion... opciones) {
+    public PreguntaMCParcial(String pregunta, Opcion... opciones) {
         this.pregunta = pregunta;
         this.opciones = new ArrayList<Opcion>();
         Collections.addAll(this.opciones, opciones);
@@ -25,18 +25,12 @@ public class PreguntaMC {
             return new Puntaje(0);
         }
 
-        // Si hay alguna opcion correcta sin seleccionar -> return 0
+        return Arrays.stream(respuestas)
+                .flatMap(r -> opciones.stream().map(op -> op.puntuar(r)))
+                .reduce(new Puntaje(0), (p, valor) -> {
+                    p.sumar(valor);
+                    return p;
+                });
 
-        Optional<Opcion> opcionSinSeleccionar = opciones.stream()
-                .filter(op -> op instanceof OpcionCorrecta)
-                .filter(op -> Arrays.stream(respuestas)
-                        .noneMatch(op::equals))
-                .findAny();
-
-        if (opcionSinSeleccionar.isPresent()) {
-            return new Puntaje(0);
-        }
-
-        return new Puntaje(1);
     }
 }

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega;
 
 public class PreguntaVFPenalidad {
     private String pregunta;
@@ -14,8 +14,8 @@ public class PreguntaVFPenalidad {
     public Puntaje responder(Respuesta respuesta) {
         Puntaje acumulador = new Puntaje(0);
 
-        acumulador.sumar(opcionCorrecta.compararseCon(respuesta));
-        acumulador.sumar(opcionIncorrecta.compararseCon(respuesta));
+        acumulador.sumar(opcionCorrecta.puntuar(respuesta));
+        acumulador.sumar(opcionIncorrecta.puntuar(respuesta));
 
         return acumulador;
     }

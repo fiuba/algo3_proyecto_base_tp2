@@ -1,0 +1,34 @@
+@startuml DiagramaGroupChoice
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+class PreguntaGC {
+    - pregunta: String
+    + PreguntaVF(p: String, g1: Grupo, g2: Grupo)
+    + responder(r: Respuesta): Puntaje
+}
+
+class Puntaje {
+    - puntaje: Int
+    + sumar(Puntaje)
+}
+
+class Grupo {
+    - grupo: List<String>
+    + puntuar(r: Respuesta): Puntaje
+    + equals(g: Grupo): bool
+}
+
+class Respuesta {
+    + contiene(g: Grupo): bool
+}
+
+PreguntaGC -> "2" Grupo
+PreguntaGC .> Respuesta
+PreguntaGC ..> Puntaje
+Grupo ..> Puntaje
+Respuesta  --> "2" Grupo
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml unTurno
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor ":TestCase" as tc
+participant "p:PreguntaGC" as p
+participant "unGrupo:Grupo" as ug
+participant "r:Respuesta" as r
+participant "gs1:Grupo" as gs1
+participant "gs2:Grupo" as gs2
+
+tc -> p: responder(r)
+p -> ug: puntuar(r)
+ug -> r: contiene(ug.grupo)
+r -> gs1: equals(ug.grupo)
+r <-- gs1: boolGS1
+r -> gs2: equals(ug.grupo)
+r <-- gs2: boolGS2
+ug <-- r: boolGS1 || boolGS2
+@enduml

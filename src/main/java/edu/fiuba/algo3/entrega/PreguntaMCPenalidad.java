@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class PreguntaMCPenalidad {
 
     public Puntaje responder(Respuesta... respuestas) {
         return Arrays.stream(respuestas)
-                .flatMap(r -> opciones.stream().map(op -> op.compararseCon(r)))
+                .flatMap(r -> opciones.stream().map(op -> op.puntuar(r)))
                 .reduce(new Puntaje(0), (p, valor) -> {
                     p.sumar(valor);
                     return p;

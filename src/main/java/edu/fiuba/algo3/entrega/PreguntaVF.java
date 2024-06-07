@@ -1,7 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
-
-import java.util.List;
-import java.util.ArrayList;
+package edu.fiuba.algo3.entrega;
 
 public class PreguntaVF {
     private String pregunta;
@@ -15,6 +12,6 @@ public class PreguntaVF {
     }
 
     public Puntaje responder(Respuesta respuesta) {
-        return opcionCorrecta.compararseCon(respuesta);
+        return opcionCorrecta.puntuar(respuesta);
     }
 }

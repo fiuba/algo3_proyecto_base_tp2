@@ -1,0 +1,21 @@
+@startuml DiagramaGroupChoice
+
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+class RespuestaOpcion {
+    - opcion: String
+    + equals(o: Opcion): Bool
+}
+
+class RespuestaGrupo {
+    - grupo: Set<String>
+    + equals(g: Grupo): Bool
+}
+
+class RespuestaOrden {
+    - orden: List<String>
+    + equals(o: Orden): Bool
+}
+@enduml
