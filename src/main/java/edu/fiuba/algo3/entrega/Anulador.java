@@ -7,6 +7,7 @@ public class Anulador {
     public Anulador(Jugador jugador) {
         this.jugador = jugador;
     }
+
     public void anular(Puntaje... puntos) {
         Arrays.stream(puntos)
                 .filter(p -> !p.perteneceA(jugador))

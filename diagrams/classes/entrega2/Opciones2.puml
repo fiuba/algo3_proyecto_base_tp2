@@ -5,44 +5,45 @@ hide circle
 skinparam classAttributeIconSize 0
 
 class Pregunta {
-    + responder(r: Respuesta)
+    + responder(e: Eleccion)
 }
 
-interface Solucion {
-    + puntuar(o: Opcion): Puntaje
+abstract Solucion <<Abstract>> {
+    + puntuar(e: Eleccion): Puntaje
 }
 
 class SolucionCorrecta extends Solucion {
-    + puntuar(o: Opcion): Puntaje
+    + puntuar(e: Eleccion): Puntaje
 }
 
 class SolucionIncorrecta extends Solucion {
-    + puntuar(o: Opcion): Puntaje
+    + puntuar(e: Eleccion): Puntaje
 }
 
-abstract Opcion {
+class Opcion {
     - opcion: String
-    + equals(o: Opcion): bool
+    + equals(e: Eleccion): bool
 }
 
-interface Respuesta {
-
-}
 
 Solucion <- Pregunta
 Solucion -left-> Eleccion
 class Orden {
     - orden: OrderedList<Opcion>
-    + equals(o: Opcion): bool
+    + equals(e: Eleccion): bool
 }
 
 class Grupo {
     - grupo: Set<Opcion>
-    + equals(o: Opcion): bool
+    + equals(e: Eleccion): bool
 }
+
+interface Eleccion <<Interface>> {
+    + equals(e: Eleccion): bool
+}
+
 Orden .down.|> Eleccion
 Grupo .down.|> Eleccion
 Opcion .down.|> Eleccion
 
-Respuesta -> Eleccion
 @enduml
