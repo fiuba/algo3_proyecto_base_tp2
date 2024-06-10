@@ -11,6 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -144,9 +149,11 @@ public class App extends Application {
 
         ImageView imageR = new ImageView("https://i.imgur.com/ThjAo7d.png");
         Button botonResponder = new Button("",imageR);
+        AudioClip sonidoR = new AudioClip("https://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3");
 
         botonResponder.setOnAction(e -> {
             System.out.println("<< sonido >>");
+            sonidoR.play();
         });
 
         StackPane layoutR = new StackPane();
