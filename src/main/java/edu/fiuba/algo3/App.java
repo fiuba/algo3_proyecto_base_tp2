@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -177,6 +178,11 @@ public class App extends Application {
         ImageView imageT = new ImageView("https://i.imgur.com/clpEtQt.png");
         Button botonTriplicador = new Button("",imageT);
         botonTriplicador.setStyle("-fx-background-color: transparent;");
+
+        botonTriplicador.setOnAction(e -> {
+            System.out.println("<< sonido >>");
+            sonidoR.play();
+        });
 
         HBox layoutPoderes = new HBox(20);
         layoutPoderes.getChildren().addAll(botonAnulador,botonExclusividad,botonDuplicador,botonTriplicador);
