@@ -4,6 +4,9 @@ import edu.fiuba.algo3.entrega.*;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CasosDeUsoEntrega2 {
@@ -121,8 +124,8 @@ public class CasosDeUsoEntrega2 {
         Puntaje puntosEsperadosJ2 = new Puntaje(-2);
 
         // Act
-        Modificador multiJ1 = new Duplicador();
-        Modificador multiJ2 = new Duplicador();
+        ModificadorIndividual multiJ1 = new Duplicador();
+        ModificadorIndividual multiJ2 = new Duplicador();
         Puntaje puntosJ1 = p.responder( new Respuesta("Si") );
         puntosJ1.agregarModificador(multiJ1);
         Puntaje puntosJ2 = p.responder( new Respuesta("No") );
@@ -146,8 +149,8 @@ public class CasosDeUsoEntrega2 {
 
 
         // Act
-        Modificador multiJ1 = new Duplicador();
-        Modificador multiJ2 = new Triplicador();
+        ModificadorIndividual multiJ1 = new Duplicador();
+        ModificadorIndividual multiJ2 = new Triplicador();
         Puntaje puntosJ1 = p.responder( new Respuesta("Pato"), new Respuesta("Perro") );
         puntosJ1.agregarModificador(multiJ1);
         Puntaje puntosJ2 = p.responder( new Respuesta("Aguila") );
@@ -174,8 +177,11 @@ public class CasosDeUsoEntrega2 {
         puntosJ1.establecerJugador(j1);
         Puntaje puntosJ2 = p.responder( new Respuesta("Si") );
         puntosJ2.establecerJugador(j2);
+        List<Puntaje> pts = new ArrayList<Puntaje>();
+        pts.add(puntosJ1);
+        pts.add(puntosJ2);
 
-        anuladorJ1.anular(puntosJ1, puntosJ2);
+        anuladorJ1.aplicar(pts);
 
         // Assert
         assertEquals( puntosJ1.obtenerPuntos(), puntosEsperadosJ1.obtenerPuntos() );
@@ -199,9 +205,12 @@ public class CasosDeUsoEntrega2 {
         puntosJ1.establecerJugador(j1);
         Puntaje puntosJ2 = p.responder( new Respuesta("Si") );
         puntosJ2.establecerJugador(j2);
+        List<Puntaje> pts = new ArrayList<Puntaje>();
+        pts.add(puntosJ1);
+        pts.add(puntosJ2);
 
-        anuladorJ1.anular(puntosJ1, puntosJ2);
-        anuladorJ2.anular(puntosJ1, puntosJ2);
+        anuladorJ1.aplicar(pts);
+        anuladorJ2.aplicar(pts);
 
         // Assert
         assertEquals( puntosJ1.obtenerPuntos(), puntosEsperadosJ1.obtenerPuntos() );
@@ -220,8 +229,11 @@ public class CasosDeUsoEntrega2 {
 
         Puntaje puntosJ1 = p.responder( new Respuesta("Si") );
         Puntaje puntosJ2 = p.responder( new Respuesta("No") );
+        List<Puntaje> pts = new ArrayList<Puntaje>();
+        pts.add(puntosJ1);
+        pts.add(puntosJ2);
 
-        exclusividad.aplicar(puntosJ1, puntosJ2);
+        exclusividad.aplicar(pts);
 
         // Assert
         assertEquals( puntosJ1.obtenerPuntos(), puntosEsperadosJ1.obtenerPuntos() );
@@ -240,8 +252,10 @@ public class CasosDeUsoEntrega2 {
 
         Puntaje puntosJ1 = p.responder( new Respuesta("No") );
         Puntaje puntosJ2 = p.responder( new Respuesta("No") );
-
-        exclusividad.aplicar(puntosJ1, puntosJ2);
+        List<Puntaje> pts = new ArrayList<Puntaje>();
+        pts.add(puntosJ1);
+        pts.add(puntosJ2);
+        exclusividad.aplicar(pts);
 
         // Assert
         assertEquals( puntosJ1.obtenerPuntos(), puntosEsperadosJ1.obtenerPuntos() );
@@ -260,9 +274,11 @@ public class CasosDeUsoEntrega2 {
 
         Puntaje puntosJ1 = p.responder( new Respuesta("Si") );
         Puntaje puntosJ2 = p.responder( new Respuesta("No") );
-
-        exclusividadJ1.aplicar(puntosJ1, puntosJ2);
-        exclusividadJ2.aplicar(puntosJ1, puntosJ2);
+        List<Puntaje> pts = new ArrayList<Puntaje>();
+        pts.add(puntosJ1);
+        pts.add(puntosJ2);
+        exclusividadJ1.aplicar(pts);
+        exclusividadJ2.aplicar(pts);
 
         // Assert
         assertEquals( puntosJ1.obtenerPuntos(), puntosEsperadosJ1.obtenerPuntos() );

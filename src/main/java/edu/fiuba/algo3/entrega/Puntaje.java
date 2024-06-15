@@ -6,20 +6,20 @@ import java.util.List;
 public class Puntaje {
     private int puntajeBase;
     private Jugador jugador;
-    private List<Modificador> modificadores;
+    private List<ModificadorIndividual> modificadores;
 
     public Puntaje() {
         this.puntajeBase = 0;
     }
     public Puntaje(int puntajeInicial) {
         this.puntajeBase = puntajeInicial;
-        this.modificadores = new ArrayList<Modificador>();
+        this.modificadores = new ArrayList<ModificadorIndividual>();
         this.modificadores.add(new ModificadorBase());
     }
 
     public void sumar(Puntaje otroPuntaje) {
         this.puntajeBase += otroPuntaje.puntajeBase;
-        this.modificadores = new ArrayList<Modificador>();
+        this.modificadores = new ArrayList<ModificadorIndividual>();
         this.modificadores.add(new ModificadorBase());
     }
 
@@ -27,7 +27,7 @@ public class Puntaje {
         this.jugador = jugador;
     }
 
-    public void agregarModificador(Modificador mod) {
+    public void agregarModificador(ModificadorIndividual mod) {
         this.modificadores.add(mod);
     }
 
@@ -50,5 +50,9 @@ public class Puntaje {
 
     public boolean perteneceA(Jugador j){
         return this.jugador.equals(j);
+    }
+
+    public void actualizarPuntajeDelJugador() {
+        jugador.sumarPuntos( this.obtenerPuntos() );
     }
 }

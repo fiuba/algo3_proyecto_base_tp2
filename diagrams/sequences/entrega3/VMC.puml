@@ -1,0 +1,20 @@
+@startuml unTurno
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor "Vista" as v
+participant ":Control" as c
+participant ":Modelo" as m
+participant "ana:Jugador" as j
+
+v -> c: crearJugador("ana")
+activate c
+c -> m: crearJugador("ana")
+activate m
+create j
+m -> j: new Jugador("ana")
+m -> m: guardarJugador(ana)
+
+@enduml

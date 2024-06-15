@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega;
 
-public class PreguntaVFPenalidad {
+import java.util.List;
+
+public class PreguntaVFPenalidad implements Pregunta{
     private String pregunta;
     private OpcionCorrecta opcionCorrecta;
     private OpcionIncorrecta opcionIncorrecta;
@@ -11,11 +13,21 @@ public class PreguntaVFPenalidad {
         this.opcionIncorrecta = opcionIncorrecta;
     }
 
-    public Puntaje responder(Respuesta respuesta) {
+    @Override
+    public String getPregunta() {
+        return "";
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return List.of();
+    }
+
+    public Puntaje responder(Respuesta... respuesta) {
         Puntaje acumulador = new Puntaje(0);
 
-        acumulador.sumar(opcionCorrecta.puntuar(respuesta));
-        acumulador.sumar(opcionIncorrecta.puntuar(respuesta));
+        acumulador.sumar(opcionCorrecta.puntuar(respuesta[0]));
+        acumulador.sumar(opcionIncorrecta.puntuar(respuesta[0]));
 
         return acumulador;
     }

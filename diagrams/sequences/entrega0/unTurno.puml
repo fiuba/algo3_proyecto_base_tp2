@@ -4,8 +4,8 @@ hide footbox
 skinparam classAttributeIconSize 0
 
 
-actor ":GestorTurnos" as g
-participant "gp:GestorPreguntas" as gp
+participant "Vista" as gui
+actor ":Control" as g
 participant ":Turno" as t
 participant "j:Jugador" as j
 participant "p:PreguntaVF" as p
@@ -13,22 +13,18 @@ participant "r:Respuesta" as r
 participant ":Exclusividad" as e
 participant ":Anulador" as an
 
-g -> gp:obtenerSiguientePregunta()
-    activate gp
-        g <-- gp: p
-    deactivate gp
+activate gui
 
-create t
-g -> t: Turno(p)
+gui -> g: iniciarJuego()
+g -> t: obtenerPregunta()
+g <-- t: unaPregunta
+g -> t: obtenerOpciones()
+g <-- t: unasOpciones
+gui <- g: mostrarPregunta(unaPregunta)
+gui <- g: mostrarOpcion(unaOpcion)
 
-
-g -> t: jugarTurno(listaJugadores)
+g -> t: responder(j,jugada)
 activate t
-loop para cada jugador de la lista
-    t -> j: obtenerJugada()
-    activate j
-        t <-- j: seleccion,modificador,exclusividad,anulador
-    deactivate j
 
     t -> p: validarOpcion(seleccion)
     activate p
@@ -39,7 +35,6 @@ loop para cada jugador de la lista
     t -> r: Respuesta(puntaje,modificador,jugador)
     t -> t: registrarRespuesta(r)
 
-end
 
 t -> e: aplicarExclusividad(listaRespuestas)
 

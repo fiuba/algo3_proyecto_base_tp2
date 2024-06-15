@@ -11,7 +11,7 @@ public class PreguntaVF {
         this.opcionIncorrecta = opcionIncorrecta;
     }
 
-    public Puntaje responder(Respuesta respuesta) {
-        return opcionCorrecta.puntuar(respuesta);
+    public Puntaje responder(Respuesta... respuesta) {
+        return opcionCorrecta.puntuar(respuesta[0]);
     }
 }
