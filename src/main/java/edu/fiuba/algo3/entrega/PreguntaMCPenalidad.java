@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PreguntaMCPenalidad {
+public class PreguntaMCPenalidad implements Pregunta{
     private String pregunta;
     private List<Opcion> opciones;
 
@@ -22,5 +22,15 @@ public class PreguntaMCPenalidad {
                     p.sumar(valor);
                     return p;
                 });
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return this.opciones;
     }
 }

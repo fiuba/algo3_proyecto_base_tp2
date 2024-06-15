@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega;
 
-public class PreguntaGC {
+import java.util.List;
+
+public class PreguntaGC implements Pregunta {
     private String pregunta;
     private Grupo unGrupo;
     private Grupo otroGrupo;
@@ -13,5 +15,15 @@ public class PreguntaGC {
 
     public Puntaje responder(Respuesta respuesta) {
         return unGrupo.puntuar(respuesta);
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return List.of();
     }
 }

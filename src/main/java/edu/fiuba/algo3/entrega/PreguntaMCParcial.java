@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega;
 
 import java.util.*;
 
-public class PreguntaMCParcial {
+public class PreguntaMCParcial implements Pregunta {
     private String pregunta;
     private List<Opcion> opciones;
 
@@ -32,5 +32,15 @@ public class PreguntaMCParcial {
                     return p;
                 });
 
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return this.opciones;
     }
 }

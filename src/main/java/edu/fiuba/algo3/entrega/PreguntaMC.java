@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega;
 
 import java.util.*;
 
-public class PreguntaMC {
+public class PreguntaMC implements Pregunta{
     private String pregunta;
     private List<Opcion> opciones;
 
@@ -38,5 +38,15 @@ public class PreguntaMC {
         }
 
         return new Puntaje(1);
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return this.opciones;
     }
 }

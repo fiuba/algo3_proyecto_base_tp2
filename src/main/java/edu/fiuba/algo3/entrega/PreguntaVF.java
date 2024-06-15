@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega;
 
-public class PreguntaVF {
+import java.util.List;
+
+public class PreguntaVF implements Pregunta{
     private String pregunta;
     private OpcionCorrecta opcionCorrecta;
     private OpcionIncorrecta opcionIncorrecta;
@@ -13,5 +15,15 @@ public class PreguntaVF {
 
     public Puntaje responder(Respuesta... respuesta) {
         return opcionCorrecta.puntuar(respuesta[0]);
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return null;
     }
 }

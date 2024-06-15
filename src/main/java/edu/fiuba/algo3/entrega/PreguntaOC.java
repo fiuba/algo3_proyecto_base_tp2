@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega;
 
-public class PreguntaOC {
+import java.util.List;
+
+public class PreguntaOC implements Pregunta{
     private String pregunta;
     private Orden ordenCorrecto;
 
@@ -13,5 +15,15 @@ public class PreguntaOC {
 
         return ordenCorrecto.puntuar(respuesta);
 
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.pregunta;
+    }
+
+    @Override
+    public List<Opcion> getOpciones() {
+        return null;
     }
 }
