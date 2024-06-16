@@ -6,11 +6,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.net.URI;
 import java.util.concurrent.Flow;
 
 import static java.lang.Math.floor;
@@ -22,6 +26,9 @@ public class VistaPregunta extends Scene {
         double margenAncho = width/32;
         double margenAlto = height/18;
         this.root = (FlowPane) this.getRoot();
+        BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+        Background fondo = new Background(imagenFondo);
+        this.root.setBackground(fondo);
 
         FlowPane panelTableroJugadores = new FlowPane();
         panelTableroJugadores.setPrefHeight(height);
@@ -65,24 +72,43 @@ public class VistaPregunta extends Scene {
         FlowPane panelBotonResponder = new FlowPane();
         panelBotonResponder.setPrefHeight(height/8);
         panelBotonResponder.setPrefWidth(panelBotonesControl.getPrefWidth());
+        panelBotonResponder.setAlignment(Pos.CENTER);
         panelBotonesControl.getChildren().add(panelBotonResponder);
 
+        ImageView imagenResponder = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonResponder.png"));
+        Button botonResponder = new Button("", imagenResponder);
+        botonResponder.setStyle("-fx-background-color: transparent;");
+        panelBotonResponder.getChildren().add(botonResponder);
+        File archivoSonidoResponder = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/sonidos/responder.wav");
+        Media mediaResponder = new Media(archivoSonidoResponder.toURI().toString());
+        AudioClip sonidioResponder = new AudioClip(mediaResponder.getSource());
+        botonResponder.setOnAction(e -> { sonidioResponder.play(); });
+
         FlowPane panelBotonesPoderes = new FlowPane();
-        panelBotonesPoderes.setPrefHeight(panelBotonesControl.getPrefWidth() - panelBotonResponder.getPrefWidth());
+        panelBotonesPoderes.setPrefHeight(panelBotonesControl.getPrefHeight() - panelBotonResponder.getPrefHeight());
         panelBotonesPoderes.setPrefWidth(panelBotonesControl.getPrefWidth());
         panelBotonesControl.getChildren().add(panelBotonesPoderes);
-
+        VBox poderes = new VBox();
+        poderes.setPrefHeight(panelBotonesPoderes.getPrefHeight());
+        poderes.setPrefWidth(panelBotonesPoderes.getPrefWidth());
+        poderes.setAlignment(Pos.CENTER);
+        poderes.setPadding(new Insets(margenAlto,0,0,0));
+        poderes.setSpacing(margenAlto/2);
+        panelBotonesPoderes.getChildren().add(poderes);
 
         // esto es propio de la pregunta VF.
         HBox opciones = new HBox();
         opciones.setPrefHeight(panelOpciones.getPrefHeight());
+        opciones.setPrefWidth(panelOpciones.getPrefWidth());
         opciones.setAlignment(Pos.CENTER);
         opciones.setSpacing(margenAncho);
-        opciones.setPrefWidth(panelOpciones.getPrefWidth());
         panelOpciones.getChildren().add(opciones);
 
-        ToggleButton opcion1 = new ToggleButton("Verdadero");
-        ToggleButton opcion2 = new ToggleButton("Falso");
+        RadioButton opcion1 = new RadioButton("Verdadero");
+        RadioButton opcion2 = new RadioButton("Falso");
+        ToggleGroup grupoOpciones = new ToggleGroup();
+        opcion1.setToggleGroup(grupoOpciones);
+        opcion2.setToggleGroup(grupoOpciones);
         opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
         opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
         establecerEstilo(opcion1);
@@ -91,7 +117,29 @@ public class VistaPregunta extends Scene {
         cambiarTamanoFuente(opcion2,26);
         opciones.getChildren().addAll(opcion1,opcion2);
 
+        // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
+
+        ImageView imagenAnulador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonAnulador.png"));
+        ToggleButton botonAnulador = new ToggleButton("", imagenAnulador);
+        botonAnulador.setStyle("-fx-background-color: transparent;");
+        poderes.getChildren().add(botonAnulador);
+
+        ImageView imagenDuplicador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonDuplicador.png"));
+        ToggleButton botonDuplicador = new ToggleButton("", imagenDuplicador);
+        botonDuplicador.setStyle("-fx-background-color: transparent;");
+        botonDuplicador.setDisable(true);
+        poderes.getChildren().add(botonDuplicador);
+
+        ImageView imagenTriplicador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonTriplicador.png"));
+        ToggleButton botonTriplicador = new ToggleButton("", imagenTriplicador);
+        botonTriplicador.setStyle(
+
+                ".toggle-button:selected {" +
+                "    -fx-background-color: green;" +
+                "    -fx-text-fill: white;" +
+                "}" );
+        poderes.getChildren().add(botonTriplicador);
 
     }
 
