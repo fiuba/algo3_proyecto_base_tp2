@@ -11,9 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-
 import java.io.File;
-
 import static java.lang.Math.floor;
 
 public class VistaPregunta extends Scene {
@@ -26,6 +24,7 @@ public class VistaPregunta extends Scene {
         BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
+        this.getStylesheets().add("styles.css");
 
         FlowPane panelTableroJugadores = new FlowPane();
         panelTableroJugadores.setPrefHeight(height);
@@ -116,6 +115,8 @@ public class VistaPregunta extends Scene {
         cambiarTamanoFuente(opcion1,26);
         cambiarTamanoFuente(opcion2,26);
         opciones.getChildren().addAll(opcion1,opcion2);
+        opcion1.getStyleClass().add("custom-toggle-button");
+        opcion2.getStyleClass().add("custom-toggle-button");
 
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 

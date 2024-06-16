@@ -1,0 +1,26 @@
+/* Estilo por defecto para el ToggleButton */
+.custom-toggle-button {
+    -fx-background-color: lightgray;
+    -fx-text-fill: black;
+}
+
+/* Estilo cuando el ToggleButton está seleccionado */
+.custom-toggle-button:selected {
+    -fx-background-color: darkgray;
+    -fx-text-fill: white;
+}
+
+/* Estilo cuando el ToggleButton no está seleccionado (puede ser necesario para algunos casos) */
+.custom-toggle-button:selected:pressed {
+    -fx-background-color: gray;
+}
+
+/* Estilo cuando el ToggleButton está en estado hover */
+.custom-toggle-button:hover {
+    -fx-background-color: lightblue;
+}
+
+/* Estilo cuando el ToggleButton está seleccionado y en estado hover */
+.custom-toggle-button:selected:hover {
+    -fx-background-color: deepskyblue;
+}
