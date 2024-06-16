@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.entrega.*;
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
