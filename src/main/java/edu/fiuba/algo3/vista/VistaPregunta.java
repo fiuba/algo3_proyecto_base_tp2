@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.vista.botones.CustomToggleButton;
+import edu.fiuba.algo3.vista.botones.BotonPoder;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -23,7 +23,7 @@ public class VistaPregunta extends Scene {
         double margenAncho = width/32;
         double margenAlto = height/18;
         this.root = (FlowPane) this.getRoot();
-        BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+        BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
 
@@ -31,6 +31,8 @@ public class VistaPregunta extends Scene {
         panelTableroJugadores.setPrefHeight(height);
         panelTableroJugadores.setPrefWidth(floor(width/3));
         this.root.getChildren().add(panelTableroJugadores);
+        TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getWidth(), panelTableroJugadores.getHeight());
+        panelTableroJugadores.getChildren().add(tablero);
 
         FlowPane panelPregunta = new FlowPane();
         panelPregunta.setPrefHeight(height);
@@ -72,11 +74,11 @@ public class VistaPregunta extends Scene {
         panelBotonResponder.setAlignment(Pos.CENTER);
         panelBotonesControl.getChildren().add(panelBotonResponder);
 
-        ImageView imagenResponder = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonResponder.png"));
+        ImageView imagenResponder = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/botonResponder.png"));
         Button botonResponder = new Button("", imagenResponder);
         botonResponder.setStyle("-fx-background-color: transparent;");
         panelBotonResponder.getChildren().add(botonResponder);
-        File archivoSonidoResponder = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/sonidos/responder.wav");
+        File archivoSonidoResponder = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/responder.wav");
         Media mediaResponder = new Media(archivoSonidoResponder.toURI().toString());
         AudioClip sonidoResponder = new AudioClip(mediaResponder.getSource());
         sonidoResponder.setVolume(0.1);
@@ -117,10 +119,9 @@ public class VistaPregunta extends Scene {
 
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
-
-        ToggleButton botonAnulador = new CustomToggleButton("anulador");
-        ToggleButton botonDuplicador = new CustomToggleButton("duplicador");
-        ToggleButton botonTriplicador = new CustomToggleButton("triplicador");
+        ToggleButton botonAnulador = new BotonPoder("anulador");
+        ToggleButton botonDuplicador = new BotonPoder("duplicador");
+        ToggleButton botonTriplicador = new BotonPoder("triplicador");
         poderes.getChildren().addAll(botonAnulador,botonDuplicador,botonTriplicador);
 
     }
