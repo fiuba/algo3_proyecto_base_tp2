@@ -14,9 +14,9 @@ import javafx.scene.media.Media;
 import java.io.File;
 import static java.lang.Math.floor;
 
-public class VistaPregunta extends Scene {
+public class VistaPreguntaVF extends Scene {
     private FlowPane root;
-    public VistaPregunta (double width, double height) {
+    public VistaPreguntaVF(double width, double height) {
         super(new FlowPane(), width, height);
         double margenAncho = width/32;
         double margenAlto = height/18;
@@ -24,7 +24,7 @@ public class VistaPregunta extends Scene {
         BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
-        this.getStylesheets().add("styles.css");
+        this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         FlowPane panelTableroJugadores = new FlowPane();
         panelTableroJugadores.setPrefHeight(height);
@@ -32,6 +32,7 @@ public class VistaPregunta extends Scene {
         this.root.getChildren().add(panelTableroJugadores);
         TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getWidth(), panelTableroJugadores.getHeight());
         panelTableroJugadores.getChildren().add(tablero);
+
 
         FlowPane panelPregunta = new FlowPane();
         panelPregunta.setPrefHeight(height);
@@ -102,21 +103,16 @@ public class VistaPregunta extends Scene {
         opciones.setAlignment(Pos.CENTER);
         opciones.setSpacing(margenAncho);
         panelOpciones.getChildren().add(opciones);
-
         ToggleButton opcion1 = new ToggleButton("Verdadero");
         ToggleButton opcion2 = new ToggleButton("Falso");
+        opcion1.getStyleClass().add("custom-toggle-button");
+        opcion2.getStyleClass().add("custom-toggle-button");
         ToggleGroup grupoOpciones = new ToggleGroup();
         opcion1.setToggleGroup(grupoOpciones);
         opcion2.setToggleGroup(grupoOpciones);
         opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
         opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
-        establecerEstilo(opcion1);
-        establecerEstilo(opcion2);
-        cambiarTamanoFuente(opcion1,26);
-        cambiarTamanoFuente(opcion2,26);
         opciones.getChildren().addAll(opcion1,opcion2);
-        opcion1.getStyleClass().add("custom-toggle-button");
-        opcion2.getStyleClass().add("custom-toggle-button");
 
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
@@ -127,13 +123,14 @@ public class VistaPregunta extends Scene {
 
     }
 
+
     private void establecerEstilo(Node nodo) {
         nodo.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: black;" +
                 "-fx-border-width: 4px;" +
                 "-fx-text-fill: black;" +
                 "-fx-font-family: 'Comic Sans MS';" +
-                "-fx-text-alignment: center;");
+                "-fx-text-alignment: center;" +
+                "-fx-border-color: black;");
     }
 
     private void cambiarTamanoFuente(Node nodo, int size) {

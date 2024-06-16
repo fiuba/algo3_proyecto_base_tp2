@@ -1,13 +1,16 @@
-/* Estilo por defecto para el ToggleButton */
 .custom-toggle-button {
-    -fx-background-color: lightgray;
+    -fx-font-size: 26;
+    -fx-background-color: white;
+    -fx-border-width: 4px;
     -fx-text-fill: black;
+    -fx-font-family: 'Comic Sans MS';
+    -fx-text-alignment: center;
+    -fx-border-color: black;
 }
 
 /* Estilo cuando el ToggleButton está seleccionado */
 .custom-toggle-button:selected {
     -fx-background-color: darkgray;
-    -fx-text-fill: white;
 }
 
 /* Estilo cuando el ToggleButton no está seleccionado (puede ser necesario para algunos casos) */
@@ -17,10 +20,11 @@
 
 /* Estilo cuando el ToggleButton está en estado hover */
 .custom-toggle-button:hover {
-    -fx-background-color: lightblue;
+    -fx-background-color: deepskyblue;
 }
 
 /* Estilo cuando el ToggleButton está seleccionado y en estado hover */
 .custom-toggle-button:selected:hover {
-    -fx-background-color: deepskyblue;
+    -fx-background-color: #0003BA;
+    -fx-text-fill: white;
 }

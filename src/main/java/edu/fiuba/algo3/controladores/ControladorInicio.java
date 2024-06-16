@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.vista.VistaPregunta;
+import edu.fiuba.algo3.vista.VistaPreguntaVF;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ public class ControladorInicio implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         // AlgoHoot.getInstance().obtenerSiguientePregunta();
-        VistaPregunta vistaPregunta = new VistaPregunta( stage.getScene().getWidth(), stage.getScene().getHeight());
+        VistaPreguntaVF vistaPregunta = new VistaPreguntaVF( stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(vistaPregunta);
     }
 }
