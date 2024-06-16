@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista;
 
-
+import edu.fiuba.algo3.vista.botones.CustomToggleButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,11 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.net.URI;
-import java.util.concurrent.Flow;
 
 import static java.lang.Math.floor;
 
@@ -81,8 +78,9 @@ public class VistaPregunta extends Scene {
         panelBotonResponder.getChildren().add(botonResponder);
         File archivoSonidoResponder = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/sonidos/responder.wav");
         Media mediaResponder = new Media(archivoSonidoResponder.toURI().toString());
-        AudioClip sonidioResponder = new AudioClip(mediaResponder.getSource());
-        botonResponder.setOnAction(e -> { sonidioResponder.play(); });
+        AudioClip sonidoResponder = new AudioClip(mediaResponder.getSource());
+        sonidoResponder.setVolume(0.1);
+        botonResponder.setOnAction(e -> { sonidoResponder.play(); });
 
         FlowPane panelBotonesPoderes = new FlowPane();
         panelBotonesPoderes.setPrefHeight(panelBotonesControl.getPrefHeight() - panelBotonResponder.getPrefHeight());
@@ -104,8 +102,8 @@ public class VistaPregunta extends Scene {
         opciones.setSpacing(margenAncho);
         panelOpciones.getChildren().add(opciones);
 
-        RadioButton opcion1 = new RadioButton("Verdadero");
-        RadioButton opcion2 = new RadioButton("Falso");
+        ToggleButton opcion1 = new ToggleButton("Verdadero");
+        ToggleButton opcion2 = new ToggleButton("Falso");
         ToggleGroup grupoOpciones = new ToggleGroup();
         opcion1.setToggleGroup(grupoOpciones);
         opcion2.setToggleGroup(grupoOpciones);
@@ -120,26 +118,10 @@ public class VistaPregunta extends Scene {
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
 
-        ImageView imagenAnulador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonAnulador.png"));
-        ToggleButton botonAnulador = new ToggleButton("", imagenAnulador);
-        botonAnulador.setStyle("-fx-background-color: transparent;");
-        poderes.getChildren().add(botonAnulador);
-
-        ImageView imagenDuplicador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonDuplicador.png"));
-        ToggleButton botonDuplicador = new ToggleButton("", imagenDuplicador);
-        botonDuplicador.setStyle("-fx-background-color: transparent;");
-        botonDuplicador.setDisable(true);
-        poderes.getChildren().add(botonDuplicador);
-
-        ImageView imagenTriplicador = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/vista/recursos/imagenes/botonTriplicador.png"));
-        ToggleButton botonTriplicador = new ToggleButton("", imagenTriplicador);
-        botonTriplicador.setStyle(
-
-                ".toggle-button:selected {" +
-                "    -fx-background-color: green;" +
-                "    -fx-text-fill: white;" +
-                "}" );
-        poderes.getChildren().add(botonTriplicador);
+        ToggleButton botonAnulador = new CustomToggleButton("anulador");
+        ToggleButton botonDuplicador = new CustomToggleButton("duplicador");
+        ToggleButton botonTriplicador = new CustomToggleButton("triplicador");
+        poderes.getChildren().addAll(botonAnulador,botonDuplicador,botonTriplicador);
 
     }
 
