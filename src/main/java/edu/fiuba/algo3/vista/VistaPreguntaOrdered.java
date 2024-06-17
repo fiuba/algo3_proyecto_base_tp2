@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.botones.BotonPoder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -8,42 +10,56 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.floor;
 
-public class VistaPreguntaMC extends Scene {
+public class VistaPreguntaOrdered extends Scene {
     private FlowPane root;
-    private VBox opciones;
-    public VistaPreguntaMC(double width, double height) {
+    private static final ObservableList<String> birds = FXCollections.observableArrayList(
+            "Carpeta sintética",
+            "Cemento",
+            "Polvo de Ladrillo Naranja"
+    );
+
+    public VistaPreguntaOrdered(double width, double height) {
         super(new FlowPane(), width, height);
-        double margenAncho = width/32;
-        double margenAlto = height/18;
+        double margenAncho = width / 32;
+        double margenAlto = height / 18;
         this.root = (FlowPane) this.getRoot();
-        BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+        BackgroundImage imagenFondo = new BackgroundImage(new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         FlowPane panelTableroJugadores = new FlowPane();
-        panelTableroJugadores.setPrefHeight(height - 2*margenAlto);
-        panelTableroJugadores.setPrefWidth(floor(width/3 - margenAncho));
-        FlowPane.setMargin(panelTableroJugadores,new Insets(margenAlto, 0, margenAlto, margenAncho));
+        panelTableroJugadores.setPrefHeight(height - 2 * margenAlto);
+        panelTableroJugadores.setPrefWidth(floor(width / 3 - margenAncho));
+        FlowPane.setMargin(panelTableroJugadores, new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
         TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
-
         panelTableroJugadores.getChildren().add(tablero);
-        tablero.agregarJugador("agus",666);
-        tablero.agregarJugador("valen",999);
-        tablero.agregarJugador("nahu",2);
-        tablero.agregarJugador("pat",3);
-        tablero.agregarJugador("estebannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",12);
-        tablero.agregarJugador("estebannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",12);
+        tablero.agregarJugador("agus", 666);
+        tablero.agregarJugador("valen", 999);
+        tablero.agregarJugador("nahu", 2);
+        tablero.agregarJugador("pat", 3);
+        tablero.agregarJugador("estebannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", 12);
         tablero.resaltarSiguienteJugador();
 
         FlowPane panelPregunta = new FlowPane();
@@ -52,7 +68,7 @@ public class VistaPreguntaMC extends Scene {
         this.root.getChildren().add(panelPregunta);
 
         // ESTO NO SE TOCA.
-        Label textoPregunta = new Label("¿Cuál fue el aporte más conocido del científico inglés Edgard Codd a la computación?   ");
+        Label textoPregunta = new Label("¿Ordene las siguientes superficies de juego de tenis de acuerdo a su velocidad, de LENTAS a RAPIDAS");
         textoPregunta.setPrefHeight(height*2/5 - 2*margenAlto);
         textoPregunta.setPrefWidth(width * 2/3 - 2*margenAncho);
         FlowPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
@@ -61,6 +77,7 @@ public class VistaPreguntaMC extends Scene {
 
         textoPregunta.setWrapText(true);
         panelPregunta.getChildren().add(textoPregunta);
+
 
 
         FlowPane panelBotones = new FlowPane();
@@ -111,54 +128,98 @@ public class VistaPreguntaMC extends Scene {
         poderes.setSpacing(margenAlto/2);
         panelBotonesPoderes.getChildren().add(poderes);
 
-
-        // ejemplo de ingreso de rtas
-        List<String> opcionesLista = new ArrayList<>();
-
-        opcionesLista.add("El disco rígido");
-        opcionesLista.add("El sistema operativo Solaris");
-        opcionesLista.add("Las bases de datos relacionales");
-        opcionesLista.add("El algoritmo quicksort");
-        opcionesLista.add("Los lenguajes tipados");
-
-        this.opciones = new VBox();
-        opciones.setPrefHeight(panelOpciones.getPrefHeight());
-        opciones.setPrefWidth(panelOpciones.getPrefWidth());
-        opciones.setAlignment(Pos.CENTER);
-        opciones.setSpacing(25);
-        panelOpciones.getChildren().add(opciones);
-
-        definirCantidadOpciones(opcionesLista);
-
-        File archivoSonidoSeleccionar = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/seleccionar.wav");
-        Media mediaSeleccionar = new Media(archivoSonidoSeleccionar.toURI().toString());
-        AudioClip sonidoSeleccionar = new AudioClip(mediaSeleccionar.getSource());
-        sonidoSeleccionar.setVolume(0.2);
-
-        //aplico sonidos  a opciones
-        for (int i = 0; i < opcionesLista.size(); i++) {
-            Node opcion =  opciones.getChildren().get(i);
-            opcion.setOnMouseClicked(e-> sonidoSeleccionar.play());
-
-        }
-
-
-
-        // opcion1.getStyleClass().add("custom-toggle-button");
-        // opcion2.getStyleClass().add("custom-toggle-button");
-        // opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
-        // opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
-
-
-        // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
-
         ToggleButton botonAnulador = new BotonPoder("anulador");
         ToggleButton botonExclusividad = new BotonPoder("exclusividad");
         poderes.getChildren().addAll(botonAnulador,botonExclusividad);
 
+        // Define ListView for birds
+        ListView<String> birdList = new ListView<>(birds);
+        birdList.setCellFactory(param -> new BirdCell());
+        birdList.setPrefWidth(180);
+
+        panelOpciones.getChildren().add(birdList);
     }
 
+    private class BirdCell extends ListCell<String> {
+        @Override
+        public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                setText(item);
+                setGraphic(null);
+                setContentDisplay(ContentDisplay.TEXT_ONLY);
+                setAlignment(Pos.CENTER); // Center text alignment
+            }
+        }
 
+        public BirdCell() {
+            ListCell<String> thisCell = this;
+
+            setContentDisplay(ContentDisplay.TEXT_ONLY);
+            setAlignment(Pos.CENTER);
+
+            setOnDragDetected(event -> {
+                if (getItem() == null) {
+                    return;
+                }
+
+                Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(getItem());
+                dragboard.setContent(content);
+
+                event.consume();
+            });
+
+            setOnDragOver(event -> {
+                if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.MOVE);
+                }
+
+                event.consume();
+            });
+
+            setOnDragEntered(event -> {
+                if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+                    setOpacity(0.3);
+                }
+            });
+
+            setOnDragExited(event -> {
+                if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+                    setOpacity(1);
+                }
+            });
+
+            setOnDragDropped(event -> {
+                if (getItem() == null) {
+                    return;
+                }
+
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+
+                if (db.hasString()) {
+                    ObservableList<String> items = getListView().getItems();
+                    int draggedIdx = items.indexOf(db.getString());
+                    int thisIdx = items.indexOf(getItem());
+
+                    items.set(draggedIdx, getItem());
+                    items.set(thisIdx, db.getString());
+
+                    success = true;
+                }
+                event.setDropCompleted(success);
+
+                event.consume();
+            });
+
+            setOnDragDone(DragEvent::consume);
+        }
+    }
     private void establecerEstilo(Node nodo) {
         nodo.setStyle("-fx-background-color: white;" +
                 "-fx-border-width: 4px;" +
@@ -171,20 +232,5 @@ public class VistaPreguntaMC extends Scene {
     private void cambiarTamanoFuente(Node nodo, int size) {
         String estiloAnterior = nodo.getStyle();
         nodo.setStyle(estiloAnterior + "-fx-font-size: "+size+";");
-    }
-
-    private void definirCantidadOpciones(List<String> opcionesLista) {
-        for (int i = 0; i < opcionesLista.size(); i++) {
-            ToggleButton opcion = new ToggleButton(opcionesLista.get(i));
-            opcion.getStyleClass().add("custom-toggle-button");
-            opciones.getChildren().add(opcion);
-            String optionText = opcionesLista.get(i);
-            // double textWidth = opcion.getFont().getSize() * optionText.length();
-            // double availableWidth = opciones.getPrefWidth();
-            // if (textWidth > availableWidth) {
-            //     double newFontSize = availableWidth / optionText.length();
-            //     cambiarTamanoFuente(opcion, (int) newFontSize);
-            // }
-        }
     }
 }

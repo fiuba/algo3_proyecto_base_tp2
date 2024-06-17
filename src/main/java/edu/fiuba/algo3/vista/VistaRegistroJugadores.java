@@ -123,7 +123,6 @@ public class VistaRegistroJugadores extends Scene {
 
         this.root.getChildren().addAll(primerColumna,segundaColumna);
 
-
         ImageView imagenJugar = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/botonJugar.png"));
         Button botonjugar = new Button("", imagenJugar);
         botonjugar.setStyle("-fx-background-color: transparent;");
