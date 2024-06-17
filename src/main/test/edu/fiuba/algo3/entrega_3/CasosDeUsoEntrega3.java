@@ -12,7 +12,7 @@ public class CasosDeUsoEntrega3 {
     @Test
     public void testUnTurno() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("cuantos dedos tiene mi mano derecha?",
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("cuantos dedos tiene mi mano derecha?","SENTIDO COMUN", "La mano derecha de Pat tiene 5 dedos.",
                 new OpcionCorrecta("5"),
                 new OpcionIncorrecta("3"));
         Jugador j1 = new Jugador("J1");

@@ -8,11 +8,15 @@ import java.util.List;
 public class PreguntaMCPenalidad implements Pregunta{
     private String pregunta;
     private List<Opcion> opciones;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaMCPenalidad(String pregunta, Opcion... opciones) {
+    public PreguntaMCPenalidad(String pregunta, String tematica, String textoRespuesta, Opcion... opciones) {
         this.pregunta = pregunta;
         this.opciones = new ArrayList<Opcion>();
         Collections.addAll(this.opciones, opciones);
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
 
     public Puntaje responder(Respuesta... respuestas) {
@@ -33,4 +37,7 @@ public class PreguntaMCPenalidad implements Pregunta{
     public List<Opcion> getOpciones() {
         return this.opciones;
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 }

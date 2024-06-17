@@ -14,6 +14,8 @@ public class FabricaOC implements Fabrica {
         String pregunta =  datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
         String[] listaRepuestas = respuesta.split(",");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
 
         ArrayList<Opcion> opciones = new ArrayList<>();
         for(String resp: listaRepuestas){
@@ -21,7 +23,7 @@ public class FabricaOC implements Fabrica {
             opciones.add(new Opcion(opcionActual));
         }
 
-        Pregunta nuevaPregunta = new PreguntaOC(pregunta,opciones.toArray(new Opcion[0]));
+        Pregunta nuevaPregunta = new PreguntaOC(pregunta,tematica,textoRepuesta,opciones.toArray(new Opcion[0]));
 
         return nuevaPregunta;
     }

@@ -9,7 +9,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testVFRespuestaCorrecta() {
         // Arrange
-        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperados = new Puntaje(1);
 
         // Act
@@ -22,7 +22,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testVFRespuestaIncorrecta() {
         // Arrange
-        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperados = new Puntaje(0);
 
         // Act
@@ -35,7 +35,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testVFPenalidadRespuestaCorrecta() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperados = new Puntaje(1);
 
         // Act
@@ -47,7 +47,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testVFPenalidadRespuestaIncorrecta() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperados = new Puntaje(-1);
 
         // Act
@@ -60,7 +60,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCRespuestaCorrecta() {
         // Arrange
-        PreguntaMC p = new PreguntaMC("Animal alado?",
+        PreguntaMC p = new PreguntaMC("Animal alado?", "CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -76,7 +76,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCRespuestaIncompleta() {
         // Arrange
-        PreguntaMC p = new PreguntaMC("Animal alado?",
+        PreguntaMC p = new PreguntaMC("Animal alado?", "CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -92,7 +92,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCRespuestaIncorrecta() {
         // Arrange
-        PreguntaMC p = new PreguntaMC("Animal alado?",
+        PreguntaMC p = new PreguntaMC("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -108,7 +108,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCPenalidadRespuestaCorrecta() {
         // Arrange
-        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?",
+        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -124,7 +124,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCPenalidadRespuestaIncompleta() {
         // Arrange
-        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?",
+        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -140,7 +140,7 @@ public class CasosDeUsoEntrega1 {
     @Test
     public void testMCPenalidadRespuestaIncorrecta() {
         // Arrange
-        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?",
+        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));

@@ -12,6 +12,8 @@ public class FabricaGC implements Fabrica{
     public Pregunta crearPregunta(JSONObject datos) {
         String pregunta = datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
         String datosA = "";
         String datosB = "";
 
@@ -45,7 +47,7 @@ public class FabricaGC implements Fabrica{
         Grupo grupoA = new Grupo(opcionesA.toArray(new Opcion[0]));
         Grupo grupoB = new Grupo(opcionesB.toArray(new Opcion[0]));
 
-        Pregunta nuevaPregunta = new PreguntaGC(pregunta,grupoA,grupoB);
+        Pregunta nuevaPregunta = new PreguntaGC(pregunta,tematica,textoRepuesta,grupoA,grupoB);
 
         return nuevaPregunta;
     }

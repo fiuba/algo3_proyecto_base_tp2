@@ -14,7 +14,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testMCParcialRespuestaCorrecta() {
         // Arrange
-        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?",
+        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
         new OpcionCorrecta("Pato"),
         new OpcionCorrecta("Aguila"),
         new OpcionIncorrecta("Perro"));
@@ -30,7 +30,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testMCParcialRespuestaIncorrecta() {
         // Arrange
-        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?",
+        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
         new OpcionCorrecta("Pato"),
         new OpcionCorrecta("Aguila"),
         new OpcionIncorrecta("Perro"));
@@ -46,7 +46,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testMCParcialRespuestaParcial() {
         // Arrange
-        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?",
+        PreguntaMCParcial p = new PreguntaMCParcial("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
         new OpcionCorrecta("Pato"),
         new OpcionCorrecta("Aguila"),
         new OpcionIncorrecta("Perro"));
@@ -63,7 +63,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testOCRespuestaCorrecta() {
         // Arrange
-        PreguntaOC p = new PreguntaOC("Ordenar en altura creciente",
+        PreguntaOC p = new PreguntaOC("Ordenar en altura creciente","CULTURA GENERAL", "El burj Khalifa es el edificio mas alto del mundo.",
                 new Opcion("Obelisco"),
                 new Opcion("Torre Eiffel"),
                 new Opcion("Burj Khalifa") );
@@ -82,7 +82,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testOCRespuestaIncorrecta() {
         // Arrange
-        PreguntaOC p = new PreguntaOC("Ordenar en altura creciente",
+        PreguntaOC p = new PreguntaOC("Ordenar en altura creciente", "CULTURA GENERAL", "El burj Khalifa es el edificio mas alto del mundo.",
                 new Opcion("Obelisco"),
                 new Opcion("Torre Eiffel"),
                 new Opcion("Burj Khalifa") );
@@ -101,7 +101,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testGCRespuestaCorrecta() {
         // Arrange
-        PreguntaGC p = new PreguntaGC("Agrupar estos jugadores por pais",
+        PreguntaGC p = new PreguntaGC("Agrupar estos jugadores por pais", "DEPORTES", "Messi es el GOAT",
                 new Grupo(new Opcion("Messi"), new Opcion("Otamendi"), new Opcion("Di Maria")),
                 new Grupo(new Opcion("Benzema"), new Opcion("Mbappe"), new Opcion("Lloris")));
         Puntaje puntosEsperados = new Puntaje(1);
@@ -116,7 +116,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testGCRespuestaIncorrecta() {
         // Arrange
-        PreguntaGC p = new PreguntaGC("Agrupar estos jugadores por pais",
+        PreguntaGC p = new PreguntaGC("Agrupar estos jugadores por pais","DEPORTES", "Messi es el GOAT",
                 new Grupo(new Opcion("Messi"), new Opcion("Otamendi"), new Opcion("Di Maria")),
                 new Grupo(new Opcion("Benzema"), new Opcion("Mbappe"), new Opcion("Lloris")));
         Puntaje puntosEsperados = new Puntaje(0);
@@ -131,7 +131,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testVFPenalidadConMultiplicadores() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?",  "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(2);
         Puntaje puntosEsperadosJ2 = new Puntaje(-2);
 
@@ -152,7 +152,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testMCPenalidadConMultiplicadores() {
         // Arrange
-        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?",
+        PreguntaMCPenalidad p = new PreguntaMCPenalidad("Animal alado?","CIENCIAS", "No se tiene un solo registro de un perro con alas",
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
@@ -176,7 +176,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testUnJugadorUsaAnuladorEnPreguntaVFPenalidad() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?","MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(1);
         Puntaje puntosEsperadosJ2 = new Puntaje(0);
         Jugador j1 = new Jugador("j1");
@@ -203,7 +203,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testDosJugadoresUsanAnuladorEnPreguntaVFPenalidad() {
         // Arrange
-        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?","MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(0);
         Puntaje puntosEsperadosJ2 = new Puntaje(0);
         Jugador j1 = new Jugador("j1");
@@ -232,7 +232,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testUnJugadorUsaExclusividadYSeActivaEnPreguntaVF() {
         // Arrange
-        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVF p = new PreguntaVF("1 + 1 = 2?","MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(2);
         Puntaje puntosEsperadosJ2 = new Puntaje(0);
 
@@ -255,7 +255,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testUnJugadorUsaExclusividadYNoActivaEnPreguntaVF() {
         // Arrange
-        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVF p = new PreguntaVF("1 + 1 = 2?","MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(0);
         Puntaje puntosEsperadosJ2 = new Puntaje(0);
 
@@ -276,7 +276,7 @@ public class CasosDeUsoEntrega2 {
     @Test
     public void testDosJugadoresUsanExclusividadYSeActivanEnPreguntaVF() {
         // Arrange
-        PreguntaVF p = new PreguntaVF("1 + 1 = 2?", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
+        PreguntaVF p = new PreguntaVF("1 + 1 = 2?","MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
         Puntaje puntosEsperadosJ1 = new Puntaje(4);
         Puntaje puntosEsperadosJ2 = new Puntaje(0);
 

@@ -5,12 +5,19 @@ import java.util.*;
 public class PreguntaMC implements Pregunta{
     private String pregunta;
     private List<Opcion> opciones;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaMC(String pregunta, Opcion... opciones) {
+    public PreguntaMC(String pregunta, String tematica, String textoRespuesta, Opcion... opciones) {
         this.pregunta = pregunta;
         this.opciones = new ArrayList<Opcion>();
         Collections.addAll(this.opciones, opciones);
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 
     @Override
     public String getPregunta() {
@@ -50,4 +57,5 @@ public class PreguntaMC implements Pregunta{
 
         return new Puntaje(1);
     }
+
 }

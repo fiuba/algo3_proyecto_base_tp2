@@ -15,6 +15,8 @@ public class FabricaMC implements Fabrica {
         String pregunta =  datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
         String[] listaDeRepuestas = respuesta.split(",");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
 
         ArrayList<Opcion> opcionesTotales = new ArrayList<>();
         ArrayList<String> opcionesYaUsadas = new ArrayList<>();
@@ -50,7 +52,7 @@ public class FabricaMC implements Fabrica {
             }
         }
         Opcion[] opciones = opcionesTotales.toArray(new Opcion[opcionesTotales.size()]);
-        Pregunta nuevaPregunta = new PreguntaMC(pregunta,opciones);
+        Pregunta nuevaPregunta = new PreguntaMC(pregunta,tematica,textoRepuesta,opciones);
 
         return nuevaPregunta;
     }
