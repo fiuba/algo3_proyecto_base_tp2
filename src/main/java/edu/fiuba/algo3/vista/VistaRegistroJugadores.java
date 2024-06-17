@@ -36,7 +36,7 @@ public class VistaRegistroJugadores extends Scene {
         this.root.setBackground(fondo);
         this.getStylesheets().add("styles.css");
         this.jugadores = FXCollections.observableArrayList();
-        this.maximoJugadores = 7;
+        this.maximoJugadores = 6;
         File archivoSonido = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/error.wav");
         Media media = new Media(archivoSonido.toURI().toString());
         sonidoError = new AudioClip(media.getSource());
@@ -115,9 +115,9 @@ public class VistaRegistroJugadores extends Scene {
         FlowPane.setMargin(panelListaJugadores, new Insets(margenAlto,margenAncho,margenAlto,margenAncho));
         this.boxjugadores = new VBox();
         boxjugadores.setPrefWidth(panelListaJugadores.getPrefWidth());
-        boxjugadores.setSpacing(margenAlto);
+        boxjugadores.setSpacing(margenAlto/2);
         boxjugadores.setAlignment(Pos.CENTER_LEFT);
-        boxjugadores.setPadding(new Insets(margenAlto/2,margenAncho/2,0,margenAncho/2));
+        boxjugadores.setPadding(new Insets(0,margenAncho/2,0,margenAncho/2));
         panelListaJugadores.getChildren().add(boxjugadores);
         primerColumna.getChildren().add(panelListaJugadores);
 
@@ -147,7 +147,8 @@ public class VistaRegistroJugadores extends Scene {
                 jugadorLabel.setStyle("-fx-text-fill: black;" +
                         "-fx-font-family: 'Comic Sans MS';" +
                         "-fx-text-alignment: center;" +
-                        "-fx-font-size: 32;");
+                        "-fx-font-size: 32;" +
+                        "-fx-padding: "+ boxjugadores.getPrefWidth()*1/16+"px");
 
                 this.boxjugadores.getChildren().add(jugadorLabel);
             }

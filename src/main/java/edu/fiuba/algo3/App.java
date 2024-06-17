@@ -17,7 +17,7 @@ public class App extends Application {
         stage.setTitle("AlgoHoot");
         stage.setResizable(false);
         ControladorPrincipal cp = new ControladorPrincipal(stage);
-        VistaPreguntaMC vista = new VistaPreguntaMC(1280,720);
+        VistaRegistroJugadores vista = new VistaRegistroJugadores(1280,720);
         stage.setScene(vista);
         stage.show();
 
