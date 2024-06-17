@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PreguntaGC implements Pregunta {
@@ -24,8 +25,12 @@ public class PreguntaGC implements Pregunta {
 
     @Override
     public List<Opcion> getOpciones() {
-        return List.of();
+        LinkedList<Opcion> opciones = new LinkedList<Opcion>();
+        opciones.addAll(unGrupo.getOpciones());
+        opciones.addAll(otroGrupo.getOpciones());
+        return opciones;
     }
+
 
     @Override
     public Puntaje responder(Respuesta... respuestas) {

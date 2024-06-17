@@ -19,4 +19,9 @@ public class Grupo {
         return todasEncontradas ? new Puntaje(1) : new Puntaje(0);
     }
 
+
+    public List<Opcion> getOpciones(){
+        return grupo;
+    }
+
 }
