@@ -33,4 +33,8 @@ public class Jugador {
     public int obtenerPuntaje() {
         return this.puntosTotales;
     }
+
+    public String obtenerNombre() {
+        return this.nombre;
+    }
 }

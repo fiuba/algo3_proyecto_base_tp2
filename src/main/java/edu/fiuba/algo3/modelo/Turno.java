@@ -35,4 +35,8 @@ public class Turno {
 
         puntajes.forEach(Puntaje::actualizarPuntajeDelJugador);
     }
+
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
 }

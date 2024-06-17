@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Lector {
     public ArrayList<Pregunta> cargarPreguntas() throws ArchivoInexistente {
         try{
-            String content = new String(Files.readAllBytes(Paths.get("src/resources/preguntas.json")));
+            String content = new String(Files.readAllBytes(Paths.get("src/main/resources/preguntas.json")));
             ArrayList<Pregunta> preguntas = new ArrayList<>();
             JSONArray jsonArray = new JSONArray(content);
             Fabrica fabrica = new FabricaOC();
