@@ -32,11 +32,6 @@ import static java.lang.Math.floor;
 
 public class VistaPreguntaOrdered extends Scene {
     private FlowPane root;
-    private static final ObservableList<String> birds = FXCollections.observableArrayList(
-            "Carpeta sintética",
-            "Cemento",
-            "Polvo de Ladrillo Naranja"
-    );
 
     public VistaPreguntaOrdered(double width, double height) {
         super(new FlowPane(), width, height);
@@ -133,11 +128,22 @@ public class VistaPreguntaOrdered extends Scene {
         poderes.getChildren().addAll(botonAnulador,botonExclusividad);
 
         // Define ListView for birds
-        ListView<String> birdList = new ListView<>(birds);
-        birdList.setCellFactory(param -> new BirdCell());
-        birdList.setPrefWidth(180);
+        ObservableList<String> opciones = FXCollections.observableArrayList(
+                "Carpeta sintética",
+                "Cemento",
+                "Polvo de Ladrillo Naranja"
+        );
+        ListView<String> listaOpciones = new ListView<>(opciones);
 
-        panelOpciones.getChildren().add(birdList);
+        listaOpciones.setCellFactory(param -> new BirdCell());
+        listaOpciones.setPrefWidth(panelOpciones.getPrefWidth()-margenAncho*2);
+        listaOpciones.setOnMouseExited(e -> listaOpciones.getSelectionModel().clearSelection());
+        listaOpciones.setOnMouseDragExited(e -> listaOpciones.getSelectionModel().clearSelection());
+        listaOpciones.setMaxHeight(opciones.size()*32*2.05);
+        establecerEstilo(listaOpciones);
+        cambiarTamanoFuente(listaOpciones,32);
+
+        panelOpciones.getChildren().add(listaOpciones);
     }
 
     private class BirdCell extends ListCell<String> {
