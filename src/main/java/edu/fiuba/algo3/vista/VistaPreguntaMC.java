@@ -12,11 +12,15 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Math.floor;
 
-public class VistaPreguntaVF extends Scene {
+public class VistaPreguntaMC extends Scene {
     private FlowPane root;
-    public VistaPreguntaVF(double width, double height) {
+    private VBox opciones;
+    public VistaPreguntaMC(double width, double height) {
         super(new FlowPane(), width, height);
         double margenAncho = width/32;
         double margenAlto = height/18;
@@ -24,7 +28,7 @@ public class VistaPreguntaVF extends Scene {
         BackgroundImage imagenFondo = new BackgroundImage(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
-        this.getStylesheets().add("styles.css");
+        this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         FlowPane panelTableroJugadores = new FlowPane();
         panelTableroJugadores.setPrefHeight(height - 2*margenAlto);
@@ -32,7 +36,7 @@ public class VistaPreguntaVF extends Scene {
         FlowPane.setMargin(panelTableroJugadores,new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
         TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
-        System.out.println(tablero.getPrefWidth());
+        
         panelTableroJugadores.getChildren().add(tablero);
         tablero.agregarJugador("agus",666);
         tablero.agregarJugador("valen",999);
@@ -47,7 +51,7 @@ public class VistaPreguntaVF extends Scene {
         this.root.getChildren().add(panelPregunta);
 
         // ESTO NO SE TOCA.
-        Label textoPregunta = new Label("El punto de ebullición del agua a 3300m del mar es 100 grados centígrados");
+        Label textoPregunta = new Label("¿Cuál fue el aporte más conocido del científico inglés Edgard Codd a la computación?   ");
         textoPregunta.setPrefHeight(height*2/5 - 2*margenAlto);
         textoPregunta.setPrefWidth(width * 2/3 - 2*margenAncho);
         FlowPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
@@ -106,29 +110,47 @@ public class VistaPreguntaVF extends Scene {
         poderes.setSpacing(margenAlto/2);
         panelBotonesPoderes.getChildren().add(poderes);
 
+
+        // ejemplo de ingreso de rtas
+        List<String> opcionesLista = new ArrayList<>();
+
+        opcionesLista.add("El disco rígido");
+        opcionesLista.add("El sistema operativo Solaris");
+        opcionesLista.add("Las bases de datos relacionales");
+        opcionesLista.add("El algoritmo quicksort");
+        opcionesLista.add("Los lenguajes tipados");
+
+
+
         // esto es propio de la pregunta VF.
-        HBox opciones = new HBox();
+        this.opciones = new VBox();
         opciones.setPrefHeight(panelOpciones.getPrefHeight());
         opciones.setPrefWidth(panelOpciones.getPrefWidth());
         opciones.setAlignment(Pos.CENTER);
-        opciones.setSpacing(margenAncho);
+        opciones.setSpacing(25);
         panelOpciones.getChildren().add(opciones);
-        ToggleButton opcion1 = new ToggleButton("Verdadero");
-        ToggleButton opcion2 = new ToggleButton("Falso");
+
+        definirCantidadOpciones(opcionesLista);
+
         File archivoSonidoSeleccionar = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/seleccionar.wav");
         Media mediaSeleccionar = new Media(archivoSonidoSeleccionar.toURI().toString());
         AudioClip sonidoSeleccionar = new AudioClip(mediaSeleccionar.getSource());
         sonidoSeleccionar.setVolume(0.2);
-        opcion1.setOnMouseClicked(e-> sonidoSeleccionar.play());
-        opcion2.setOnMouseClicked(e-> sonidoSeleccionar.play());
-        opcion1.getStyleClass().add("custom-toggle-button");
-        opcion2.getStyleClass().add("custom-toggle-button");
-        ToggleGroup grupoOpciones = new ToggleGroup();
-        opcion1.setToggleGroup(grupoOpciones);
-        opcion2.setToggleGroup(grupoOpciones);
-        opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
-        opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
-        opciones.getChildren().addAll(opcion1,opcion2);
+
+        //aplico sonidos  a opciones
+        for (int i = 0; i < opcionesLista.size(); i++) {
+            Node opcion =  opciones.getChildren().get(i);
+            opcion.setOnMouseClicked(e-> sonidoSeleccionar.play());
+
+        }
+
+
+
+        // opcion1.getStyleClass().add("custom-toggle-button");
+        // opcion2.getStyleClass().add("custom-toggle-button");
+        // opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
+        // opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
+
 
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
@@ -152,5 +174,20 @@ public class VistaPreguntaVF extends Scene {
     private void cambiarTamanoFuente(Node nodo, int size) {
         String estiloAnterior = nodo.getStyle();
         nodo.setStyle(estiloAnterior + "-fx-font-size: "+size+";");
+    }
+
+    private void definirCantidadOpciones(List<String> opcionesLista) {
+        for (int i = 0; i < opcionesLista.size(); i++) {
+            ToggleButton opcion = new ToggleButton(opcionesLista.get(i));
+            opcion.getStyleClass().add("custom-toggle-button");
+            opciones.getChildren().add(opcion);
+            String optionText = opcionesLista.get(i);
+            // double textWidth = opcion.getFont().getSize() * optionText.length();
+            // double availableWidth = opciones.getPrefWidth();
+            // if (textWidth > availableWidth) {
+            //     double newFontSize = availableWidth / optionText.length();
+            //     cambiarTamanoFuente(opcion, (int) newFontSize);
+            // }
+        }
     }
 }
