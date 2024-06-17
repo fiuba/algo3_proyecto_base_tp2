@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PreguntaOC implements Pregunta{
@@ -24,7 +25,7 @@ public class PreguntaOC implements Pregunta{
 
     @Override
     public List<Opcion> getOpciones() {
-        return null;
+        return new LinkedList<Opcion>(List.of(this.opciones));
     }
 
     @Override

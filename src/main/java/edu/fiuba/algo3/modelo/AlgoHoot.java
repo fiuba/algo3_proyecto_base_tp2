@@ -33,8 +33,8 @@ public class AlgoHoot {
         gestorDeTurnos.comenzarNuevoTurno();
     }
 
-    public void jugarTurno(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta res){
-        gestorDeTurnos.jugarTurnoActual(j, mi, mg, res);
+    public void jugarTurno(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas){
+        gestorDeTurnos.jugarTurnoActual(j, mi, mg, respuestas);
     }
 
     public void terminarTurno(){

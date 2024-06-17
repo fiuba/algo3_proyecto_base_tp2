@@ -30,9 +30,9 @@ public class GestorDeTurnos {
         return turnos.getLast().getPregunta();
     }
 
-    public void jugarTurnoActual(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta res) {
+    public void jugarTurnoActual(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) {
         Turno turno = turnos.getLast();
-        turno.jugar(j, mi, mg, res);
+        turno.jugar(j, mi, mg, respuestas);
     }
 
     public void terminarTurnoActual() {

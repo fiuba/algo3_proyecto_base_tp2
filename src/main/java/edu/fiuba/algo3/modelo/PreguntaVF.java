@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PreguntaVF implements Pregunta{
@@ -28,7 +29,10 @@ public class PreguntaVF implements Pregunta{
 
     @Override
     public List<Opcion> getOpciones() {
-        return null;
+        LinkedList<Opcion> opciones = new LinkedList<Opcion>();
+        opciones.add(opcionCorrecta);
+        opciones.add(opcionIncorrecta);
+        return opciones;
     }
 
     public String getTematica() {return this.tematica;}

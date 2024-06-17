@@ -26,7 +26,7 @@ public class PreguntaMC implements Pregunta{
 
     @Override
     public List<Opcion> getOpciones() {
-        return List.of();
+        return opciones;
     }
 
     @Override

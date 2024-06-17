@@ -7,6 +7,10 @@ public class Opcion {
         this.opcion = opcion;
     }
 
+    public String getOpcion() {
+        return opcion;
+    }
+
     public boolean equals(Respuesta respuesta) {
         return respuesta.equals( opcion );
     }
