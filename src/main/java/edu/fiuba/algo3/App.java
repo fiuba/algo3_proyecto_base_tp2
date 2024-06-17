@@ -4,6 +4,7 @@ import edu.fiuba.algo3.controladores.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -12,9 +13,11 @@ public class App extends Application {
     public void start(Stage stage) {
 
         stage.setTitle("AlgoHoot");
+        Image icono = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/icono.png");
+        stage.getIcons().add(icono);
         stage.setResizable(false);
         ControladorPrincipal cp = new ControladorPrincipal(stage);
-        VistaPreguntaOrdered vista = new VistaPreguntaOrdered(1280,720);
+        VistaRegistroJugadores vista = new VistaRegistroJugadores(1280,720);
         stage.setScene(vista);
         stage.show();
 
