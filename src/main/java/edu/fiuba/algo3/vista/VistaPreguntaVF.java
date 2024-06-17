@@ -27,12 +27,19 @@ public class VistaPreguntaVF extends Scene {
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         FlowPane panelTableroJugadores = new FlowPane();
-        panelTableroJugadores.setPrefHeight(height);
-        panelTableroJugadores.setPrefWidth(floor(width/3));
+        panelTableroJugadores.setPrefHeight(height - 2*margenAlto);
+        panelTableroJugadores.setPrefWidth(floor(width/3 - margenAncho));
+        FlowPane.setMargin(panelTableroJugadores,new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
-        TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getWidth(), panelTableroJugadores.getHeight());
+        TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
+        System.out.println(tablero.getPrefWidth());
         panelTableroJugadores.getChildren().add(tablero);
-
+        tablero.agregarJugador("agus",666);
+        tablero.agregarJugador("valen",999);
+        tablero.agregarJugador("nahu",2);
+        tablero.agregarJugador("pat",3);
+        tablero.agregarJugador("estebannnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",12);
+        tablero.resaltarSiguienteJugador();
 
         FlowPane panelPregunta = new FlowPane();
         panelPregunta.setPrefHeight(height);
@@ -82,7 +89,10 @@ public class VistaPreguntaVF extends Scene {
         Media mediaResponder = new Media(archivoSonidoResponder.toURI().toString());
         AudioClip sonidoResponder = new AudioClip(mediaResponder.getSource());
         sonidoResponder.setVolume(0.1);
-        botonResponder.setOnAction(e -> { sonidoResponder.play(); });
+        botonResponder.setOnAction(e -> {
+            sonidoResponder.play();
+            tablero.resaltarSiguienteJugador();
+        });
 
         FlowPane panelBotonesPoderes = new FlowPane();
         panelBotonesPoderes.setPrefHeight(panelBotonesControl.getPrefHeight() - panelBotonResponder.getPrefHeight());
@@ -105,6 +115,12 @@ public class VistaPreguntaVF extends Scene {
         panelOpciones.getChildren().add(opciones);
         ToggleButton opcion1 = new ToggleButton("Verdadero");
         ToggleButton opcion2 = new ToggleButton("Falso");
+        File archivoSonidoSeleccionar = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/seleccionar.wav");
+        Media mediaSeleccionar = new Media(archivoSonidoSeleccionar.toURI().toString());
+        AudioClip sonidoSeleccionar = new AudioClip(mediaSeleccionar.getSource());
+        sonidoSeleccionar.setVolume(0.2);
+        opcion1.setOnMouseClicked(e-> sonidoSeleccionar.play());
+        opcion2.setOnMouseClicked(e-> sonidoSeleccionar.play());
         opcion1.getStyleClass().add("custom-toggle-button");
         opcion2.getStyleClass().add("custom-toggle-button");
         ToggleGroup grupoOpciones = new ToggleGroup();

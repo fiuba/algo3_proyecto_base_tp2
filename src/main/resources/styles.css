@@ -28,3 +28,19 @@
     -fx-background-color: #0003BA;
     -fx-text-fill: white;
 }
+
+.custom-button {
+    -fx-text-fill: black;
+    -fx-font-family: 'Comic Sans MS';
+    -fx-text-alignment: center;
+    -fx-font-size: 32;
+    -fx-background-color: white;
+    -fx-border-width: 4px;
+    -fx-border-color: black;
+}
+.custom-button:hover {
+    -fx-background-color: deepskyblue;
+}
+.custom-button:pressed {
+    -fx-background-color: gray;
+}
