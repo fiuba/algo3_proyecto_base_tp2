@@ -6,11 +6,15 @@ public class PreguntaOC implements Pregunta{
     private String pregunta;
     private Opcion[] opciones;
     private Orden ordenCorrecto;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaOC(String pregunta, Opcion... opciones) {
+    public PreguntaOC(String pregunta, String tematica, String textoRespuesta, Opcion... opciones) {
         this.pregunta = pregunta;
         this.opciones = opciones;
         this.ordenCorrecto = new Orden(opciones);
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
 
     @Override
@@ -27,4 +31,7 @@ public class PreguntaOC implements Pregunta{
     public Puntaje responder(Respuesta... respuestas) {
         return ordenCorrecto.puntuar(respuestas);
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 }

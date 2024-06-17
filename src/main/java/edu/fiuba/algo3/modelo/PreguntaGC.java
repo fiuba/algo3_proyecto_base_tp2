@@ -6,11 +6,15 @@ public class PreguntaGC implements Pregunta {
     private String pregunta;
     private Grupo unGrupo;
     private Grupo otroGrupo;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaGC(String pregunta, Grupo unGrupo, Grupo otroGrupo) {
+    public PreguntaGC(String pregunta, String tematica, String textoRespuesta,Grupo unGrupo, Grupo otroGrupo) {
         this.pregunta = pregunta;
         this.unGrupo = unGrupo;
         this.otroGrupo = otroGrupo;
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
 
     @Override
@@ -30,4 +34,7 @@ public class PreguntaGC implements Pregunta {
         acumuluador.sumar(otroGrupo.puntuar(respuestas));
         return acumuluador;
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 }

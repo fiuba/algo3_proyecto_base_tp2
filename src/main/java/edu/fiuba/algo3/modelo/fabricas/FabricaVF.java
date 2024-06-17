@@ -12,6 +12,8 @@ public class FabricaVF implements Fabrica{
         String pregunta =  datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
         String[] listaRepuestas = respuesta.split(",");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
 
         String opcionCorrecta = listaRepuestas[0];
         OpcionCorrecta opcorrecta;
@@ -24,7 +26,7 @@ public class FabricaVF implements Fabrica{
             opcorrecta = new OpcionCorrecta(datos.getString("Opcion 2"));
             opincorrecta = new OpcionIncorrecta(datos.getString("Opcion 1"));
         }
-        Pregunta nuevaPregunta = new PreguntaVF(pregunta,opcorrecta,opincorrecta);
+        Pregunta nuevaPregunta = new PreguntaVF(pregunta,tematica,textoRepuesta,opcorrecta,opincorrecta);
 
         return nuevaPregunta;
     }

@@ -14,6 +14,8 @@ public class FabricaMCPenalidad implements Fabrica{
         String pregunta =  datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
         String[] listaDeRepuestas = respuesta.split(",");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
 
 
         ArrayList<Opcion> opcionesTotales = new ArrayList<>();
@@ -50,7 +52,7 @@ public class FabricaMCPenalidad implements Fabrica{
             }
         }
         Opcion[] opciones = opcionesTotales.toArray(new Opcion[opcionesTotales.size()]);
-        Pregunta nuevaPregunta = new PreguntaMCPenalidad(pregunta,opciones);
+        Pregunta nuevaPregunta = new PreguntaMCPenalidad(pregunta,tematica,textoRepuesta,opciones);
 
         return nuevaPregunta;
     }

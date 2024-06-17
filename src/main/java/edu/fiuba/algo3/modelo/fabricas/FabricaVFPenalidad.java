@@ -13,6 +13,8 @@ public class FabricaVFPenalidad implements Fabrica {
         String pregunta =  datos.getString("Pregunta");
         String respuesta = datos.getString("Respuesta");
         String[] listaRepuestas = respuesta.split(",");
+        String tematica = datos.getString("Tema");
+        String textoRepuesta = datos.getString("Texto respuesta");
 
         String opcionCorrecta = listaRepuestas[0];
         OpcionCorrecta opcorrecta;
@@ -26,7 +28,7 @@ public class FabricaVFPenalidad implements Fabrica {
             opincorrecta = new OpcionIncorrecta(datos.getString("Opcion 1"));
         }
 
-        Pregunta nuevaPregunta = new PreguntaVFPenalidad(pregunta,opcorrecta,opincorrecta);
+        Pregunta nuevaPregunta = new PreguntaVFPenalidad(pregunta,tematica,textoRepuesta,opcorrecta,opincorrecta);
 
         return nuevaPregunta;
     }

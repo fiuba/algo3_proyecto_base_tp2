@@ -6,11 +6,15 @@ public class PreguntaVFPenalidad implements Pregunta{
     private String pregunta;
     private OpcionCorrecta opcionCorrecta;
     private OpcionIncorrecta opcionIncorrecta;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaVFPenalidad(String pregunta, OpcionCorrecta opcionCorrecta, OpcionIncorrecta opcionIncorrecta) {
+    public PreguntaVFPenalidad(String pregunta, String tematica, String textoRespuesta, OpcionCorrecta opcionCorrecta, OpcionIncorrecta opcionIncorrecta) {
         this.pregunta = pregunta;
         this.opcionCorrecta = opcionCorrecta;
         this.opcionIncorrecta = opcionIncorrecta;
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
 
     @Override
@@ -31,4 +35,7 @@ public class PreguntaVFPenalidad implements Pregunta{
 
         return acumulador;
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 }

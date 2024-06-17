@@ -5,11 +5,15 @@ import java.util.*;
 public class PreguntaMCParcial implements Pregunta {
     private String pregunta;
     private List<Opcion> opciones;
+    private String tematica;
+    private String textoRespuesta;
 
-    public PreguntaMCParcial(String pregunta, Opcion... opciones) {
+    public PreguntaMCParcial(String pregunta, String tematica, String textoRespuesta, Opcion... opciones) {
         this.pregunta = pregunta;
         this.opciones = new ArrayList<Opcion>();
         Collections.addAll(this.opciones, opciones);
+        this.tematica = tematica;
+        this.textoRespuesta = textoRespuesta;
     }
 
     public Puntaje responder(Respuesta... respuestas) {
@@ -43,4 +47,7 @@ public class PreguntaMCParcial implements Pregunta {
     public List<Opcion> getOpciones() {
         return this.opciones;
     }
+
+    public String getTematica() {return this.tematica;}
+    public String getTextoRespuesta() {return this.textoRespuesta;}
 }
