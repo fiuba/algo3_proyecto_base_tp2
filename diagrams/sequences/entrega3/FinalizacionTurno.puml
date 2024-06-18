@@ -1,0 +1,35 @@
+@startuml FinalizacionTurno
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor "AlgoHoot" as ah
+participant "gt:GestorDeTurnos" as gt
+participant "t:Turno" as t
+participant "mg:ModificadorGlobal" as mg
+participant "pu:Puntaje" as pu
+
+
+ah -> gt: terminarTurnoActual()
+activate gt
+    gt -> t: terminar()
+    activate t
+        loop por cada modificador global
+        t -> mg:aplicar(puntajes)
+        activate mg
+        note left
+            El ModificadorGlobal itera
+            sobre todos los puntajes y
+            los modifica según corresponde
+        end note
+        deactivate mg
+        end loop
+
+        loop por cada puntaje guardado
+        t -> pu: actualizarPuntajeDelJugador()
+        activate pu
+        deactivate pu
+        end loop
+    deactivate t
+@enduml

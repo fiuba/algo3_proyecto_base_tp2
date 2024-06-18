@@ -1,0 +1,42 @@
+@startuml JugadorJuegaTurno
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor "AlgoHoot" as ah
+participant "gt:GestorDeTurnos" as gt
+participant "t:Turno" as t
+participant "pr:Pregunta" as pr
+participant "pu:Puntaje" as pu
+
+ah -> gt: jugarTurnoActual(j, mi, mg, respuestas)
+
+activate gt
+    gt -> t: jugar(j, mi, mg, respuestas)
+    note left
+    j es un Jugador
+    mi es un ModificadorIndividual
+    (Duplicador, Triplicador)
+    mg es un ModificadorGlobal
+    (Anulador, Exclusividad)
+    end note
+    activate t
+        t -> pr: puntuar(respuestas)
+        activate pr
+            create pu
+            pr -> pu: Puntaje(1)
+            t <-- pr: pu
+        deactivate pr
+        t -> pu: establecerJugador(j)
+        activate pu
+        deactivate pu
+        t -> pu: agregarModificador(mi)
+        activate pu
+        deactivate pu
+        t -> t: agregarModificadorGlobal(gi)
+        t -> t: guardarPuntaje(pu)
+
+
+
+@enduml

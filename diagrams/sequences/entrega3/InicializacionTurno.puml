@@ -1,0 +1,23 @@
+@startuml InicializacionTurno
+skinparam monochrome true
+hide footbox
+skinparam classAttributeIconSize 0
+
+
+actor "AlgoHoot" as ah
+participant "gt:GestorDeTurnos" as gt
+participant "gp:GestorDePreguntas" as gp
+participant "t:Turno" as t
+
+
+ah -> gt: comenzarNuevoTurno()
+activate gt
+    gt -> gp: obtenerSiguientePregunta()
+    activate gp
+        gt <-- gp: unaPregunta
+    deactivate gp
+    create t
+    gt -> t: Turno(unaPregunta)
+    gt -> gt: turnos.add(t)
+
+@enduml
