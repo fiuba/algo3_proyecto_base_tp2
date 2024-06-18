@@ -17,7 +17,7 @@ public class App extends Application {
         stage.getIcons().add(icono);
         stage.setResizable(false);
         ControladorPrincipal cp = new ControladorPrincipal(stage);
-        VistaRegistroJugadores vista = new VistaRegistroJugadores(1280,720);
+        VistaRegistroJugadores vista = new VistaRegistroJugadores(stage,1280,720);
         stage.setScene(vista);
         stage.show();
 

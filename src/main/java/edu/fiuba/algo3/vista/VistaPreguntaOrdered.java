@@ -23,6 +23,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import static java.lang.Math.floor;
 public class VistaPreguntaOrdered extends Scene {
     private FlowPane root;
 
-    public VistaPreguntaOrdered(double width, double height) {
+    public VistaPreguntaOrdered(Stage stage, double width, double height) {
         super(new FlowPane(), width, height);
         double margenAncho = width / 32;
         double margenAlto = height / 18;
@@ -106,10 +107,17 @@ public class VistaPreguntaOrdered extends Scene {
         Media mediaResponder = new Media(archivoSonidoResponder.toURI().toString());
         AudioClip sonidoResponder = new AudioClip(mediaResponder.getSource());
         sonidoResponder.setVolume(0.1);
+
+        ///modificado para entrega 3
         botonResponder.setOnAction(e -> {
             sonidoResponder.play();
-            tablero.resaltarSiguienteJugador();
+        //    tablero.resaltarSiguienteJugador();
+            VistaPreguntaMC vistaPregunta = new VistaPreguntaMC(stage.getScene().getWidth(), stage.getScene().getHeight());
+            stage.setScene(vistaPregunta);
+
         });
+        //fin modificado
+
 
         FlowPane panelBotonesPoderes = new FlowPane();
         panelBotonesPoderes.setPrefHeight(panelBotonesControl.getPrefHeight() - panelBotonResponder.getPrefHeight());

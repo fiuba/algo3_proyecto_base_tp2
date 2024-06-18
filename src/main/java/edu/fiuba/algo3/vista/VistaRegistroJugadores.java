@@ -16,6 +16,8 @@ import java.io.File;
 import java.util.concurrent.Flow;
 
 import static java.lang.Math.floor;
+import edu.fiuba.algo3.controladores.ControladorInicio;
+import javafx.stage.Stage;
 
 
 public class VistaRegistroJugadores extends Scene {
@@ -26,7 +28,7 @@ public class VistaRegistroJugadores extends Scene {
     private int maximoJugadores;
     private AudioClip sonidoError;
 
-    public VistaRegistroJugadores(double width, double height) {
+    public VistaRegistroJugadores(Stage stage, double width, double height) {
         super(new FlowPane(), width, height);
         double margenAncho = width/32;
         double margenAlto = height/18;
@@ -126,6 +128,12 @@ public class VistaRegistroJugadores extends Scene {
         ImageView imagenJugar = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/botonJugar.png"));
         Button botonjugar = new Button("", imagenJugar);
         botonjugar.setStyle("-fx-background-color: transparent;");
+
+        ///para mostrar en entrega3, debe modificarse
+        ControladorInicio controlador = new ControladorInicio(stage);
+        botonjugar.setOnAction(controlador);
+        //// fin de modificado
+
         segundaColumna.getChildren().add(restoSegundaColumna);
         restoSegundaColumna.getChildren().add(botonjugar);
 
