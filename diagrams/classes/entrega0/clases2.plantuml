@@ -1,27 +1,30 @@
 @startuml clasesGenerales
 
-skinparam monochrome true
-hide circle
+skinparam monochrome false
+/'skinparam monochrome true'/
+/'hide circle '/
 skinparam classAttributeIconSize 0
 
-Abstract Pregunta {
-    - pregunta: str
-    - tematica: str
-    - opciones: List<str>
-    + Pregunta(pregunta:str,tematica:str)
-    + {abstract} mostrarPanel()
-    + {abstract} validarSeleccion(seleccion:List<int>): int
+interface Pregunta {
+    + getPregunta(): String
+    + getOpciones(): List<Opcion>
+    + responder(respuestas:List<Respuesta>): PuntajeParcial
+    + getTematica(): String
+    + getTextoRespuesta(): String
 }
 
 class GestorDeTurnos {
-    + iniciarJuego()
+    +comenzarNuevoTurno():void
+    +obtenerPreguntaTurnoActual(): Pregunta
+    +jugarTurnoActual(j:Jugador ,mi:ModificadorIndividual, mg:ModificadorGlobal ,respuestas:List<Respuesta>): void
+    +terminarTurnoActual(): void
 }
 
 class Turno {
-    - anulador: Anulador
-    - exclusividad: Exclusividad
+    - puntajes:List<PuntajeParcial>
     + Turno(pregunta:Pregunta)
-    + jugarTurno(listaJugadores:List<Jugador>):void
+    + jugar(j:Jugador,modInd:ModificadorIndividual ,modGlob:ModificadorGlobal,respuestas: List<Respuesta>): void
+    + terminar(): void
 }
 
 class GestorPreguntas {
@@ -31,32 +34,69 @@ class GestorPreguntas {
 
 class Jugador {
     - nombre: str
-    - puntajeTotal: int
-    + Jugador(nombre:str):void
-    + obtenerJugada(): Jugada
+    - puntosTotales: PuntajeTotal
+    + Jugador(nombre:String):void
+    + gastar(mod:ModificadorIndividual):void
     + obtenerPuntaje(): int
-    + sumarPuntaje(puntaje:int):void
+    + sumarPuntos(puntaje:int):void
+    + equals(jugador:Jugador): bool
 }
 
 class Respuesta {
-    - puntajeBase: int
-    - modificadores: Modificador
-    + Respuesta(p: Puntaje, m: Modificador, j: Jugador)
-    + actualizarPuntajeDelJugador(): void
+    - respuesta:String
+    + Respuesta(respuesta:String)
+    + equals(opcion:String) : bool
 }
 
 class AlgoHoot {
-    - GUI: Gui
-    + manejarInputsConsola()
+    - instancia: AlgoHoot
+    + {static}getInstancia(): AlgoHoot
+    + comenzarNuevoTurno(): void
+    + jugarTurno(j:Jugador ,mi:ModificadorIndividual, mg:ModificadorGlobal ,respuestas:List<Respuesta>): void
+    + terminarTurno(): void
+    + obtenerPreguntaActual(): Pregunta
+    + agregarJugador(jugador:Jugador):void
+    + obtenerJugadores(): List<Jugador>
 }
 
-Jugador "*" <- GestorDeTurnos
+class Lector{
+    +cargarPreguntas(): List<Pregunta>
+}
+
+interface ModificadorIndividual{
+    + {abstract} modificar(unPuntaje:int): int
+}
+
+interface ModificadorGlobal{
+    +aplicar(puntajes:List<PuntajeParcial>): void
+}
+
+class PuntajeParcial{
+    -puntajeBase:int
+    +PuntajeParcial()
+    +PuntajeParcial(puntajeInicial:int)
+    +sumar(otroPuntaje:PuntajeParcial):void
+    +establecerJugador(jugador:Jugador):void
+    +agregarModificador(mod:ModificadorIndividual):void
+    +obtenerPuntos():int
+    +equals(puntaje:Object):
+    +perteneceA(j:Jugador):bool
+    +actualizarPuntajeDelJugador():void
+}
+
+
 GestorDeTurnos -down-> GestorPreguntas
 GestorDeTurnos -down-> "*" Turno
-GestorPreguntas *-->"*" Pregunta
+GestorPreguntas o-->"*" Pregunta
+GestorPreguntas ..> Lector
 Turno --> Pregunta
 Turno --> "*" Respuesta
-Respuesta --> Jugador
 AlgoHoot --> GestorDeTurnos
+AlgoHoot -left->"*" Jugador
+PuntajeParcial --> Jugador
+Respuesta ..> PuntajeParcial
+
+Jugador --> "2" ModificadorIndividual
+Turno -->"*" ModificadorGlobal
 
 @enduml
