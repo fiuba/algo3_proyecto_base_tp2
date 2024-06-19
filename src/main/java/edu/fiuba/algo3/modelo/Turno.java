@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Turno {
     private Pregunta pregunta;
-    private List<Puntaje> puntajes;
+    private List<PuntajeParcial> puntajes;
     private List<ModificadorGlobal> modificadoresGlobales;
 
     public Turno(Pregunta pregunta) {
         this.pregunta = pregunta;
-        this.puntajes = new ArrayList<Puntaje>();
+        this.puntajes = new ArrayList<PuntajeParcial>();
         this.modificadoresGlobales = new ArrayList<ModificadorGlobal>();
     }
 
     public void jugar(Jugador j, ModificadorIndividual modInd, ModificadorGlobal modGlob, Respuesta... respuestas) {
 
-        Puntaje puntos = pregunta.responder(respuestas);
+        PuntajeParcial puntos = pregunta.responder(respuestas);
 
         puntos.establecerJugador(j);
 
@@ -33,7 +33,7 @@ public class Turno {
 
         modificadoresGlobales.forEach(m -> m.aplicar(puntajes));
 
-        puntajes.forEach(Puntaje::actualizarPuntajeDelJugador);
+        puntajes.forEach(PuntajeParcial::actualizarPuntajeDelJugador);
     }
 
     public Pregunta getPregunta() {

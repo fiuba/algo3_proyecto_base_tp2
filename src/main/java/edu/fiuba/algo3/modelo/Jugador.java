@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 public class Jugador {
     private String nombre;
-    private int puntosTotales;
+    private PuntajeTotal puntosTotales;
     private ModificadorIndividual duplicador;
     private ModificadorIndividual triplicador;
 
@@ -11,7 +11,7 @@ public class Jugador {
         this.nombre = nombre;
         this.duplicador = new Duplicador();
         this.triplicador = new Triplicador();
-        this.puntosTotales = 0;
+        this.puntosTotales = new PuntajeTotal();
     }
 
     public boolean equals(Jugador j) {
@@ -26,12 +26,12 @@ public class Jugador {
         }
     }
 
-    public void sumarPuntos(int i) {
-        this.puntosTotales += i;
+    public void sumarPuntos(PuntajeParcial puntos) {
+        this.puntosTotales.agregar(puntos);
     }
 
     public int obtenerPuntaje() {
-        return this.puntosTotales;
+        return this.puntosTotales.obtenerPuntaje();
     }
 
     public String obtenerNombre() {

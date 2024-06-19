@@ -10,10 +10,10 @@ public class CasosDeUsoEntrega1 {
     public void testVFRespuestaCorrecta() {
         // Arrange
         PreguntaVF p = new PreguntaVF("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
-        Puntaje puntosEsperados = new Puntaje(1);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(1);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Si") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Si") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -23,10 +23,10 @@ public class CasosDeUsoEntrega1 {
     public void testVFRespuestaIncorrecta() {
         // Arrange
         PreguntaVF p = new PreguntaVF("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
-        Puntaje puntosEsperados = new Puntaje(0);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(0);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("No") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("No") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -36,10 +36,10 @@ public class CasosDeUsoEntrega1 {
     public void testVFPenalidadRespuestaCorrecta() {
         // Arrange
         PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
-        Puntaje puntosEsperados = new Puntaje(1);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(1);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Si") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Si") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -48,10 +48,10 @@ public class CasosDeUsoEntrega1 {
     public void testVFPenalidadRespuestaIncorrecta() {
         // Arrange
         PreguntaVFPenalidad p = new PreguntaVFPenalidad("1 + 1 = 2?", "MATEMATICA", "Segun los axiomas de la matematica, esta ecuacion es verdadera", new OpcionCorrecta("Si"), new OpcionIncorrecta("No") );
-        Puntaje puntosEsperados = new Puntaje(-1);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(-1);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("No") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("No") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -64,10 +64,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(1);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(1);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Pato") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Pato") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -80,10 +80,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(0);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(0);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"));
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"));
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -96,10 +96,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(0);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(0);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Perro"));
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Perro"));
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -112,10 +112,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(2);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(2);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Pato") );
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Pato") );
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -128,10 +128,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(1);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(1);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"));
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"));
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );
@@ -144,10 +144,10 @@ public class CasosDeUsoEntrega1 {
                 new OpcionCorrecta("Pato"),
                 new OpcionCorrecta("Aguila"),
                 new OpcionIncorrecta("Perro"));
-        Puntaje puntosEsperados = new Puntaje(0);
+        PuntajeParcial puntosEsperados = new PuntajeParcial(0);
 
         // Act
-        Puntaje puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Perro"));
+        PuntajeParcial puntosObtenidos = p.responder( new Respuesta("Aguila"), new Respuesta("Perro"));
 
         // Assert
         assertEquals( puntosObtenidos, puntosEsperados );

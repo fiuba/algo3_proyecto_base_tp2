@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ModificadorGlobal {
 
-    void aplicar(List<Puntaje> puntajes);
+    void aplicar(List<PuntajeParcial> puntajes);
 }

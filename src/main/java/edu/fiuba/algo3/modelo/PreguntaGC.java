@@ -33,8 +33,8 @@ public class PreguntaGC implements Pregunta {
 
 
     @Override
-    public Puntaje responder(Respuesta... respuestas) {
-        Puntaje acumuluador = new Puntaje();
+    public PuntajeParcial responder(Respuesta... respuestas) {
+        PuntajeParcial acumuluador = new PuntajeParcial();
         acumuluador.sumar(unGrupo.puntuar(respuestas));
         acumuluador.sumar(otroGrupo.puntuar(respuestas));
         return acumuluador;

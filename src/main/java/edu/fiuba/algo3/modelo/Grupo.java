@@ -10,13 +10,13 @@ public class Grupo {
         Collections.addAll(this.grupo, opciones);
     }
 
-    public Puntaje puntuar(Respuesta... respuesta) {
-        if (respuesta.length != grupo.size()) return new Puntaje(0);
+    public PuntajeParcial puntuar(Respuesta... respuesta) {
+        if (respuesta.length != grupo.size()) return new PuntajeParcial(0);
 
         boolean todasEncontradas = grupo.stream()
                 .allMatch(op -> Arrays.stream(respuesta).anyMatch(op::equals));
 
-        return todasEncontradas ? new Puntaje(1) : new Puntaje(0);
+        return todasEncontradas ? new PuntajeParcial(1) : new PuntajeParcial(0);
     }
 
 

@@ -6,11 +6,11 @@ public class OpcionIncorrecta extends Opcion {
         super(opcion);
     }
 
-    public Puntaje puntuar(Respuesta respuesta) {
+    public PuntajeParcial puntuar(Respuesta respuesta) {
         if ( equals( respuesta ) ) {
-            return new Puntaje(-1);
+            return new PuntajeParcial(-1);
         }
-        return new Puntaje(0);
+        return new PuntajeParcial(0);
     }
 
 }

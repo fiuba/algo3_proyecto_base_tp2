@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ModificadorGlobalBase implements ModificadorGlobal{
     @Override
-    public void aplicar(List<Puntaje> puntajes) {
+    public void aplicar(List<PuntajeParcial> puntajes) {
         return;
     }
 }

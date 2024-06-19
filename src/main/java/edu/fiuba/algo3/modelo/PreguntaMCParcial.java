@@ -16,7 +16,7 @@ public class PreguntaMCParcial implements Pregunta {
         this.textoRespuesta = textoRespuesta;
     }
 
-    public Puntaje responder(Respuesta... respuestas) {
+    public PuntajeParcial responder(Respuesta... respuestas) {
 
         // Si hay una respuesta incorrecta -> return 0
 
@@ -26,12 +26,12 @@ public class PreguntaMCParcial implements Pregunta {
                 .findAny();
 
         if (opcionIncorrectaSeleccionada.isPresent()) {
-            return new Puntaje(0);
+            return new PuntajeParcial(0);
         }
 
         return Arrays.stream(respuestas)
                 .flatMap(r -> opciones.stream().map(op -> op.puntuar(r)))
-                .reduce(new Puntaje(0), (p, valor) -> {
+                .reduce(new PuntajeParcial(0), (p, valor) -> {
                     p.sumar(valor);
                     return p;
                 });

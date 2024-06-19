@@ -31,8 +31,8 @@ public class PreguntaVFPenalidad implements Pregunta{
         return opciones;
     }
 
-    public Puntaje responder(Respuesta... respuesta) {
-        Puntaje acumulador = new Puntaje(0);
+    public PuntajeParcial responder(Respuesta... respuesta) {
+        PuntajeParcial acumulador = new PuntajeParcial(0);
 
         acumulador.sumar(opcionCorrecta.puntuar(respuesta[0]));
         acumulador.sumar(opcionIncorrecta.puntuar(respuesta[0]));

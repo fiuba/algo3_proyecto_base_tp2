@@ -18,7 +18,7 @@ public class PreguntaVF implements Pregunta{
         this.textoRespuesta = textoRespuesta;
     }
 
-    public Puntaje responder(Respuesta... respuesta) {
+    public PuntajeParcial responder(Respuesta... respuesta) {
         return opcionCorrecta.puntuar(respuesta[0]);
     }
 

@@ -3,21 +3,21 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Puntaje {
+public class PuntajeParcial {
     private int puntajeBase;
     private Jugador jugador;
     private List<ModificadorIndividual> modificadores;
 
-    public Puntaje() {
+    public PuntajeParcial() {
         this.puntajeBase = 0;
     }
-    public Puntaje(int puntajeInicial) {
+    public PuntajeParcial(int puntajeInicial) {
         this.puntajeBase = puntajeInicial;
         this.modificadores = new ArrayList<ModificadorIndividual>();
         this.modificadores.add(new ModificadorBase());
     }
 
-    public void sumar(Puntaje otroPuntaje) {
+    public void sumar(PuntajeParcial otroPuntaje) {
         this.puntajeBase += otroPuntaje.puntajeBase;
         this.modificadores = new ArrayList<ModificadorIndividual>();
         this.modificadores.add(new ModificadorBase());
@@ -43,7 +43,7 @@ public class Puntaje {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Puntaje otroPuntaje = (Puntaje) o;
+        PuntajeParcial otroPuntaje = (PuntajeParcial) o;
 
         return (puntajeBase == otroPuntaje.puntajeBase);
     }
@@ -53,6 +53,6 @@ public class Puntaje {
     }
 
     public void actualizarPuntajeDelJugador() {
-        jugador.sumarPuntos( this.obtenerPuntos() );
+        jugador.sumarPuntos( this );
     }
 }

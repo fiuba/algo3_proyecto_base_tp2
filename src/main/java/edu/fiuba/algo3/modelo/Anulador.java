@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Anulador implements ModificadorGlobal{
@@ -9,7 +8,7 @@ public class Anulador implements ModificadorGlobal{
         this.jugador = jugador;
     }
 
-    public void aplicar(List<Puntaje> puntajes) {
+    public void aplicar(List<PuntajeParcial> puntajes) {
         puntajes.stream()
                 .filter(p -> !p.perteneceA(jugador))
                 .forEach(p -> p.agregarModificador(new ModificadorNulo()));

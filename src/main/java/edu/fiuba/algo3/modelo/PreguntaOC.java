@@ -29,7 +29,7 @@ public class PreguntaOC implements Pregunta{
     }
 
     @Override
-    public Puntaje responder(Respuesta... respuestas) {
+    public PuntajeParcial responder(Respuesta... respuestas) {
         return ordenCorrecto.puntuar(respuestas);
     }
 

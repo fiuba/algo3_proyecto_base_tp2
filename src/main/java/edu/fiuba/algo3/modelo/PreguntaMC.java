@@ -30,7 +30,7 @@ public class PreguntaMC implements Pregunta{
     }
 
     @Override
-    public Puntaje responder(Respuesta... respuestas) {
+    public PuntajeParcial responder(Respuesta... respuestas) {
 
         // Si hay una respuesta incorrecta -> return 0
 
@@ -40,7 +40,7 @@ public class PreguntaMC implements Pregunta{
                 .findAny();
 
         if (opcionIncorrectaSeleccionada.isPresent()) {
-            return new Puntaje(0);
+            return new PuntajeParcial(0);
         }
 
         // Si hay alguna opcion correcta sin seleccionar -> return 0
@@ -52,10 +52,10 @@ public class PreguntaMC implements Pregunta{
                 .findAny();
 
         if (opcionSinSeleccionar.isPresent()) {
-            return new Puntaje(0);
+            return new PuntajeParcial(0);
         }
 
-        return new Puntaje(1);
+        return new PuntajeParcial(1);
     }
 
 }

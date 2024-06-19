@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Exclusividad implements ModificadorGlobal{
-    public void aplicar(List<Puntaje> puntajes) {
+    public void aplicar(List<PuntajeParcial> puntajes) {
 
         long contador = puntajes.stream()
                 .filter(punto -> punto.obtenerPuntos() != 0)
