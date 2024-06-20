@@ -186,7 +186,7 @@ public class VistaConfigurarPartida extends Scene {
 
         // Controlador
 
-        ControladorConfigurarPartida controlador = new ControladorConfigurarPartida(stage,jugadores,limitePuntaje,limitePreguntas);
+        ControladorConfigurarPartida controlador = new ControladorConfigurarPartida(stage,listaJugadores,limitePuntaje,limitePreguntas);
         botonjugar.setOnAction(controlador);
 
     }

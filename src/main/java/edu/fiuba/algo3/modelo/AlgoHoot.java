@@ -11,12 +11,13 @@ public class AlgoHoot {
 
     private GestorDeTurnos gestorDeTurnos;
 
-
+    private int maximoPreguntas;
+    private int puntajeMaximo;
 
     private AlgoHoot(){
         gestorDeTurnos = new GestorDeTurnos();
-
-
+        maximoPreguntas = 25;
+        puntajeMaximo = 100;
     }
 
     public static AlgoHoot getInstancia() {
@@ -26,7 +27,8 @@ public class AlgoHoot {
         return instancia;
     }
 
-
+    public void setPuntajeMaximo(int puntajeMaximo) {this.puntajeMaximo = puntajeMaximo;}
+    public void setMaximoPreguntas(int maximoPreguntas) {this.maximoPreguntas = maximoPreguntas;}
 
     public void inicializarGestorDePreguntas() throws ArchivoInexistente {
         gestorDeTurnos.inicializarGestorDePreguntas();
