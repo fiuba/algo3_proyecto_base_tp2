@@ -10,10 +10,12 @@ import java.util.List;
 public class GestorDeTurnos {
     private LinkedList<Turno> turnos;
     private GestorDePreguntas gestorDePreguntas;
+    private List<Jugador> jugadores;
 
     public GestorDeTurnos() throws ArchivoInexistente {
         this.turnos = new LinkedList<>();
         gestorDePreguntas = new GestorDePreguntas();
+        jugadores = new LinkedList<Jugador>();
     }
 
 
@@ -38,5 +40,13 @@ public class GestorDeTurnos {
     public void terminarTurnoActual() {
         Turno turno = turnos.getLast();
         turno.terminar();
+    }
+
+    public void agregarJugador(Jugador j) {
+        jugadores.add(j);
+    }
+
+    public List<Jugador> obtenerJugadores() {
+        return jugadores;
     }
 }

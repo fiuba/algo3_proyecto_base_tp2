@@ -12,12 +12,12 @@ public class AlgoHoot {
 
     private GestorDeTurnos gestorDeTurnos;
 
-    private List<Jugador> jugadores;
+
 
     private AlgoHoot() throws ArchivoInexistente {
         gestorDeTurnos = new GestorDeTurnos();
 
-        jugadores = new LinkedList<Jugador>();
+
     }
 
     public static AlgoHoot getInstancia() throws ArchivoInexistente {
@@ -47,10 +47,10 @@ public class AlgoHoot {
     }
 
     public void agregarJugador(Jugador jugador) {
-        jugadores.add(jugador);
+        gestorDeTurnos.agregarJugador(jugador);
     }
 
     public List<Jugador> obtenerJugadores(){
-        return jugadores;
+        return gestorDeTurnos.obtenerJugadores();
     }
 }
