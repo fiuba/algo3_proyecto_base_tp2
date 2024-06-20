@@ -85,5 +85,5 @@
 
 .GP-toggle-button.selected-color2 {
     -fx-background-color: lightgreen;  /* Segundo color */
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
