@@ -33,10 +33,10 @@ public class GestorDeTurnos {
         return rondasDePreguntas.getLast().getPregunta();
     }
 
-    public void jugarRondaActual(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) throws JugadorNoEsperado {
+    public void jugarRondaActual(Jugador j, List<ModificadorIndividual> mis, List<ModificadorGlobal> mgs, Respuesta... respuestas) throws JugadorNoEsperado {
         RondaDePreguntas rondaDePreguntas = rondasDePreguntas.getLast();
 
-        rondaDePreguntas.jugar(j, mi, mg, respuestas);
+        rondaDePreguntas.jugar(j, mis, mgs, respuestas);
     }
 
     public void terminarRondaActual() {

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.excepciones.JugadorNoEsperado;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,9 +30,23 @@ public class CasosDeUsoEntrega3 {
         int puntosEsperadosJ3 = -1;
 
         // Act
-        rondaDePreguntas.jugar(j1, new Duplicador(), new ModificadorGlobalBase(), new Respuesta("5"));
-        rondaDePreguntas.jugar(j2, new Triplicador(), new ModificadorGlobalBase(), new Respuesta("3"));
-        rondaDePreguntas.jugar(j3, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("3"));
+        ArrayList<ModificadorIndividual> modsInd1 = new ArrayList<>();
+        modsInd1.add(new Duplicador());
+        ArrayList<ModificadorIndividual> modsInd2 = new ArrayList<>();
+        modsInd2.add(new Triplicador());
+        ArrayList<ModificadorIndividual> modsInd3 = new ArrayList<>();
+        modsInd3.add(new ModificadorBase());
+
+        ArrayList<ModificadorGlobal> modsGlob1 = new ArrayList<>();
+        modsGlob1.add(new ModificadorGlobalBase());
+        ArrayList<ModificadorGlobal> modsGlob2 = new ArrayList<>();
+        modsGlob2.add(new ModificadorGlobalBase());
+        ArrayList<ModificadorGlobal> modsGlob3 = new ArrayList<>();
+        modsGlob3.add(new ModificadorGlobalBase());
+
+        rondaDePreguntas.jugar(j1, modsInd1, modsGlob1, new Respuesta("5"));
+        rondaDePreguntas.jugar(j2, modsInd2, modsGlob2, new Respuesta("3"));
+        rondaDePreguntas.jugar(j3, modsInd3, modsGlob3, new Respuesta("3"));
         rondaDePreguntas.terminar();
 
         // Assert

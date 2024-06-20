@@ -18,7 +18,7 @@ public class RondaDePreguntas {
         this.ordenDeRonda = ordenDeRonda;
     }
 
-    public void jugar(Jugador j, ModificadorIndividual modInd, ModificadorGlobal modGlob, Respuesta... respuestas) throws JugadorNoEsperado {
+    public void jugar(Jugador j, List<ModificadorIndividual> modsInd, List<ModificadorGlobal> modsGlob, Respuesta... respuestas) throws JugadorNoEsperado {
 
         Jugador jugadorActual = ordenDeRonda.obtenerJugadorActual();
 
@@ -29,11 +29,13 @@ public class RondaDePreguntas {
 
             puntos.establecerJugador(j);
 
-            puntos.agregarModificador(modInd);
+            for(ModificadorIndividual mi : modsInd) {
+                puntos.agregarModificador(mi);
+                j.gastar(mi);
+            }
 
-            j.gastar(modInd);
+            modificadoresGlobales.addAll(modsGlob);
 
-            modificadoresGlobales.add(modGlob);
 
             puntajes.add(puntos);
 

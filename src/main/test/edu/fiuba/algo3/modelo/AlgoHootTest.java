@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.excepciones.ArchivoInexistente;
 import edu.fiuba.algo3.modelo.excepciones.JugadorNoEsperado;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -68,9 +69,18 @@ public class AlgoHootTest {
         }
 
         // Act
-        algoHoot.jugarRondaDePreguntas(j1, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
-        algoHoot.jugarRondaDePreguntas(j2, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
-        algoHoot.jugarRondaDePreguntas(j3, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+        ArrayList<ModificadorIndividual> modsInd = new ArrayList<>();
+        modsInd.add(new ModificadorBase());
+
+
+        ArrayList<ModificadorGlobal> modsGlob = new ArrayList<>();
+        modsGlob.add(new ModificadorGlobalBase());
+
+
+
+        algoHoot.jugarRondaDePreguntas(j1, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
+        algoHoot.jugarRondaDePreguntas(j2, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+        algoHoot.jugarRondaDePreguntas(j3, modsInd, modsGlob, new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
         algoHoot.terminarRondaDePreguntas();
 
         // Assert

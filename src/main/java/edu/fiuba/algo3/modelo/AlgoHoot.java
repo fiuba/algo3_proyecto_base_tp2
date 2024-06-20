@@ -36,8 +36,8 @@ public class AlgoHoot {
         gestorDeTurnos.comenzarNuevaRonda();
     }
 
-    public void jugarRondaDePreguntas(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) throws JugadorNoEsperado {
-        gestorDeTurnos.jugarRondaActual(j, mi, mg, respuestas);
+    public void jugarRondaDePreguntas(Jugador j, List<ModificadorIndividual> mis, List<ModificadorGlobal> mgs, Respuesta... respuestas) throws JugadorNoEsperado {
+        gestorDeTurnos.jugarRondaActual(j, mis, mgs, respuestas);
     }
 
     public void terminarRondaDePreguntas(){
