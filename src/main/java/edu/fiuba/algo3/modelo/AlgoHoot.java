@@ -19,7 +19,7 @@ public class AlgoHoot {
 
     }
 
-    public static AlgoHoot getInstancia() throws ArchivoInexistente {
+    public static AlgoHoot getInstancia() {
         if (instancia == null) {
             instancia = new AlgoHoot();
         }
