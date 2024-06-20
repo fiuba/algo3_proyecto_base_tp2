@@ -92,7 +92,7 @@ GestorPreguntas ..> Lector
 Turno --> Pregunta
 Turno --> "*" Respuesta
 AlgoHoot --> GestorDeTurnos
-AlgoHoot -left->"*" Jugador
+GestorDeTurnos -left->"*" Jugador
 PuntajeParcial --> Jugador
 Respuesta ..> PuntajeParcial
 
