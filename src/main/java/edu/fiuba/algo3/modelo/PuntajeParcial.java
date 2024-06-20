@@ -10,6 +10,8 @@ public class PuntajeParcial {
 
     public PuntajeParcial() {
         this.puntajeBase = 0;
+        this.modificadores = new ArrayList<ModificadorIndividual>();
+        this.modificadores.add(new ModificadorBase());
     }
     public PuntajeParcial(int puntajeInicial) {
         this.puntajeBase = puntajeInicial;

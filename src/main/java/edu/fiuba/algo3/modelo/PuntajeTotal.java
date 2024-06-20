@@ -15,11 +15,8 @@ public class PuntajeTotal {
 
     public int obtenerPuntaje() {
         return puntosParciales.stream()
-                .reduce(new PuntajeParcial(0), (acum, punto) -> {
-                    acum.sumar(punto);
-                    return acum;
-                })
-                .obtenerPuntos();
+                .map(PuntajeParcial::obtenerPuntos)
+                .reduce(0, Integer::sum);
     }
 
 }
