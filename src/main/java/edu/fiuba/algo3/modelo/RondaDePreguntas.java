@@ -20,26 +20,30 @@ public class RondaDePreguntas {
 
     public void jugar(Jugador j, List<ModificadorIndividual> modsInd, List<ModificadorGlobal> modsGlob, Respuesta... respuestas) throws JugadorNoEsperado {
 
-        Jugador jugadorActual = ordenDeRonda.obtenerJugadorActual();
-
-        if(jugadorActual.equals(j)) {
 
 
-            PuntajeParcial puntos = pregunta.responder(respuestas);
+        if(!ordenDeRonda.rondaFinalizada()) {
+            Jugador jugadorActual = ordenDeRonda.obtenerJugadorActual();
+            if(jugadorActual.equals(j)){
+                PuntajeParcial puntos = pregunta.responder(respuestas);
 
-            puntos.establecerJugador(j);
+                puntos.establecerJugador(j);
 
-            for(ModificadorIndividual mi : modsInd) {
-                puntos.agregarModificador(mi);
-                j.gastar(mi);
+                for(ModificadorIndividual mi : modsInd) {
+                    puntos.agregarModificador(mi);
+                    j.gastar(mi);
+                }
+
+                modificadoresGlobales.addAll(modsGlob);
+
+
+                puntajes.add(puntos);
+
+                ordenDeRonda.avanzarTurno();
+            } else {
+                throw new JugadorNoEsperado("El jugador obtenido en la respuesta no es el esperado");
             }
 
-            modificadoresGlobales.addAll(modsGlob);
-
-
-            puntajes.add(puntos);
-
-            ordenDeRonda.avanzarTurno();
         } else {
             throw new JugadorNoEsperado("El jugador obtenido en la respuesta no es el esperado");
         }

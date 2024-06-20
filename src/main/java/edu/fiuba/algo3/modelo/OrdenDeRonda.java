@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class OrdenDeRonda {
-    private Integer turno = 0;
+    private Integer turno = 1;
     private List<Jugador> jugadores;
 
     public OrdenDeRonda(List<Jugador> jugadores) {
@@ -12,18 +12,18 @@ public class OrdenDeRonda {
 
 
     public Jugador obtenerJugadorActual(){
-        return jugadores.get(turno);
+        return jugadores.get(turno-1);
     }
     public Integer obtenerTurno(){
         return turno;
     }
     public void avanzarTurno(){
-        if (!this.rondaFinalizada()) {
+        if (!(turno > jugadores.size())) {
             turno++;
         }
     }
     public boolean rondaFinalizada(){
-        if(turno == jugadores.size()) return true;
+        if(turno > jugadores.size()) return true;
         return false;
     }
 }

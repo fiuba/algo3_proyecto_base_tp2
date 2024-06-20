@@ -88,4 +88,90 @@ public class AlgoHootTest {
         assertEquals(puntosEsperadosJ2, j2.obtenerPuntaje());
         assertEquals(puntosEsperadosJ3, j3.obtenerPuntaje());
     }
+
+    @Test
+    public void test04jugarUnTurnoLanzaExcepcionJugadorNoEsperado() throws ArchivoInexistente, JugadorNoEsperado {
+        //Arrange
+        AlgoHoot algoHoot = AlgoHoot.getInstancia();
+        algoHoot.inicializarGestorDePreguntas();
+
+        algoHoot.reiniciarListaDeJugadores();
+        Jugador j1 = new Jugador("J1");
+        Jugador j2 = new Jugador("J2");
+        Jugador j3 = new Jugador("J3");
+
+        algoHoot.agregarJugador(j1);
+        algoHoot.agregarJugador(j2);
+        algoHoot.agregarJugador(j3);
+
+        algoHoot.comenzarNuevaRondaDePreguntas();
+
+
+        System.out.println(algoHoot.obtenerPreguntaActual().getPregunta());
+        List<Opcion> opciones = algoHoot.obtenerPreguntaActual().getOpciones();
+        for(Opcion opcion : opciones) {
+            System.out.println(opcion.getOpcion());
+        }
+
+        // Act
+        ArrayList<ModificadorIndividual> modsInd = new ArrayList<>();
+        modsInd.add(new ModificadorBase());
+
+
+        ArrayList<ModificadorGlobal> modsGlob = new ArrayList<>();
+        modsGlob.add(new ModificadorGlobalBase());
+
+
+
+        algoHoot.jugarRondaDePreguntas(j1, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
+        algoHoot.jugarRondaDePreguntas(j2, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+
+
+        // Assert
+        assertThrows(JugadorNoEsperado.class, () -> {algoHoot.jugarRondaDePreguntas(j2, modsInd, modsGlob, new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));});
+    }
+
+    @Test
+    public void test05jugarUnTurnoLanzaExcepcionJugadorNoEsperadoPorExcederseDeJugadas() throws ArchivoInexistente, JugadorNoEsperado {
+        //Arrange
+        AlgoHoot algoHoot = AlgoHoot.getInstancia();
+        algoHoot.inicializarGestorDePreguntas();
+
+        algoHoot.reiniciarListaDeJugadores();
+        Jugador j1 = new Jugador("J1");
+        Jugador j2 = new Jugador("J2");
+        Jugador j3 = new Jugador("J3");
+
+
+        algoHoot.agregarJugador(j1);
+        algoHoot.agregarJugador(j2);
+        algoHoot.agregarJugador(j3);
+
+        algoHoot.comenzarNuevaRondaDePreguntas();
+
+
+        System.out.println(algoHoot.obtenerPreguntaActual().getPregunta());
+        List<Opcion> opciones = algoHoot.obtenerPreguntaActual().getOpciones();
+        for(Opcion opcion : opciones) {
+            System.out.println(opcion.getOpcion());
+        }
+
+        // Act
+        ArrayList<ModificadorIndividual> modsInd = new ArrayList<>();
+        modsInd.add(new ModificadorBase());
+
+
+        ArrayList<ModificadorGlobal> modsGlob = new ArrayList<>();
+        modsGlob.add(new ModificadorGlobalBase());
+
+
+
+        algoHoot.jugarRondaDePreguntas(j1, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
+        algoHoot.jugarRondaDePreguntas(j2, modsInd, modsGlob, new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+        algoHoot.jugarRondaDePreguntas(j3, modsInd, modsGlob, new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+
+
+        // Assert
+        assertThrows(JugadorNoEsperado.class, () -> {algoHoot.jugarRondaDePreguntas(j3, modsInd, modsGlob, new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));});
+    }
 }
