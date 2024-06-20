@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.botones.BotonPoder;
+import edu.fiuba.algo3.vista.botones.BotonGroupChoice;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -16,6 +17,8 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,15 +66,50 @@ public class VistaGroupChoice extends Scene {
         this.root.getChildren().add(panelPregunta);
 
         // ESTO NO SE TOCA.
-        Label textoPregunta = new Label("¿Cuál fue el aporte más conocido del científico inglés Edgard Codd a la computación?   ");
+        Label textoPregunta = new Label("Asigne las siguientes leyendas del deporte nacional a disciplina grupales (Fútbol, Básquet, Voley, Rugby,) o individuales (atletismo, tenis, artes marciales, ajedrez, etc):");
         textoPregunta.setPrefHeight(height*2/5 - 2*margenAlto);
         textoPregunta.setPrefWidth(width * 2/3 - 2*margenAncho);
-        FlowPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
         establecerEstilo(textoPregunta);
-        cambiarTamanoFuente(textoPregunta, 32);
+        cambiarTamanoFuente(textoPregunta, 30);
+
+        //NO TOCAR, sufriran consecuencias
+
+        StackPane contenidoPreguntaGrupos = new StackPane();
+        contenidoPreguntaGrupos.setPrefWidth(floor(width * 2/3));
+        contenidoPreguntaGrupos.setPrefHeight(height/3);
+        StackPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
+
+        HBox contenedorTema = new HBox();
+        contenedorTema.setPrefWidth(floor(width * 2/3));
+        Label tema = new Label("tematica");
+        contenedorTema.setPrefHeight(tema.getPrefHeight());
+
+        establecerEstilo(tema);
+        cambiarTamanoFuente(tema, 25);
+        contenedorTema.getChildren().add(tema);
+        contenedorTema.setAlignment(Pos.TOP_RIGHT);
+
+
+        HBox grupos = new HBox();
+        grupos.setPrefWidth(floor(width * 2/3));
+        Label grupo1 = new Label("grupo 1");
+        Label grupo2 = new Label("grupo 2");
+        grupos.setAlignment(Pos.BOTTOM_CENTER);
+        grupos.setSpacing(20);
+        cambiarTamanoFuente(grupo1, 20);
+        cambiarTamanoFuente(grupo2, 20);
+        grupo1.getStyleClass().add("GP-toggle-button");
+        grupo1.getStyleClass().add("selected-color1");
+        grupo2.getStyleClass().add("GP-toggle-button");
+        grupo2.getStyleClass().add("selected-color2");
+        grupos.getChildren().addAll(grupo1, grupo2);
+
+        StackPane.setMargin(contenedorTema,new Insets(margenAlto/3, margenAncho/2, 0, 0));
+        StackPane.setMargin(grupos,new Insets( textoPregunta.getPrefHeight(), margenAncho, margenAlto/2, margenAncho));
 
         textoPregunta.setWrapText(true);
-        panelPregunta.getChildren().add(textoPregunta);
+        contenidoPreguntaGrupos.getChildren().addAll(textoPregunta,contenedorTema,grupos);
+        panelPregunta.getChildren().addAll( contenidoPreguntaGrupos);
 
 
         FlowPane panelBotones = new FlowPane();
@@ -126,34 +164,24 @@ public class VistaGroupChoice extends Scene {
         // ejemplo de ingreso de rtas
         List<String> opcionesLista = new ArrayList<>();
 
-        opcionesLista.add("El disco rígido");
-        opcionesLista.add("El sistema operativo Solaris");
-        opcionesLista.add("Las bases de datos relacionales");
-        opcionesLista.add("El algoritmo quicksort");
-        opcionesLista.add("Los lenguajes tipados");
+        opcionesLista.add("Lio Messi");
+        opcionesLista.add("Manu Ginóbili");
+        opcionesLista.add("Juan Martín del Potro");
+        opcionesLista.add("Miguel Najdorf");
+        opcionesLista.add("Hugo Conte");
+        opcionesLista.add("José Meolans");
+
+        //no toques lpm
+        //niño toca, papa paga
 
         this.opciones = new VBox();
         opciones.setPrefHeight(panelOpciones.getPrefHeight());
         opciones.setPrefWidth(panelOpciones.getPrefWidth());
         opciones.setAlignment(Pos.CENTER);
-        opciones.setSpacing(25);
+        opciones.setSpacing(10);
         panelOpciones.getChildren().add(opciones);
 
         definirCantidadOpciones(opcionesLista);
-
-        File archivoSonidoSeleccionar = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/seleccionar.wav");
-        Media mediaSeleccionar = new Media(archivoSonidoSeleccionar.toURI().toString());
-        AudioClip sonidoSeleccionar = new AudioClip(mediaSeleccionar.getSource());
-        sonidoSeleccionar.setVolume(0.2);
-
-        //aplico sonidos  a opciones
-        for (int i = 0; i < opcionesLista.size(); i++) {
-            Node opcion =  opciones.getChildren().get(i);
-            opcion.setOnMouseClicked(e-> sonidoSeleccionar.play());
-
-        }
-
-
 
         // opcion1.getStyleClass().add("custom-toggle-button");
         // opcion2.getStyleClass().add("custom-toggle-button");
@@ -184,22 +212,13 @@ public class VistaGroupChoice extends Scene {
         nodo.setStyle(estiloAnterior + "-fx-font-size: "+size+";");
     }
 
+
     private void definirCantidadOpciones(List<String> opcionesLista) {
         for (int i = 0; i < opcionesLista.size(); i++) {
-            ToggleButton opcion = new ToggleButton(opcionesLista.get(i));
-            opcion.getStyleClass().add("GP-toggle-button");
-            opcion.setOnAction(event -> {
-                if (opcion.getStyleClass().contains("selected-color1")) {
-                        opcion.getStyleClass().remove("selected-color1");
-                        opcion.getStyleClass().add("selected-color2");
-                } else {
-                        opcion.getStyleClass().remove("selected-color2");
-                        opcion.getStyleClass().add("selected-color1");
-                }
-            });
-
+            BotonGroupChoice opcion = new BotonGroupChoice(opcionesLista.get(i));
             opciones.getChildren().add(opcion);
-            String optionText = opcionesLista.get(i);
+
         }
+
     }
 }
