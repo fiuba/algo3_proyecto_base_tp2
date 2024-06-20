@@ -66,3 +66,24 @@
     -fx-max-height: 0;
 }
 */
+
+.GP-toggle-button {
+    -fx-font-size: 26;
+    -fx-background-color: white;
+    -fx-border-width: 4px;
+    -fx-text-fill: black;
+    -fx-font-family: 'Comic Sans MS';
+    -fx-text-alignment: center;
+    -fx-border-color: black;
+}
+
+
+.GP-toggle-button.selected-color1 {
+    -fx-background-color: violet;  /* Primer color */
+    -fx-text-fill: white;
+}
+
+.GP-toggle-button.selected-color2 {
+    -fx-background-color: lightgreen;  /* Segundo color */
+    -fx-text-fill: white;
+}
