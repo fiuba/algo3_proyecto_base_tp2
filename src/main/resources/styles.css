@@ -45,11 +45,6 @@
     -fx-background-color: gray;
 }
 
-.list-view .scroll-bar:horizontal {
-    -fx-opacity: 0; /* Oculta la barra de desplazamiento horizontal */
-    -fx-max-height: 0;
-}
-
 .GP-toggle-button {
     -fx-font-size: 26;
     -fx-background-color: white;

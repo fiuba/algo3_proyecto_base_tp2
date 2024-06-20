@@ -19,8 +19,7 @@ public class PuntajeParcial {
 
     public void sumar(PuntajeParcial otroPuntaje) {
         this.puntajeBase += otroPuntaje.puntajeBase;
-        this.modificadores = new ArrayList<ModificadorIndividual>();
-        this.modificadores.add(new ModificadorBase());
+        this.modificadores.addAll(otroPuntaje.modificadores);
     }
 
     public void establecerJugador(Jugador jugador) {
