@@ -50,23 +50,6 @@
     -fx-max-height: 0;
 }
 
-.list-view .scroll-bar:vertical {
-    -fx-background-color: white;
-    -fx-border-width: 4px;
-    -fx-border-color: black;
-}
-/*
-.list-view .scroll-bar:horizontal {
-    -fx-opacity: 0;
-    -fx-max-height: 0;
-}
-
-.list-view .scroll-bar:horizontal {
-    -fx-opacity: 0;
-    -fx-max-height: 0;
-}
-*/
-
 .GP-toggle-button {
     -fx-font-size: 26;
     -fx-background-color: white;

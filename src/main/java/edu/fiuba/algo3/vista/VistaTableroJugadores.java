@@ -42,7 +42,7 @@ public class VistaTableroJugadores extends ListView {
     }
 
     public void agregarJugador(String nombre, int puntaje) {
-        JugadorVista nuevoJugador = new JugadorVista(nombre,puntaje,ancho,floor(alto/8));
+        JugadorVista nuevoJugador = new JugadorVista(nombre,puntaje,ancho*4/5,floor(alto/8));
         jugadores.add(nuevoJugador);
         this.getItems().setAll(jugadores);
     }
@@ -56,5 +56,6 @@ public class VistaTableroJugadores extends ListView {
         }
         jugadorActual = cursor.next();
         jugadorActual.resaltar();
+        this.scrollTo(jugadorActual);
     }
 }
