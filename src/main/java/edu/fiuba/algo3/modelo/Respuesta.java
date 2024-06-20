@@ -1,9 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Respuesta {
     private String respuesta;
 

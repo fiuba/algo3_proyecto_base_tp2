@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controladores.ControladorConfigurarPartida;
+import edu.fiuba.algo3.vista.botones.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,18 +18,18 @@ import java.io.File;
 import java.util.concurrent.Flow;
 
 import static java.lang.Math.floor;
-import edu.fiuba.algo3.controladores.ControladorInicio;
+
 import javafx.stage.Stage;
 
 
-public class VistaRegistroJugadores extends Scene {
+public class VistaConfigurarPartida extends Scene {
     private FlowPane root;
     private ListView<String> listaJugadores;
     private TextField fieldNombreJugador;
     private ObservableList<String> jugadores;
     private AudioClip sonidoError;
 
-    public VistaRegistroJugadores(Stage stage, double width, double height) {
+    public VistaConfigurarPartida(Stage stage, double width, double height) {
         super(new FlowPane(), width, height);
         double margenAncho = width/32;
         double margenAlto = height/18;
@@ -41,7 +43,7 @@ public class VistaRegistroJugadores extends Scene {
         Media media = new Media(archivoSonido.toURI().toString());
         sonidoError = new AudioClip(media.getSource());
 
-
+        // Paneles y distribución en la pantalla
         FlowPane primerColumna = new FlowPane();
         FlowPane segundaColumna = new FlowPane();
         primerColumna.setPrefWidth(floor(width/3));
@@ -49,16 +51,11 @@ public class VistaRegistroJugadores extends Scene {
         primerColumna.setPrefHeight(height);
         segundaColumna.setPrefWidth(floor(width*2/3));
         segundaColumna.setPrefHeight(height);
-
+        this.root.getChildren().addAll(primerColumna,segundaColumna);
 
         FlowPane panelAgregarJugador = new FlowPane();
         panelAgregarJugador.setPrefWidth(segundaColumna.getPrefWidth());
         panelAgregarJugador.setPrefHeight(floor(segundaColumna.getPrefHeight()/3));
-        FlowPane restoSegundaColumna = new FlowPane();
-        restoSegundaColumna.setPrefWidth(segundaColumna.getPrefWidth());
-        restoSegundaColumna.setPrefHeight(floor(segundaColumna.getPrefHeight()*2/3));
-        restoSegundaColumna.setAlignment(Pos.CENTER);
-
 
         FlowPane panelIngresoNombre = new FlowPane();
         panelIngresoNombre.setPrefWidth(floor(panelAgregarJugador.getPrefWidth()*2/3));
@@ -80,6 +77,21 @@ public class VistaRegistroJugadores extends Scene {
         panelAgregarJugador.getChildren().addAll(panelIngresoNombre, panelBotonesIngreso);
         segundaColumna.getChildren().add(panelAgregarJugador);
 
+        FlowPane panelBotonJugar = new FlowPane();
+        panelBotonJugar.setPrefHeight(segundaColumna.getPrefHeight() * 1/3);
+        panelBotonJugar.setPrefWidth(segundaColumna.getPrefWidth());
+        panelBotonJugar.setAlignment(Pos.CENTER);
+
+
+        FlowPane panelLimites = new FlowPane();
+        panelLimites.setPrefHeight(segundaColumna.getPrefHeight() * 1/3);
+        panelLimites.setPrefWidth(segundaColumna.getPrefWidth());
+        HBox boxLimites = new HBox();
+        panelLimites.getChildren().add(boxLimites);
+
+        segundaColumna.getChildren().addAll(panelLimites,panelBotonJugar);
+
+        // Botones y cosas con funcionalidad
         Label textoAgregarJugador = new Label("agregar jugador:");
         textoAgregarJugador.setStyle("-fx-text-fill: black;" +
                         "-fx-font-family: 'Comic Sans MS';" +
@@ -128,20 +140,54 @@ public class VistaRegistroJugadores extends Scene {
             "-fx-border-color: black;"
         );
 
-        this.root.getChildren().addAll(primerColumna,segundaColumna);
 
         ImageView imagenJugar = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/botonJugar.png"));
         Button botonjugar = new Button("", imagenJugar);
         botonjugar.setStyle("-fx-background-color: transparent;");
+        panelBotonJugar.getChildren().add(botonjugar);
 
 
-        ///para mostrar en entrega3, debe modificarse
-        ControladorInicio controlador = new ControladorInicio(stage);
+        FlowPane panelLimitePreguntas = new FlowPane();
+        panelLimitePreguntas.setPrefWidth(segundaColumna.getPrefWidth()/2);
+        panelLimitePreguntas.setAlignment(Pos.CENTER);
+        VBox boxLimitePreguntas = new VBox();
+        boxLimitePreguntas.setAlignment(Pos.CENTER);
+        Label textoLimitePreguntas = new Label("máximo de preguntas a jugar");
+        textoLimitePreguntas.setStyle("-fx-text-fill: black;" +
+                "-fx-font-family: 'Comic Sans MS';" +
+                "-fx-text-alignment: center;" +
+                "-fx-font-size: 32;");
+        textoLimitePreguntas.maxWidth(segundaColumna.getPrefWidth()/2);
+        textoLimitePreguntas.wrapTextProperty().set(true);
+        NumberField limitePreguntas = new NumberField();
+        limitePreguntas.setText("25");
+        boxLimitePreguntas.getChildren().addAll(textoLimitePreguntas,limitePreguntas);
+        panelLimitePreguntas.getChildren().add(boxLimitePreguntas);
+        boxLimites.getChildren().add(panelLimitePreguntas);
+
+        FlowPane panelLimitePuntaje = new FlowPane();
+        panelLimitePuntaje.setPrefWidth(segundaColumna.getPrefWidth()/2);
+        panelLimitePuntaje.setAlignment(Pos.CENTER);
+        VBox boxLimitePuntaje = new VBox();
+        boxLimitePuntaje.setAlignment(Pos.CENTER);
+        Label textoLimitePuntaje = new Label("puntos para ganar");
+        textoLimitePuntaje.setStyle("-fx-text-fill: black;" +
+                "-fx-font-family: 'Comic Sans MS';" +
+                "-fx-text-alignment: center;" +
+                "-fx-font-size: 32;");
+        textoLimitePuntaje.maxWidth(segundaColumna.getPrefWidth()/2);
+        textoLimitePuntaje.wrapTextProperty().set(true);
+        NumberField limitePuntaje = new NumberField();
+        limitePuntaje.setText("100");
+        boxLimitePuntaje.getChildren().addAll(textoLimitePuntaje,limitePuntaje);
+        panelLimitePuntaje.getChildren().add(boxLimitePuntaje);
+        boxLimites.getChildren().add(panelLimitePuntaje);
+
+
+        // Controlador
+
+        ControladorConfigurarPartida controlador = new ControladorConfigurarPartida(stage,jugadores,limitePuntaje,limitePreguntas);
         botonjugar.setOnAction(controlador);
-        //// fin de modificado
-
-        segundaColumna.getChildren().add(restoSegundaColumna);
-        restoSegundaColumna.getChildren().add(botonjugar);
 
     }
 

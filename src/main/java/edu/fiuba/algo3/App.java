@@ -1,7 +1,6 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controladores.ControladorPrincipal;
-import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -17,7 +16,7 @@ public class App extends Application {
         stage.getIcons().add(icono);
         stage.setResizable(false);
         ControladorPrincipal cp = new ControladorPrincipal(stage);
-        VistaRegistroJugadores vista = new VistaRegistroJugadores(stage,1280,720);
+        VistaConfigurarPartida vista = new VistaConfigurarPartida(stage,1280,720);
         stage.setScene(vista);
         stage.show();
 

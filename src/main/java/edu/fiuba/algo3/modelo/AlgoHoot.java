@@ -44,7 +44,6 @@ public class AlgoHoot {
         gestorDeTurnos.terminarRondaActual();
     }
 
-
     public Pregunta obtenerPreguntaActual(){
         return gestorDeTurnos.obtenerPreguntaRondaActual();
     }
