@@ -6,12 +6,12 @@ import javafx.scene.layout.FlowPane;
 
 import static java.lang.Math.floor;
 
-public class JugadorVista extends FlowPane {
+public class VistaJugadorConPuntaje extends FlowPane {
 
     private Label nombreLabel;
     private Label puntajeLabel;
 
-    public JugadorVista(String nombre, int puntaje, double ancho, double alto) {
+    public VistaJugadorConPuntaje(String nombre, int puntaje, double ancho, double alto) {
         super();
         this.setPrefSize(ancho, alto);
         nombreLabel = new Label(nombre);

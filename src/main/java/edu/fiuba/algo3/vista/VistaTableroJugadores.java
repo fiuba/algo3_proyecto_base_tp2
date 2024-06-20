@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.vista;
 
-import javafx.collections.ModifiableObservableListBase;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -15,10 +13,9 @@ import static java.lang.Math.floor;
 public class VistaTableroJugadores extends ListView {
     private double ancho;
     private double alto;
-    private ListView<JugadorVista> vistaJugadores;
-    private List<JugadorVista> jugadores;
-    private ListIterator<JugadorVista> cursor;
-    private JugadorVista jugadorActual;
+    private List<VistaJugadorConPuntaje> jugadores;
+    private ListIterator<VistaJugadorConPuntaje> cursor;
+    private VistaJugadorConPuntaje jugadorActual;
 
     public VistaTableroJugadores(double ancho, double alto) {
         super();
@@ -42,7 +39,7 @@ public class VistaTableroJugadores extends ListView {
     }
 
     public void agregarJugador(String nombre, int puntaje) {
-        JugadorVista nuevoJugador = new JugadorVista(nombre,puntaje,ancho*4/5,floor(alto/8));
+        VistaJugadorConPuntaje nuevoJugador = new VistaJugadorConPuntaje(nombre,puntaje,ancho*4/5,floor(alto/8));
         jugadores.add(nuevoJugador);
         this.getItems().setAll(jugadores);
     }

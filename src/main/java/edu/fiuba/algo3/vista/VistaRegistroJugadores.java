@@ -22,10 +22,9 @@ import javafx.stage.Stage;
 
 public class VistaRegistroJugadores extends Scene {
     private FlowPane root;
-    private VBox boxjugadores;
+    private ListView<String> listaJugadores;
     private TextField fieldNombreJugador;
     private ObservableList<String> jugadores;
-    private int maximoJugadores;
     private AudioClip sonidoError;
 
     public VistaRegistroJugadores(Stage stage, double width, double height) {
@@ -38,7 +37,6 @@ public class VistaRegistroJugadores extends Scene {
         this.root.setBackground(fondo);
         this.getStylesheets().add("styles.css");
         this.jugadores = FXCollections.observableArrayList();
-        this.maximoJugadores = 6;
         File archivoSonido = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/error.wav");
         Media media = new Media(archivoSonido.toURI().toString());
         sonidoError = new AudioClip(media.getSource());
@@ -115,19 +113,27 @@ public class VistaRegistroJugadores extends Scene {
         panelListaJugadores.setPrefWidth(primerColumna.getPrefWidth() - 2*margenAncho);
         panelListaJugadores.setPrefHeight(primerColumna.getPrefHeight() - 2*margenAlto);
         FlowPane.setMargin(panelListaJugadores, new Insets(margenAlto,margenAncho,margenAlto,margenAncho));
-        this.boxjugadores = new VBox();
-        boxjugadores.setPrefWidth(panelListaJugadores.getPrefWidth());
-        boxjugadores.setSpacing(margenAlto/2);
-        boxjugadores.setAlignment(Pos.CENTER_LEFT);
-        boxjugadores.setPadding(new Insets(0,margenAncho/2,0,margenAncho/2));
-        panelListaJugadores.getChildren().add(boxjugadores);
+        this.listaJugadores = new ListView<>(jugadores);
+        listaJugadores.setPrefWidth(panelListaJugadores.getPrefWidth());
+        listaJugadores.setPrefHeight(panelListaJugadores.getPrefHeight());
+        panelListaJugadores.getChildren().add(listaJugadores);
         primerColumna.getChildren().add(panelListaJugadores);
+        listaJugadores.setStyle(
+            "-fx-text-fill: black;" +
+            "-fx-font-family: 'Comic Sans MS';" +
+            "-fx-text-alignment: center;" +
+            "-fx-font-size: 32;" +
+            "-fx-background-color: white;" +
+            "-fx-border-width: 4px;" +
+            "-fx-border-color: black;"
+        );
 
         this.root.getChildren().addAll(primerColumna,segundaColumna);
 
         ImageView imagenJugar = new ImageView(new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/botonJugar.png"));
         Button botonjugar = new Button("", imagenJugar);
         botonjugar.setStyle("-fx-background-color: transparent;");
+
 
         ///para mostrar en entrega3, debe modificarse
         ControladorInicio controlador = new ControladorInicio(stage);
@@ -142,32 +148,16 @@ public class VistaRegistroJugadores extends Scene {
     private void agregarJugador() {
         String nombre = fieldNombreJugador.getText().trim();
         if (!nombre.isEmpty()) {
-            if (jugadores.size() >= maximoJugadores) {
-                sonidoError.play();
-            } else {
-                jugadores.add(nombre);
-                fieldNombreJugador.clear();
-
-                Label jugadorLabel = new Label(nombre);
-                jugadorLabel.setMaxWidth(boxjugadores.getPrefWidth());
-                jugadorLabel.setMaxHeight(boxjugadores.getPrefHeight()/12);
-                jugadorLabel.setStyle("-fx-text-fill: black;" +
-                        "-fx-font-family: 'Comic Sans MS';" +
-                        "-fx-text-alignment: center;" +
-                        "-fx-font-size: 32;" +
-                        "-fx-padding: "+ boxjugadores.getPrefWidth()*1/16+"px");
-
-                this.boxjugadores.getChildren().add(jugadorLabel);
-            }
+            jugadores.add(nombre);
+            fieldNombreJugador.clear();
         }
     }
 
     private void quitarJugador() {
-        if (!boxjugadores.getChildren().isEmpty()) {
-            jugadores.remove(jugadores.size()-1);
-            boxjugadores.getChildren().remove(boxjugadores.getChildren().size() - 1);
-        } else {
+        if (jugadores.isEmpty()) {
             sonidoError.play();
+        } else {
+            jugadores.remove(listaJugadores.getSelectionModel().getSelectedItem());
         }
     }
 }
