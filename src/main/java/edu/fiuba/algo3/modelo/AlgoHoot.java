@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.excepciones.ArchivoInexistente;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoEsperado;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AlgoHoot {
@@ -14,7 +13,7 @@ public class AlgoHoot {
 
 
 
-    private AlgoHoot() throws ArchivoInexistente {
+    private AlgoHoot(){
         gestorDeTurnos = new GestorDeTurnos();
 
 
@@ -29,21 +28,25 @@ public class AlgoHoot {
 
 
 
-    public void comenzarNuevoTurno(){
-        gestorDeTurnos.comenzarNuevoTurno();
+    public void inicializarGestorDePreguntas() throws ArchivoInexistente {
+        gestorDeTurnos.inicializarGestorDePreguntas();
     }
 
-    public void jugarTurno(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas){
-        gestorDeTurnos.jugarTurnoActual(j, mi, mg, respuestas);
+    public void comenzarNuevaRondaDePreguntas(){
+        gestorDeTurnos.comenzarNuevaRonda();
     }
 
-    public void terminarTurno(){
-        gestorDeTurnos.terminarTurnoActual();
+    public void jugarRondaDePreguntas(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) throws JugadorNoEsperado {
+        gestorDeTurnos.jugarRondaActual(j, mi, mg, respuestas);
+    }
+
+    public void terminarRondaDePreguntas(){
+        gestorDeTurnos.terminarRondaActual();
     }
 
 
     public Pregunta obtenerPreguntaActual(){
-        return gestorDeTurnos.obtenerPreguntaTurnoActual();
+        return gestorDeTurnos.obtenerPreguntaRondaActual();
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -52,5 +55,9 @@ public class AlgoHoot {
 
     public List<Jugador> obtenerJugadores(){
         return gestorDeTurnos.obtenerJugadores();
+    }
+
+    public void reiniciarListaDeJugadores() {
+        gestorDeTurnos.reiniciarListaDeJugadores();
     }
 }

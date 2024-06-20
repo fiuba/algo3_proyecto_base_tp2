@@ -1,45 +1,47 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.excepciones.ArchivoInexistente;
-import edu.fiuba.algo3.modelo.excepciones.TurnoNoIniciado;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoEsperado;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class GestorDeTurnos {
-    private LinkedList<Turno> turnos;
+    private LinkedList<RondaDePreguntas> rondasDePreguntas;
     private GestorDePreguntas gestorDePreguntas;
     private List<Jugador> jugadores;
 
-    public GestorDeTurnos() throws ArchivoInexistente {
-        this.turnos = new LinkedList<>();
-        gestorDePreguntas = new GestorDePreguntas();
+    public GestorDeTurnos() {
+        this.rondasDePreguntas = new LinkedList<>();
         jugadores = new LinkedList<Jugador>();
     }
 
+    public void inicializarGestorDePreguntas() throws ArchivoInexistente {
+        gestorDePreguntas = new GestorDePreguntas();
+    }
 
-    public void comenzarNuevoTurno() {
+    public void comenzarNuevaRonda() {
         Pregunta p = gestorDePreguntas.obtenerSiguientePregunta();
-        Turno nuevoTurno = new Turno(p);
-        turnos.add(nuevoTurno);
+        RondaDePreguntas nuevoRondaDePreguntas = new RondaDePreguntas(p, new OrdenDeRonda(this.jugadores));
+        rondasDePreguntas.add(nuevoRondaDePreguntas);
     }
 
-    public Pregunta obtenerPreguntaTurnoActual(){
-        if(turnos.size() == 0){
-            comenzarNuevoTurno();
+    public Pregunta obtenerPreguntaRondaActual(){
+        if(rondasDePreguntas.isEmpty()){
+            comenzarNuevaRonda();
         }
-        return turnos.getLast().getPregunta();
+        return rondasDePreguntas.getLast().getPregunta();
     }
 
-    public void jugarTurnoActual(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) {
-        Turno turno = turnos.getLast();
-        turno.jugar(j, mi, mg, respuestas);
+    public void jugarRondaActual(Jugador j, ModificadorIndividual mi, ModificadorGlobal mg, Respuesta... respuestas) throws JugadorNoEsperado {
+        RondaDePreguntas rondaDePreguntas = rondasDePreguntas.getLast();
+
+        rondaDePreguntas.jugar(j, mi, mg, respuestas);
     }
 
-    public void terminarTurnoActual() {
-        Turno turno = turnos.getLast();
-        turno.terminar();
+    public void terminarRondaActual() {
+        RondaDePreguntas rondaDePreguntas = rondasDePreguntas.getLast();
+        rondaDePreguntas.terminar();
     }
 
     public void agregarJugador(Jugador j) {
@@ -48,5 +50,9 @@ public class GestorDeTurnos {
 
     public List<Jugador> obtenerJugadores() {
         return jugadores;
+    }
+
+    public void reiniciarListaDeJugadores(){
+        jugadores.clear();
     }
 }

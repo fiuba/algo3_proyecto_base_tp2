@@ -14,17 +14,29 @@ interface Pregunta {
 }
 
 class GestorDeTurnos {
-    +comenzarNuevoTurno():void
-    +obtenerPreguntaTurnoActual(): Pregunta
-    +jugarTurnoActual(j:Jugador ,mi:ModificadorIndividual, mg:ModificadorGlobal ,respuestas:List<Respuesta>): void
-    +terminarTurnoActual(): void
+    +comenzarNuevaRonda():void
+    +obtenerPreguntaRondaActual(): Pregunta
+    +jugarRondaActual(j:Jugador ,modsInd:List<ModificadorIndividual> ,modsGlob:List<ModificadorGlobal> ,respuestas:List<Respuesta>): void
+    +terminarRondaActual(): void
+    +agregarJugador(Jugador): void
+    +obtenerJugadores(): List<Jugador>
 }
 
-class Turno {
+class RondaDePreguntas {
     - puntajes:List<PuntajeParcial>
-    + Turno(pregunta:Pregunta)
-    + jugar(j:Jugador,modInd:ModificadorIndividual ,modGlob:ModificadorGlobal,respuestas: List<Respuesta>): void
+    + RondaDePreguntas(pregunta:Pregunta)
+    + jugar(j:Jugador,modsInd:List<ModificadorIndividual> ,modsGlob:List<ModificadorGlobal>,respuestas: List<Respuesta>): void
     + terminar(): void
+}
+
+class OrdenDeRonda {
+    - turno: int
+    + OrdenDeRonda(List<Jugador>)
+    + obtenerJugadorActual():Jugador
+    + obtenerTurno():int
+    + avanzarTurno():void
+    + rondaFinalizada():bool
+
 }
 
 class GestorPreguntas {
@@ -51,9 +63,9 @@ class Respuesta {
 class AlgoHoot {
     - instancia: AlgoHoot
     + {static}getInstancia(): AlgoHoot
-    + comenzarNuevoTurno(): void
-    + jugarTurno(j:Jugador ,mi:ModificadorIndividual, mg:ModificadorGlobal ,respuestas:List<Respuesta>): void
-    + terminarTurno(): void
+    + comenzarNuevaRondaDePreguntas(): void
+    + jugarRondaDePreguntas(j:Jugador ,modsInd:List<ModificadorIndividual> ,modsGlob:List<ModificadorGlobal> ,respuestas:List<Respuesta>): void
+    + terminarRondaDePreguntas(): void
     + obtenerPreguntaActual(): Pregunta
     + agregarJugador(jugador:Jugador):void
     + obtenerJugadores(): List<Jugador>
@@ -86,17 +98,20 @@ class PuntajeParcial{
 
 
 GestorDeTurnos -down-> GestorPreguntas
-GestorDeTurnos -down-> "*" Turno
+GestorDeTurnos -down-> "*" RondaDePreguntas
 GestorPreguntas o-->"*" Pregunta
 GestorPreguntas ..> Lector
-Turno --> Pregunta
-Turno --> "*" Respuesta
+RondaDePreguntas --> Pregunta
+RondaDePreguntas --> "*" Respuesta
+RondaDePreguntas --> OrdenDeRonda
+OrdenDeRonda --> "*" Jugador
 AlgoHoot --> GestorDeTurnos
 GestorDeTurnos -left->"*" Jugador
 PuntajeParcial --> Jugador
 Respuesta ..> PuntajeParcial
 
 Jugador --> "2" ModificadorIndividual
-Turno -->"*" ModificadorGlobal
+RondaDePreguntas -->"*" ModificadorGlobal
+
 
 @enduml

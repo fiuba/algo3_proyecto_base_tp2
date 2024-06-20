@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.excepciones.ArchivoInexistente;
+import edu.fiuba.algo3.modelo.excepciones.JugadorNoEsperado;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,9 +42,12 @@ public class AlgoHootTest {
     }
 
     @Test
-    public void test03jugarUnTurno() throws ArchivoInexistente {
+    public void test03jugarUnTurno() throws ArchivoInexistente, JugadorNoEsperado {
         //Arrange
         AlgoHoot algoHoot = AlgoHoot.getInstancia();
+        algoHoot.inicializarGestorDePreguntas();
+
+        algoHoot.reiniciarListaDeJugadores();
         Jugador j1 = new Jugador("J1");
         Jugador j2 = new Jugador("J2");
         Jugador j3 = new Jugador("J3");
@@ -53,7 +56,7 @@ public class AlgoHootTest {
         algoHoot.agregarJugador(j2);
         algoHoot.agregarJugador(j3);
 
-        algoHoot.comenzarNuevoTurno();
+        algoHoot.comenzarNuevaRondaDePreguntas();
         int puntosEsperadosJ1 = 1;
         int puntosEsperadosJ2 = 0;
         int puntosEsperadosJ3 = 0;
@@ -65,10 +68,10 @@ public class AlgoHootTest {
         }
 
         // Act
-        algoHoot.jugarTurno(j1, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
-        algoHoot.jugarTurno(j2, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
-        algoHoot.jugarTurno(j3, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
-        algoHoot.terminarTurno();
+        algoHoot.jugarRondaDePreguntas(j1, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Heladera"), new Respuesta("Imanes del delivery"));
+        algoHoot.jugarRondaDePreguntas(j2, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Microondas"), new Respuesta("Televisor de tubo CRT"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+        algoHoot.jugarRondaDePreguntas(j3, new ModificadorBase(), new ModificadorGlobalBase(), new Respuesta("Televisor de tubo CRT"), new Respuesta("Microondas"), new Respuesta("Imanes del delivery"), new Respuesta("Heladera"));
+        algoHoot.terminarRondaDePreguntas();
 
         // Assert
         assertEquals(puntosEsperadosJ1, j1.obtenerPuntaje());
