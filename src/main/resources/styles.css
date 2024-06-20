@@ -44,3 +44,25 @@
 .custom-button:pressed {
     -fx-background-color: gray;
 }
+
+.list-view .scroll-bar:horizontal {
+    -fx-opacity: 0; /* Oculta la barra de desplazamiento horizontal */
+    -fx-max-height: 0;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-background-color: white;
+    -fx-border-width: 4px;
+    -fx-border-color: black;
+}
+/*
+.list-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-max-height: 0;
+}
+
+.list-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-max-height: 0;
+}
+*/

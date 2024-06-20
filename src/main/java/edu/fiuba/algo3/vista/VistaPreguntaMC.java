@@ -35,7 +35,7 @@ public class VistaPreguntaMC extends Scene {
         panelTableroJugadores.setPrefWidth(floor(width/3 - margenAncho));
         FlowPane.setMargin(panelTableroJugadores,new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
-        TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
+        VistaTableroJugadores tablero = new VistaTableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
 
         panelTableroJugadores.getChildren().add(tablero);
         tablero.agregarJugador("agus",666);

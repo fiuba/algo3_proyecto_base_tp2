@@ -26,8 +26,6 @@ import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Math.floor;
 
@@ -49,7 +47,7 @@ public class VistaPreguntaOrdered extends Scene {
         panelTableroJugadores.setPrefWidth(floor(width / 3 - margenAncho));
         FlowPane.setMargin(panelTableroJugadores, new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
-        TableroJugadores tablero = new TableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
+        VistaTableroJugadores tablero = new VistaTableroJugadores(panelTableroJugadores.getPrefWidth(), panelTableroJugadores.getPrefHeight());
         panelTableroJugadores.getChildren().add(tablero);
         tablero.agregarJugador("agus", 666);
         tablero.agregarJugador("valen", 999);
