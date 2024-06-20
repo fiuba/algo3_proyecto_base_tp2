@@ -20,7 +20,7 @@ public class PreguntaVFPenalidad implements Pregunta{
 
     @Override
     public String getPregunta() {
-        return "";
+        return this.pregunta;
     }
 
     @Override
