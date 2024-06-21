@@ -29,7 +29,6 @@ public class GestorDePreguntas {
     }
 
 
-
     public Pregunta obtenerSiguientePregunta() {
         Pregunta siguientePregunta = preguntas.get(contador);
         contador++;
