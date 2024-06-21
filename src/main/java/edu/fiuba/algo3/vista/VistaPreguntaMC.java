@@ -60,7 +60,26 @@ public class VistaPreguntaMC extends Scene {
         cambiarTamanoFuente(textoPregunta, 32);
 
         textoPregunta.setWrapText(true);
-        panelPregunta.getChildren().add(textoPregunta);
+        StackPane contenidoPregunta= new StackPane();
+        contenidoPregunta.setPrefWidth(floor(width * 2/3));
+        contenidoPregunta.setPrefHeight(height/3);
+        StackPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
+
+        HBox contenedorTema = new HBox();
+        contenedorTema.setPrefWidth(floor(width * 2/3));
+        Label tema = new Label("Multiple Choice");
+        contenedorTema.setPrefHeight(tema.getPrefHeight());
+
+        establecerEstilo(tema);
+        cambiarTamanoFuente(tema, 25);
+        contenedorTema.getChildren().add(tema);
+        contenedorTema.setAlignment(Pos.TOP_RIGHT);
+        tema.setPadding(new Insets(0,6,2,6));
+
+        StackPane.setMargin(contenedorTema,new Insets(margenAlto/3, margenAncho/2, 0, 0));
+        contenidoPregunta.getChildren().addAll(textoPregunta,contenedorTema);
+
+        panelPregunta.getChildren().add(contenidoPregunta);
 
 
         FlowPane panelBotones = new FlowPane();

@@ -16,7 +16,7 @@ public class App extends Application {
         stage.getIcons().add(icono);
         stage.setResizable(false);
         ControladorPrincipal cp = new ControladorPrincipal(stage);
-        VistaConfigurarPartida vista = new VistaConfigurarPartida(stage,1280,720);
+        VistaPreguntaMC vista = new VistaPreguntaMC(1280,720);
         stage.setScene(vista);
         stage.show();
 

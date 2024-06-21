@@ -50,12 +50,32 @@ public class VistaPreguntaVF extends Scene {
         Label textoPregunta = new Label("El punto de ebullición del agua a 3300m del mar es 100 grados centígrados");
         textoPregunta.setPrefHeight(height*2/5 - 2*margenAlto);
         textoPregunta.setPrefWidth(width * 2/3 - 2*margenAncho);
-        FlowPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
+        //FlowPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
         establecerEstilo(textoPregunta);
         cambiarTamanoFuente(textoPregunta, 32);
 
         textoPregunta.setWrapText(true);
-        panelPregunta.getChildren().add(textoPregunta);
+
+        StackPane contenidoPregunta= new StackPane();
+        contenidoPregunta.setPrefWidth(floor(width * 2/3));
+        contenidoPregunta.setPrefHeight(height/3);
+        StackPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
+
+        HBox contenedorTema = new HBox();
+        contenedorTema.setPrefWidth(floor(width * 2/3));
+        Label tema = new Label("Verdadero/Falso");
+        contenedorTema.setPrefHeight(tema.getPrefHeight());
+
+        establecerEstilo(tema);
+        cambiarTamanoFuente(tema, 25);
+        contenedorTema.getChildren().add(tema);
+        contenedorTema.setAlignment(Pos.TOP_RIGHT);
+        tema.setPadding(new Insets(0,6,2,6));
+
+        StackPane.setMargin(contenedorTema,new Insets(margenAlto/3, margenAncho/2, 0, 0));
+        contenidoPregunta.getChildren().addAll(textoPregunta,contenedorTema);
+
+        panelPregunta.getChildren().add(contenidoPregunta);
 
 
         FlowPane panelBotones = new FlowPane();

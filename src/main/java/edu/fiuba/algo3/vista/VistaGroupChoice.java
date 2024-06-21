@@ -81,23 +81,27 @@ public class VistaGroupChoice extends Scene {
 
         HBox contenedorTema = new HBox();
         contenedorTema.setPrefWidth(floor(width * 2/3));
-        Label tema = new Label("tematica");
+        Label tema = new Label("Group choice");
         contenedorTema.setPrefHeight(tema.getPrefHeight());
 
         establecerEstilo(tema);
         cambiarTamanoFuente(tema, 25);
         contenedorTema.getChildren().add(tema);
         contenedorTema.setAlignment(Pos.TOP_RIGHT);
+        tema.setPadding(new Insets(0,6,2,6));
 
 
         HBox grupos = new HBox();
         grupos.setPrefWidth(floor(width * 2/3));
-        Label grupo1 = new Label("grupo 1");
-        Label grupo2 = new Label("grupo 2");
+        Label grupo1 = new Label("Deportes Grupales");
+        Label grupo2 = new Label("Deportes Individuales");
         grupos.setAlignment(Pos.BOTTOM_CENTER);
-        grupos.setSpacing(20);
-        cambiarTamanoFuente(grupo1, 20);
-        cambiarTamanoFuente(grupo2, 20);
+        grupos.setSpacing(50);
+        grupo1.setPadding(new Insets(0,6,2,6));
+        grupo2.setPadding(new Insets(0,6,2,6));
+
+        cambiarTamanoFuente(grupo1, 25);
+        cambiarTamanoFuente(grupo2, 25);
         grupo1.getStyleClass().add("GP-toggle-button");
         grupo1.getStyleClass().add("selected-color1");
         grupo2.getStyleClass().add("GP-toggle-button");
@@ -105,12 +109,11 @@ public class VistaGroupChoice extends Scene {
         grupos.getChildren().addAll(grupo1, grupo2);
 
         StackPane.setMargin(contenedorTema,new Insets(margenAlto/3, margenAncho/2, 0, 0));
-        StackPane.setMargin(grupos,new Insets( textoPregunta.getPrefHeight(), margenAncho, margenAlto/2, margenAncho));
+        StackPane.setMargin(grupos,new Insets( textoPregunta.getPrefHeight(), margenAncho, margenAlto/4, margenAncho));
 
         textoPregunta.setWrapText(true);
         contenidoPreguntaGrupos.getChildren().addAll(textoPregunta,contenedorTema,grupos);
         panelPregunta.getChildren().addAll( contenidoPreguntaGrupos);
-
 
         FlowPane panelBotones = new FlowPane();
         panelBotones.setPrefHeight(height - textoPregunta.getPrefHeight());
@@ -182,12 +185,6 @@ public class VistaGroupChoice extends Scene {
         panelOpciones.getChildren().add(opciones);
 
         definirCantidadOpciones(opcionesLista);
-
-        // opcion1.getStyleClass().add("custom-toggle-button");
-        // opcion2.getStyleClass().add("custom-toggle-button");
-        // opcion1.setPrefWidth(panelOpciones.getPrefWidth()/3);
-        // opcion2.setPrefWidth(panelOpciones.getPrefWidth()/3);
-
 
         // como es una pregunta VF sin penalidad, se puede usar anulador o exclusividad
 
