@@ -49,6 +49,9 @@ public class ControladorConfigurarPartida implements EventHandler<ActionEvent>  
             AlgoHoot a = AlgoHoot.getInstancia();
             try {
                 a.inicializarGestorDePreguntas();
+                jugadores.getItems().forEach(j -> a.agregarJugador(new Jugador(j)));
+                a.setMaximoPreguntas(Integer.parseInt(limitePreguntas.getText()));
+                a.setPuntajeMaximo(Integer.parseInt(limitePuntaje.getText()));
             } catch (ArchivoInexistente e) {
                 Alert archivoInexistente = new Alert(Alert.AlertType.ERROR);
                 archivoInexistente.setTitle("Archivo no encontrado");
@@ -78,6 +81,8 @@ public class ControladorConfigurarPartida implements EventHandler<ActionEvent>  
         );
 
         // Inicia la animación
-        timeline.play();
+        if (nodo.getStyle().contains("-fx-border-color: black;")) {
+            timeline.playFromStart();
+        }
     }
 }

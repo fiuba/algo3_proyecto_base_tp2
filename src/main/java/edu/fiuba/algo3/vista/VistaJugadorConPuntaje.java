@@ -34,7 +34,7 @@ public class VistaJugadorConPuntaje extends FlowPane {
 
     public void resaltar() {
         this.setStyle(
-                "-fx-background-color: lightblue;"
+                "-fx-background-color: dodgerblue;"
         );
     }
 
