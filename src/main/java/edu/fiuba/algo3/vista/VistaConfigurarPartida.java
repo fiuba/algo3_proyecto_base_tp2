@@ -204,6 +204,7 @@ public class VistaConfigurarPartida extends Scene {
             sonidoError.play();
         } else {
             jugadores.remove(listaJugadores.getSelectionModel().getSelectedItem());
+            listaJugadores.getSelectionModel().clearSelection();
         }
     }
 }
