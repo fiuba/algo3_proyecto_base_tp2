@@ -33,6 +33,9 @@ public class AlgoHoot {
     public void inicializarGestorDePreguntas() throws ArchivoInexistente {
         gestorDeTurnos.inicializarGestorDePreguntas();
     }
+    public void inicializarGestorDePreguntas(boolean mezclado) throws ArchivoInexistente {
+        gestorDeTurnos.inicializarGestorDePreguntas(mezclado);
+    }
 
     public void comenzarNuevaRondaDePreguntas(){
         gestorDeTurnos.comenzarNuevaRonda();

@@ -31,6 +31,7 @@ public class AlgoHootTest {
     public void test02obtenerPreguntaNoEspecifica() throws ArchivoInexistente {
         // Arrange
         AlgoHoot algoHoot = AlgoHoot.getInstancia();
+        algoHoot.inicializarGestorDePreguntas();
 
 
 
@@ -46,7 +47,7 @@ public class AlgoHootTest {
     public void test03jugarUnTurno() throws ArchivoInexistente, JugadorNoEsperado {
         //Arrange
         AlgoHoot algoHoot = AlgoHoot.getInstancia();
-        algoHoot.inicializarGestorDePreguntas();
+        algoHoot.inicializarGestorDePreguntas(false);
 
         algoHoot.reiniciarListaDeJugadores();
         Jugador j1 = new Jugador("J1");
@@ -93,7 +94,7 @@ public class AlgoHootTest {
     public void test04jugarUnTurnoLanzaExcepcionJugadorNoEsperado() throws ArchivoInexistente, JugadorNoEsperado {
         //Arrange
         AlgoHoot algoHoot = AlgoHoot.getInstancia();
-        algoHoot.inicializarGestorDePreguntas();
+        algoHoot.inicializarGestorDePreguntas(false);
 
         algoHoot.reiniciarListaDeJugadores();
         Jugador j1 = new Jugador("J1");
@@ -135,7 +136,7 @@ public class AlgoHootTest {
     public void test05jugarUnTurnoLanzaExcepcionJugadorNoEsperadoPorExcederseDeJugadas() throws ArchivoInexistente, JugadorNoEsperado {
         //Arrange
         AlgoHoot algoHoot = AlgoHoot.getInstancia();
-        algoHoot.inicializarGestorDePreguntas();
+        algoHoot.inicializarGestorDePreguntas(false);
 
         algoHoot.reiniciarListaDeJugadores();
         Jugador j1 = new Jugador("J1");

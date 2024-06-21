@@ -13,8 +13,22 @@ public class GestorDePreguntas {
 
     public GestorDePreguntas() throws ArchivoInexistente {
         Lector lector = new Lector();
-        this.preguntas = mezclarPreguntas(lector.cargarPreguntas());
+        this.preguntas = lector.cargarPreguntas();
+        Collections.shuffle(this.preguntas);
+        this.preguntas = mezclarPreguntas(preguntas);
     }
+
+    public GestorDePreguntas(boolean mezclarJugadores) throws ArchivoInexistente {
+        Lector lector = new Lector();
+        this.preguntas = lector.cargarPreguntas();
+        // Para poder testear con las preguntas ordenadas
+        if (mezclarJugadores) {
+            Collections.shuffle(this.preguntas);
+            this.preguntas = mezclarPreguntas(preguntas);
+        }
+    }
+
+
 
     public Pregunta obtenerSiguientePregunta() {
         Pregunta siguientePregunta = preguntas.get(contador);

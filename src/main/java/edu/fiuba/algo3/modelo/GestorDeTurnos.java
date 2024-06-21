@@ -20,6 +20,10 @@ public class GestorDeTurnos {
         gestorDePreguntas = new GestorDePreguntas();
     }
 
+    public void inicializarGestorDePreguntas(boolean mezclado) throws ArchivoInexistente {
+        gestorDePreguntas = new GestorDePreguntas(mezclado);
+    }
+
     public void comenzarNuevaRonda() {
         Pregunta p = gestorDePreguntas.obtenerSiguientePregunta();
         RondaDePreguntas nuevoRondaDePreguntas = new RondaDePreguntas(p, new OrdenDeRonda(this.jugadores));
