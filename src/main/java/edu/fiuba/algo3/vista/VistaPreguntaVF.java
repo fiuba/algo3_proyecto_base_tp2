@@ -34,6 +34,7 @@ public class VistaPreguntaVF extends Scene {
         FlowPane.setMargin(panelTableroJugadores,new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
         panelTableroJugadores.getChildren().add(tablero);
+        tablero.resaltarSiguienteJugador();
 
 
         FlowPane panelPregunta = new FlowPane();
@@ -131,7 +132,7 @@ public class VistaPreguntaVF extends Scene {
         ToggleButton botonExclusividad = new BotonPoder("exclusividad");
         poderes.getChildren().addAll(botonAnulador,botonExclusividad);
 
-        ControladorResponderVF controlador = new ControladorResponderVF(stage, grupoOpciones, poderes.getChildren());
+        ControladorResponderVF controlador = new ControladorResponderVF(stage, grupoOpciones, poderes.getChildren(), tablero);
         botonResponder.setOnAction(controlador);
     }
 

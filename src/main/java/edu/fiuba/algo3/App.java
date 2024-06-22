@@ -1,9 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controladores.ControladorPrincipal;
-import edu.fiuba.algo3.modelo.OpcionCorrecta;
-import edu.fiuba.algo3.modelo.OpcionIncorrecta;
-import edu.fiuba.algo3.modelo.PreguntaVF;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -24,8 +22,10 @@ public class App extends Application {
                 new PreguntaVF("los patos saben volar??????", "peces", "sos crak respondiste", new OpcionCorrecta("mas vale"), new OpcionIncorrecta("q van a volar los pajaros esos")),
                 tablero);
 
-        VistaPreguntaOrdered vistaOrdered = new VistaPreguntaOrdered(stage, 1280, 720);
-        stage.setScene(vista);
+        VistaPreguntaOrdered vistaOrdered = new VistaPreguntaOrdered(stage, 1280, 720,
+                new PreguntaOC("ordenar segun tengas ganas total no se verifica nada :p", "mesi", "hola", new Opcion("esta va primero"), new Opcion("esta va segundo"), new Opcion("tercera"), new Opcion("esta tambien va primera"), new Opcion("catorce")),
+                tablero);
+        stage.setScene(vistaOrdered);
         stage.show();
 
     }

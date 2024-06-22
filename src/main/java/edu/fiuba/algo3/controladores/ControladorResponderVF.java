@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.vista.VistaTableroJugadores;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,18 +17,18 @@ public class ControladorResponderVF implements EventHandler<ActionEvent> {
     private Stage stage;
     private ToggleGroup opciones;
     private ObservableList<Node> poderes;
-    private AudioClip sonidoSeleccion;
+    private AudioClip sonidoResponder;
     private AudioClip sonidoSinSeleccion;
 
-    public ControladorResponderVF(Stage stage, ToggleGroup opciones, ObservableList<Node> poderes) {
+    public ControladorResponderVF(Stage stage, ToggleGroup opciones, ObservableList<Node> poderes, VistaTableroJugadores tablero) {
         this.stage = stage;
         this.opciones = opciones;
         this.poderes = poderes;
         File archivo = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/responder.wav");
         Media media = new Media(archivo.toURI().toString());
-        this.sonidoSeleccion = new AudioClip(media.getSource());
-        this.sonidoSeleccion.setVolume(0.1);
-        File archivo2 = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/sinSeleccion.mp3");
+        this.sonidoResponder = new AudioClip(media.getSource());
+        this.sonidoResponder.setVolume(0.1);
+        File archivo2 = new File(System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/sonidos/sinSeleccion.wav");
         Media media2 = new Media(archivo2.toURI().toString());
         this.sonidoSinSeleccion = new AudioClip(media2.getSource());
     }
@@ -41,7 +42,7 @@ public class ControladorResponderVF implements EventHandler<ActionEvent> {
             System.out.println("no seleccionaste ninguna opcion");
 
         } else {
-            sonidoSeleccion.play();
+            sonidoResponder.play();
 
             System.out.println("seleccionaste: " + eleccion.getText());
         }
