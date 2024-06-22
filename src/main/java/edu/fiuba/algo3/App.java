@@ -17,14 +17,20 @@ public class App extends Application {
         stage.setResizable(false);
         VistaTableroJugadores tablero = new VistaTableroJugadores();
         tablero.agregarJugador("test",0);
-        VistaPreguntaVF vista = new VistaPreguntaVF(stage, 1280, 720,
+
+        VistaPreguntaVF vistaVF = new VistaPreguntaVF(stage, 1280, 720,
                 new PreguntaVF("los patos saben volar??????", "peces", "sos crak respondiste", new OpcionCorrecta("mas vale"), new OpcionIncorrecta("q van a volar los pajaros esos")),
                 tablero);
 
-        VistaPreguntaOC vistaOrdered = new VistaPreguntaOC(stage, 1280, 720,
+        VistaPreguntaOC vistaOC = new VistaPreguntaOC(stage, 1280, 720,
                 new PreguntaOC("ordenar segun tengas ganas total no se verifica nada :p", "mesi", "hola", new Opcion("esta va primero"), new Opcion("esta va segundo"), new Opcion("tercera"), new Opcion("esta tambien va primera"), new Opcion("catorce")),
                 tablero);
-        stage.setScene(vistaOrdered);
+
+        VistaPreguntaMC vistaMC = new VistaPreguntaMC(stage, 1280, 720,
+                new PreguntaMC("seleccionar los argentinos del siguiente grupo de personajes", "cultura","en contra de la creencia popular, batman es uruguayo", new OpcionCorrecta("mesi"), new OpcionIncorrecta("batman"), new OpcionCorrecta("argentinaman"), new OpcionIncorrecta("el chapulin colorao"), new OpcionCorrecta("joe biden")),
+                tablero);
+
+        stage.setScene(vistaMC);
         stage.show();
 
     }
