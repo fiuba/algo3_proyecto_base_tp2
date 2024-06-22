@@ -69,19 +69,19 @@ public class VistaPreguntaOrdered extends Scene {
         contenidoPregunta.setPrefHeight(height/3);
         StackPane.setMargin(textoPregunta,new Insets(margenAlto, margenAncho, margenAlto, margenAncho));
 
-        HBox contenedorTema = new HBox();
-        contenedorTema.setPrefWidth(floor(width * 2/3));
-        Label tema = new Label("Ordered Choice");
-        contenedorTema.setPrefHeight(tema.getPrefHeight());
+        HBox contenedorTipo = new HBox();
+        contenedorTipo.setPrefWidth(floor(width * 2/3));
+        Label tipoDePregunta = new Label("Ordered Choice");
+        contenedorTipo.setPrefHeight(tipoDePregunta.getPrefHeight());
 
-        establecerEstilo(tema);
-        cambiarTamanoFuente(tema, 25);
-        contenedorTema.getChildren().add(tema);
-        contenedorTema.setAlignment(Pos.TOP_RIGHT);
-        tema.setPadding(new Insets(0,6,2,6));
+        establecerEstilo(tipoDePregunta);
+        cambiarTamanoFuente(tipoDePregunta, 25);
+        contenedorTipo.getChildren().add(tipoDePregunta);
+        contenedorTipo.setAlignment(Pos.TOP_RIGHT);
+        tipoDePregunta.setPadding(new Insets(0,6,2,6));
 
-        StackPane.setMargin(contenedorTema,new Insets(margenAlto/3, margenAncho/2, 0, 0));
-        contenidoPregunta.getChildren().addAll(textoPregunta,contenedorTema);
+        StackPane.setMargin(contenedorTipo,new Insets(margenAlto/3, margenAncho/2, 0, 0));
+        contenidoPregunta.getChildren().addAll(textoPregunta,contenedorTipo);
 
         panelPregunta.getChildren().add(contenidoPregunta);
 
