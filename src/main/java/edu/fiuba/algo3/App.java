@@ -30,7 +30,13 @@ public class App extends Application {
                 new PreguntaMC("seleccionar los argentinos del siguiente grupo de personajes", "cultura","en contra de la creencia popular, batman es uruguayo", new OpcionCorrecta("mesi"), new OpcionIncorrecta("batman"), new OpcionCorrecta("argentinaman"), new OpcionIncorrecta("el chapulin colorao"), new OpcionCorrecta("joe biden")),
                 tablero);
 
-        stage.setScene(vistaMC);
+        VistaPreguntaGC vistaGC = new VistaPreguntaGC(stage, 1280, 720,
+                new PreguntaGC("dividir en grupos de buenos y malos", "etica","swalalala",
+                        new Grupo("buenos", new Opcion("robin el hijo d batman"), new Opcion("luke skywalker el hijo d anakin")),
+                        new Grupo("malos", new Opcion("anakin el hijo d la fuerza"), new Opcion("el guason hijo d la sociedad corrupta"))),
+                tablero);
+
+        stage.setScene(vistaGC);
         stage.show();
 
     }

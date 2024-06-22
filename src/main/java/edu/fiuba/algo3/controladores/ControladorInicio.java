@@ -16,8 +16,6 @@ public class ControladorInicio implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        // AlgoHoot.getInstance().obtenerSiguientePregunta();
-        VistaPreguntaGC vistaPregunta = new VistaPreguntaGC( stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(vistaPregunta);
+
     }
 }
