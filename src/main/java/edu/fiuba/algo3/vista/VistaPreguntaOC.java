@@ -15,21 +15,18 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.floor;
 
-public class VistaPreguntaOrdered extends Scene {
+public class VistaPreguntaOC extends Scene {
     private FlowPane root;
 
-    public VistaPreguntaOrdered(Stage stage, double width, double height, PreguntaOC pregunta, VistaTableroJugadores tablero) {
+    public VistaPreguntaOC(Stage stage, double width, double height, PreguntaOC pregunta, VistaTableroJugadores tablero) {
         super(new FlowPane(), width, height);
         double margenAncho = width / 32;
         double margenAlto = height / 18;
@@ -45,7 +42,7 @@ public class VistaPreguntaOrdered extends Scene {
         FlowPane.setMargin(panelTableroJugadores, new Insets(margenAlto, 0, margenAlto, margenAncho));
         this.root.getChildren().add(panelTableroJugadores);
         panelTableroJugadores.getChildren().add(tablero);
-        tablero.resaltarSiguienteJugador();
+        if (!tablero.getItems().isEmpty()) {tablero.resaltarSiguienteJugador();}
 
         FlowPane panelPregunta = new FlowPane();
         panelPregunta.setPrefHeight(height);
