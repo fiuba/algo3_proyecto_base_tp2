@@ -1,0 +1,19 @@
+@startuml
+
+skin rose
+
+actor Jugador
+Jugador -> ManoDe5 :tirarMano(jokers)
+ManoDe5 -> Juego :puntuarMano()
+ManoDe5 <-- Juego :puntaje
+loop para toda carta
+ManoDe5 -> Carta :obtenerPunto()
+ManoDe5 <-- Carta :Puntaje (numero de la carta)
+loop para todos los jokers (de izq a der)
+ManoDe5 -> Joker :aplicarModificador(Carta, Puntaje)
+ManoDe5 <-- Joker :puntaje del joker (a partir de una carta)
+end
+end
+Jugador <-- ManoDe5 : Puntaje (total)
+
+@enduml
