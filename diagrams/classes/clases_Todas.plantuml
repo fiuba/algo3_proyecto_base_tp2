@@ -1,131 +1,46 @@
-' metodo privado verificar Cantidad
-' de cartas para cada Mano
-' teniendo mano como abstracta
-
 @startuml Clases
 skinparam classAttributeIconSize 0
+'class Juego {
+'-ronda: Ronda
+'-jugador: Jugador
+'-tienda: Tienda
+'-mazo: Mazo
+'-panel: Panel
+'+Juego()
+'}
+
 class Jugador {
 -puntaje: Puntaje
-+tirarMano(jokers: ManoDeJokers): Puntaje
++tirarMano(): Puntaje
 +descartar()
 +seleccionarCarta(Carta)
 +deseleccionarCarta(Carta)
 }
 
-class Mazo {
--carta: <List> Carta
-+barajar():
-}
-
-class ManoDe8 {
+class Mano {
 -maxCartas: int
+-cartas: List<Carta>
 +agregarCarta(Carta)
-+quitarCarta(Carta) :Carta
++quitarCarta(Carta): Carta
++obtenerCartas(): List<Carta>
 }
 
-class ManoDe5 {
+class CartasSeleccionadas {
+-juego: Juego
 +tirarMano(jokers: ManoDeJokers): Puntaje
 +puntuarMano(): Puntaje
 +descartar()
 }
 
 class ManoDeJokers {
+-jokers: List<Joker>
 +cambiarOrden(pos1, pos2: int)
++agregarJoker(Joker)
++quitarJoker(Joker) : Joker
 }
 
-interface Joker {
-+aplicarModificador(Carta, Puntaje): Puntaje
-}
-
-ManoDeJokers -down-> "0..5" Joker
-
-class Egg {
-+aplicarModificador(Carta, Puntaje): Puntaje
-}
-
-Joker <|..  Egg
-
-
-class CartaInglesa {
--numero: int
-+obtenerPuntos(): Puntaje
-+cambiarPalo(Palo)
-+cambiarNumero(numero: int)
-+aplicarTarot()
-}
-
-interface Tarot {
-+{abstract}aplicarModificador(Puntaje): Puntaje
-}
-
-CartaInglesa ..> Tarot :usa
-
-interface Palo {
-+{abstract}esDeEstePalo(p Palo): bool
-}
-
-
-
-Interface Juego {
-+{abstract}puntuarMano(m ManoDe5): Puntaje
-}
-
-class RoyalFlush {
-+puntuarMano(m ManoDe5): Puntaje
-}
-
-RoyalFlush .up.> Juego
-
-ManoDe5 *--  Juego :tiene
-
-CartaInglesa --* Palo
-
-class Trebol {
-+esDeEstePalo(p Palo): bool
-}
-
-class Corazon {
-+esDeEstePalo(p Palo): bool
-}
-
-class Pica {
-+esDeEstePalo(p Palo): bool
-}
-
-class Diamante {
-+esDeEstePalo(p Palo): bool
-}
-
-Trebol .up.|> Palo
-Corazon .up.|> Palo
-Diamante .up.|> Palo
-Pica .up.|> Palo
-
-
-
-class Puntaje {
--puntos: int
--multiplicador: int
-+Puntaje(puntos, multiplicador: int)
-+sumarPuntos(puntos int):
-+restarPuntos(puntos int):
-+sumarMulti(multiplicador int):
-+restarMulti(multiplicador int):
-+obtenerPuntaje(): int
-}
-
-
-
-
-
-Jugador ..> Puntaje: "usa"
-
-Jugador --> ManoDe8: "tiene"
-Jugador --> ManoDe5: "tiene"
+Jugador --> Mano: "tiene"
+Jugador --> CartasSeleccionadas: "tiene"
 Jugador --> ManoDeJokers: "tiene"
-ManoDe5 --|> ManoDe8
-ManoDeJokers --|> ManoDe8
-
-ManoDe8 --> "8 "CartaInglesa
-' ManoDe5 "56 " <-- Mano
+CartasSeleccionadas --|> Mano
 @enduml

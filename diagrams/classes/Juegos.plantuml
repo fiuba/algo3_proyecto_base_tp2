@@ -1,0 +1,72 @@
+@startuml Clases
+skinparam classAttributeIconSize 0
+abstract Juego {
++{static}Juego(CartasSeleccionadas)
++{abstract}puntuarMano(): Puntaje
++{abstract}sosJuego(List<Carta>): bool
+}
+
+
+class CartaAlta {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class Par {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class DoblePar {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class Trio {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class Escalera {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class Color {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class FullHouse {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class Poker {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class EscaleraDeColor {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+class EscaleraReal  {
++puntuarMano(): Puntaje
++sosJuego(List<Carta>): bool
+}
+
+CartaAlta -up-|> Juego
+Par -up-|> Juego
+DoblePar -up-|> Juego
+Trio -up-|> Juego
+Escalera -left-|> Juego
+Color -right-|> Juego
+FullHouse -down-|> Juego
+Poker -down-|> Juego
+EscaleraDeColor -down-|> Juego
+EscaleraReal -down-|> Juego
+
+
+@enduml Clases

@@ -3,17 +3,19 @@
 skin rose
 
 actor Jugador
-Jugador -> ManoDe5 :tirarMano(jokers)
-ManoDe5 -> Juego :puntuarMano()
-ManoDe5 <-- Juego :puntaje
+Jugador -> ":CartasSeleccionadas" as CartasSeleccionadas :tirarMano(Jokers)
+CartasSeleccionadas -> ":Juego" as Juego :puntuarMano()
+CartasSeleccionadas <-- Juego :Puntaje del juego
 loop para toda carta
-ManoDe5 -> Carta :obtenerPunto()
-ManoDe5 <-- Carta :Puntaje (numero de la carta)
+CartasSeleccionadas -> ":Carta" as Carta :obtenerPunto()
+Carta -> ":Estado" as Estado :aplicarModificador(Puntaje)
+Carta  <-- Estado :Puntaje del estado
+CartasSeleccionadas <-- Carta :Puntaje de la carta
 loop para todos los jokers (de izq a der)
-ManoDe5 -> Joker :aplicarModificador(Carta, Puntaje)
-ManoDe5 <-- Joker :puntaje del joker (a partir de una carta)
+CartasSeleccionadas -> ":Joker" as Joker :aplicarModificador(Carta, puntajeActual, Juego)
+CartasSeleccionadas <-- Joker :Puntaje del joker a partir de una carta o juego
 end
 end
-Jugador <-- ManoDe5 : Puntaje (total)
+Jugador <-- CartasSeleccionadas : Puntaje total
 
 @enduml
