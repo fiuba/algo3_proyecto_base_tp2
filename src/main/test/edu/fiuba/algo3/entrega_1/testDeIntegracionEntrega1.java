@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.entrega_1.Jugador.Jugador;
+import edu.fiuba.algo3.entrega_1.Mano.Mano;
 import edu.fiuba.algo3.entrega_1.mazo.Mazo;
 
 import org.junit.jupiter.api.Test;

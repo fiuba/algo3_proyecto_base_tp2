@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_1.Jugador;
 
+import edu.fiuba.algo3.entrega_1.Mano.Mano;
+
 public class Jugador {
     private String nombre;
     private Mano mano;
