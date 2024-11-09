@@ -1,16 +1,18 @@
 package edu.fiuba.algo3.entrega_1;
 
-import org.junit.Ignore;
+import edu.fiuba.algo3.entrega_1.Jugador.Jugador;
+import edu.fiuba.algo3.entrega_1.mazo.Mazo;
+
 import org.junit.jupiter.api.Test;
 
 public class testDeIntegracionEntrega1{
-    /*@Test
+    @Test
         public void test01SeVerificaQueUnJugadorCuentaConCartasSuficientesParaIniciarElJuegoEnSuMaso() {
-            Mazo mazo = new mazo();
-            
-            Mano mano = new mano(mazo.repartir());
+            Mazo mazo = new Mazo();
 
-            Jugador jugador = Jugador('Manuel');
+            Mano mano = new Mano(mazo.repartir(8));
+
+            Jugador jugador = new Jugador("Manuel");
 
             jugador.asignarMano(mano);
 
@@ -18,5 +20,4 @@ public class testDeIntegracionEntrega1{
 
         }
 
-*/
     }
