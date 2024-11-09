@@ -1,6 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.mano.Mano;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 import java.util.ArrayList;
@@ -27,27 +28,23 @@ public class Jugador {
         this.mano = mano;
     }
 
-    public void elegirCarta(int posicion) {
-        if (posicion < 0 && posicion > 8) {
-            //EXCEPCION
+    public void elegirCarta(Carta carta) {
+        if (cartasSeleccionadas.size() == 5) {
+            throw new MaximoCartasSeleccionadasException();
         }
-        if (cartasSeleccionadas.size() < 5) {
-            //EXCEPCION
+        Carta cartaSeleccionada = this.mano.obtenerCarta(carta);
+        if (!this.cartasSeleccionadas.contains(cartaSeleccionada)) {
+            this.cartasSeleccionadas.add(cartaSeleccionada);
         }
-        Carta cartaSeleccionada = this.mano.obtenerCarta(posicion);
-        this.cartasSeleccionadas.add(cartaSeleccionada);
     }
 
-    public void deseleccionarCarta(int posicion) {
-        if (posicion < 0 && posicion > 8) {
-            //EXCEPCION
-        }
-        Carta cartaSeleccionada = this.mano.obtenerCarta(posicion);
+    public void deseleccionarCarta(Carta carta) {
+        Carta cartaSeleccionada = this.mano.obtenerCarta(carta);
         this.cartasSeleccionadas.remove(cartaSeleccionada);
     }
 
-    public int tirarMano() {
-        return 5;
+    public int jugarMano() {
+        return 10;
     }
 
     public int obtenerCantidadDeCartas() {

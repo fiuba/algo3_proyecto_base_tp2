@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.mano;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.mazo.CartasInsuficientesException;
 
 import java.util.ArrayList;
 
@@ -14,28 +15,26 @@ public class Mano {
 
     public void agregarCarta(Carta carta) {
         if (this.maximo == this.cartas.size()) {
-            //    EXCEPCION
+            throw new ManoLlenaException();
         }
         this.cartas.add(carta);
     }
 
     public void quitarCarta(Carta carta) {
-        if (true) { /*que esté la carta en la mano*/
-            //    EXCEPCION
-        }
-        this.cartas.remove(carta);
+        Carta cartaABorrar = this.obtenerCarta(carta);
+        this.cartas.remove(cartaABorrar);
     }
 
     public int obtenerCantidadDeCartas() {
         return this.cartas.size();
     }
 
-
-    public Carta obtenerCarta(int posicion) {
-        return this.cartas.get(posicion);
-    }
-
-    public ArrayList<Carta> obtenerCartas() {
-        return cartas;
+    public Carta obtenerCarta(Carta cartaBuscada) {
+        for (Carta carta: this.cartas) {
+            if (carta.sos(cartaBuscada)) {
+                return carta;
+            }
+        }
+        throw new CartaNoEnManoException();
     }
 }

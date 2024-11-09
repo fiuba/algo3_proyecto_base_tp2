@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.carta.*;
-import edu.fiuba.algo3.modelo.puntaje.*;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mano.Mano;
+import edu.fiuba.algo3.modelo.mazo.Mazo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,30 +52,23 @@ public class casosDeUsoEntrega1Test {
         jugador.establecerMano(mano);
 
         //Assert y Act
-        assertDoesNotThrow(() -> jugador.tirarMano());
+        assertDoesNotThrow(() -> jugador.jugarMano());
     }
     //Verificar que al jugar una mano, se aplique el valor correspondiente.
     @Test
     public void test04AlJugarUnaManoSeLeAplicaSuValorCorrespondiente(){
         //Arrange
         Jugador jugador = new Jugador();
-//        Mazo mazo = new Mazo();
         Mano mano = new Mano();
-//        mazo.repartirCartas(8, mano);
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
+        for (int i = 1; i <= 8; i++) {
+            mano.agregarCarta(new Carta(i, new Trebol()));
+        }
         jugador.establecerMano(mano);
-        int puntajeEsperado = 5;
-        jugador.elegirCarta(3/*pos*/);
+        int puntajeEsperado = 10;
+        jugador.elegirCarta(new Carta(5, new Trebol()));
 
         // Act
-        int puntajeObtenido = jugador.tirarMano();
+        int puntajeObtenido = jugador.jugarMano();
 
         // Assert
         assertEquals(puntajeEsperado, puntajeObtenido);
