@@ -46,10 +46,12 @@ public class casosDeUsoEntrega1Test {
     public void test03SePuedeJugarUnaManoDeUnMazo(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mazo mazo = new Mazo();
         Mano mano = new Mano();
-        mazo.repartirCartas(8, mano);
+        for (int i = 1; i <= 8; i++) {
+            mano.agregarCarta(new Carta(i, new Trebol()));
+        }
         jugador.establecerMano(mano);
+        jugador.elegirCarta(new Carta(5, new Trebol()));
 
         //Assert y Act
         assertDoesNotThrow(() -> jugador.jugarMano());
