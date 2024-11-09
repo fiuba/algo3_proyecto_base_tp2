@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mano.Mano;
 import edu.fiuba.algo3.modelo.mazo.Mazo;
+import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,23 +67,37 @@ public class casosDeUsoEntrega1Test {
             mano.agregarCarta(new Carta(i, new Trebol()));
         }
         jugador.establecerMano(mano);
-        int puntajeEsperado = 10;
+        int puntajeEsperado = 920;
         jugador.elegirCarta(new Carta(5, new Trebol()));
-
+        jugador.elegirCarta(new Carta(1, new Trebol()));
+        jugador.elegirCarta(new Carta(2, new Trebol()));
+        jugador.elegirCarta(new Carta(3, new Trebol()));
+        jugador.elegirCarta(new Carta(4, new Trebol()));
         // Act
         int puntajeObtenido = jugador.jugarMano();
-
         // Assert
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
     //Verificar que importe el orden en la puntuación de las cartas.
     @Test
-    public void test05(){
+    public void test05AlJugarUnaManoTrioElValorDebeSerDistintoAPrimeroCalcularElValorDelTrioYLaSumaDeLasCartasYLuegoSumarAmbosValores(){
         //Arrange
-
-        //Assert
-
+        Jugador jugador = new Jugador();
+        Mano mano = new Mano();
+        mano.agregarCarta(new Carta(2, new Trebol()));
+        mano.agregarCarta(new Carta(2, new Corazon()));
+        mano.agregarCarta(new Carta(2, new Diamante()));
+        jugador.establecerMano(mano);
+        jugador.elegirCarta(new Carta(2, new Trebol()));
+        jugador.elegirCarta(new Carta(2, new Corazon()));
+        jugador.elegirCarta(new Carta(2, new Diamante()));
+        int puntajeEsperado = 108;
         // Act
+        Puntaje puntajeJuegoTrio = new Puntaje(30, 3);
+        Puntaje puntajeCartasSuma = new Puntaje(6,1);
+        int puntajeObtenido = puntajeJuegoTrio.calcularValor() + puntajeCartasSuma.calcularValor();
+        // Assert
+        assertNotEquals(puntajeObtenido, puntajeEsperado);
     }
     //Verificar que al modificar una carta al utilizar un tarot que cambia sus puntos por 10, se aplique el puntaje correcto en el mazo.
     @Test

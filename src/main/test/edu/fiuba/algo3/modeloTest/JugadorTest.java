@@ -128,26 +128,25 @@ public class JugadorTest {
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
     @Test
-    public void test10UnJugadorQueSeleccionaColorYJuegaLaManoTieneSesentaDePuntaje(){
+    public void test10UnJugadorQueSeleccionaColorYJuegaLaManoTieneDoscientosYCuatroDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano();
-        int puntajeEsperado = 200;
+        int puntajeEsperado = 204;
         mano.agregarCarta(new Carta(1, new Trebol()));
         mano.agregarCarta(new Carta(2, new Trebol()));
         mano.agregarCarta(new Carta(3, new Trebol()));
         mano.agregarCarta(new Carta(4, new Trebol()));
-        mano.agregarCarta(new Carta(5, new Trebol()));
+        mano.agregarCarta(new Carta(6, new Trebol()));
         jugador.establecerMano(mano);
         jugador.elegirCarta(new Carta(1, new Trebol()));
         jugador.elegirCarta(new Carta(2, new Trebol()));
         jugador.elegirCarta(new Carta(3, new Trebol()));
         jugador.elegirCarta(new Carta(4, new Trebol()));
-        jugador.elegirCarta(new Carta(5, new Trebol()));
+        jugador.elegirCarta(new Carta(6, new Trebol()));
         // Act
         int puntajeObtenido = jugador.jugarMano();
         // Assert
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
-
 }

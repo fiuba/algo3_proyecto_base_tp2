@@ -34,4 +34,8 @@ public class Puntaje {
     public void sumarMultiplicador(Puntaje puntaje) {
         this.multiplicador += puntaje.obtenerMultiplicador();
     }
+
+    public boolean esMayor(Puntaje puntaje) {
+        return this.calcularValor() > puntaje.calcularValor();
+    }
 }

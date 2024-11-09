@@ -20,6 +20,10 @@ public class Carta {
         return new Puntaje(this.numero, 1);
     }
 
+    public int obtenerValor() {
+        return this.numero;
+    }
+
     private Palo obtenerPalo() {
         return this.palo;
     }

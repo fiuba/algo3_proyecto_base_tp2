@@ -15,6 +15,6 @@ public class CartaAlta extends Juego{
     }
 
     public boolean sosJuego(ArrayList<Carta> cartas) {
-        return false;
+        return !cartas.isEmpty();
     }
 }

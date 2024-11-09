@@ -7,15 +7,16 @@ import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 public abstract class Juego {
     public static Juego chequearJuego(ArrayList<Carta> cartas) {
-        ArrayList<Juego> juegos = new ArrayList<>(List.of(new CartaAlta(),
-                new Par(), new DoblePar(), new Trio(), new Escalera(), new Color(),
-                new FullHouse(), new Poker(), new EscaleraDeColor(), new EscaleraReal()));
-        Puntaje puntajeMaximo = new Puntaje(0, 1);
+        ArrayList<Juego> juegos = new ArrayList<>(List.of(new Par(), new DoblePar(),
+                new Trio(), new Escalera(), new Color(), new FullHouse(),
+                new Poker(), new EscaleraDeColor(), new EscaleraReal()));
         Juego juegoSeleccionado = new CartaAlta();
-        for (Juego juego : juegos) {
-            if (juego.sosJuego(cartas)) {
-                if (juego.puntuarMano(cartas).calcularValor() > puntajeMaximo.calcularValor()) {
-                    juegoSeleccionado = juego;
+        for (Juego juegoActual : juegos) {
+            if (juegoActual.sosJuego(cartas)) {
+                Puntaje puntajeJuegoActual = juegoActual.puntuarMano(cartas);
+                Puntaje puntajeJuegoSeleccionado = juegoSeleccionado.puntuarMano(cartas);
+                if (puntajeJuegoActual.esMayor(puntajeJuegoSeleccionado)) {
+                    juegoSeleccionado = juegoActual;
                 }
             }
         }
