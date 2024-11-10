@@ -2,28 +2,14 @@ package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.mano.Mano;
-import edu.fiuba.algo3.modelo.puntaje.Puntaje;
-import edu.fiuba.algo3.modelo.juego.Juego;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.manoDe5.ManoDe5;
 
 public class Jugador {
-//    private Puntaje puntaje;
     public Mano mano;
-    private Juego juego;
-    private ArrayList<Carta> cartasSeleccionadas;
+    private ManoDe5 cartasSeleccionadas;
 
     public Jugador() {
-//        this.puntaje = new Puntaje(0, 1);
-        this.cartasSeleccionadas = new ArrayList<Carta>();
-    }
-
-//    public Puntaje obtenerPuntaje() {
-//        return puntaje;
-//    }
-
-    public Mano obtenerMano() {
-        return mano;
+        this.cartasSeleccionadas = new ManoDe5();
     }
 
     public void establecerMano(Mano mano) {
@@ -31,27 +17,17 @@ public class Jugador {
     }
 
     public void elegirCarta(Carta carta) {
-        if (cartasSeleccionadas.size() == 5) {
-            throw new MaximoCartasSeleccionadasException();
-        }
-        Carta cartaSeleccionada = this.mano.obtenerCarta(carta);
-        if (!this.cartasSeleccionadas.contains(cartaSeleccionada)) {
-            this.cartasSeleccionadas.add(cartaSeleccionada);
-            this.juego = Juego.chequearJuego(cartasSeleccionadas);
-        }
+        Carta cartaAElegir = this.mano.obtenerCarta(carta);
+        cartasSeleccionadas.agregarCarta(cartaAElegir);
     }
 
     public void deseleccionarCarta(Carta carta) {
-        Carta cartaSeleccionada = this.mano.obtenerCarta(carta);
-        this.cartasSeleccionadas.remove(cartaSeleccionada);
-        this.juego = Juego.chequearJuego(cartasSeleccionadas);
+        Carta cartaADeseleccionada = this.mano.obtenerCarta(carta);
+        cartasSeleccionadas.quitarCarta(cartaADeseleccionada);
     }
 
     public int jugarMano() {
-        if (cartasSeleccionadas.isEmpty()) {
-            throw new SinCartasSeleccionadasException();
-        }
-        return this.juego.puntuarMano(cartasSeleccionadas).calcularValor();
+        return cartasSeleccionadas.jugarMano();
     }
 
     public int obtenerCantidadDeCartas() {

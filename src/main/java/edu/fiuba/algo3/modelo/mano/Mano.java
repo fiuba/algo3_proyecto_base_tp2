@@ -5,12 +5,12 @@ import edu.fiuba.algo3.modelo.mazo.CartasInsuficientesException;
 import java.util.ArrayList;
 
 public class Mano {
-    private ArrayList<Carta> cartas;
-    private int maximo;
+    protected ArrayList<Carta> cartas;
+    protected int maximo;
 
-    public Mano() {
+    public Mano(int cantidadDeCartas) {
         this.cartas = new ArrayList<Carta>();
-        this.maximo = 8;
+        this.maximo = cantidadDeCartas;
     }
 
     public void agregarCarta(Carta carta) {
@@ -21,8 +21,8 @@ public class Mano {
     }
 
     public void quitarCarta(Carta carta) {
-        Carta cartaABorrar = this.obtenerCarta(carta);
-        this.cartas.remove(cartaABorrar);
+        Carta cartaAQuitar = obtenerCarta(carta);
+        this.cartas.remove(cartaAQuitar);
     }
 
     public int obtenerCantidadDeCartas() {

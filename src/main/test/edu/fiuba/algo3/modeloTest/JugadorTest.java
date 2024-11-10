@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.jugador.*;
 import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.mano.CartaNoEnManoException;
 import edu.fiuba.algo3.modelo.mano.Mano;
-import edu.fiuba.algo3.modelo.puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.manoDe5.MaximoCartasSeleccionadasException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +27,7 @@ public class JugadorTest {
     public void test02UnJugadorConUnaCartaEnSuManoPuedeSeleccionarla(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mano.agregarCarta(new Carta(10, new Trebol()));
         jugador.establecerMano(mano);
         //Act / Assert
@@ -37,7 +37,7 @@ public class JugadorTest {
     public void test03UnJugadorConUnaCartaEnSuManoPuedeSeleccionarlaYDeseleccionarla(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mano.agregarCarta(new Carta(10, new Trebol()));
         jugador.establecerMano(mano);
         jugador.elegirCarta(new Carta(10, new Trebol()));
@@ -48,7 +48,7 @@ public class JugadorTest {
     public void test04UnJugadorConUnaManoVaciaLanzaErrorSiSeleccionaUnaCarta(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         jugador.establecerMano(mano);
         //Act / Assert
         assertThrows(CartaNoEnManoException.class, () -> {
@@ -59,7 +59,7 @@ public class JugadorTest {
     public void test05UnJugadorConUnaManoVaciaLanzaErrorSiDeseleccionaUnaCarta(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         jugador.establecerMano(mano);
         //Act / Assert
         assertThrows(CartaNoEnManoException.class, () -> {
@@ -70,7 +70,7 @@ public class JugadorTest {
     public void test06UnJugadorQueSeleccionoCindoCartasNoPuedeSeleccionarlUnaMas(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         for (int i = 1; i <= 6; i++) {
             mano.agregarCarta(new Carta(i, new Trebol()));
         }
@@ -88,7 +88,7 @@ public class JugadorTest {
     public void test07UnJugadorQueSeleccionoUnaCartaSeleccioanadaCincoVecesNoLanzaError(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mano.agregarCarta(new Carta(12, new Trebol()));
         jugador.establecerMano(mano);
         jugador.elegirCarta(new Carta(12, new Trebol()));
@@ -103,7 +103,7 @@ public class JugadorTest {
     public void test08UnJugadorQueSeleccionaUnCincoYJuegaLaManoTieneDiezDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         int puntajeEsperado = 10;
         mano.agregarCarta(new Carta(5, new Trebol()));
         jugador.establecerMano(mano);
@@ -117,7 +117,7 @@ public class JugadorTest {
     public void test09UnJugadorQueSeleccionaUnDiezYJuegaLaManoTieneQuinceDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         int puntajeEsperado = 15;
         mano.agregarCarta(new Carta(10, new Trebol()));
         jugador.establecerMano(mano);
@@ -131,7 +131,7 @@ public class JugadorTest {
     public void test10UnJugadorQueSeleccionaColorYJuegaLaManoTieneDoscientosYCuatroDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         int puntajeEsperado = 204;
         mano.agregarCarta(new Carta(1, new Trebol()));
         mano.agregarCarta(new Carta(2, new Trebol()));

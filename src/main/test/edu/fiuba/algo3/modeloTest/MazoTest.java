@@ -14,11 +14,11 @@ public class MazoTest {
         //Act
         int cantidadDeCartasObtenidas = 0;
         for (int i = 1; i <= 6; i++) {
-            Mano mano = new Mano();
+            Mano mano = new Mano(8);
             mazo.repartirCartas(8, mano);
             cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
         }
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mazo.repartirCartas(4, mano);
         cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
         //Assert
@@ -30,13 +30,13 @@ public class MazoTest {
         Mazo mazo = new Mazo();
         //Act
         for (int i = 1; i <= 6; i++) {
-            Mano mano = new Mano();
+            Mano mano = new Mano(8);
             mazo.repartirCartas(8, mano);
         }
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         //Act / Assert
         assertThrows(CartasInsuficientesException.class, () -> {
-            mazo.repartirCartas(5, new Mano());
+            mazo.repartirCartas(5, new Mano(8));
         });
     }
     @Test
@@ -46,13 +46,13 @@ public class MazoTest {
         int cantidadDeCartasEsperadas = 12;
         int cantidadDeCartasObtenidas = 0;
         for (int i = 1; i <= 5; i++) {
-            Mano mano = new Mano();
+            Mano mano = new Mano(8);
             mazo.repartirCartas(8, mano);
         }
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mazo.repartirCartas(8, mano);
         cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
-        mano = new Mano();
+        mano = new Mano(8);
         mazo.repartirCartas(4, mano);
         cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
         //Assert
@@ -63,17 +63,17 @@ public class MazoTest {
         //Arrange
         Mazo mazo = new Mazo();
         int cantidadDeCartasEsperadas = 52;
-        Mano mano = new Mano();
-        mazo.repartirCartas(8, new Mano());
+        Mano mano = new Mano(8);
+        mazo.repartirCartas(8, new Mano(8));
         int cantidadDeCartasObtenidas = 0;
         mazo.mezclar();
         //Act
         for (int i = 1; i <= 6; i++) {
-            mano = new Mano();
+            mano = new Mano(8);
             mazo.repartirCartas(8, mano);
             cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
         }
-        mano = new Mano();
+        mano = new Mano(8);
         mazo.repartirCartas(4, mano);
         cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
         //Assert

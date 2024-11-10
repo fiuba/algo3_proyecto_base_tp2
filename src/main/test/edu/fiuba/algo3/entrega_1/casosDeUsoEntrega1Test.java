@@ -16,7 +16,7 @@ public class casosDeUsoEntrega1Test {
         //Arrange
         Jugador jugador = new Jugador();
         Mazo mazo = new Mazo();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mazo.repartirCartas(8, mano);
         jugador.establecerMano(mano);
         //Act
@@ -31,7 +31,7 @@ public class casosDeUsoEntrega1Test {
         //Arrange
         Jugador jugador = new Jugador();
         Mazo mazo = new Mazo();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mazo.repartirCartas(8, mano);
         jugador.establecerMano(mano);
         int cantidadDeCartasEsperadas = 8;
@@ -47,7 +47,7 @@ public class casosDeUsoEntrega1Test {
     public void test03SePuedeJugarUnaManoDeUnMazo(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         for (int i = 1; i <= 8; i++) {
             mano.agregarCarta(new Carta(i, new Trebol()));
         }
@@ -62,7 +62,7 @@ public class casosDeUsoEntrega1Test {
     public void test04AlJugarUnaManoSeLeAplicaSuValorCorrespondiente(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         for (int i = 1; i <= 8; i++) {
             mano.agregarCarta(new Carta(i, new Trebol()));
         }
@@ -83,7 +83,7 @@ public class casosDeUsoEntrega1Test {
     public void test05AlJugarUnaManoTrioElValorDebeSerDistintoAPrimeroCalcularElValorDelTrioYLaSumaDeLasCartasYLuegoSumarAmbosValores(){
         //Arrange
         Jugador jugador = new Jugador();
-        Mano mano = new Mano();
+        Mano mano = new Mano(8);
         mano.agregarCarta(new Carta(2, new Trebol()));
         mano.agregarCarta(new Carta(2, new Corazon()));
         mano.agregarCarta(new Carta(2, new Diamante()));
