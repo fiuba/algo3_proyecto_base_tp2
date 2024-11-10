@@ -10,7 +10,7 @@ desarrollo son Java, JUnit, JavaFX, Maven y Mockito.
 * **Integrante 1** - [Salvador Pérez](https://github.com/salvaPerezMendoza)
 * **Integrante 2** - [Francisco Russo](https://github.com/Zokalyx)
 * **Integrante 3** - [Brian Conde](https://github.com/0OoBRIANoO0)
-* **Integrante 4** - [Sebastián Fullana](https://github.com/AtuelFullana)
+* **Integrante 4** - [Atuel Fullana](https://github.com/AtuelFullana)
 
 Correctores: **Santiago Valdez** y **Lucas Aldonate**
 
