@@ -2,11 +2,14 @@ package edu.fiuba.algo3.modeloTest;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.carta.*;
-import edu.fiuba.algo3.modelo.mano.CartaNoEnManoException;
-import edu.fiuba.algo3.modelo.mano.Mano;
+import edu.fiuba.algo3.modelo.mano.*;
 import edu.fiuba.algo3.modelo.manoDe5.MaximoCartasSeleccionadasException;
+import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.*;
+
 
 public class JugadorTest {
     @Test
@@ -14,21 +17,25 @@ public class JugadorTest {
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
-        mano.agregarCarta(new Carta(10, new Trebol()));
+        Carta cartaMock = mock(Carta.class);
+        when(cartaMock.sos(any())).thenReturn(true);
+        mano.agregarCarta(cartaMock);
         jugador.establecerMano(mano);
         //Act / Assert
-        assertDoesNotThrow(() -> jugador.elegirCarta(new Carta(10, new Trebol())));
+        assertDoesNotThrow(() -> jugador.elegirCarta(cartaMock));
     }
     @Test
     public void test02UnJugadorConUnaCartaEnSuManoPuedeSeleccionarlaYDeseleccionarla(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
-        mano.agregarCarta(new Carta(10, new Trebol()));
+        Carta cartaMock = mock(Carta.class);
+        when(cartaMock.sos(any())).thenReturn(true);
+        mano.agregarCarta(cartaMock);
         jugador.establecerMano(mano);
-        jugador.elegirCarta(new Carta(10, new Trebol()));
+        jugador.elegirCarta(cartaMock);
         //Act / Assert
-        assertDoesNotThrow(() -> jugador.deseleccionarCarta(new Carta(10, new Trebol())));
+        assertDoesNotThrow(() -> jugador.deseleccionarCarta(cartaMock));
     }
     @Test
     public void test03UnJugadorConUnaManoVaciaLanzaErrorSiSeleccionaUnaCarta(){
@@ -38,7 +45,7 @@ public class JugadorTest {
         jugador.establecerMano(mano);
         //Act / Assert
         assertThrows(CartaNoEnManoException.class, () -> {
-            jugador.elegirCarta(new Carta(10, new Trebol()));
+            jugador.elegirCarta(mock(Carta.class));
         });
     }
     @Test
@@ -49,7 +56,7 @@ public class JugadorTest {
         jugador.establecerMano(mano);
         //Act / Assert
         assertThrows(CartaNoEnManoException.class, () -> {
-            jugador.deseleccionarCarta(new Carta(10, new Trebol()));
+            jugador.deseleccionarCarta(mock(Carta.class));
         });
     }
     @Test
@@ -75,12 +82,14 @@ public class JugadorTest {
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
+        Carta cartaMock = mock(Carta.class);
+        when(cartaMock.sos(any())).thenReturn(true);
         int cantidadDeCartasEsperadas = 0;
-        mano.agregarCarta(new Carta(12, new Trebol()));
+        mano.agregarCarta(cartaMock);
         jugador.establecerMano(mano);
-        jugador.elegirCarta(new Carta(12, new Trebol()));
+        jugador.elegirCarta(cartaMock);
         // Act
-        jugador.elegirCarta(new Carta(12, new Trebol()));
+        jugador.elegirCarta(cartaMock);
         int cantidadDeCartasObtenidas = jugador.obtenerCantidadDeCartasSeleccionadas();
         // Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
@@ -90,10 +99,13 @@ public class JugadorTest {
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
+        Carta cartaMock = mock(Carta.class);
+        when(cartaMock.sos(any())).thenReturn(true);
+        when(cartaMock.obtenerPuntaje()).thenReturn(new Puntaje(5,1));
         int puntajeEsperado = 10;
-        mano.agregarCarta(new Carta(5, new Trebol()));
+        mano.agregarCarta(cartaMock);
         jugador.establecerMano(mano);
-        jugador.elegirCarta(new Carta(5, new Trebol()));
+        jugador.elegirCarta(cartaMock);
         // Act
         int puntajeObtenido = jugador.jugarMano();
         // Assert
@@ -104,10 +116,13 @@ public class JugadorTest {
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
+        Carta cartaMock = mock(Carta.class);
+        when(cartaMock.sos(any())).thenReturn(true);
+        when(cartaMock.obtenerPuntaje()).thenReturn(new Puntaje(10,1));
         int puntajeEsperado = 15;
-        mano.agregarCarta(new Carta(10, new Trebol()));
+        mano.agregarCarta(cartaMock);
         jugador.establecerMano(mano);
-        jugador.elegirCarta(new Carta(10, new Trebol()));
+        jugador.elegirCarta(cartaMock);
         // Act
         int puntajeObtenido = jugador.jugarMano();
         // Assert

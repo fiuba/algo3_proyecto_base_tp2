@@ -3,8 +3,11 @@ package edu.fiuba.algo3.modeloTest;
 import edu.fiuba.algo3.modelo.manoDe5.*;
 import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.mano.*;
+import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.*;
 
 public class ManoDe5Test {
     @Test
@@ -83,12 +86,13 @@ public class ManoDe5Test {
     public void test07LanzaErrorSiSeQuiereQuitarUnaCartaQueYaSeQuito(){
         // Arrange
         ManoDe5 mano = new ManoDe5();
-        Carta cartaEnLaManoDe5 = new Carta(8, new Trebol());
-        mano.agregarCarta(cartaEnLaManoDe5);
-        mano.quitarCarta(cartaEnLaManoDe5);
+        Carta cartaEnLaManoDe5Mock = mock(Carta.class);
+        when(cartaEnLaManoDe5Mock.sos(any())).thenReturn(true);
+        mano.agregarCarta(cartaEnLaManoDe5Mock);
+        mano.quitarCarta(cartaEnLaManoDe5Mock);
         // Act / Assert
         assertThrows(CartaNoEnManoException.class, () -> {
-            mano.quitarCarta(cartaEnLaManoDe5);
+            mano.quitarCarta(cartaEnLaManoDe5Mock);
         });
     }
     @Test
@@ -96,9 +100,11 @@ public class ManoDe5Test {
         // Arrange
         ManoDe5 mano = new ManoDe5();
         int cantidadDeCartasEsperadas = 0;
-        mano.agregarCarta(new Carta(8, new Trebol()));
+        Carta cartaEnLaManoDe5Mock = mock(Carta.class);
+        when(cartaEnLaManoDe5Mock.sos(any())).thenReturn(true);
+        mano.agregarCarta(cartaEnLaManoDe5Mock);
         // Act
-        mano.quitarCarta(new Carta(8, new Trebol()));
+        mano.quitarCarta(cartaEnLaManoDe5Mock);
         int cantidadDeCartasObtenidas = mano.obtenerCantidadDeCartas();
         // Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
@@ -108,7 +114,9 @@ public class ManoDe5Test {
         // Arrange
         ManoDe5 mano = new ManoDe5();
         int valorEsperado = 10;
-        mano.agregarCarta(new Carta(5, new Trebol()));
+        Carta cartaEnLaManoDe5Mock = mock(Carta.class);
+        when(cartaEnLaManoDe5Mock.obtenerPuntaje()).thenReturn(new Puntaje(5, 1));
+        mano.agregarCarta(cartaEnLaManoDe5Mock);
         // Act
         int valorObtenido = mano.jugarMano();
         // Assert

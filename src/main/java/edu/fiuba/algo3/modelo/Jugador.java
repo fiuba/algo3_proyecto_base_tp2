@@ -18,16 +18,18 @@ public class Jugador {
 
     public void elegirCarta(Carta carta) {
         Carta cartaAElegir = this.mano.obtenerCarta(carta);
-        cartasSeleccionadas.agregarCarta(cartaAElegir);
+        this.cartasSeleccionadas.agregarCarta(cartaAElegir);
     }
 
     public void deseleccionarCarta(Carta carta) {
         Carta cartaADeseleccionada = this.mano.obtenerCarta(carta);
-        cartasSeleccionadas.quitarCarta(cartaADeseleccionada);
+        this.cartasSeleccionadas.quitarCarta(cartaADeseleccionada);
     }
 
     public int jugarMano() {
-        return cartasSeleccionadas.jugarMano();
+        int valor = this.cartasSeleccionadas.jugarMano();
+        this.cartasSeleccionadas = new ManoDe5();
+        return valor;
     }
 
     public int obtenerCantidadDeCartas() {

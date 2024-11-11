@@ -7,6 +7,10 @@ import edu.fiuba.algo3.modelo.tarot.Tarot;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+
 public class CartaTest {
     @Test
     public void test01UnaCartaCreadaConNumero10YPaloCorazonTienePuntaje10(){
@@ -15,15 +19,17 @@ public class CartaTest {
         int valorEsperado = 10;
         // Act
         Puntaje puntajeObtenido = carta.obtenerPuntaje();
-        int valorObtenido = (int) puntajeObtenido.calcularValor();
+        int valorObtenido = puntajeObtenido.calcularValor();
         // Assert
         assertEquals(valorEsperado, valorObtenido);
     }
     @Test
     public void test02UnaCartaCreadaConNumero10YPaloBastoSabeReconocerOtraCartaDeSuMismoPalo(){
         // Arrange
-        Carta cartaBase = new Carta(2, new Trebol());
-        Carta cartaAComparar = new Carta(12, new Trebol());
+        Palo paloMock = mock(Palo.class);
+        when(paloMock.esDeEstePalo(any())).thenReturn(true);
+        Carta cartaBase = new Carta(2, paloMock);
+        Carta cartaAComparar = new Carta(12, new Corazon());
         // Act
         boolean resultadoComparacion = cartaBase.esDelMismoPalo(cartaAComparar);
         // Assert
@@ -53,7 +59,9 @@ public class CartaTest {
     @Test
     public void test06UnaInstaciaDeCartaDebePoderReconocerSiEsLaMismaCartaQueOtraCartaSiTieneElMismoNumeroYPalo(){
         // Arrange
-        Carta carta = new Carta(10, new Corazon());
+        Palo paloMock = mock(Palo.class);
+        when(paloMock.esDeEstePalo(any())).thenReturn(true);
+        Carta carta = new Carta(10, paloMock);
         // Act
         boolean resultadoComparacion = carta.sos(new Carta(10, new Corazon()));
         // Assert
@@ -62,7 +70,9 @@ public class CartaTest {
     @Test
     public void test07UnaInstaciaDeCartaDebePoderReconocerSiNoEsLaMismaCartaSiNoTieneElMismoNumero(){
         // Arrange
-        Carta carta = new Carta(10, new Corazon());
+        Palo paloMock = mock(Palo.class);
+        when(paloMock.esDeEstePalo(any())).thenReturn(true);
+        Carta carta = new Carta(10, paloMock);
         // Act
         boolean resultadoComparacion = carta.sos(new Carta(9, new Corazon()));
         // Assert
@@ -71,7 +81,9 @@ public class CartaTest {
     @Test
     public void test08UnaInstaciaDeCartaDebePoderReconocerSiNoEsLaMismaCartaSiNoTieneElMismoPalo(){
         // Arrange
-        Carta carta = new Carta(10, new Corazon());
+        Palo paloMock = mock(Palo.class);
+        when(paloMock.esDeEstePalo(any())).thenReturn(false);
+        Carta carta = new Carta(10, paloMock);
         // Act
         boolean resultadoComparacion = carta.sos(new Carta(10, new Trebol()));
         // Assert
