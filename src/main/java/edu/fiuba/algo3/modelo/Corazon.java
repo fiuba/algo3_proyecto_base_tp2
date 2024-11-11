@@ -6,3 +6,4 @@ public class Corazon implements Palo{
         return carta.getPalo() instanceof Corazon;
     }
 }
+
