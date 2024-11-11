@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.mano.Mano;
 import edu.fiuba.algo3.modelo.manoDe5.ManoDe5;
 
 public class Jugador {
-    public Mano mano;
+    private Mano mano;
     private ManoDe5 cartasSeleccionadas;
 
     public Jugador() {

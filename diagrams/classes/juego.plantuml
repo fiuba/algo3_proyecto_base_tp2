@@ -1,9 +1,11 @@
-@startuml Clases
+@startuml Juego
 skinparam classAttributeIconSize 0
 abstract Juego {
-+{static}Juego(CartasSeleccionadas)
+-modificador: Tarot
++{static}ChequearJuego(CartasSeleccionadas): Juego
 +{abstract}puntuarMano(): Puntaje
 +{abstract}sosJuego(List<Carta>): bool
++aplicarTarot(Tarot t)
 }
 
 

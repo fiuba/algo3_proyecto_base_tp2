@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.tarot.Tarot;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 public abstract class Juego {
-    protected Tarot tarot = new SinTarot();
+    protected Tarot modificador = new SinTarot();
     public static Juego chequearJuego(ArrayList<Carta> cartas) {
         ArrayList<Juego> juegos = new ArrayList<>(List.of(new Par(), new DoblePar(),
                 new Trio(), new Escalera(), new Color(), new FullHouse(),
@@ -27,7 +27,7 @@ public abstract class Juego {
     }
 
     public void aplicarTarot(Tarot tarot) {
-        this.tarot = tarot;
+        this.modificador = tarot;
     }
 
     abstract public boolean sosJuego(ArrayList<Carta> cartas);

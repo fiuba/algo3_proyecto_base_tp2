@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class Mano {
     protected ArrayList<Carta> cartas;
-    protected int maximo;
+    protected int maxCartas;
 
     public Mano(int cantidadDeCartas) {
         this.cartas = new ArrayList<Carta>();
-        this.maximo = cantidadDeCartas;
+        this.maxCartas = cantidadDeCartas;
     }
 
     public void agregarCarta(Carta carta) {
-        if (this.maximo == this.cartas.size()) {
+        if (this.maxCartas == this.cartas.size()) {
             throw new ManoLlenaException();
         }
         this.cartas.add(carta);

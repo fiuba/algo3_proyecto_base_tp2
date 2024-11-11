@@ -11,13 +11,15 @@ public class ManoDe5 extends Mano {
     }
     @Override
     public void agregarCarta(Carta carta) {
-        if (this.maximo == this.cartas.size()) {
+        if (this.maxCartas == this.cartas.size()) {
             throw new MaximoCartasSeleccionadasException();
         }
-        if (!this.cartas.contains(carta)) {
+        if (this.cartas.contains(carta)) {
+           this.quitarCarta(carta);
+        } else {
             this.cartas.add(carta);
+            this.juego = Juego.chequearJuego(this.cartas);
         }
-        this.juego = Juego.chequearJuego(this.cartas);
     }
     @Override
     public void quitarCarta(Carta carta) {

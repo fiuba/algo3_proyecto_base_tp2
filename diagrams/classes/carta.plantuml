@@ -1,0 +1,47 @@
+@startuml Carta
+skinparam classAttributeIconSize 0
+class Carta {
+-id: int
+-numero: int
++obtenerPuntaje(): Puntaje
++cambiarPalo(Palo p)
++cambiarNumero(int numero)
++obtenerValor(): int
++esDelMismoPalo(Carta c): boolean
++sos(Carta c): boolean
++aplicarModificador(Tarot t)
+}
+interface Tarot {
++{abstract}obtenerPuntaje(Puntaje p): Puntaje
+}
+
+Carta *-- Tarot :tiene
+
+interface Palo {
++{abstract}esDeEstePalo(Palo p): bool
+}
+
+Carta *-- Palo :tiene
+
+class Trebol {
++esDeEstePalo(Palo p): bool
+}
+
+class Corazon {
++esDeEstePalo(Palo p): bool
+}
+
+class Pica {
++esDeEstePalo(Palo p): bool
+}
+
+class Diamante {
++esDeEstePalo(Palo p): bool
+}
+
+Trebol .up.|> Palo
+Corazon .up.|> Palo
+Diamante .down.|> Palo
+Pica .down.|> Palo
+
+@enduml

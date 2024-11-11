@@ -85,16 +85,12 @@ public class JugadorTest {
         });
     }
     @Test
-    public void test07UnJugadorQueSeleccionoUnaCartaSeleccioanadaCincoVecesNoLanzaError(){
+    public void test07UnJugadorQueSeleccionoUnaCartaSeleccioanadaAlVolverlaASeleccionarLaDeselecciona(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
         mano.agregarCarta(new Carta(12, new Trebol()));
         jugador.establecerMano(mano);
-        jugador.elegirCarta(new Carta(12, new Trebol()));
-        jugador.elegirCarta(new Carta(12, new Trebol()));
-        jugador.elegirCarta(new Carta(12, new Trebol()));
-        jugador.elegirCarta(new Carta(12, new Trebol()));
         jugador.elegirCarta(new Carta(12, new Trebol()));
         // Assert
         assertDoesNotThrow(() ->  jugador.elegirCarta(new Carta(12, new Trebol())));

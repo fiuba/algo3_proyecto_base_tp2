@@ -1,0 +1,28 @@
+@startuml Tarot
+skinparam classAttributeIconSize 0
+interface Tarot {
++{abstract}obtenerPuntaje(Puntaje p): Puntaje
+}
+
+class SinTarot {
++obtenerPuntaje(Puntaje p): Puntaje
+}
+
+class CambiadorDePuntos {
+-puntos: int
++CambiadorDePuntos(int puntos)
++obtenerPuntaje(Puntaje p): Puntaje
+}
+
+class CambiadorDeMultiplicador {
+-multplicador: int
++CambiadorDeMultiplicador(int multplicador)
++obtenerPuntaje(Puntaje p): Puntaje
+}
+
+SinTarot .left.|> Tarot
+CambiadorDePuntos .up.|> Tarot
+CambiadorDeMultiplicador ..|> Tarot
+
+
+@enduml
