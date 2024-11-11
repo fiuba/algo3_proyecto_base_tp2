@@ -12,109 +12,143 @@ abstract class Carta {
 }
 
 interface Palo {
+    ---
+    + Palo()
     + compararPalo(palo: Palo): Bool
 }
 
 abstract class Valor {
-    - valorNumerico: Int
+    protected - valorNumerico: Int
     ---
-    + {static} Valor(valor: Int): Valor
+    + {static} Valor(): Valor
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
-' Clases concretas de Palo con implementación del método compararPalo
-class Picas extends Palo {
+class Picas implements Palo {
+    ---
+    + Picas()
     + compararPalo(palo: Palo): Bool
 }
 
-class Trebol extends Palo {
+class Trebol implements Palo {
+    ---
+    + Trebol()
     + compararPalo(palo: Palo): Bool
 }
 
-class Diamante extends Palo {
+class Diamante implements Palo {
+    ---
+    + Diamante()
     + compararPalo(palo: Palo): Bool
 }
 
-class Corazones extends Palo {
+class Corazones implements Palo {
+    ---
+    + Corazones()
     + compararPalo(palo: Palo): Bool
 }
 
-' Clases concretas de Valor con valorNumerico y métodos especificados
 class Dos extends Valor {
-    - valorNumerico: 2
+    protected - valorNumerico: 2
+    ---
+    + Dos()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Tres extends Valor {
-    - valorNumerico: 3
+    protected - valorNumerico: 3
+    ---
+    + Tres()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Cuatro extends Valor {
-    - valorNumerico: 4
+    protected - valorNumerico: 4
+    ---
+    + Cuatro()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Cinco extends Valor {
-    - valorNumerico: 5
+    protected - valorNumerico: 5
+    ---
+    + Cinco()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Seis extends Valor {
-    - valorNumerico: 6
+    protected - valorNumerico: 6
+    ---
+    + Seis()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Siete extends Valor {
-    - valorNumerico: 7
+    protected - valorNumerico: 7
+    ---
+    + Siete()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Ocho extends Valor {
-    - valorNumerico: 8
+    protected - valorNumerico: 8
+    ---
+    + Ocho()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Nueve extends Valor {
-    - valorNumerico: 9
+    protected - valorNumerico: 9
+    ---
+    + Nueve()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Diez extends Valor {
-    - valorNumerico: 10
+    protected - valorNumerico: 10
+    ---
+    + Diez()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Jota extends Valor {
-    - valorNumerico: 12
+    protected - valorNumerico: 12
+    ---
+    + Jota()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Reina extends Valor {
-    - valorNumerico: 13
+    protected - valorNumerico: 13
+    ---
+    + Reina()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class Rey extends Valor {
-    - valorNumerico: 14
+    protected - valorNumerico: 14
+    ---
+    + Rey()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }
 
 class As extends Valor {
-    - valorNumerico: 11
+    protected - valorNumerico: 11
+    ---
+    + As()
     + compararValor(valor: Valor): Bool
     + calcularPuntaje(): Puntaje
 }

@@ -6,9 +6,25 @@
 package edu.fiuba.algo3.entrega_1.carta;
 
 
+import edu.fiuba.algo3.entrega_1.Palo.Palo;
+import edu.fiuba.algo3.entrega_1.Valor.Valor;
+
 public class Carta {
-    private int valor;
-    public Carta(){
-        this.valor = 0;
+    private Palo palo;
+    private Valor valor;
+
+    public Carta(Palo palo, Valor valor){
+        this.palo = palo;
+        this.valor = valor;
     }
+
+
+    public boolean compararValor(Carta otraCarta) {
+        return otraCarta.compararValorCon(this.valor);
+    }
+
+    public boolean compararValorCon(Valor otroValor) {
+        return this.valor.compararValor(otroValor);
+    }
+
 }
