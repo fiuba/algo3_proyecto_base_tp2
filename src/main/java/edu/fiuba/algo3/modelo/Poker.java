@@ -3,18 +3,19 @@ package edu.fiuba.algo3.modelo;
 
 
 public class Poker implements Carta {
-    private int multiplicador;
     private String caracter;
+    private int multiplicador;
     private int valorNumerico;
     public Palo palo;
+
     public Poker(int multiplicador,String caracter,int valorNumerico, Palo palo){
         this.multiplicador = multiplicador;
         this.caracter = caracter;
         this.valorNumerico = valorNumerico;
-        this.palo = palo
+        this.palo = palo;
     }
     public int usar(){
-        return multiplicador;
+        return valorNumerico;
     }
     public Palo getPalo(){
         return this.palo;
