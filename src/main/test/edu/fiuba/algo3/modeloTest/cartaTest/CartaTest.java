@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modeloTest.cartaTest;
 
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.carta.*;
+import edu.fiuba.algo3.modelo.tarot.CambiadorDePuntos;
+import edu.fiuba.algo3.modelo.tarot.Tarot;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +44,7 @@ public class CartaTest {
         });
     }
     @Test
-    public void test05UnaCartaNoPuedeInstanciadaConNumeroMayorA13(){
+    public void test05UnaCartaNoPuedeSerInstanciadaConNumeroMayorA13(){
         // Arrange / Act / Assert
         assertThrows(NumeroInvalidoException.class, () -> {
             new Carta(14, new Trebol());
@@ -67,12 +69,34 @@ public class CartaTest {
         assertFalse(resultadoComparacion);
     }
     @Test
-    public void test07UnaInstaciaDeCartaDebePoderReconocerSiNoEsLaMismaCartaSiNoTieneElMismoPalo(){
+    public void test08UnaInstaciaDeCartaDebePoderReconocerSiNoEsLaMismaCartaSiNoTieneElMismoPalo(){
         // Arrange
         Carta carta = new Carta(10, new Corazon());
         // Act
         boolean resultadoComparacion = carta.sos(new Carta(10, new Trebol()));
         // Assert
         assertFalse(resultadoComparacion);
+    }
+    @Test
+    public void test09UnaInstanciaDeCartaAlCrearseTieneNoTieneModificacionDeTarot(){
+        // Arrange
+        Carta carta = new Carta(10, new Corazon());
+        int valorEsperado = 10;
+        // Act
+        int valorObtenido = carta.obtenerPuntaje().calcularValor();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
+    }
+    @Test
+    public void test10UnaInstanciaDeCartaPuedeSerModificadaConUnTarot(){
+        // Arrange
+        Carta carta = new Carta(3, new Corazon());
+        int valorEsperado = 7;
+        Tarot tarot = new CambiadorDePuntos(7);
+        // Act
+        carta.aplicarModificador(tarot);
+        int valorObtenido = carta.obtenerPuntaje().calcularValor();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
     }
 }

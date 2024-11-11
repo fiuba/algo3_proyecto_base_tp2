@@ -103,7 +103,7 @@ public class ManoTest {
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }
     @Test
-    public void test08AlAgregarleOchoCartasIgualesDeberianHaberOchoCartasEnLaMano() {
+    public void test09AlAgregarleOchoCartasIgualesDeberianHaberOchoCartasEnLaMano() {
         // Arrange
         Mano mano = new Mano(8);
         int cantidadDeCartasEsperadas = 8;

@@ -9,22 +9,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
-
-//    @Test
-//    public void test01UnJugadorTiene0DePuntajeNiBienEsInstanciado(){
-//        //Arrange
-//        Jugador jugador = new Jugador();
-//        int valorEsperado = 0;
-//
-//        //Act
-//        Puntaje puntaje = jugador.obtenerPuntaje();
-//        int valorObtenido = puntaje.calcularValor();
-//
-//        //Assert
-//        assertEquals(valorObtenido, valorEsperado);
-//    }
     @Test
-    public void test02UnJugadorConUnaCartaEnSuManoPuedeSeleccionarla(){
+    public void test01UnJugadorConUnaCartaEnSuManoPuedeSeleccionarla(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -34,7 +20,7 @@ public class JugadorTest {
         assertDoesNotThrow(() -> jugador.elegirCarta(new Carta(10, new Trebol())));
     }
     @Test
-    public void test03UnJugadorConUnaCartaEnSuManoPuedeSeleccionarlaYDeseleccionarla(){
+    public void test02UnJugadorConUnaCartaEnSuManoPuedeSeleccionarlaYDeseleccionarla(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -45,7 +31,7 @@ public class JugadorTest {
         assertDoesNotThrow(() -> jugador.deseleccionarCarta(new Carta(10, new Trebol())));
     }
     @Test
-    public void test04UnJugadorConUnaManoVaciaLanzaErrorSiSeleccionaUnaCarta(){
+    public void test03UnJugadorConUnaManoVaciaLanzaErrorSiSeleccionaUnaCarta(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -56,7 +42,7 @@ public class JugadorTest {
         });
     }
     @Test
-    public void test05UnJugadorConUnaManoVaciaLanzaErrorSiDeseleccionaUnaCarta(){
+    public void test04UnJugadorConUnaManoVaciaLanzaErrorSiDeseleccionaUnaCarta(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -67,7 +53,7 @@ public class JugadorTest {
         });
     }
     @Test
-    public void test06UnJugadorQueSeleccionoCindoCartasNoPuedeSeleccionarlUnaMas(){
+    public void test05UnJugadorQueSeleccionoCincoCartasNoPuedeSeleccionarlUnaMas(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -85,18 +71,22 @@ public class JugadorTest {
         });
     }
     @Test
-    public void test07UnJugadorQueSeleccionoUnaCartaSeleccioanadaAlVolverlaASeleccionarLaDeselecciona(){
+    public void test06UnJugadorQueSeleccionoUnaCartaSeleccioanadaAlVolverlaASeleccionarLaDeselecciona(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
+        int cantidadDeCartasEsperadas = 0;
         mano.agregarCarta(new Carta(12, new Trebol()));
         jugador.establecerMano(mano);
         jugador.elegirCarta(new Carta(12, new Trebol()));
+        // Act
+        jugador.elegirCarta(new Carta(12, new Trebol()));
+        int cantidadDeCartasObtenidas = jugador.obtenerCantidadDeCartasSeleccionadas();
         // Assert
-        assertDoesNotThrow(() ->  jugador.elegirCarta(new Carta(12, new Trebol())));
+        assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }
     @Test
-    public void test08UnJugadorQueSeleccionaUnCincoYJuegaLaManoTieneDiezDePuntaje(){
+    public void test07UnJugadorQueSeleccionaUnCincoYJuegaLaManoTieneDiezDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -110,7 +100,7 @@ public class JugadorTest {
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
     @Test
-    public void test09UnJugadorQueSeleccionaUnDiezYJuegaLaManoTieneQuinceDePuntaje(){
+    public void test08UnJugadorQueSeleccionaUnDiezYJuegaLaManoTieneQuinceDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -124,7 +114,7 @@ public class JugadorTest {
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
     @Test
-    public void test10UnJugadorQueSeleccionaColorYJuegaLaManoTieneDoscientosYCuatroDePuntaje(){
+    public void test09UnJugadorQueSeleccionaColorYJuegaLaManoTieneDoscientosYCuatroDePuntaje(){
         //Arrange
         Jugador jugador = new Jugador();
         Mano mano = new Mano(8);
@@ -145,4 +135,22 @@ public class JugadorTest {
         // Assert
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
+    @Test
+    public void test10UnJugadorQueSeLeEstableceUnaManoTieneSoloEsaMano(){
+        //Arrange
+        Jugador jugador = new Jugador();
+        Mano mano = new Mano(8);
+        mano.agregarCarta(new Carta(1, new Trebol()));
+        mano.agregarCarta(new Carta(2, new Trebol()));
+        jugador.establecerMano(mano);
+        Mano mano2 = new Mano(8);
+        mano2.agregarCarta(new Carta(3, new Trebol()));
+        jugador.elegirCarta(new Carta(1, new Trebol()));
+        jugador.elegirCarta(new Carta(2, new Trebol()));
+        // Act / Assert
+        assertThrows(CartaNoEnManoException.class, () -> {
+            jugador.elegirCarta(new Carta(3, new Trebol()));
+        });
+    }
+
 }

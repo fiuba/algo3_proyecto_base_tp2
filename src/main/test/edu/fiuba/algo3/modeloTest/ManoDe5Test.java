@@ -103,4 +103,30 @@ public class ManoDe5Test {
         // Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }
+    @Test
+    public void test09AlJugarUnaManoConUnaCartaDevuelveElValorDelPuntajeDeLaCarta() {
+        // Arrange
+        ManoDe5 mano = new ManoDe5();
+        int valorEsperado = 10;
+        mano.agregarCarta(new Carta(5, new Trebol()));
+        // Act
+        int valorObtenido = mano.jugarMano();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
+    }
+    @Test
+    public void test09AlJugarUnaManoConCincoCartasDevuelveElValorDelPuntajeDeLaMano() {
+        // Arrange
+        ManoDe5 mano = new ManoDe5();
+        int valorEsperado = 30;
+        mano.agregarCarta(new Carta(5, new Trebol()));
+        mano.agregarCarta(new Carta(7, new Diamante()));
+        mano.agregarCarta(new Carta(3, new Corazon()));
+        mano.agregarCarta(new Carta(1, new Pica()));
+        mano.agregarCarta(new Carta(9, new Trebol()));
+        // Act
+        int valorObtenido = mano.jugarMano();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
+    }
 }

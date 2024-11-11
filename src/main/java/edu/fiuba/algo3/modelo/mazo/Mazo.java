@@ -43,4 +43,8 @@ public class Mazo {
         this.cartas.addAll(this.cartasDescartadas);
         this.cartasDescartadas.clear();
     }
+
+    public int obtenerCantidadCartasDisponibles() {
+        return this.cartas.size();
+    }
 }

@@ -1,26 +1,25 @@
 package edu.fiuba.algo3.modeloTest;
 
+import edu.fiuba.algo3.modelo.carta.*;
+import edu.fiuba.algo3.modelo.carta.Corazon;
 import edu.fiuba.algo3.modelo.mano.*;
 import edu.fiuba.algo3.modelo.mazo.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MazoTest {
     @Test
     public void test01UnMazoAlInstanciarseDebeTenerCicuentaYDosCartas(){
         //Arrange
         Mazo mazo = new Mazo();
-        int cantidadDeCartasEsperadas = 52;
+        int cantidadDeCartasEsperadas = 0;
         //Act
-        int cantidadDeCartasObtenidas = 0;
-        for (int i = 1; i <= 6; i++) {
-            Mano mano = new Mano(8);
-            mazo.repartirCartas(8, mano);
-            cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
-        }
-        Mano mano = new Mano(8);
-        mazo.repartirCartas(4, mano);
-        cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
+        Mano mano = new Mano(52);
+        mazo.repartirCartas(52, mano);
+        int cantidadDeCartasObtenidas = mazo.obtenerCantidadCartasDisponibles();
         //Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }
@@ -29,11 +28,8 @@ public class MazoTest {
         //Arrange
         Mazo mazo = new Mazo();
         //Act
-        for (int i = 1; i <= 6; i++) {
-            Mano mano = new Mano(8);
-            mazo.repartirCartas(8, mano);
-        }
-        Mano mano = new Mano(8);
+        Mano mano = new Mano(48);
+        mazo.repartirCartas(48, mano);
         //Act / Assert
         assertThrows(CartasInsuficientesException.class, () -> {
             mazo.repartirCartas(5, new Mano(8));
@@ -44,38 +40,22 @@ public class MazoTest {
         //Arrange
         Mazo mazo = new Mazo();
         int cantidadDeCartasEsperadas = 12;
-        int cantidadDeCartasObtenidas = 0;
-        for (int i = 1; i <= 5; i++) {
-            Mano mano = new Mano(8);
-            mazo.repartirCartas(8, mano);
-        }
-        Mano mano = new Mano(8);
-        mazo.repartirCartas(8, mano);
-        cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
-        mano = new Mano(8);
-        mazo.repartirCartas(4, mano);
-        cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
+        Mano mano = new Mano(40);
+        mazo.repartirCartas(40, mano);
+        int cantidadDeCartasObtenidas = mazo.obtenerCantidadCartasDisponibles();
         //Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }
     @Test
-    public void test04UnMazoAlSacarleOchoCartasYMezclarTieneCincuentaYDosCartasParaUsar(){
+    public void test04UnMazoAlSacarleTreitaYCuatroCartasYMezclarTieneCincuentaYDosCartasParaUsar(){
         //Arrange
         Mazo mazo = new Mazo();
         int cantidadDeCartasEsperadas = 52;
-        Mano mano = new Mano(8);
-        mazo.repartirCartas(8, new Mano(8));
-        int cantidadDeCartasObtenidas = 0;
+        Mano mano = new Mano(34);
+        mazo.repartirCartas(34, mano);
         mazo.mezclar();
         //Act
-        for (int i = 1; i <= 6; i++) {
-            mano = new Mano(8);
-            mazo.repartirCartas(8, mano);
-            cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
-        }
-        mano = new Mano(8);
-        mazo.repartirCartas(4, mano);
-        cantidadDeCartasObtenidas += mano.obtenerCantidadDeCartas();
+        int cantidadDeCartasObtenidas = mazo.obtenerCantidadCartasDisponibles();
         //Assert
         assertEquals(cantidadDeCartasEsperadas, cantidadDeCartasObtenidas);
     }

@@ -13,6 +13,7 @@ class Mazo {
 -cartasDescartadas: List<Carta>
 +repartirCartas(int cantidad, Mano m)
 +mezclar()
++obtenerCantidadCartasDisponibles(): int
 }
 
 

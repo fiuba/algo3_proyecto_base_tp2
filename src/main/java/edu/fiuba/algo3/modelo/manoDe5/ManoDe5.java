@@ -18,8 +18,8 @@ public class ManoDe5 extends Mano {
            this.quitarCarta(carta);
         } else {
             this.cartas.add(carta);
-            this.juego = Juego.chequearJuego(this.cartas);
         }
+        this.juego = Juego.chequearJuego(this.cartas);
     }
     @Override
     public void quitarCarta(Carta carta) {

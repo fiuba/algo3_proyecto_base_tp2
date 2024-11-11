@@ -33,6 +33,10 @@ public class Jugador {
     public int obtenerCantidadDeCartas() {
         return this.mano.obtenerCantidadDeCartas();
     }
+
+    public int obtenerCantidadDeCartasSeleccionadas() {
+        return this.cartasSeleccionadas.obtenerCantidadDeCartas();
+    }
 }
 
 

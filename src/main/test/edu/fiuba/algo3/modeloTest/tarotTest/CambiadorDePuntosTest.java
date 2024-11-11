@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CambiadorDePuntosTest {
     @Test
-    public void test01UnTarotCambiadorDePuntosDeOchoPuntosConUnPuntajeBaseDeDsPuntosDevuelveEsePuntajeModificado() {
+    public void test01UnTarotCambiadorDePuntosDeOchoPuntosConUnPuntajeBaseDeDosPuntosDevuelveEsePuntajeModificado() {
         // Arrange
         Tarot tarotCambiadorDePuntos = new CambiadorDePuntos(8);
         int valorEsperado = 8;

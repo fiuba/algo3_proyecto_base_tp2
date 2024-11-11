@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 public class JuegoTest {
     @Test
     public void test01UnJuegoDeUnaListaConUnaCartaSeraCartaAlta() {
