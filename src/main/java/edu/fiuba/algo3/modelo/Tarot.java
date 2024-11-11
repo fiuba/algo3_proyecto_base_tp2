@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-public class Tarot {
+public abstract class Tarot {
+    public abstract void modificar(Poker carta);
 }
