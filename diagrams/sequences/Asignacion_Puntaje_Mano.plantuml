@@ -3,19 +3,21 @@
 skin rose
 
 actor Jugador
-Jugador -> ":CartasSeleccionadas" as CartasSeleccionadas :tirarMano(Jokers)
-CartasSeleccionadas -> ":Juego" as Juego :puntuarMano()
-CartasSeleccionadas <-- Juego :Puntaje del juego
+Jugador -> "cartasSeleccionadas: ManoDe5" as CartasSeleccionadas : jugarMano()
+CartasSeleccionadas -> ":Juego" as Juego :puntuarMano(List <Carta> cartas)
+Juego -> ":Tarot" as Tarot: obtenerPuntaje(Puntaje puntajeDelJuego)
+Juego <-- Tarot: Puntaje puntajeModificadoPorTarot
 loop para toda carta
-CartasSeleccionadas -> ":Carta" as Carta :obtenerPunto()
-Carta -> ":Estado" as Estado :aplicarModificador(Puntaje)
-Carta  <-- Estado :Puntaje del estado
-CartasSeleccionadas <-- Carta :Puntaje de la carta
-loop para todos los jokers (de izq a der)
-CartasSeleccionadas -> ":Joker" as Joker :aplicarModificador(Carta, puntajeActual, Juego)
-CartasSeleccionadas <-- Joker :Puntaje del joker a partir de una carta o juego
+Juego -> ":Carta" as Carta :obtenerPuntaje()
+Carta -> ":Tarot" as TarotDeLaCarta :obtenerPuntaje(Puntaje puntajeDeLaCarta)
+Carta  <-- TarotDeLaCarta :Puntaje del estado
+Juego <-- Carta :Puntaje de la carta
+Juego -> Puntaje: sumar(Puntaje puntajeObtenido)
+Juego <-- Puntaje : Puntaje Parcial
 end
-end
-Jugador <-- CartasSeleccionadas : Puntaje total
 
+CartasSeleccionadas <-- Juego : Puntaje puntajeTotal
+CartasSeleccionadas -> Puntaje : calcularValor(Puntaje puntajeTotal)
+CartasSeleccionadas <-- Puntaje : Int puntajeTotal
+Jugador <-- CartasSeleccionadas : Int puntajeTotal
 @enduml
