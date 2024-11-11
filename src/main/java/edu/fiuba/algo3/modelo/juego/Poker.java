@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public class Poker extends Juego{
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(60, 7); // Puntaje específico para Poker
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(60, 7));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }

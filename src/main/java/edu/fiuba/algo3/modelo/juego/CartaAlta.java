@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class CartaAlta extends Juego{
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(5,1);
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(5,1));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }

@@ -5,16 +5,15 @@ import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DoblePar extends Juego {
 
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(20, 2);
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(20, 2));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }

@@ -8,9 +8,9 @@ import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 public class Color extends Juego{
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(35, 4);
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(35, 4));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }

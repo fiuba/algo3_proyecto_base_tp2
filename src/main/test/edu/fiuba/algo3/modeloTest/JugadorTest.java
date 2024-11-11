@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modeloTest;
 
-import edu.fiuba.algo3.modelo.jugador.*;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.mano.CartaNoEnManoException;
 import edu.fiuba.algo3.modelo.mano.Mano;

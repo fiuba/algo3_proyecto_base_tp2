@@ -15,16 +15,23 @@ public class Puntaje {
         this.multiplicador = multiplicador;
     }
 
-    private int obtenerPuntos() {
+    public int obtenerPuntos() {
         return puntos;
     }
 
-    private int obtenerMultiplicador() {
+    public int obtenerMultiplicador() {
         return multiplicador;
     }
 
     public int calcularValor() {
         return puntos * multiplicador;
+    }
+
+    public void sumar(Puntaje puntajeASumar) {
+        this.puntos += puntajeASumar.obtenerPuntos();
+        if (puntajeASumar.obtenerMultiplicador() != 1) {
+            this.multiplicador += puntajeASumar.obtenerMultiplicador();
+        }
     }
 
     public void sumarPuntos(Puntaje puntaje) {

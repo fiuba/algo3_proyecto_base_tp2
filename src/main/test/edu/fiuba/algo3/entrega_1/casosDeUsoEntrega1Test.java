@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.carta.*;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.mano.Mano;
 import edu.fiuba.algo3.modelo.mazo.Mazo;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.tarot.CambiadorDeMultiplicador;
+import edu.fiuba.algo3.modelo.tarot.CambiadorDePuntos;
+import edu.fiuba.algo3.modelo.tarot.Tarot;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -101,20 +104,46 @@ public class casosDeUsoEntrega1Test {
     }
     //Verificar que al modificar una carta al utilizar un tarot que cambia sus puntos por 10, se aplique el puntaje correcto en el mazo.
     @Test
-    public void test06UnaCartaModificadaPorUnaCartaDeTarotDePuntosDeMas10ModificaComoPunutuaLaCarta(){
-        //Arrange
-
-        //Assert
-
+    public void test06UnaCartaModificadaPorUnaCartaDeTarotDePuntosDeMas10ModificaComoPuntuaLaCarta(){
+        // Arrange
+        int valorEsperado = 132;
+        Jugador jugador = new Jugador();
+        Mano mano = new Mano(8);
+        mano.agregarCarta(new Carta(2, new Diamante()));
+        mano.agregarCarta(new Carta(2, new Corazon()));
+        Carta cartaModificada = new Carta(2, new Trebol());
+        Tarot tarot = new CambiadorDePuntos(10);
+        cartaModificada.aplicarModificador(tarot);
+        mano.agregarCarta(cartaModificada);
+        jugador.establecerMano(mano);
+        jugador.elegirCarta(new Carta(2, new Trebol()));
+        jugador.elegirCarta(new Carta(2, new Corazon()));
+        jugador.elegirCarta(new Carta(2, new Diamante()));
         // Act
+        int valorObtenido = jugador.jugarMano();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
     }
     //Verificar que al modificar una carta utilizando un tarot que cambia su multiplicador a un x6 se aplique el valor correspondiente.
     @Test
     public void test07UnaCartaModificadaPorUnaCartaDeTarotDeMultiplicadorDePor6ModificaComoPunutuaLaCarta() {
-        //Arrange
-
-        //Assert
-
+        // Arrange
+        int valorEsperado = 324;
+        Jugador jugador = new Jugador();
+        Mano mano = new Mano(8);
+        mano.agregarCarta(new Carta(2, new Diamante()));
+        mano.agregarCarta(new Carta(2, new Corazon()));
+        Carta cartaModificada = new Carta(2, new Trebol());
+        Tarot tarot = new CambiadorDeMultiplicador(6);
+        cartaModificada.aplicarModificador(tarot);
+        mano.agregarCarta(cartaModificada);
+        jugador.establecerMano(mano);
+        jugador.elegirCarta(new Carta(2, new Trebol()));
+        jugador.elegirCarta(new Carta(2, new Corazon()));
+        jugador.elegirCarta(new Carta(2, new Diamante()));
         // Act
+        int valorObtenido = jugador.jugarMano();
+        // Assert
+        assertEquals(valorEsperado, valorObtenido);
     }
 }

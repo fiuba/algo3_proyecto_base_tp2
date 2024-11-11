@@ -10,9 +10,9 @@ import java.util.Comparator;
 public class Escalera extends Juego {
 
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(30, 4);
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(30, 4));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }

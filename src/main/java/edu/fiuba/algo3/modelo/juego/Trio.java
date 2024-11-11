@@ -8,11 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Trio extends Juego {
-
     public Puntaje puntuarMano(ArrayList<Carta> cartas) {
-        Puntaje puntaje = new Puntaje(30, 3);
+        Puntaje puntaje = this.tarot.obtenerPuntaje(new Puntaje(30, 3));
         for (Carta carta : cartas) {
-            puntaje.sumarPuntos(carta.obtenerPuntaje());
+            puntaje.sumar(carta.obtenerPuntaje());
         }
         return puntaje;
     }
