@@ -1,0 +1,125 @@
+@startuml carta
+title Diagrama Completo de Carta
+
+abstract class Carta {
+    - palo: Palo
+    - valor: Valor
+    ---
+    + {static} Carta(palo: Palo, valor: Valor): Carta
+    + compararPalo(carta: Carta): Bool
+    + compararValor(carta: Carta): Bool
+    + cambiarValor(valor: Valor)
+}
+
+interface Palo {
+    + compararPalo(palo: Palo): Bool
+}
+
+abstract class Valor {
+    - valorNumerico: Int
+    ---
+    + {static} Valor(valor: Int): Valor
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+' Clases concretas de Palo con implementación del método compararPalo
+class Picas extends Palo {
+    + compararPalo(palo: Palo): Bool
+}
+
+class Trebol extends Palo {
+    + compararPalo(palo: Palo): Bool
+}
+
+class Diamante extends Palo {
+    + compararPalo(palo: Palo): Bool
+}
+
+class Corazones extends Palo {
+    + compararPalo(palo: Palo): Bool
+}
+
+' Clases concretas de Valor con valorNumerico y métodos especificados
+class Dos extends Valor {
+    - valorNumerico: 2
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Tres extends Valor {
+    - valorNumerico: 3
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Cuatro extends Valor {
+    - valorNumerico: 4
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Cinco extends Valor {
+    - valorNumerico: 5
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Seis extends Valor {
+    - valorNumerico: 6
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Siete extends Valor {
+    - valorNumerico: 7
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Ocho extends Valor {
+    - valorNumerico: 8
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Nueve extends Valor {
+    - valorNumerico: 9
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Diez extends Valor {
+    - valorNumerico: 10
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Jota extends Valor {
+    - valorNumerico: 12
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Reina extends Valor {
+    - valorNumerico: 13
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class Rey extends Valor {
+    - valorNumerico: 14
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+class As extends Valor {
+    - valorNumerico: 11
+    + compararValor(valor: Valor): Bool
+    + calcularPuntaje(): Puntaje
+}
+
+Carta *-- Palo
+Carta *-- Valor
+
+@enduml
