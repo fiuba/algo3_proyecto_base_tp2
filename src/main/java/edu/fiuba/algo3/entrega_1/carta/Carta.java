@@ -27,4 +27,13 @@ public class Carta {
         return this.valor.compararValor(otroValor);
     }
 
+    public Boolean compararPalo(Carta otraCarta) {
+        return otraCarta.compararPaloCon(this.palo);
+    }
+
+    public boolean compararPaloCon(Palo palo) {
+        return this.palo.compararPalo(palo);
+    }
+
+
 }

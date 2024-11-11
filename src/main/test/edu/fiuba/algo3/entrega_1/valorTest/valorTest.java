@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.entrega_1.valorTest;
 
-import edu.fiuba.algo3.entrega_1.Valor.Cuatro;
-import edu.fiuba.algo3.entrega_1.Valor.Tres;
-import edu.fiuba.algo3.entrega_1.Valor.Valor;
+import edu.fiuba.algo3.entrega_1.Valor.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class valorTest {
@@ -13,7 +12,7 @@ public class valorTest {
 
         Boolean comparacion = tres.compararValor(cuatro);
 
-        assert comparacion;
+        Assertions.assertTrue(comparacion);
     }
 
     @Test
@@ -23,8 +22,25 @@ public class valorTest {
 
         Boolean comparacion = cuatro.compararValor(tres);
 
-        assert !comparacion;
+        Assertions.assertFalse(comparacion);
+    }
+    @Test
+    public void test03SeComparaUnAsConUnDos(){
+        Valor dos = new Dos();
+        Valor as = new As();
+
+        Boolean comparacion = dos.compararValor(as);
+
+        Assertions.assertTrue(comparacion);
     }
 
+    @Test
+    public void test04SeComparaUnAsConUnaKa(){
+        Valor Ka = new Ka();
+        Valor as = new As();
 
+        Boolean comparacion = Ka.compararValor(as);
+
+        Assertions.assertFalse(comparacion);
+    }
 }
