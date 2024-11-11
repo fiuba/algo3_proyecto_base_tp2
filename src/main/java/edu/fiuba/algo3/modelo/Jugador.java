@@ -7,12 +7,12 @@ public class Jugador {
     Mano mano;
 
     public Jugador() {
-        this.mazo = new Mazo();
-        this.mano = new Mano();
+        mazo = new Mazo();
+        mano = new Mano();
     }
 
     public void repartirMano()  {
-        this.mazo.rellenarMano(this.mano);
+        mano.repartirUsando(mazo);
     }
 
     public int tamanioMano() {

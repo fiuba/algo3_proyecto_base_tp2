@@ -10,19 +10,17 @@ public class Mano {
         cartas = new ArrayList<>();
     }
 
-    public boolean estaLlena() {
-        return tamanio() == maximoCartas;
-    }
-
-    public void agregarCarta(Carta carta) {
-        cartas.add(carta);
-    }
-
-    public int tamanio() {
-        return cartas.size();
+    public void repartirUsando(Mazo mazo) {
+        while (cartas.size() < maximoCartas) {
+            cartas.add(mazo.tomarCarta());
+        }
     }
 
     public Puntaje calcularPuntaje(ArrayList<Carta> cartasSeleccionadas) {
         return new Puntaje(cartasSeleccionadas);
+    }
+
+    public int tamanio() {
+        return cartas.size();
     }
 }
