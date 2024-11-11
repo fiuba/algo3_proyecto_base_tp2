@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Lucas Nicolas Pagani** - [lucasPagani2003](https://github.com/lucasPagani2003)
 * **Facundo Ariel Kresta** - [facukresta](https://github.com/facukresta)
 * **Ignacio Zanoni Mutti** - [nachozzm](https://github.com/nachozzm)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Steven Guerrero** - [STEVEN-GUERRERO](https://github.com/STEVEN-GUERRERO)
 
 Corrector: **{Corrector}**
 
