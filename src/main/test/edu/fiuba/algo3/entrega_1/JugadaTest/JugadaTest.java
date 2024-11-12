@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1.JugadaTest;
 
 import edu.fiuba.algo3.Jugada.Jugada;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
+import edu.fiuba.algo3.entrega_1.Palo.Corazones;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.Valor.Cuatro;
@@ -19,7 +19,7 @@ public class JugadaTest {
     void test01agregoDosCartasALaJugada(){
         //arrange
         Jugada jugada = new Jugada();
-        Palo corazon = new Corazon();
+        Palo corazon = new Corazones();
         Valor tres = new Tres();
         Valor cuatro = new Cuatro();
         Carta otraCarta = new Carta(corazon, cuatro);
@@ -37,7 +37,7 @@ public class JugadaTest {
     void test02juegoLaJugadaConUnaCartaConValor2YDevuelve7Puntos(){
         //arrange
         Jugada jugada = new Jugada();
-        Palo corazon = new Corazon();
+        Palo corazon = new Corazones();
         Valor dos = new Dos();
         Carta carta = new Carta(corazon, dos);
 
@@ -53,7 +53,7 @@ public class JugadaTest {
     void test03seleccionoUn2DeCorazonesYUn2DeDiamanteParaJugarYDa28Puntos(){
         //arrange
         Jugada jugada = new Jugada();
-        Palo corazon = new Corazon();
+        Palo corazon = new Corazones();
         Palo diamante = new Diamante();
         Valor dos = new Dos();
         Carta carta = new Carta(corazon, dos);

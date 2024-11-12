@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.entrega_1.cartaTest;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
+import edu.fiuba.algo3.entrega_1.Palo.Corazones;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class cartaTest {
         @Test
         public void test01SeInstanciaUn3DeCorazonesYSeLoComparaConUn4DeDeCorazones(){
-            Palo corazon = new Corazon();
+            Palo corazon = new Corazones();
             Valor tres = new Tres();
             Valor cuatro = new Cuatro();
 
@@ -23,7 +23,7 @@ public class cartaTest {
 
         @Test
         public void test02SeInstancia2CartasDeMismoValorYDistintoPaloYSeComparanPorValor(){
-            Palo corazon = new Corazon();
+            Palo corazon = new Corazones();
             Palo diamante = new Diamante();
             Valor tres = new Tres();
             Carta unaCarta = new Carta(corazon, tres);
@@ -37,7 +37,7 @@ public class cartaTest {
 
         @Test
         void test03dosCartasDeMismoPaloSeComparar(){
-            Palo corazon = new Corazon();
+            Palo corazon = new Corazones();
             Valor tres = new Tres();
             Valor cuatro = new Cuatro();
 
@@ -51,7 +51,7 @@ public class cartaTest {
 
     @Test
     void test04dosCartasDeDistintoPaloSeComparan(){
-        Palo corazon = new Corazon();
+        Palo corazon = new Corazones();
         Palo diamante = new Diamante();
         Valor cuatro = new Cuatro();
 
