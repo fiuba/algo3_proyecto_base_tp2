@@ -1,17 +1,37 @@
 @startuml
 
-!include ../classes/herencia.plantuml!WITHOUTNOTES
 
-package JUnit {
-        class Test
+package juego {
+        abstract class Juego
 }
 
-package java.lang {
-        class String
+package puntaje {
+        class Puntaje
 }
 
-Test --> Localize: "<<instantiate>>"
-Localize -> String: " # esContent"
-Localize -> String: " # usContent"
+package tarot {
+        interface Tarot
+}
+
+package naipes {
+        package carta {
+            class Carta
+        }
+        class Mano
+        class ManoDe5
+        class Mazo
+}
+
+Tarot ..> Puntaje
+ManoDe5 --> Juego
+ManoDe5 ..> Puntaje
+Juego --> Tarot
+Juego ..> Puntaje
+Juego ..> Carta
+Carta ..> Puntaje
+Carta -right-> Tarot
+Jugador -up-> Mano
+Jugador -up-> ManoDe5
+Jugador .up.> Carta
 
 @enduml

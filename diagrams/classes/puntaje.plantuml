@@ -1,0 +1,58 @@
+@startuml Puntaje
+skinparam classAttributeIconSize 0
+class Puntaje {
+-puntos: int
+-multiplicador: int
++Puntaje(int puntos, multiplicador)
++sumar(p Puntaje):
++sumarPuntos():
++sumarMultiplicador():
++calcularValor(): int
++obtenerPuntos(): int
++obtenerMultiplicador(): int
++esMayor(Puntaje p): boolean
+}
+
+class Carta {
+-id: int
+-numero: int
+-palo: Palo
++obtenerPuntaje(): Puntaje
++cambiarPalo(Palo p)
++cambiarNumero(int numero)
++obtenerValor(): int
++esDelMismoPalo(Carta c): boolean
++sos(Carta c): boolean
++aplicarModificador(Tarot t)
+}
+
+interface Tarot {
++{abstract}obtenerPuntaje(Puntaje p): Puntaje
+}
+
+Carta *-- Tarot :tiene
+
+class Mano {
+-maxCartas: int
+-cartas: List<Carta>
++Mano(int cantidadDeCartas)
++agregarCarta(Carta c)
++quitarCarta(Carta c)
++obtenerCantidadDeCartas(): int
+obtenerCarta(Carta c): Carta
+}
+
+class ManoDe5 {
+-juego: Juego
++agregarCarta(Carta c)
++quitarCarta(Carta c)
++jugarMano(): int
+}
+
+ManoDe5--|> Mano
+
+ManoDe5..> Puntaje: " usa"
+Tarot .up.> Puntaje: "usa"
+Puntaje <.left. Carta: "usa"
+
+@enduml
