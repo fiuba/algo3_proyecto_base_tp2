@@ -1,0 +1,78 @@
+@startuml
+
+    class Jugador {
+        - Mazo mazo
+        - Mano mano
+        + Jugador()
+        + repartirMano() : void
+        + tamanioMano() : int
+        + jugarMano(cartas : ArrayList<Poker>) : Puntaje
+    }
+
+    class Mano {
+        - ArrayList<Carta> cartas
+        - int maximoCartas
+        + Mano()
+        + repartirUsando(mazo : Mazo) : void
+        + calcularPuntaje(cartasSeleccionadas : ArrayList<Poker>) : Puntaje
+        + tamanio() : int
+    }
+
+    class Mazo {
+        + tomarCarta() : Carta
+    }
+
+    interface Carta {
+        + usar() : int
+    }
+
+    class Poker implements Carta {
+        - String caracter
+        - int multiplicador
+        - int valorNumerico
+        + Poker(multiplicador : int, caracter : String, valorNumerico : int, palo : Palo)
+        + getPalo() : Palo
+        + setValorNumerico(valorNumerico : int) : void
+        + calcularValor() : int
+        + setMultiplicador(multiplicador : int) : void
+        + esMismoSimbolo(carta2 : Poker) : boolean
+    }
+
+    class Trebol implements Palo {
+
+    }
+
+    class Corazon implements Palo {
+
+    }
+
+    class Diamante implements Palo {
+
+    }
+
+    class Pica implements Palo {
+
+    }
+
+
+    abstract class Jugada {
+        - ArrayList<Carta> cartasInvolucradas;
+
+        + calcularPuntaje() : int
+    }
+
+    class Puntaje {
+        + Puntaje(ArrayList<Carta>)
+        + valor() : int
+    }
+
+    Mano ..> Puntaje
+    Puntaje .> Jugada
+    Jugador *-- Mano
+    Jugador *-- Mazo
+    Mano .> Mazo : uses
+    Mano --> Carta
+    Poker *-- Palo : has
+
+
+@enduml
