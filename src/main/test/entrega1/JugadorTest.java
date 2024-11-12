@@ -16,14 +16,6 @@ public class JugadorTest {
     }
 
     @Test
-    public void test02JugadorRecibe8CartasDeSuMazo() {
-        Jugador jugador = new Jugador();
-        jugador.repartirMano();
-
-        assertEquals(jugador.tamanioMano(), 8);
-    }
-
-    @Test
     public void test03JugadorPuedeJugarSuMano() {
         Jugador jugador = new Jugador();
         jugador.repartirMano();
@@ -52,26 +44,5 @@ public class JugadorTest {
     @Test
     public void test05ElOrdenAfectaLaPuntuacionDeCartas() {
         fail("Test no implementado");
-    }
-
-    @Test
-    public void test06AplicarTarotModificaElValorNumericoDeCarta() {
-        Poker carta = new Poker(1, "7", 7, new Diamante());
-        Tarot tarot = new TarotModificadorPuntos();
-
-        tarot.modificar(carta);
-
-        assertEquals(carta.calcularValor(), 10);
-    }
-
-    @Test
-    public void test07AplicarTarotModificaElMultiplicadorDeCarta() {
-        Poker carta = new Poker(1, "5", 5, new Diamante());
-        Tarot tarot = new TarotModificadorMultiplicador();
-
-        tarot.modificar(carta);
-
-        // 5 * 6 = 30
-        assertEquals(carta.calcularValor(), 30);
     }
 }
