@@ -1,25 +1,25 @@
 @startuml
 
     class Jugador {
-        - Mazo mazo
-        - Mano mano
-        + Jugador()
-        + repartirMano() : void
-        + tamanioMano() : int
-        + jugarMano(cartas : ArrayList<Poker>) : Puntaje
+        + Jugador(mazo: Mazo)
+        + repartirMano()
+        + jugarMano() : int
+        + seleccionarCarta(carta: Poker)
     }
 
     class Mano {
-        - ArrayList<Carta> cartas
-        - int maximoCartas
+        - maximoCartas: int
+        - maximoCartasSeleccionadas: int
         + Mano()
-        + repartirUsando(mazo : Mazo) : void
-        + calcularPuntaje(cartasSeleccionadas : ArrayList<Poker>) : Puntaje
-        + tamanio() : int
+        + repartirUsando(mazo : Mazo)
+        + seleccionarCarta(carta: Poker)
+        + deseleccionarCarta(carta: Poker)
+        + jugar() : Jugada
+        + modificarPuntaje(puntaje: Puntaje)
     }
 
     class Mazo {
-        + tomarCarta() : Carta
+        + tomarCarta() : Poker
     }
 
     interface Carta {
@@ -27,38 +27,20 @@
     }
 
     class Poker implements Carta {
-        - String caracter
+        - String simbolo
         - int multiplicador
         - int valorNumerico
         + Poker(multiplicador : int, caracter : String, valorNumerico : int, palo : Palo)
         + getPalo() : Palo
-        + setValorNumerico(valorNumerico : int) : void
-        + calcularValor() : int
-        + setMultiplicador(multiplicador : int) : void
-        + esMismoSimbolo(carta2 : Poker) : boolean
+        + setValorNumerico(valorNumerico : int)
+        + setMultiplicador(multiplicador : int)
     }
-
-    class Trebol implements Palo {
-
-    }
-
-    class Corazon implements Palo {
-
-    }
-
-    class Diamante implements Palo {
-
-    }
-
-    class Pica implements Palo {
-
-    }
-
 
     abstract class Jugada {
-        - ArrayList<Carta> cartasInvolucradas;
-
-        + calcularPuntaje() : int
+        - multiplicadorBase : int
+        - valorBase : int
+        + Jugada(cartas: Poker[*])
+        + modificarPuntaje(puntaje: Puntaje)
     }
 
     class Puntaje {
@@ -66,13 +48,30 @@
         + valor() : int
     }
 
-    Mano ..> Puntaje
-    Puntaje .> Jugada
-    Jugador *-- Mano
-    Jugador *-- Mazo
-    Mano .> Mazo : uses
-    Mano --> Carta
-    Poker *-- Palo : has
+    class JugadaFactory {
+        + calcularJugada(cartas: Poker[*])
+    }
 
+    abstract class Tarot {
+        + modificar(carta: Poker)
+    }
+
+    abstract class Palo {
+        +sonDelMismoPalo(carta: Poker) : boolean
+    }
+
+    Jugador -> Puntaje
+    Mano ..> Puntaje
+    Mano --> Jugada
+    Jugador *-- Mano
+    Jugador --> Mazo
+    Mano .> Mazo
+    Poker *-- Palo
+    Mano o-- Poker
+    Mazo o-- Poker
+    JugadaFactory ...> Jugada
+    Jugada o- Poker
+    Puntaje <. Jugada
+    Poker <. Tarot
 
 @enduml

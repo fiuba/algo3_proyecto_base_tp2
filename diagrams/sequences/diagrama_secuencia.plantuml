@@ -1,16 +1,56 @@
 @startuml
-actor "administrador" as admin
-actor "usuario" as user
-==un jugador le pide a una mano de póquer que se evalúe y le asigne puntaje==
-user -> "jugador:Jugador" as jugador ** :Jugador()
-jugador --> "mano:Mano" as mano ** :<<create>>()
-jugador --> "mazo:Mazo" as mazo ** :<<create>>()
-jugador -> jugador : repartirMano()
-jugador -> mano : repartirUsando(mazo)
-mano -> mazo : tomarCarta()
-mazo --> mano : Carta
-mano -> mano : add(Carta)
-mano -> jugador : Mano
-jugador -> jugador : listaCartas(mano)
-jugador -> jugador : jugarMano(cartas)
+
+hide footbox
+title Usuario calcula el puntaje de su jugada ya armada
+
+actor "User" as user
+participant Jugador as ": Jugador"
+participant Mano as ": Mano"
+participant Jugada as "jugada: Jugada"
+participant Poker as ": Poker"
+participant Puntaje as "puntaje: Puntaje"
+participant PuntajeNuevo as "puntajeNuevo: Puntaje"
+
+activate user
+
+user -> Jugador: jugarMano()
+activate Jugador
+
+Jugador -> Mano: jugar()
+activate Mano
+Mano --> Jugador: jugada
+deactivate Mano
+
+Jugador -> Jugada: modificarPuntaje(puntaje)
+activate Jugada
+Jugada -> Puntaje: sumarMultiplicador(multiplicador)
+Jugada -> Puntaje: sumarValorBase(valorBase)
+
+loop todas las cartas involucradas en la jugada
+Jugada -> Poker: modificarPuntaje(puntaje)
+activate Poker
+Poker -> Puntaje: sumarMultiplicador(multiplicador)
+Poker -> Puntaje: sumarValorBase(valorBase)
+deactivate Poker
+end
+deactivate Jugada
+
+Jugador -> Mano: modificarPuntaje(puntaje)
+note right of Mano
+Por ahora Mano no hace nada con el puntaje.
+end note
+
+Jugador -> Puntaje: calcularTotal()
+activate Puntaje
+Puntaje --> Jugador: return total
+deactivate Puntaje
+
+create PuntajeNuevo
+Jugador -> PuntajeNuevo: new Puntaje(0, 0)
+destroy Puntaje
+
+Jugador --> user: total
+deactivate Jugador
+
+deactivate user
 @enduml
