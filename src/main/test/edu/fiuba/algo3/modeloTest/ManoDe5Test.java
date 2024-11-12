@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modeloTest;
 
-import edu.fiuba.algo3.modelo.manoDe5.*;
-import edu.fiuba.algo3.modelo.carta.*;
-import edu.fiuba.algo3.modelo.mano.*;
+import edu.fiuba.algo3.modelo.naipes.CartaNoEnManoException;
+import edu.fiuba.algo3.modelo.naipes.ManoDe5;
+import edu.fiuba.algo3.modelo.naipes.MaximoCartasSeleccionadasException;
+import edu.fiuba.algo3.modelo.naipes.carta.*;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

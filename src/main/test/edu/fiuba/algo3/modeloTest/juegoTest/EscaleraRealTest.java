@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modeloTest.juegoTest;
 
-import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.juego.*;
+import edu.fiuba.algo3.modelo.naipes.carta.Corazon;
+import edu.fiuba.algo3.modelo.naipes.carta.Pica;
+import edu.fiuba.algo3.modelo.naipes.carta.Trebol;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

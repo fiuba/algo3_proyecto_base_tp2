@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import edu.fiuba.algo3.modelo.carta.*;
+
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 
 public class Color extends Juego{

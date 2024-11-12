@@ -1,6 +1,5 @@
-package edu.fiuba.algo3.modelo.mano;
-import edu.fiuba.algo3.modelo.carta.Carta;
-import edu.fiuba.algo3.modelo.mazo.CartasInsuficientesException;
+package edu.fiuba.algo3.modelo.naipes;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
 
 import java.util.ArrayList;
 

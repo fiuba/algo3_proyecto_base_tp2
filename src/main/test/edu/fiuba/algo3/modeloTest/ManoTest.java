@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modeloTest;
 
-import edu.fiuba.algo3.modelo.mano.*;
-import edu.fiuba.algo3.modelo.carta.*;
+import edu.fiuba.algo3.modelo.naipes.CartaNoEnManoException;
+import edu.fiuba.algo3.modelo.naipes.Mano;
+import edu.fiuba.algo3.modelo.naipes.ManoLlenaException;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
+import edu.fiuba.algo3.modelo.naipes.carta.Trebol;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

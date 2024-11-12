@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.carta;
+package edu.fiuba.algo3.modelo.naipes.carta;
 
 import edu.fiuba.algo3.modelo.tarot.SinTarot;
 import edu.fiuba.algo3.modelo.tarot.Tarot;

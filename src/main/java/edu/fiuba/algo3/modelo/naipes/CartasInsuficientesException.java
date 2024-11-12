@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.mazo;
+package edu.fiuba.algo3.modelo.naipes;
 
 public class CartasInsuficientesException extends RuntimeException {
 }

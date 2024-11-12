@@ -1,7 +1,5 @@
 @startuml
 
-skin rose
-
 actor Jugador
 Jugador -> "cartasSeleccionadas: ManoDe5" as CartasSeleccionadas : jugarMano()
 CartasSeleccionadas -> ":Juego" as Juego :puntuarMano(List <Carta> cartas)

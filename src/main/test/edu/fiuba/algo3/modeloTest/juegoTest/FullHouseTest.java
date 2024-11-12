@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modeloTest.juegoTest;
 
-import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.juego.*;
+import edu.fiuba.algo3.modelo.naipes.carta.*;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.carta.Carta;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

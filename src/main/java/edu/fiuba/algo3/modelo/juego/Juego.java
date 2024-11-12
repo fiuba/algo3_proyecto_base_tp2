@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.juego;
 
 import java.util.ArrayList;
 import java.util.List;
-import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
 import edu.fiuba.algo3.modelo.tarot.SinTarot;
 import edu.fiuba.algo3.modelo.tarot.Tarot;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;

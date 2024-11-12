@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modeloTest.cartaTest;
 
-import edu.fiuba.algo3.modelo.carta.*;
+import edu.fiuba.algo3.modelo.naipes.carta.Pica;
+import edu.fiuba.algo3.modelo.naipes.carta.Trebol;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

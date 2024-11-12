@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.carta.Carta;
-import edu.fiuba.algo3.modelo.mano.Mano;
-import edu.fiuba.algo3.modelo.manoDe5.ManoDe5;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
+import edu.fiuba.algo3.modelo.naipes.Mano;
+import edu.fiuba.algo3.modelo.naipes.ManoDe5;
 
 public class Jugador {
     private Mano mano;

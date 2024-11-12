@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.carta.*;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.mano.Mano;
-import edu.fiuba.algo3.modelo.mazo.Mazo;
+import edu.fiuba.algo3.modelo.naipes.Mano;
+import edu.fiuba.algo3.modelo.naipes.Mazo;
+import edu.fiuba.algo3.modelo.naipes.carta.Carta;
+import edu.fiuba.algo3.modelo.naipes.carta.Corazon;
+import edu.fiuba.algo3.modelo.naipes.carta.Diamante;
+import edu.fiuba.algo3.modelo.naipes.carta.Trebol;
 import edu.fiuba.algo3.modelo.puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.tarot.CambiadorDeMultiplicador;
 import edu.fiuba.algo3.modelo.tarot.CambiadorDePuntos;

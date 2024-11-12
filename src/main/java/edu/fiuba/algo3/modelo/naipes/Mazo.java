@@ -1,6 +1,5 @@
-package edu.fiuba.algo3.modelo.mazo;
-import edu.fiuba.algo3.modelo.mano.Mano;
-import edu.fiuba.algo3.modelo.carta.*;
+package edu.fiuba.algo3.modelo.naipes;
+import edu.fiuba.algo3.modelo.naipes.carta.*;
 
 import java.util.ArrayList;
 
