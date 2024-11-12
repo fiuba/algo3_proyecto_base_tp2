@@ -43,4 +43,8 @@ public class Carta {
     public Boolean esIgualA(Carta otraCarta) {
         return otraCarta.compararValorIgual(this.valor);
     }
+
+    public int getValor(){
+        return this.valor.getValor();
+    }
 }

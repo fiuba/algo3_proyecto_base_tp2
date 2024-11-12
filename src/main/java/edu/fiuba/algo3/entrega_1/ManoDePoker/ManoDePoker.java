@@ -12,7 +12,7 @@ public abstract class ManoDePoker {
     public int jugar(ArrayList<Carta> cartas){
         int sumaDeLosValores = 0;
         for (Carta carta : cartas){
-            sumaDeLosValores += carta.getValor().getValor();
+            sumaDeLosValores += carta.getValor();
         }
         return this.puntaje.calcularPuntaje(sumaDeLosValores);
     }

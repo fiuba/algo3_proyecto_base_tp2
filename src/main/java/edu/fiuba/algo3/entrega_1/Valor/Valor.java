@@ -10,4 +10,8 @@ public abstract class Valor{
     public boolean esIgualA(Valor valor){
         return this.valor == valor.valor;
     }
+
+    public int getValor(){
+        return this.valor;
+    }
 }
