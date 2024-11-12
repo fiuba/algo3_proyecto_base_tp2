@@ -6,7 +6,7 @@ public class Mano {
     ArrayList<Carta> cartas;
     int maximoCartas = 8;
 
-    Mano() {
+    public Mano() {
         cartas = new ArrayList<>();
     }
 
@@ -18,9 +18,5 @@ public class Mano {
 
     public Puntaje calcularPuntaje(ArrayList<Poker> cartasSeleccionadas) {
         return new Puntaje(cartasSeleccionadas);
-    }
-
-    public int tamanio() {
-        return cartas.size();
     }
 }

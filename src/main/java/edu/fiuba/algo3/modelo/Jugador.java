@@ -15,10 +15,6 @@ public class Jugador {
         mano.repartirUsando(mazo);
     }
 
-    public int tamanioMano() {
-        return mano.tamanio();
-    }
-
     public Puntaje jugarMano(ArrayList<Poker> cartas) {
         return mano.calcularPuntaje(cartas);
     }
