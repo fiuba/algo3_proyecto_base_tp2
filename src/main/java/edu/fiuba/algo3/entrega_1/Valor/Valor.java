@@ -4,4 +4,7 @@ public abstract class Valor{
     protected int valor;
 
     public abstract boolean compararValor(Valor valor);
+    public int getValor(){
+        return this.valor;
+    }
 }

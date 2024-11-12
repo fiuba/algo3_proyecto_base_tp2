@@ -35,5 +35,9 @@ public class Carta {
         return this.palo.compararPalo(palo);
     }
 
+    public Valor getValor(){
+        return this.valor;
+    }
+
 
 }

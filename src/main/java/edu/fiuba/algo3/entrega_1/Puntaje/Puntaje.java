@@ -9,8 +9,8 @@ public class Puntaje {
         this.multiplicador = multiplicador;
     }
 
-    public int calcularPuntajeFinal(){
-        return valor * multiplicador;
+    public int calcularPuntaje(int sumaDeValores){
+        return (valor + sumaDeValores) * multiplicador;
     }
 
     public void modificarMultiplicador(int valorASumar){

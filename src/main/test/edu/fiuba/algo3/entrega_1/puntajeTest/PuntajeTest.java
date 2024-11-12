@@ -12,7 +12,7 @@ public class PuntajeTest {
         Puntaje puntaje = new Puntaje(10,2);
 
         //act
-        int puntajeObtenido = puntaje.calcularPuntajeFinal();
+        int puntajeObtenido = puntaje.calcularPuntaje(0);
 
         //assert
         assertEquals(20,puntajeObtenido);
@@ -25,7 +25,7 @@ public class PuntajeTest {
 
         //act
         puntaje.modificarMultiplicador(2);
-        int puntajeObtenido = puntaje.calcularPuntajeFinal();
+        int puntajeObtenido = puntaje.calcularPuntaje(0);
 
         //assert
         assertEquals(40,puntajeObtenido);
@@ -38,7 +38,7 @@ public class PuntajeTest {
 
         //act
         puntaje.modificarValor(5);
-        int puntajeObtenido = puntaje.calcularPuntajeFinal();
+        int puntajeObtenido = puntaje.calcularPuntaje(0);
 
         //assert
         assertEquals(30,puntajeObtenido);
