@@ -1,0 +1,21 @@
+@startuml
+class Corazon {
+  + sonDelMismoPalo(carta: Poker)
+}
+class Diamante {
+  + sonDelMismoPalo(carta: Poker)
+}
+class Pica {
+  + sonDelMismoPalo(carta: Poker)
+}
+class Trebol {
+  + sonDelMismoPalo(carta: Poker)
+}
+interface Palo {
+  + sonDelMismoPalo(carta: Poker)
+}
+Palo <|-- Corazon
+Palo <|-- Diamante
+Palo <|-- Trebol
+Palo <|-- Pica
+@enduml
