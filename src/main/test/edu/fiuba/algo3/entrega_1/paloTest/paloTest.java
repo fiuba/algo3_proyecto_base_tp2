@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class paloTest {
     @Test
     public void test01UnCorazonSeComparaConUnTrebol(){
-        Palo corazon = new Corazones();
+        Palo corazon = new Corazon();
         Palo trebol = new Trebol();
 
         Boolean comparacion = corazon.compararPalo(trebol);
@@ -15,8 +15,8 @@ public class paloTest {
     }
     @Test
     public void test02UnCorazonSeComparaConOtroCorazon(){
-        Palo corazon = new Corazones();
-        Palo corazon2 = new Corazones();
+        Palo corazon = new Corazon();
+        Palo corazon2 = new Corazon();
 
         Boolean comparacion = corazon.compararPalo(corazon2);
         assert comparacion;

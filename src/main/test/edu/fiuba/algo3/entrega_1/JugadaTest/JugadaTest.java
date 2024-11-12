@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.entrega_1.JugadaTest;
 
 import edu.fiuba.algo3.Jugada.Jugada;
-import edu.fiuba.algo3.entrega_1.Palo.Corazones;
+import edu.fiuba.algo3.entrega_1.Palo.Corazon;
+import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.Valor.Cuatro;
 import edu.fiuba.algo3.entrega_1.Valor.Tres;
@@ -18,7 +19,7 @@ public class JugadaTest {
     void test01agregoDosCartasALaJugada(){
         //arrange
         Jugada jugada = new Jugada();
-        Palo corazon = new Corazones();
+        Palo corazon = new Corazon();
         Valor tres = new Tres();
         Valor cuatro = new Cuatro();
         Carta otraCarta = new Carta(corazon, cuatro);
@@ -36,7 +37,7 @@ public class JugadaTest {
     void test02juegoLaJugadaConUnaCartaConValor2YDevuelve7Puntos(){
         //arrange
         Jugada jugada = new Jugada();
-        Palo corazon = new Corazones();
+        Palo corazon = new Corazon();
         Valor dos = new Dos();
         Carta carta = new Carta(corazon, dos);
 
@@ -46,5 +47,24 @@ public class JugadaTest {
 
         //assert
         assertEquals(7,puntosObtenidos);
+    }
+
+    @Test
+    void test03seleccionoUn2DeCorazonesYUn2DeDiamanteParaJugarYDa28Puntos(){
+        //arrange
+        Jugada jugada = new Jugada();
+        Palo corazon = new Corazon();
+        Palo diamante = new Diamante();
+        Valor dos = new Dos();
+        Carta carta = new Carta(corazon, dos);
+        Carta carta2 = new Carta(diamante,dos);
+
+        //act
+        jugada.seleccionar(carta);
+        jugada.seleccionar(carta);
+        int puntosObtenidos = jugada.jugar();
+
+        //assert
+        assertEquals(28,puntosObtenidos);
     }
 }

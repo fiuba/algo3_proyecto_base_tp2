@@ -7,4 +7,10 @@ public abstract class Valor{
     public int getValor(){
         return this.valor;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        int valor = (int) obj;
+        return this.valor == valor;
+    }
 }
