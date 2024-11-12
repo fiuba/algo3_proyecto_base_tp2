@@ -11,6 +11,8 @@ public class Mano {
 
     public Mano() {
         cartas = new ArrayList<>();
+        cartasSeleccionadas = new ArrayList<>();
+        jugada = new JugadaNula(new ArrayList<>());
     }
 
     public void repartirUsando(Mazo mazo) {

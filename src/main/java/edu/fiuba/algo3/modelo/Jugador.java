@@ -5,8 +5,8 @@ public class Jugador {
     Mano mano;
     Puntaje puntaje;
 
-    public Jugador() {
-        mazo = new Mazo();
+    public Jugador(Mazo mazo) {
+        this.mazo = mazo;
         mano = new Mano();
         puntaje = new Puntaje(0, 0);
     }
@@ -23,5 +23,9 @@ public class Jugador {
         int puntajeFinal = puntaje.calcularTotal();
         puntaje = new Puntaje(0, 0);
         return puntajeFinal;
+    }
+
+    public void seleccionarCarta(Poker carta) {
+        mano.seleccionarCarta(carta);
     }
 }

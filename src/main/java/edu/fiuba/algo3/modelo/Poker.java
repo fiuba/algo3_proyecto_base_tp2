@@ -15,7 +15,7 @@ public class Poker implements Carta {
         this.palo = palo;
     }
     public int usar() {
-        return valorNumerico;
+        return valorNumerico * multiplicador;
     }
 
     public Palo getPalo() {

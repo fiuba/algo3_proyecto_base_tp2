@@ -4,7 +4,7 @@ public class Puntaje {
     int multiplicador;
     int valorBase;
 
-    Puntaje(int multiplicador, int valorBase) {
+    public Puntaje (int multiplicador, int valorBase) {
         this.multiplicador = multiplicador;
         this.valorBase = valorBase;
     }
