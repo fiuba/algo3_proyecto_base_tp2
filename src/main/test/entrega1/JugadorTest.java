@@ -27,7 +27,7 @@ public class JugadorTest {
     public void test03JugadorPuedeJugarSuMano() {
         Jugador jugador = new Jugador();
         jugador.repartirMano();
-        ArrayList<Carta> cartas = new ArrayList<>();
+        ArrayList<Poker> cartas = new ArrayList<>();
         cartas.add(new Poker(1, "A", 10, new Diamante()));
         cartas.add(new Poker(2, "7", 7, new Diamante()));
 
@@ -40,7 +40,7 @@ public class JugadorTest {
     public void test04JugarUnaManoCalculaElValorCorrespondiente() {
         Jugador jugador = new Jugador();
         jugador.repartirMano();
-        ArrayList<Carta> cartas = new ArrayList<>();
+        ArrayList<Poker> cartas = new ArrayList<>();
         cartas.add(new Poker(1, "A", 10, new Diamante()));
         cartas.add(new Poker(2, "7", 7, new Diamante()));
 

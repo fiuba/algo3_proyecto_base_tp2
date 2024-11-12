@@ -16,7 +16,7 @@ public class Mano {
         }
     }
 
-    public Puntaje calcularPuntaje(ArrayList<Carta> cartasSeleccionadas) {
+    public Puntaje calcularPuntaje(ArrayList<Poker> cartasSeleccionadas) {
         return new Puntaje(cartasSeleccionadas);
     }
 

@@ -19,7 +19,7 @@ public class Jugador {
         return mano.tamanio();
     }
 
-    public Puntaje jugarMano(ArrayList<Carta> cartas) {
+    public Puntaje jugarMano(ArrayList<Poker> cartas) {
         return mano.calcularPuntaje(cartas);
     }
 }

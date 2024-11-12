@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Puntaje {
     ArrayList<Jugada> jugadas;
 
-    public Puntaje(ArrayList<Carta> cartas) {
+    public Puntaje(ArrayList<Poker> cartas) {
         jugadas = new ArrayList<>();
         jugadas.add(new JugadaPar(cartas));
         jugadas.add(new JugadaFullHouse(cartas));
