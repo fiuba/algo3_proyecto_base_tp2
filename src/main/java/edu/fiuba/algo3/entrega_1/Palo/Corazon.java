@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega_1.Palo;
 
-public class Corazones implements Palo{
+public class Corazon implements Palo{
 
-    public Corazones(){
+    public Corazon(){
     }
 
 
