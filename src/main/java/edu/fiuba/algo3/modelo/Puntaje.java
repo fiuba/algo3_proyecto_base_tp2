@@ -1,23 +1,23 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-
 public class Puntaje {
-    ArrayList<Jugada> jugadas;
+    int multiplicador;
+    int valorBase;
 
-    public Puntaje(ArrayList<Poker> cartas) {
-        jugadas = new ArrayList<>();
-        jugadas.add(new JugadaPar(cartas));
-        jugadas.add(new JugadaFullHouse(cartas));
+    Puntaje(int multiplicador, int valorBase) {
+        this.multiplicador = multiplicador;
+        this.valorBase = valorBase;
     }
 
-    public int valor() {
-        // Obtiene la jugada de mayor valor
-        Jugada mejorJugada = jugadas.stream()
-                .max(Comparator.comparing(Jugada::calcularPuntaje))
-                .orElse(null);
+    public void sumarMultiplicador(int multiplicador) {
+        this.multiplicador += multiplicador;
+    }
 
-        return mejorJugada.calcularPuntaje();
+    public void sumarValorBase(int valorBase) {
+        this.valorBase += valorBase;
+    }
+
+    public int calcularTotal() {
+        return valorBase * multiplicador;
     }
 }

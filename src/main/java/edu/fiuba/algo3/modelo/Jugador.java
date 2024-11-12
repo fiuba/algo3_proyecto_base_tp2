@@ -1,21 +1,27 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-
 public class Jugador {
     Mazo mazo;
     Mano mano;
+    Puntaje puntaje;
 
     public Jugador() {
         mazo = new Mazo();
         mano = new Mano();
+        puntaje = new Puntaje(0, 0);
     }
 
     public void repartirMano()  {
         mano.repartirUsando(mazo);
     }
 
-    public Puntaje jugarMano(ArrayList<Poker> cartas) {
-        return mano.calcularPuntaje(cartas);
+    public int jugarMano() {
+        Jugada jugada = mano.jugar();
+        jugada.modificarPuntaje(puntaje);
+        mano.modificarPuntaje(puntaje);
+        // Pasivos
+        int puntajeFinal = puntaje.calcularTotal();
+        puntaje = new Puntaje(0, 0);
+        return puntajeFinal;
     }
 }

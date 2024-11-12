@@ -26,12 +26,13 @@ public class Poker implements Carta {
         this.valorNumerico = valorNumerico;
     }
 
-    public int calcularValor() {
-        return this.valorNumerico * this.multiplicador;
-    }
-
     public void setMultiplicador(int multiplicador) {
         this.multiplicador = multiplicador;
+    }
+
+    public void modificarPuntaje(Puntaje puntaje) {
+        puntaje.sumarValorBase(valorNumerico);
+        puntaje.sumarMultiplicador(multiplicador);
     }
 }
 
