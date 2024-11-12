@@ -1,0 +1,46 @@
+@startuml
+abstract Jugada {
+  - ArrayList<Carta> cartas
+  + calcularPuntaje() : Int
+}
+class JugadaFullHouse {
+  + calcularPuntaje() : Int
+}
+class JugadaPar {
+  + calcularPuntaje() : Int
+}
+class JugadaEscaleraReal {
+  + calcularPuntaje() : Int
+}
+class JugadaEscaleraDeColor{
+  + calcularPuntaje() : Int
+}
+class JugadaPoker{
+  + calcularPuntaje() : Int
+}
+class JugadaColor{
+  + calcularPuntaje() : Int
+}
+class JugadaEscalera{
+  + calcularPuntaje() : Int
+}
+class JugadaTrio{
+  + calcularPuntaje() : Int
+}
+class JugadaDoblePar{
+  + calcularPuntaje() : Int
+}
+class JugadaCartaAlta{
+  + calcularPuntaje() : Int
+}
+JugadaPar -|> Jugada
+Jugada <|- JugadaFullHouse
+Jugada <|-- JugadaEscaleraReal
+JugadaEscaleraDeColor --|> Jugada
+Jugada <|-- JugadaPoker
+JugadaColor --|> Jugada
+Jugada <|-- JugadaEscalera
+JugadaTrio --|> Jugada
+Jugada <|-- JugadaDoblePar
+JugadaCartaAlta --|> Jugada
+@enduml
