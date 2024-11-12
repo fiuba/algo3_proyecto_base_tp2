@@ -1,15 +1,19 @@
 package edu.fiuba.algo3.entrega_1.Palo;
 
-public class Diamante implements Palo {
-    public Diamante() {}
+public class Corazon implements Palo{
+
+    public Corazon(){
+    }
+
+
     @Override
     public boolean sonMismoPalo(Palo otroPalo) {
-        return otroPalo.esDiamante();
+        return otroPalo.esCorazon();
     }
 
     @Override
     public boolean esDiamante() {
-        return true;
+        return false;
     }
 
     @Override
@@ -19,7 +23,7 @@ public class Diamante implements Palo {
 
     @Override
     public boolean esCorazon() {
-        return false;
+        return true;
     }
 
     @Override
