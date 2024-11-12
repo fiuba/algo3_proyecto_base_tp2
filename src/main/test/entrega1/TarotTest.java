@@ -12,7 +12,7 @@ public class TarotTest {
 
         tarot.modificar(carta);
 
-        assertEquals(carta.calcularValor(), 10);
+        assertEquals(carta.usar(), 10);
     }
 
     @Test
@@ -23,6 +23,6 @@ public class TarotTest {
         tarot.modificar(carta);
 
         // 5 * 6 = 30
-        assertEquals(carta.calcularValor(), 30);
+        assertEquals(carta.usar(), 30);
     }
 }
