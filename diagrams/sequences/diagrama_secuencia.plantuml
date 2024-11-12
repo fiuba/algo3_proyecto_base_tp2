@@ -1,0 +1,16 @@
+@startuml
+actor "administrador" as admin
+actor "usuario" as user
+==un jugador le pide a una mano de póquer que se evalúe y le asigne puntaje==
+user -> "jugador:Jugador" as jugador ** :Jugador()
+jugador --> "mano:Mano" as mano ** :<<create>>()
+jugador --> "mazo:Mazo" as mazo ** :<<create>>()
+jugador -> jugador : repartirMano()
+jugador -> mano : repartirUsando(mazo)
+mano -> mazo : tomarCarta()
+mazo --> mano : Carta
+mano -> mano : add(Carta)
+mano -> jugador : Mano
+jugador -> jugador : listaCartas(mano)
+jugador -> jugador : jugarMano(cartas)
+@enduml
