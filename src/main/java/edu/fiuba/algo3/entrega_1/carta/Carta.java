@@ -19,21 +19,28 @@ public class Carta {
     }
 
 
-    public boolean compararValor(Carta otraCarta) {
+    public boolean esMayor(Carta otraCarta) {
         return otraCarta.compararValorCon(this.valor);
     }
 
     public boolean compararValorCon(Valor otroValor) {
-        return this.valor.compararValor(otroValor);
+        return this.valor.esMayor(otroValor);
     }
 
-    public Boolean compararPalo(Carta otraCarta) {
+    public Boolean sonMismoPalo(Carta otraCarta) {
         return otraCarta.compararPaloCon(this.palo);
     }
 
     public boolean compararPaloCon(Palo palo) {
-        return this.palo.compararPalo(palo);
+        return this.palo.sonMismoPalo(palo);
     }
 
 
+    public Boolean compararValorIgual(Valor otroValor) {
+        return this.valor.esIgualA(otroValor);
+    }
+
+    public Boolean esIgualA(Carta otraCarta) {
+        return otraCarta.compararValorIgual(this.valor);
+    }
 }

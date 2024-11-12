@@ -10,7 +10,7 @@ public class valorTest {
         Valor tres = new Tres();
         Valor cuatro = new Cuatro();
 
-        Boolean comparacion = tres.compararValor(cuatro);
+        Boolean comparacion = tres.esMayor(cuatro);
 
         Assertions.assertTrue(comparacion);
     }
@@ -20,7 +20,7 @@ public class valorTest {
         Valor tres = new Tres();
         Valor cuatro = new Cuatro();
 
-        Boolean comparacion = cuatro.compararValor(tres);
+        Boolean comparacion = cuatro.esMayor(tres);
 
         Assertions.assertFalse(comparacion);
     }
@@ -29,7 +29,7 @@ public class valorTest {
         Valor dos = new Dos();
         Valor as = new As();
 
-        Boolean comparacion = dos.compararValor(as);
+        Boolean comparacion = dos.esMayor(as);
 
         Assertions.assertTrue(comparacion);
     }
@@ -39,8 +39,17 @@ public class valorTest {
         Valor Ka = new Ka();
         Valor as = new As();
 
-        Boolean comparacion = Ka.compararValor(as);
+        Boolean comparacion = Ka.esMayor(as);
 
         Assertions.assertFalse(comparacion);
     }
+
+    @Test
+    public void test05SeComparaUnaKaConOtraKa(){
+        Valor Ka = new Ka();
+        Valor otraKa = new Ka();
+
+        Boolean comparacion = Ka.esIgualA(otraKa);
+
+        Assertions.assertTrue(comparacion);}
 }

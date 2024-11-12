@@ -5,7 +5,27 @@ public class Trebol implements Palo {
     public Trebol(){}
 
     @Override
-    public boolean compararPalo(Palo otroPalo) {
-        return otroPalo instanceof Trebol;
+    public boolean sonMismoPalo(Palo otroPalo) {
+        return otroPalo.esTrebol();
+    }
+
+    @Override
+    public boolean esDiamante() {
+        return false;
+    }
+
+    @Override
+    public boolean esTrebol() {
+        return true;
+    }
+
+    @Override
+    public boolean esCorazon() {
+        return false;
+    }
+
+    @Override
+    public boolean esPica() {
+        return false;
     }
 }

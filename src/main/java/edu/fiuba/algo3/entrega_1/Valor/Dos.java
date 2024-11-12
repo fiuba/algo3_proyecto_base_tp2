@@ -6,8 +6,4 @@ public class Dos extends Valor {
         this.valor = 2;
     }
 
-    @Override
-    public boolean compararValor(Valor valor) {
-        return this.valor < valor.valor;
-    }
 }

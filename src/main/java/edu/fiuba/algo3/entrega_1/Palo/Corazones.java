@@ -7,7 +7,27 @@ public class Corazones implements Palo{
 
 
     @Override
-    public boolean compararPalo(Palo otroPalo) {
-        return otroPalo instanceof Corazones;
+    public boolean sonMismoPalo(Palo otroPalo) {
+        return otroPalo.esCorazon();
+    }
+
+    @Override
+    public boolean esDiamante() {
+        return false;
+    }
+
+    @Override
+    public boolean esTrebol() {
+        return false;
+    }
+
+    @Override
+    public boolean esCorazon() {
+        return true;
+    }
+
+    @Override
+    public boolean esPica() {
+        return false;
     }
 }

@@ -6,8 +6,4 @@ public class Cuatro extends Valor {
         this.valor = 4;
     }
 
-    @Override
-    public boolean compararValor(Valor valor) {
-        return  this.valor < valor.valor;
-    }
 }
