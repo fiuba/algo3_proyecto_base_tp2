@@ -14,8 +14,11 @@ public class Carta {
     private int valor;
 
     public Carta(Palo palo, int valor){
-        this.palo = palo;
-        this.valor = valor;
+           if(valor < 2 || valor > 14){
+               throw new ValorDeCartaInvalido();
+           }
+           this.palo = palo;
+           this.valor = valor;
     }
 
 

@@ -3,6 +3,7 @@ import edu.fiuba.algo3.entrega_1.Palo.Corazon;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
+import edu.fiuba.algo3.entrega_1.carta.ValorDeCartaInvalido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 public class cartaTest {
@@ -67,5 +68,21 @@ public class cartaTest {
         Boolean comparacion = unaCarta.esIgualA(otraCarta);
 
         Assertions.assertTrue(comparacion);
+    }
+    @Test
+    void test06SeCreaUnaCartaQueExcedeLosValoresMaximosDeUnaCarte(){
+        Palo diamante = new Diamante();
+
+        Assertions.assertThrows(ValorDeCartaInvalido.class, ()->{
+            new Carta(diamante, 15);
+        });
+    }
+    @Test
+    void test07SeCreaUnaCartaQueNoAlcanzaLosValoresMinimoDeUnaCarta(){
+        Palo diamante = new Diamante();
+
+        Assertions.assertThrows(ValorDeCartaInvalido.class, ()->{
+            new Carta(diamante, 1);
+        });
     }
 }
