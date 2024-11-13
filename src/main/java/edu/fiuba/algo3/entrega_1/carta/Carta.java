@@ -7,7 +7,7 @@ package edu.fiuba.algo3.entrega_1.carta;
 
 
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
-import edu.fiuba.algo3.entrega_1.Valor.Valor;
+
 
 public class Carta {
     private Palo palo;
