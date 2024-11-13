@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1.Puntaje;
 
-public class Puntaje {
+import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
+
+public class Puntaje implements Modificable {
     private int valor;
     private int multiplicador;
 
@@ -9,8 +11,8 @@ public class Puntaje {
         this.multiplicador = multiplicador;
     }
 
-    public int calcularPuntaje(int sumaDeValores){
-        return (valor + sumaDeValores) * multiplicador;
+    public int calcularPuntaje(){
+        return valor  * multiplicador;
     }
 
     public void modificarMultiplicador(int valorASumar){
@@ -19,5 +21,17 @@ public class Puntaje {
 
     public void modificarValor(int valorASumar){
         this.valor += valorASumar;
+    }
+
+    public boolean compararPuntaje(Puntaje puntaje){return puntaje.valor == this.valor && puntaje.multiplicador == this.multiplicador;}
+
+
+    @Override
+    public void aplicarModificacion(int valor) {
+        this.valor = valor;
+    }
+
+    public Puntaje sumarConPuntaje(Puntaje otroPuntaje) {
+        return new Puntaje(valor + otroPuntaje.valor, multiplicador + otroPuntaje.multiplicador);
     }
 }

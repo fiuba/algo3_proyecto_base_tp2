@@ -6,12 +6,15 @@
 package edu.fiuba.algo3.entrega_1.carta;
 
 
+import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
+import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 
 
-public class Carta {
+public class Carta implements Modificable {
     private Palo palo;
     private int valor;
+    private int multiplicador;
 
     public Carta(Palo palo, int valor){
            if(valor < 2 || valor > 14){
@@ -19,6 +22,7 @@ public class Carta {
            }
            this.palo = palo;
            this.valor = valor;
+           this.multiplicador = 1;
     }
 
 
@@ -38,7 +42,13 @@ public class Carta {
         return otraCarta.valor == this.valor;
     }
 
-    public int getValor(){
-        return this.valor.getValor();
+
+    @Override
+    public void aplicarModificacion(int valor) {
+        this.valor = valor;
+    }
+
+    public Puntaje calcularPuntaje() {
+        return new Puntaje(this.valor, this.multiplicador);
     }
 }

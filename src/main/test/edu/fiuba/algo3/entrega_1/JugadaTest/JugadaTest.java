@@ -4,10 +4,6 @@ import edu.fiuba.algo3.Jugada.Jugada;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
-import edu.fiuba.algo3.entrega_1.Valor.Cuatro;
-import edu.fiuba.algo3.entrega_1.Valor.Tres;
-import edu.fiuba.algo3.entrega_1.Valor.Dos;
-import edu.fiuba.algo3.entrega_1.Valor.Valor;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
@@ -15,15 +11,14 @@ import static org.junit.Assert.assertEquals;
 
 
 public class JugadaTest {
+
     @Test
     void test01agregoDosCartasALaJugada(){
         //arrange
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
-        Valor tres = new Tres();
-        Valor cuatro = new Cuatro();
-        Carta otraCarta = new Carta(corazon, cuatro);
-        Carta unaCarta = new Carta(corazon, tres);
+        Carta otraCarta = new Carta(corazon, 4);
+        Carta unaCarta = new Carta(corazon, 3);
 
         //act
         jugada.seleccionar(unaCarta);
@@ -38,8 +33,7 @@ public class JugadaTest {
         //arrange
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
-        Valor dos = new Dos();
-        Carta carta = new Carta(corazon, dos);
+        Carta carta = new Carta(corazon, 2);
 
         //act
         jugada.seleccionar(carta);
@@ -55,9 +49,8 @@ public class JugadaTest {
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
         Palo diamante = new Diamante();
-        Valor dos = new Dos();
-        Carta carta = new Carta(corazon, dos);
-        Carta carta2 = new Carta(diamante,dos);
+        Carta carta = new Carta(corazon, 2);
+        Carta carta2 = new Carta(diamante,2);
 
         //act
         jugada.seleccionar(carta);

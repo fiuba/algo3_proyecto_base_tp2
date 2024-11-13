@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_1.Tarot;
 
-    public class Tarot {
+import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
+
+public class Tarot {
         private int valor;
 
         public Tarot(int valor) {
