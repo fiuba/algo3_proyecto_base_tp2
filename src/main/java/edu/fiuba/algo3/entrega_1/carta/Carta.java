@@ -11,20 +11,16 @@ import edu.fiuba.algo3.entrega_1.Valor.Valor;
 
 public class Carta {
     private Palo palo;
-    private Valor valor;
+    private int valor;
 
-    public Carta(Palo palo, Valor valor){
+    public Carta(Palo palo, int valor){
         this.palo = palo;
         this.valor = valor;
     }
 
 
     public boolean esMayor(Carta otraCarta) {
-        return otraCarta.compararValorCon(this.valor);
-    }
-
-    public boolean compararValorCon(Valor otroValor) {
-        return this.valor.esMayor(otroValor);
+        return otraCarta.valor > this.valor;
     }
 
     public Boolean sonMismoPalo(Carta otraCarta) {
@@ -35,12 +31,7 @@ public class Carta {
         return this.palo.sonMismoPalo(palo);
     }
 
-
-    public Boolean compararValorIgual(Valor otroValor) {
-        return this.valor.esIgualA(otroValor);
-    }
-
     public Boolean esIgualA(Carta otraCarta) {
-        return otraCarta.compararValorIgual(this.valor);
+        return otraCarta.valor == this.valor;
     }
 }
