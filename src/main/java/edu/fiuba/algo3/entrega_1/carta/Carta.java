@@ -13,7 +13,7 @@ import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 
 public class Carta implements Modificable {
     private Palo palo;
-    private int valor;
+    private Puntaje valor;
     private int multiplicador;
 
     public Carta(Palo palo, int valor){
@@ -21,13 +21,13 @@ public class Carta implements Modificable {
                throw new ValorDeCartaInvalido();
            }
            this.palo = palo;
-           this.valor = valor;
-           this.multiplicador = 1;
+           this.valor = new Puntaje(valor,0);
+           this.multiplicador = 0;
     }
 
 
     public boolean esMayor(Carta otraCarta) {
-        return otraCarta.valor > this.valor;
+        return otraCarta.valor.esMayor(this.valor);
     }
 
     public Boolean sonMismoPalo(Carta otraCarta) {
@@ -39,16 +39,16 @@ public class Carta implements Modificable {
     }
 
     public Boolean esIgualA(Carta otraCarta) {
-        return otraCarta.valor == this.valor;
+        return otraCarta.valor.compararPuntaje(this.valor);
     }
 
 
     @Override
-    public void aplicarModificacion(int valor) {
-        this.valor = valor;
+    public void aplicarModificacion(Puntaje puntaje) {
+        this.valor = puntaje;
     }
 
     public Puntaje calcularPuntaje() {
-        return new Puntaje(this.valor, this.multiplicador);
+        return valor;
     }
 }

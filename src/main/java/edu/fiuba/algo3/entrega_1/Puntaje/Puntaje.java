@@ -27,11 +27,16 @@ public class Puntaje implements Modificable {
 
 
     @Override
-    public void aplicarModificacion(int valor) {
-        this.valor = valor;
+    public void aplicarModificacion(Puntaje puntaje) {
+        this.valor = puntaje.valor;
+        this.multiplicador = puntaje.multiplicador;
     }
 
     public Puntaje sumarConPuntaje(Puntaje otroPuntaje) {
         return new Puntaje(valor + otroPuntaje.valor, multiplicador + otroPuntaje.multiplicador);
+    }
+
+    public boolean esMayor(Puntaje valor) {
+        return valor.valor > this.valor;
     }
 }

@@ -11,7 +11,7 @@ public class TarotTest {
     @Test
     public void testAplicarTarotACarta() {
         Carta carta = new Carta(new Corazon(),5);
-        Tarot tarot = new Tarot(10);
+        Tarot tarot = new Tarot(10, 1);
 
         tarot.aplicarA(carta);
         Puntaje puntaje = carta.calcularPuntaje();
@@ -23,7 +23,7 @@ public class TarotTest {
     @Test
     public void testAplicarTarotAPuntaje() {
         Puntaje puntaje = new Puntaje(2, 3);
-        Tarot tarot = new Tarot(4);
+        Tarot tarot = new Tarot(4, 2);
 
         tarot.aplicarA(puntaje);
         Puntaje puntajeEsperado = new Puntaje(4, 2);
