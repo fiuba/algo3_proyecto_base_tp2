@@ -18,6 +18,14 @@ public class Poker implements Carta {
         return valorNumerico * multiplicador;
     }
 
+    public boolean esMismoPaloQue(Poker carta) {
+        return palo.sonDelMismoPalo(carta);
+    }
+
+    public boolean esMismoSimboloQue(Poker carta) {
+        return simbolo.equals(carta.simbolo);
+    }
+
     public Palo getPalo() {
         return this.palo;
     }
