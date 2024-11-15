@@ -19,14 +19,20 @@ public class JugadorTest {
 
     @Test
     public void test01JugadorPoseeCartasSuficientesEnElMazoParaEmpezarElJuego() {
-        Jugador jugador = new Jugador(new Mazo());
+        LectorJson lector = new LectorJson();
+        ArrayList<Poker> cartas = lector.leerCartas();
+        Mazo mazo = new Mazo(cartas);
+        Jugador jugador = new Jugador(mazo);
 
         assertDoesNotThrow(jugador::repartirMano);
     }
 
     @Test
     public void test02JugadorObtiene0PuntosSiJuegaSinSeleccionarCartas() {
-        Jugador jugador = new Jugador(new Mazo());
+        LectorJson lector = new LectorJson();
+        ArrayList<Poker> cartas = lector.leerCartas();
+        Mazo mazo = new Mazo(cartas);
+        Jugador jugador = new Jugador(mazo);
         jugador.repartirMano();
 
         // En el futuro, esto no estará permitido
