@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.jugada;
 
+import edu.fiuba.algo3.modelo.Palo;
 import edu.fiuba.algo3.modelo.Poker;
 
 import java.util.ArrayList;
@@ -50,7 +51,34 @@ public class JugadaFactory {
     }
 
     private boolean esEscalera(ArrayList<Poker> cartas, ArrayList<Poker> cartasUsadas) {
-        return false;
+
+        if (cartas.size() != 5) {
+            return false;
+        }
+
+        // Ordenar cartas de menor a mayor
+        int n = cartas.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (cartas.get(j).getValorDeCarta() > cartas.get(j + 1).getValorDeCarta()) {
+                    // Intercambiar cartas[j] y cartas[j+1]
+                    Poker temp = cartas.get(j);
+                    cartas.set(j, cartas.get(j + 1));
+                    cartas.set(j + 1, temp);
+                }
+            }
+        }
+
+        // Verificar que las cartas tengan valores consecutivos
+        for (int i = 0; i < cartas.size() - 1; i++) {
+            int valorActual = cartas.get(i).getValorDeCarta();
+            int valorSiguiente = cartas.get(i + 1).getValorDeCarta();
+            if (valorSiguiente != valorActual + 1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private boolean esColor(ArrayList<Poker> cartas, ArrayList<Poker> cartasUsadas) {
@@ -66,10 +94,23 @@ public class JugadaFactory {
     }
 
     private boolean esEscaleraColor(ArrayList<Poker> cartas, ArrayList<Poker> cartasUsadas) {
-        return false;
+        if (esEscalera(cartas, cartasUsadas)) {
+            for (int i = 1; i < cartas.size(); i++) {
+                if (cartas.get(i) != cartas.get(i - 1)) {
+                    return false;
+                }
+            }
+        }
+        cartasUsadas.addAll(cartas);
+        return true;
     }
 
     private boolean esEscaleraReal(ArrayList<Poker> cartas, ArrayList<Poker> cartasUsadas) {
-        return false;
+        if (esEscaleraColor(cartas, cartasUsadas)) {
+            if (cartas.get(5).getValorDeCarta() != 1) {
+                return false;
+            };
+        }
+        return true;
     }
 }
