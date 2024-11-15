@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.jugada.Jugada;
+import edu.fiuba.algo3.modelo.jugada.JugadaFactory;
+import edu.fiuba.algo3.modelo.jugada.JugadaNula;
+
 import java.util.ArrayList;
 
 public class Mano {

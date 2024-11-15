@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.jugada.Jugada;
+
 public class Jugador {
     Mazo mazo;
     Mano mano;
