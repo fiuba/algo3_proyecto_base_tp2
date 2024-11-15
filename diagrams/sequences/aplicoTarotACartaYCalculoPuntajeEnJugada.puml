@@ -1,7 +1,4 @@
 @startuml
-'https://plantuml.com/class-diagram
-
-@startuml
 actor TestCase
 participant Jugada
 participant unaCarta
