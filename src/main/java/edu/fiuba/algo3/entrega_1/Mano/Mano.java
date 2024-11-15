@@ -16,4 +16,9 @@ public class Mano {
     public boolean esManoCompleta() {
         return cartas.size() == 8;
     }
+
+    public List<Carta> jugarCartas(List<Carta> cartasRecibidas) {;
+        cartas.removeAll(cartasRecibidas);
+        return cartasRecibidas;
+    }
 }

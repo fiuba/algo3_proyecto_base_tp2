@@ -10,7 +10,7 @@ public abstract class ManoDePoker {
     protected Puntaje puntaje;
 
     public int jugar(ArrayList<Carta> cartas){
-        Puntaje sumaDePuntajes = new Puntaje(0,1);
+        Puntaje sumaDePuntajes = this.puntaje;
         for (Carta carta : cartas){
             Puntaje puntajeDeCarta = carta.calcularPuntaje();
             sumaDePuntajes.sumarConPuntaje(puntajeDeCarta);
