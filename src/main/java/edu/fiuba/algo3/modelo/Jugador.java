@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 public class Jugador {
     Mazo mazo;
     Mano mano;
+    Comodines comodines;
     Puntaje puntaje;
 
     public Jugador(Mazo mazo) {
@@ -19,7 +20,7 @@ public class Jugador {
         Jugada jugada = mano.jugar();
         jugada.modificarPuntaje(puntaje);
         mano.modificarPuntaje(puntaje);
-        // Pasivos
+        comodines.modificarPuntaje(puntaje);
         int puntajeFinal = puntaje.calcularTotal();
         puntaje = new Puntaje(0, 0);
         return puntajeFinal;
@@ -27,5 +28,9 @@ public class Jugador {
 
     public void seleccionarCarta(Poker carta) {
         mano.seleccionarCarta(carta);
+    }
+
+    public void agregarComodin(Comodin comodin) {
+        comodines.agregar(comodin);
     }
 }

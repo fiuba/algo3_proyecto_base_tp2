@@ -20,7 +20,7 @@ public class JugadorTest {
     @Test
     public void test01JugadorPoseeCartasSuficientesEnElMazoParaEmpezarElJuego() {
         LectorJson lector = new LectorJson();
-        ArrayList<Poker> cartas = lector.leerCartas();
+        ArrayList<Poker> cartas = lector.leerCartasDeMazo();
         Mazo mazo = new Mazo(cartas);
         Jugador jugador = new Jugador(mazo);
 
@@ -30,7 +30,7 @@ public class JugadorTest {
     @Test
     public void test02JugadorObtiene0PuntosSiJuegaSinSeleccionarCartas() {
         LectorJson lector = new LectorJson();
-        ArrayList<Poker> cartas = lector.leerCartas();
+        ArrayList<Poker> cartas = lector.leerCartasDeMazo();
         Mazo mazo = new Mazo(cartas);
         Jugador jugador = new Jugador(mazo);
         jugador.repartirMano();
