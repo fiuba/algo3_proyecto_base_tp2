@@ -4,5 +4,6 @@ module edu.fiuba.algo3 {
     requires junit;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
+    
 
 }

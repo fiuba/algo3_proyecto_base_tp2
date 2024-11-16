@@ -43,6 +43,7 @@
       <version>${mockito-mockito-core-version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit</artifactId>
@@ -82,7 +83,19 @@
   </profiles>
   <build>
     <testSourceDirectory>src/main/test</testSourceDirectory>
+
     <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.1.2</version>
+          <configuration>
+            <argLine>
+              --add-opens edu.fiuba.algo3/edu.fiuba.algo3.entrega_1=ALL-UNNAMED
+            </argLine>
+          </configuration>
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -147,5 +160,6 @@
         </executions>
       </plugin>
     </plugins>
+
   </build>
 </project>

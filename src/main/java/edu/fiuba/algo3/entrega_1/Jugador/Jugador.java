@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.entrega_1.Jugador;
 
-import edu.fiuba.algo3.Jugada.Jugada;
+import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
 import edu.fiuba.algo3.entrega_1.Mano.Mano;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Jugador {
@@ -28,6 +27,10 @@ public class Jugador {
             jugada.seleccionar(carta);
         }
         return jugada;
+    }
+
+    public List<Carta> verCartasEnMano(){
+        return mano.verCartasEnMano();
     }
 
     public boolean puedeJugar() {

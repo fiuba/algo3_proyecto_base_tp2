@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1.JugadaTest;
 
-import edu.fiuba.algo3.Jugada.Jugada;
+import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
