@@ -41,7 +41,7 @@ public class generadorDeCartasTest {
     public void test05SeGeneranCartasComoParaUnMaso(){
         GeneradorDeCartas generador = new GeneradorDeCartas();
 
-        List<Carta> cartas = generador.generarMazo();
+        List<Carta> cartas = generador.generarCartas();
 
         Assertions.assertEquals(52, cartas.size());
     }
