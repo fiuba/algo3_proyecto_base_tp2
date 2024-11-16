@@ -9,7 +9,6 @@ import edu.fiuba.algo3.entrega_1.carta.Carta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class jugadorTest {
     @BeforeEach
     void setUp() {
         GeneradorDeCartas generadorDeCartas = new GeneradorDeCartas();
-         cartas = generadorDeCartas.generarCartas(new Diamante(), 2,9);
+         cartas = generadorDeCartas.generarCartasPorLimite(new Diamante(), 2,9);
          unaCarta = cartas.get(0);
          otraCarta = cartas.get(1);
          cartasAJugar = new ArrayList<>();
