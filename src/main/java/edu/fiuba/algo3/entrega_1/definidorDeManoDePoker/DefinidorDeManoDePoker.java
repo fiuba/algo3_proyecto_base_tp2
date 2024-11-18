@@ -8,9 +8,11 @@ import java.util.Collections;
 
 public class DefinidorDeManoDePoker {
     private ArrayList<Carta> cartas;
+    private int cantidadDeCartas;
 
     public ManoDePoker definirManoDePoker(ArrayList<Carta> arrayDeCartas){
         this.cartas = arrayDeCartas;
+        this.cantidadDeCartas = this.cartas.size();
         if(this.esEscalera()){
             return definirEscalera();
         }
@@ -22,9 +24,9 @@ public class DefinidorDeManoDePoker {
 
     private ManoDePoker definirManoComparable(){
         int cantidadDeRepetidas = 0;
-        for(int indice = 0; indice <= 2; indice ++){
+        for(int indice = 0; indice <= this.cantidadDeCartas; indice ++){
             int repeticiones = Collections.frequency(this.cartas,this.cartas.get(indice));
-            if(repeticiones >= 2){ //necesito un metodo que me diga si 2 cartas son iguales segun el valor
+            if(repeticiones >= 2){ //necesito que se dos cartas sean iguales si su valor (ej: uno,k) es el mismo
                 cantidadDeRepetidas ++ ;
             }
         }
@@ -50,19 +52,25 @@ public class DefinidorDeManoDePoker {
 
 
     private boolean esEscalera(){
-        int valorCartaAnterior = this.cartas.get(0).getValor();
-        for(int indice = 1; indice < 5; indice ++){
-            int valorCartaActual =this.cartas.get(0).getValor();
-            if( valorCartaActual != valorCartaAnterior - 1){
+        //necesito un metodo que me diga si dos valores son seguidos
+        Carta cartaAnterior = this.cartas.get(0);
+        Carta cartaActual;
+        for(int indice = 1; indice < this.cantidadDeCartas; indice ++){
+            cartaActual = this.cartas.get(indice);
+            if( !cartaActual.leSigueA(cartaAnterior)){
                 return false;
             }
-            valorCartaAnterior = valorCartaActual;
+            cartaAnterior = cartaActual;
         }
         return true;
     }
+    /*la carta puede tener un atributo "antecesor" para poder saber si la carta que tengo ahora
+    le sigue a la carta que tenía antes solo preguntando si la antecesora es la carta ya obtenida
+    y responde con un booleano
+     */
 
     private ManoDePoker definirEscalera(){
-        if(this.cartas.get(0).getValor() == 14){ //el valor del As
+        if(this.cartas.get(0).esAs()){ //crear un metodo en carta que nos diga si es as
             return new EscaleraReal();
         }else if(this.mismoColor()){
             return new EscaleraColor();
@@ -81,7 +89,7 @@ public class DefinidorDeManoDePoker {
 
     private boolean mismoColor(){
         Carta cartaComparadora = this.cartas.get(0);
-        for(int indice = 1; indice <= this.cartas.size(); indice ++){
+        for(int indice = 1; indice <= this.cantidadDeCartas; indice ++){
             if(!this.cartas.get(indice).sonMismoPalo(cartaComparadora)){
                 return false;
             }
