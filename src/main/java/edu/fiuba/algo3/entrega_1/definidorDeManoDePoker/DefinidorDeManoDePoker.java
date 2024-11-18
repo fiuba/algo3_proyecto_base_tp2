@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_1.definidorDeManoDePoker;
 
-import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.Par;
+import edu.fiuba.algo3.entrega_1.ManoDePoker.*;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
 import java.util.ArrayList;
@@ -13,26 +11,72 @@ public class DefinidorDeManoDePoker {
 
     public ManoDePoker definirManoDePoker(ArrayList<Carta> arrayDeCartas){
         this.cartas = arrayDeCartas;
-        if (this.tieneUnaCarta()){
-            return new CartaMasAlta();
+        if(this.esEscalera()){
+            return definirEscalera();
         }
-        if(this.tienePares()){
-            return new Par();
+        else{
+            return definirManoComparable();
         }
-        return new CartaMasAlta();
+
     }
 
-    private boolean tieneUnaCarta(){
-        return (this.cartas.size() == 1);
-    }
-
-    private boolean tienePares(){
-        for (int i = 0 ; i >= this.cartas.size()-1;i++){
-            if (Collections.frequency(this.cartas,this.cartas.get(i)) == 2 ){
-                return true;
+    private ManoDePoker definirManoComparable(){
+        int cantidadDeRepetidas = 0;
+        for(int indice = 0; indice <= 2; indice ++){
+            int repeticiones = Collections.frequency(this.cartas,this.cartas.get(indice));
+            if(repeticiones >= 2){ //necesito un método que me diga si 2 cartas son iguales segun el valor o segun el palo
+                cantidadDeRepetidas ++ ;
             }
         }
-        return true; //provisorio;
+        switch(cantidadDeRepetidas){
+            case 0:
+                return new CartaMasAlta();
+
+            case 2:
+                return new Par();
+
+            case 3:
+                return new Trio();
+
+            case 4://veo si es doble par o poker
+                return this.definidorDeCuatroRepetidas();
+
+            case 5:
+                return new FullHouse();
+        }
+
     }
+
+
+    private boolean esEscalera(){
+        int valorCartaAnterior = this.cartas.get(0).getValor();
+        for(int indice = 1; indice < 5; indice ++){
+            int valorCartaActual =this.cartas.get(0).getValor();
+            if( valorCartaActual != valorCartaAnterior - 1){
+                return false;
+            }
+            valorCartaAnterior = valorCartaActual;
+        }
+        return true;
+    }
+
+    private ManoDePoker definirEscalera(){
+        if(this.cartas.get(0).getValor() == 14){ //el valor del As
+            return new EscaleraReal();
+        }else if(this.mismoColor()){
+            return new EscaleraColor();
+        }
+        return new EscaleraSimple();
+    }
+
+    private ManoDePoker definidorDeCuatroRepetidas(){
+        int repeticiones = 0;
+        for(int indice = 0; indice < 2; indice++){
+            repeticiones = Collections.frequency(this.cartas,this.cartas.get(indice));
+            if(repeticiones == 2){ return new DoblePar(); }
+            else if (repeticiones == 4) { return new Poker(); }
+        }
+    }
+
 
 }
