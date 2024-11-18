@@ -24,7 +24,7 @@ public class DefinidorDeManoDePoker {
         int cantidadDeRepetidas = 0;
         for(int indice = 0; indice <= 2; indice ++){
             int repeticiones = Collections.frequency(this.cartas,this.cartas.get(indice));
-            if(repeticiones >= 2){ //necesito un método que me diga si 2 cartas son iguales segun el valor o segun el palo
+            if(repeticiones >= 2){ //necesito un metodo que me diga si 2 cartas son iguales segun el valor
                 cantidadDeRepetidas ++ ;
             }
         }
@@ -44,7 +44,8 @@ public class DefinidorDeManoDePoker {
             case 5:
                 return new FullHouse();
         }
-
+        //si no es ninguna de las anterirores debe ser color
+        return new Color();
     }
 
 
@@ -78,5 +79,14 @@ public class DefinidorDeManoDePoker {
         }
     }
 
+    private boolean mismoColor(){
+        Carta cartaComparadora = this.cartas.get(0);
+        for(int indice = 1; indice <= this.cartas.size(); indice ++){
+            if(!this.cartas.get(indice).sonMismoPalo(cartaComparadora)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
