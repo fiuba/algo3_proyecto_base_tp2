@@ -6,7 +6,7 @@ import edu.fiuba.algo3.entrega_2.Tienda;
 
 public class InstanciadorRondas {
     private List<Ronda> rondas;
-
+/*
     public InstanciadorRondas(String filePath) {
         rondas = new ArrayList<>();
         crearRondas(filePath);
@@ -84,6 +84,8 @@ public class InstanciadorRondas {
     public List<Ronda> obtenerTodasLasRondas() {
         return rondas;
     }
+
+ */
 }
 
 

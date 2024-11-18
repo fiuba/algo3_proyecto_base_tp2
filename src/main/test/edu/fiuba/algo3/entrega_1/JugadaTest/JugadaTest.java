@@ -17,8 +17,8 @@ public class JugadaTest {
         //arrange
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
-        Carta otraCarta = new Carta(corazon, 4);
-        Carta unaCarta = new Carta(corazon, 3);
+        Carta otraCarta = new Carta(corazon, 4,4);
+        Carta unaCarta = new Carta(corazon, 3,3);
 
         //act
         jugada.seleccionar(unaCarta);
@@ -33,7 +33,7 @@ public class JugadaTest {
         //arrange
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
-        Carta carta = new Carta(corazon, 2);
+        Carta carta = new Carta(corazon, 2,2);
 
         //act
         jugada.seleccionar(carta);
@@ -49,8 +49,8 @@ public class JugadaTest {
         Jugada jugada = new Jugada();
         Palo corazon = new Corazon();
         Palo diamante = new Diamante();
-        Carta carta = new Carta(corazon, 2);
-        Carta carta2 = new Carta(diamante,2);
+        Carta carta = new Carta(corazon, 2,2);
+        Carta carta2 = new Carta(diamante,2,2);
 
         //act
         jugada.seleccionar(carta);

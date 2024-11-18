@@ -16,7 +16,7 @@ public class GeneradorDeCartas implements Proveedor {
         List<Carta> cartasGeneradas = new ArrayList<>();
 
         for (int i = 0; i < valorMax - 1 ; i++) {
-            cartasGeneradas.add(new Carta(palo, valorMin + i));
+            cartasGeneradas.add(new Carta(palo, valorMin + i, valorMin + i));
         }
 
         return cartasGeneradas;

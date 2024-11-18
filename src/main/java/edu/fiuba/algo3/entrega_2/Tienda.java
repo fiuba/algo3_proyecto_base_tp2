@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tienda {
+    /*
     private List<Comodin> comodines;
     private List<Tarot> tarots;
 
@@ -26,5 +27,5 @@ public class Tienda {
     public void seleccionar(Tarot tarotSeleccionado) {
         tarots.removeIf(tarot -> tarot.esElNombre(tarotSeleccionado.getNombre()));
     }
-
+*/
 }

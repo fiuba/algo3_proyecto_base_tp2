@@ -16,7 +16,7 @@ public class generadorDeCartasTest {
         Corazon corazon = new Corazon();
         List<Carta> cartas = generador.generarCartasPorLimite(corazon,2,2);
 
-        Carta cartaEsperada = new Carta(corazon, 2);
+        Carta cartaEsperada = new Carta(corazon, 2, 2);
         Assertions.assertTrue(cartas.get(0).sonMismoPalo(cartaEsperada));
     }
 
