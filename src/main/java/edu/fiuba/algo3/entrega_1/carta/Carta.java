@@ -6,12 +6,9 @@
 package edu.fiuba.algo3.entrega_1.carta;
 
 
-import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
-
-import java.util.Objects;
 
 
 public class Carta implements Modificable {
@@ -42,27 +39,11 @@ public class Carta implements Modificable {
         return this.palo.sonMismoPalo(palo);
     }
 
-    public Puntaje obtenerPuntaje(){
-        return this.puntaje;
-    }
-
-    public Boolean esAntecesor(Carta otraCarta) {
-        return otraCarta.valor == this.valor - 1;
+    public Boolean esIgualA(Carta otraCarta) {
+        return otraCarta.valor == this.valor;
     }
 
 
-    @Override
-    public boolean equals(Object obj){
-        if(this == obj)return true;
-        if(obj == null || getClass() != obj.getClass()) return false;
-        Carta otraCarta = (Carta) obj;
-        return(Objects.equals(valor,otraCarta.valor));
-    }
-
-    @Override
-    public int hashCode(){
-        return Objects.hash(valor);
-    }
     @Override
     public void aplicarModificacion(Puntaje puntaje) {
         this.puntaje = puntaje;

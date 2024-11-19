@@ -1,21 +1,20 @@
-package edu.fiuba.algo3.entrega_2;
-import java.util.ArrayList;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import java.util.List;
 
 public class Tienda {
     /*
     private List<Comodin> comodines;
-    private List<Tarot> tarots;
+    private List<Tarot2> tarots;
 
-    public Tienda(List<Tarot> tarots, List<Comodin> comodines) {
+    public Tienda(List<Tarot2> tarots, List<Comodin> comodines) {
         this.comodines = comodines;
         this.tarots = tarots;
     }
-    public List<Comodin> obtenerComodines() {
+    public List<Comodin> getComodines() {
         return comodines;
     }
 
-    public List<Tarot> obtenerTarots() {
+    public List<Tarot2> getTarots() {
         return tarots;
     }
 
@@ -24,7 +23,7 @@ public class Tienda {
         comodines.removeIf(comodin -> comodin.esElNombre(comodinSeleccionado.getNombre()));
     }
 
-    public void seleccionar(Tarot tarotSeleccionado) {
+    public void seleccionar(Tarot2 tarotSeleccionado) {
         tarots.removeIf(tarot -> tarot.esElNombre(tarotSeleccionado.getNombre()));
     }
 */

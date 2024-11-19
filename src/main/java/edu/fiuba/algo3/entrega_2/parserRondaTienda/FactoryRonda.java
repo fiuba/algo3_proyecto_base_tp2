@@ -1,19 +1,19 @@
-package edu.fiuba.algo3.entrega_2;
+/*
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-import edu.fiuba.algo3.entrega_2.Tienda;
 
-public class InstanciadorRondas {
+public class FactoryRonda {
     private List<Ronda> rondas;
-/*
-    public InstanciadorRondas(String filePath) {
+
+    public FactoryRonda(String filePath) {
         rondas = new ArrayList<>();
         crearRondas(filePath);
     }
 
     public void crearRondas(String filePath) {
-        List<Map<String, Object>> rondasData = Parser.parsearRondas(filePath);
+        //List<Map<String, Object>> rondasData = Parser.parsearRondas(filePath);
 
         List<Ronda> rondas = new ArrayList<Ronda>();
         for (Map<String, Object> datos : rondasData) {
@@ -23,7 +23,7 @@ public class InstanciadorRondas {
     }
 
     private List<Comodin> crearComodines(List<Map<String, Object>> listaComodin) {
-        List<Comodin> comodines = new ArrayList<>(Comodin);
+        List<Comodin> comodines = new ArrayList<Comodin>();
         if (listaComodin != null) {
             for (Map<String, Object> comodinData : listaComodin) {
                 String nombre = (String) comodinData.get("nombre");
@@ -32,17 +32,17 @@ public class InstanciadorRondas {
                 Map<String, Object> puntajeData = (Map<String, Object>) comodinData.get("efecto");
                 int puntos = (int) puntajeData.get("puntos");
                 int multiplicador = (int) puntajeData.get("multiplicador");
-                Puntaje puntaje = new Puntaje(puntos, multiplicador);
+                //Puntaje puntaje = new Puntaje(puntos, multiplicador);
 
-                Comodin comodin = new Comodin(nombre, descripcion, activacion, puntaje);
+                Comodin comodin = new Comodin(nombre, descripcion, activacion, puntos, multiplicador);
                 comodines.add(comodin);
             }
         }
         return comodines;
     }
 
-    private List<Tarot> crearTarots(List<Map<String, Object>> listaTarots) {
-        List<Tarot> tarots = new ArrayList<>(Tarot);
+    private List<Tarot2> crearTarots(List<Map<String, Object>> listaTarots) {
+        List<Tarot2> tarots = new ArrayList<Tarot2>();
         if (listaTarots != null) {
             for (Map<String, Object> tarotData : listaTarots) {
                 String nombre = (String) tarotData.get("nombre");
@@ -50,12 +50,12 @@ public class InstanciadorRondas {
                 Map<String, Object> puntajeData = (Map<String, Object>) tarotData.get("efecto");
                 int puntos = (int) puntajeData.get("puntos");
                 int multiplicador = (int) puntajeData.get("multiplicador");
-                Puntaje puntaje = new Puntaje(puntos, multiplicador);
+                //Puntaje puntaje = new Puntaje(puntos, multiplicador);
 
                 String sobre = (String) tarotData.get("sobre");
                 String ejemplar = (String) tarotData.get("ejemplar");
 
-                Tarot tarot = new Tarot(nombre, descripcion, sobre, ejemplar, puntaje);                tarots.add(tarot);
+                Tarot2 tarot = new Tarot2(nombre, descripcion, sobre, ejemplar, puntos, multiplicador);                tarots.add(tarot);
             }
         }
         return tarots;
@@ -67,12 +67,13 @@ public class InstanciadorRondas {
         List<Map<String, Object>> listaTarots = (List<Map<String, Object>>) datos.get("tarots");
 
         List<Comodin> comodines = crearComodines(listaComodines);
-        List<Tarot> tarots = crearTarots(listaTarots);
+        List<Tarot2> tarots = crearTarots(listaTarots);
 
         Tienda tienda = new Tienda(tarots, comodines);
 
         return new Ronda(tienda);
     }
+
     public Ronda obtenerRonda(int indice) {
         if (indice >= 0 && indice < rondas.size()) {
             return rondas.get(indice);
@@ -85,8 +86,11 @@ public class InstanciadorRondas {
         return rondas;
     }
 
- */
+
 }
+
+
+ */
 
 
 

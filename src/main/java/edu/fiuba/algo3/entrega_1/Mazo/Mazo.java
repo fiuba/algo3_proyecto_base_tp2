@@ -14,7 +14,7 @@ public class Mazo implements Proveedor{
         this.cartas = proveedor.generarCartas();
     }
     public void mezclar(){
-        Collections.shuffle(this.cartas);
+        Collections.shuffle(cartas);
     }
 
     public List<Carta> generarCartas(){
@@ -23,13 +23,12 @@ public class Mazo implements Proveedor{
         for(int i = 0; i < (TAMANIOMANO); i++){
             cartasJugador.add(cartas.get(i));
         }
-        cartas.subList(0,TAMANIOMANO).clear();  //retorna una lista de carta de un tamaño pedido
+        cartas.subList(0,TAMANIOMANO).clear();
 
         return cartasJugador;
     }
     public List<Carta> repartirCartas(){
-        this.mezclar();
-        return this.generarCartas();  //la utiliza ronda cuando crea la mano
+        return this.generarCartas();
     }
     private List<Carta> repartirConUnaCantidad(List<Carta> cartasRecibidas){
         int cantidadDeCartas;

@@ -1,8 +1,6 @@
-package edu.fiuba.algo3.entrega_2;
-import java.util.List;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 
 public class Ronda {
-
     private Tienda tienda;
     // private Mazo mazo
 
@@ -10,5 +8,6 @@ public class Ronda {
         this.tienda = tienda;
     }
 
+    public Tienda getTienda() {return this.tienda;}
 
 }
