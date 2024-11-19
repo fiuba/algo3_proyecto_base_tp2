@@ -10,11 +10,11 @@ public class Tienda {
         this.comodines = comodines;
         this.tarots = tarots;
     }
-    public List<Comodin> obtenerComodines() {
+    public List<Comodin> getComodines() {
         return comodines;
     }
 
-    public List<Tarot> obtenerTarots() {
+    public List<Tarot> getTarots() {
         return tarots;
     }
 

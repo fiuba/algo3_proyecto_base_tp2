@@ -9,5 +9,6 @@ public class Ronda {
         this.tienda = tienda;
     }
 
+    public Tienda getTienda() {return this.tienda;}
 
 }
