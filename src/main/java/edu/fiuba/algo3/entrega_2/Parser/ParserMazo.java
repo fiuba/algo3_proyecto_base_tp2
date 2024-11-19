@@ -11,8 +11,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class ParserMazo {
 
     public static List<CartaParseada> convertirDeJsonAFakeCartas(String direccionDeJson) {

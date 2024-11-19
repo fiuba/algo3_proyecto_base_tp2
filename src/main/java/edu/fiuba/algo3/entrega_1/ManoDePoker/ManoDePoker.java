@@ -18,6 +18,19 @@ public abstract class ManoDePoker {
         return this.puntaje.calcularPuntaje();
     }
 
+    public Puntaje calcularPuntaje() {
+        return this.puntaje;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true; // Si ambos objetos son el mismo, son iguales
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false; // Si el objeto es nulo o no es del mismo tipo, no son iguales
+        }
+        return true; // Si son del mismo tipo, los consideramos iguales
+    }
 
 }
 

@@ -3,14 +3,15 @@ import com.google.gson.Gson;
 
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.entrega_2.Parser.ErrorAlParsearJson;
-import edu.fiuba.algo3.entrega_2.Comodin.Comodin;
-import edu.fiuba.algo3.entrega_2.Comodin.Activacion;
+import edu.fiuba.algo3.entrega_2.comodin.Comodin;
+import edu.fiuba.algo3.entrega_2.comodin.Activacion;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ParserComodin {
 
@@ -41,8 +42,10 @@ public class ParserComodin {
             int puntos = Integer.parseInt(puntosStr);
             int multiplicador = Integer.parseInt(multiplicadorStr);
             Activacion activacion = ActivacionFactory.crearActivacion(activacionData);
-            Comodin comodin = new Comodin(nombreStr, descripcion,puntos, multiplicador, activacion);
+            List<Activacion> listaActivaciones = new ArrayList<>();
+            listaActivaciones.add(activacion);  // Puedes agregar más activaciones si es necesario
 
+            Comodin comodin = new Comodin(nombreStr, descripcion, puntos, multiplicador, listaActivaciones);
             comodines.add(comodin);
         }
 

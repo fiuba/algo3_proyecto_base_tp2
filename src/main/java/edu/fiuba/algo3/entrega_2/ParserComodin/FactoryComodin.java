@@ -1,10 +1,6 @@
 package edu.fiuba.algo3.entrega_2.ParserComodin;
 
-import edu.fiuba.algo3.entrega_1.carta.Carta;
-import edu.fiuba.algo3.entrega_2.Comodin.Comodin;
-import edu.fiuba.algo3.entrega_2.Parser.CartaParseada;
-import edu.fiuba.algo3.entrega_2.ParserComodin.ParserComodin;
-import edu.fiuba.algo3.entrega_2.ParserComodin.ComodinParseado;
+import edu.fiuba.algo3.entrega_2.comodin.Comodin;
 
 import java.util.List;
 

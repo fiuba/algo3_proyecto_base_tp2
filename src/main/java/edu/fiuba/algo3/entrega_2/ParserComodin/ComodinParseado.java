@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.entrega_2.ParserComodin;
 
-import edu.fiuba.algo3.entrega_2.Comodin.Activacion;
-
 public class ComodinParseado {
     private String nombre;
     private String descripcion;

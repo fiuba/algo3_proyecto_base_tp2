@@ -39,4 +39,13 @@ public class Puntaje implements Modificable {
     public boolean esMayor(Puntaje valor) {
         return valor.valor > this.valor;
     }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public int getMultiplicador() {
+        return multiplicador;
+    }
+
 }
