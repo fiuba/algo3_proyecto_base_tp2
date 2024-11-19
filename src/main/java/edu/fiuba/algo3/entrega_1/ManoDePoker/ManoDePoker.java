@@ -2,12 +2,14 @@ package edu.fiuba.algo3.entrega_1.ManoDePoker;
 
 import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
+import java.util.Objects;
 
 import java.util.ArrayList;
 
 
 public abstract class ManoDePoker {
     protected Puntaje puntaje;
+    protected String nombre;
 
     public int jugar(ArrayList<Carta> cartas){
         Puntaje sumaDePuntajes = this.puntaje;
@@ -22,14 +24,17 @@ public abstract class ManoDePoker {
         return this.puntaje;
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true; // Si ambos objetos son el mismo, son iguales
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false; // Si el objeto es nulo o no es del mismo tipo, no son iguales
-        }
-        return true; // Si son del mismo tipo, los consideramos iguales
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        ManoDePoker otraManoDePoker = (ManoDePoker) obj;
+        return(Objects.equals(nombre,otraManoDePoker.nombre));
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(nombre);
     }
 
 }
