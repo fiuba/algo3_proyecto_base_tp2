@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.entrega_1.Mano;
 
 import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
-import edu.fiuba.algo3.entrega_1.Ordenador.OrdenadorDeCartas;
 import edu.fiuba.algo3.entrega_1.Prooveedor.Proveedor;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
 public class Mano {
     private Proveedor proveedor;
     private List<Carta> cartas = new ArrayList();
@@ -29,12 +27,6 @@ public class Mano {
         return cartasRecibidas;
     }
 
-    // posible solucion
-    public void ordenarMano(){
-        OrdenadorDeCartas.ordenarCartas(this.cartas);
-    }
-
-
     public List<Carta> verCartasEnMano(){
         return cartas;
     }
@@ -44,8 +36,3 @@ public class Mano {
         jugada.seleccionar(carta);
     }
 }
-
- /*public void ordenarMano(List<Carta> cartasRecibidas){
-       //Collections.sort(cartasRecibidas, (Carta a, Carta b) -> Integer.compare(b.getValor(), a.getValor()));
-        this.cartas.sort(Comparator.comparingInt(Carta::getValor).reversed());
-    }*/

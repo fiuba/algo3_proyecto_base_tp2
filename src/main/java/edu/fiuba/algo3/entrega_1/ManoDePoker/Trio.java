@@ -6,6 +6,5 @@ public class Trio extends ManoDePoker{
     public Trio(){
         this.nombre = "trio";
         this.puntaje = new Puntaje(30,3);
-        this.probabilidad = 2.1128;
     }
 }
