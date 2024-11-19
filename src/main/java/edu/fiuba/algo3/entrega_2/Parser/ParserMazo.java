@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_2.Parser;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
@@ -12,8 +11,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ParserMazo {
 
@@ -39,12 +37,13 @@ public class ParserMazo {
             String paloStr = fakeCarta.getPalo();
             String valorStr = fakeCarta.getNumero();
             String puntosStr = fakeCarta.getPuntos();
-
+            String multiplicadorStr = fakeCarta.getMultiplicador();
             Palo palo = PaloFactory.crearPalo(paloStr);
             int valor = traducirNumeroACarta(valorStr);
             int puntos = Integer.parseInt(puntosStr);
+            int multiplicador = Integer.parseInt(multiplicadorStr);
 
-            Carta carta = new Carta(palo, valor, puntos);
+            Carta carta = new Carta(palo, valor, puntos, multiplicador);
 
 
             cartas.add(carta);
