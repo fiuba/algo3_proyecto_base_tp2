@@ -49,15 +49,10 @@ public class comodinTest {
     @Test
     //Verificar que si el jugador posee un comodin que tiene chance 1 sobre 1000 de romperse se rompa correctamente.
     public void testComodinProbabilidadSeRompe() {
-        List<Activacion> activaciones = new ArrayList<>();
-        activaciones.add(new ActivacionProbabilidad(1000));
-        Comodin comodin = new Comodin("Comodín Multiplicador", "Suma 3 al multiplicador por Escalera", 0, 3,activaciones );
+        ActivacionProbabilidad activacionProba = new ActivacionProbabilidad(1000);
         ManoDePoker manoJugada = new Par();
-
-        Puntaje puntaje = manoJugada.calcularPuntaje();
-        Puntaje puntajeFinal = comodin.aplicarA(manoJugada);
-
-        Assertions.assertEquals(puntaje.calcularPuntaje(), puntajeFinal.calcularPuntaje());
+        activacionProba.esActivable(manoJugada);
+        Assertions.assertTrue(activacionProba.estaRoto());
     }
 
     @Test
