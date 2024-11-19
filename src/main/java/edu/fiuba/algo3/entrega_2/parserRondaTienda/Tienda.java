@@ -1,5 +1,4 @@
-package edu.fiuba.algo3.entrega_2;
-import java.util.ArrayList;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import java.util.List;
 
 public class Tienda {

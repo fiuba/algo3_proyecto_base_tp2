@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 
 public class Tarot2 {
     private String nombre;

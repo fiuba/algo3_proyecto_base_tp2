@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

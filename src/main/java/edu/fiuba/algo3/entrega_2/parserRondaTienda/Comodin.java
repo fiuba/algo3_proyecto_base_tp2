@@ -1,6 +1,5 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 
-import java.util.List;
 import java.util.Map;
 
 public class Comodin {

@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.entrega_2.parserRondaTienda.Comodin;
+import edu.fiuba.algo3.entrega_2.parserRondaTienda.FactoryRonda;
+import edu.fiuba.algo3.entrega_2.parserRondaTienda.Ronda;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
