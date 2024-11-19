@@ -8,8 +8,6 @@ import edu.fiuba.algo3.entrega_1.Prooveedor.Proveedor;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 public class Mano {
     private Proveedor proveedor;
@@ -21,6 +19,7 @@ public class Mano {
     public Mano(Proveedor proveedor) {
         this.proveedor = proveedor;
         this.cartas = proveedor.generarCartas();
+        this.ordenarMano();
         this.descartes = 3;
         //this.comodines = new MazoDeComodines();
 
@@ -38,13 +37,8 @@ public class Mano {
         return cartas.size() == 8;
     }
 
-    public List<Carta> jugarCartas(List<Carta> cartasRecibidas) {;
-        cartas.removeAll(cartasRecibidas);  //??
-        return cartasRecibidas;
-    }
 
-    // posible solucion
-    public void ordenarMano(){
+    private void ordenarMano(){
         OrdenadorDeCartas.ordenarCartas(this.cartas);
     }
 
@@ -79,8 +73,3 @@ public class Mano {
         //comodines.actualizarPorDescarte();
     }
 }
-
- /*public void ordenarMano(List<Carta> cartasRecibidas){
-       //Collections.sort(cartasRecibidas, (Carta a, Carta b) -> Integer.compare(b.getValor(), a.getValor()));
-        this.cartas.sort(Comparator.comparingInt(Carta::getValor).reversed());
-    }*/
