@@ -10,13 +10,13 @@ import java.util.List;
 public class GeneradorDeCartas implements Proveedor {
 
 
-    public GeneradorDeCartas(){};
+    public GeneradorDeCartas(){}
 
     public List<Carta> generarCartasPorLimite(Palo palo, int valorMin, int valorMax) {
         List<Carta> cartasGeneradas = new ArrayList<>();
 
         for (int i = 0; i < valorMax - 1 ; i++) {
-            cartasGeneradas.add(new Carta(palo, valorMin + i, valorMin + i));
+            cartasGeneradas.add(new Carta(palo, valorMin + i, valorMin + i, 1));
         }
 
         return cartasGeneradas;

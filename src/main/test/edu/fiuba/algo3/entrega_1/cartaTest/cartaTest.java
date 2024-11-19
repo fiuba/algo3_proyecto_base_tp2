@@ -11,8 +11,8 @@ public class cartaTest {
     public void test01SeInstanciaUn3DeCorazonesYSeLoComparaConUn4DeDeCorazones(){
         Palo corazon = new Corazon();
 
-        Carta unaCarta = new Carta(corazon, 3, 3);
-        Carta otraCarta = new Carta(corazon, 4,3);
+        Carta unaCarta = new Carta(corazon, 3, 3,1);
+        Carta otraCarta = new Carta(corazon, 4,3,1);
 
         Assertions.assertTrue(unaCarta.esMayor(otraCarta));
     }
@@ -21,8 +21,8 @@ public class cartaTest {
     public void test02SeInstancia2CartasDeMismoValorYDistintoPaloYSeComparanPorValor(){
         Palo corazon = new Corazon();
         Palo diamante = new Diamante();
-        Carta unaCarta = new Carta(corazon, 3, 3);
-        Carta otraCarta = new Carta(diamante, 3, 3);
+        Carta unaCarta = new Carta(corazon, 3, 3,1);
+        Carta otraCarta = new Carta(diamante, 3, 3,1);
 
         Boolean comparacion = unaCarta.esMayor(otraCarta);
 
@@ -35,8 +35,8 @@ public class cartaTest {
         Palo corazon = new Corazon();
 
 
-        Carta unaCarta = new Carta(corazon, 3,3);
-        Carta otraCarta = new Carta(corazon, 4, 3);
+        Carta unaCarta = new Carta(corazon, 3,3,1);
+        Carta otraCarta = new Carta(corazon, 4, 3,1);
 
         Boolean comparacion = unaCarta.sonMismoPalo(otraCarta);
 
@@ -49,8 +49,8 @@ public class cartaTest {
         Palo corazon = new Corazon();
         Palo diamante = new Diamante();
 
-        Carta unaCarta = new Carta(diamante, 4,3);
-        Carta otraCarta = new Carta(corazon, 4,3);
+        Carta unaCarta = new Carta(diamante, 4,3,1);
+        Carta otraCarta = new Carta(corazon, 4,3,1);
 
         Boolean comparacion = unaCarta.sonMismoPalo(otraCarta);
 
@@ -62,8 +62,8 @@ public class cartaTest {
         Palo corazon = new Corazon();
 
         Palo diamante = new Diamante();
-        Carta unaCarta = new Carta(corazon, 3,3);
-        Carta otraCarta = new Carta(diamante, 3,3);
+        Carta unaCarta = new Carta(corazon, 3,3,1);
+        Carta otraCarta = new Carta(diamante, 3,3,1);
 
         Boolean comparacion = unaCarta.esIgualA(otraCarta);
 
@@ -74,7 +74,7 @@ public class cartaTest {
         Palo diamante = new Diamante();
 
         Assertions.assertThrows(ValorDeCartaInvalido.class, ()->{
-            new Carta(diamante, 15,0);
+            new Carta(diamante, 15,0,1);
         });
     }
     @Test
@@ -82,7 +82,7 @@ public class cartaTest {
         Palo diamante = new Diamante();
 
         Assertions.assertThrows(ValorDeCartaInvalido.class, ()->{
-            new Carta(diamante, 1,3);
+            new Carta(diamante, 1,3,1);
         });
     }
 }

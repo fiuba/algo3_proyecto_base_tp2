@@ -16,13 +16,13 @@ public class Carta implements Modificable {
     private Puntaje puntaje;
     private int valor;
 
-    public Carta(Palo palo, int valor, int puntajeBase){
+    public Carta(Palo palo, int valor, int puntajeBase, int multiplicador){
            if(valor < 2 || valor > 14){
                throw new ValorDeCartaInvalido();
            }
            this.valor = valor;
            this.palo = palo;
-           this.puntaje = new Puntaje(puntajeBase,1);
+           this.puntaje = new Puntaje(puntajeBase,multiplicador);
 
     }
 

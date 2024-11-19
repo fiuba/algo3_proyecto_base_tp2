@@ -27,14 +27,14 @@ public class testDeIntegracionEntrega1{
 
     @BeforeEach
     public void setUp(){
-        cartaDePrueba.add(new Carta(new Corazon(),2,2));
-        cartaDePrueba.add(new Carta(new Corazon(),3,3));
-        cartaDePrueba.add(new Carta(new Corazon(),4,4));
-        cartaDePrueba.add(new Carta(new Diamante(),10,10));
-        cartaDePrueba.add(new Carta(new Diamante(),11,10));
-        cartaDePrueba.add(new Carta(new Trebol(),5,10));
-        cartaDePrueba.add(new Carta(new Trebol(),6,6));
-        cartaDePrueba.add(new Carta(new Pica(),7,7));
+        cartaDePrueba.add(new Carta(new Corazon(),2,2,1));
+        cartaDePrueba.add(new Carta(new Corazon(),3,3,1));
+        cartaDePrueba.add(new Carta(new Corazon(),4,4,1));
+        cartaDePrueba.add(new Carta(new Diamante(),10,10,1));
+        cartaDePrueba.add(new Carta(new Diamante(),11,10,1));
+        cartaDePrueba.add(new Carta(new Trebol(),5,10,1));
+        cartaDePrueba.add(new Carta(new Trebol(),6,6,1));
+        cartaDePrueba.add(new Carta(new Pica(),7,7,1));
 
         mazo = Mockito.mock(Mazo.class);
         mano = new Mano(mazo);
@@ -55,8 +55,8 @@ public class testDeIntegracionEntrega1{
         Jugador jugador = new Jugador("Manuel");
         jugador.asignarMano(mano);
         List<Carta> cartasDePrueba = new ArrayList<>();
-        cartasDePrueba.add(new Carta(new Corazon(),2,2));
-        cartasDePrueba.add(new Carta(new Corazon(),3,3));
+        cartasDePrueba.add(new Carta(new Corazon(),2,2,1));
+        cartasDePrueba.add(new Carta(new Corazon(),3,3,1));
         Jugada jugada = jugador.armarJugada(cartasDePrueba);
 
         Assertions.assertEquals(20, jugada.jugar());
