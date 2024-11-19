@@ -40,7 +40,12 @@ public class Jugada {
 
     public ManoDePoker jugar(){
         this.manoDePoker.jugar(this.cartas);
+        this.cartas.clear();
         return this.manoDePoker;
+    }
+
+    public void descartar(){
+        this.cartas.clear();
     }
 
     public boolean tieneMano(ManoDePoker otraManoDePoker){
