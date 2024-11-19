@@ -10,7 +10,7 @@ public class TarotTest {
 
     @Test
     public void testAplicarTarotACarta() {
-        Carta carta = new Carta(new Corazon(),5);
+        Carta carta = new Carta(new Corazon(),5,5,1);
         Tarot tarot = new Tarot(10, 1);
 
         tarot.aplicarA(carta);
