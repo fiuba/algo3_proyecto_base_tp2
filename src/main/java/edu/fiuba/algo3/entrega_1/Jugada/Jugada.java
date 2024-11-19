@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1.Jugada;
 
 import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.entrega_1.Ordenador.OrdenadorDeCartas;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 import edu.fiuba.algo3.entrega_1.definidorDeManoDePoker.DefinidorDeManoDePoker;
 
@@ -19,12 +20,14 @@ public class Jugada {
     }
     public void seleccionar(Carta carta){
         this.cartas.add(carta);
+        OrdenadorDeCartas.ordenarCartas(this.cartas);
         definirManoDePoker();
     }
 
-    public void deseleccionar(Carta carta){
-        this.cartas.remove(carta);
+    public Carta deseleccionar(Carta carta){
+        this.cartas.remove(carta);  //devuleve la carta para que la mano la vuelva a guadar en su array
         definirManoDePoker();
+        return carta;
     }
 
     private void definirManoDePoker(){

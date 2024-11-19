@@ -3,11 +3,13 @@ package edu.fiuba.algo3.entrega_2.jugadaTest;
 
 import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
+import edu.fiuba.algo3.entrega_1.ManoDePoker.EscaleraSimple;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.Par;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
 import edu.fiuba.algo3.entrega_1.Palo.Diamante;
 import edu.fiuba.algo3.entrega_1.Palo.Pica;
+import edu.fiuba.algo3.entrega_1.Palo.Trebol;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 import org.junit.jupiter.api.Test;
 
@@ -102,6 +104,28 @@ public class JugadaTest {
         jugada.seleccionar(carta);
         jugada.seleccionar(otraCarta);
         jugada.deseleccionar(carta);
+
+        //assert
+        assertTrue(jugada.tieneMano(manoEsperada));
+    }
+
+    @Test
+    void test07agregoUnaEscaleraALaJugadaDesordenadasYMeDevuelveEscalera(){
+        //arrange
+        Jugada jugada = new Jugada();
+        ManoDePoker manoEsperada = new EscaleraSimple();
+        Carta carta1 = new Carta(new Corazon(), 2,2,1);
+        Carta carta2 = new Carta(new Pica(), 3,3,1);
+        Carta carta3 = new Carta(new Corazon(), 6,6,1);
+        Carta carta4 = new Carta(new Corazon(), 4,4,1);
+        Carta carta5 = new Carta(new Trebol(), 5,5,1);
+
+        //act
+        jugada.seleccionar(carta1);
+        jugada.seleccionar(carta2);
+        jugada.seleccionar(carta3);
+        jugada.seleccionar(carta4);
+        jugada.seleccionar(carta5);
 
         //assert
         assertTrue(jugada.tieneMano(manoEsperada));

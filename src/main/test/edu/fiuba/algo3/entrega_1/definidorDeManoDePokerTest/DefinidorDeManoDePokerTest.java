@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2.definidorDeManoDePokerTest;
+package edu.fiuba.algo3.entrega_1.definidorDeManoDePokerTest;
 
 import edu.fiuba.algo3.entrega_1.ManoDePoker.*;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
