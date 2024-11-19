@@ -33,6 +33,10 @@ public class Puntaje implements Modificable {
         this.multiplicador = puntaje.multiplicador;
     }
 
+    public int getMultiplicador(){
+        return this.multiplicador;
+    }
+
     public int obtenerValor(){
         return this.valor;
     }

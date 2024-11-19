@@ -21,8 +21,9 @@ public class Jugador {
         this.mano = mano;
     }
 
+
     public Jugada armarJugada(List<Carta> cartas) {
-        List<Carta> cartasJugadas = this.mano.jugarCartas(cartas);
+        List<Carta> cartasJugadas = this.mano.jugarCartas();
         for (Carta carta : cartasJugadas) {
             jugada.seleccionar(carta);
         }

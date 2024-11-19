@@ -23,6 +23,10 @@ public abstract class ManoDePoker {
         return this.puntaje.calcularPuntaje();
     }
 
+    public Puntaje devolverPuntaje(){
+        return this.puntaje;
+    }
+
     @Override
     public boolean equals(Object obj){
         if(this == obj)return true;
