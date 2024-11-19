@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Tienda {
     private List<Comodin> comodines;
-    private List<Tarot> tarots;
+    private List<Tarot2> tarots;
 
-    public Tienda(List<Tarot> tarots, List<Comodin> comodines) {
+    public Tienda(List<Tarot2> tarots, List<Comodin> comodines) {
         this.comodines = comodines;
         this.tarots = tarots;
     }
@@ -14,7 +14,7 @@ public class Tienda {
         return comodines;
     }
 
-    public List<Tarot> getTarots() {
+    public List<Tarot2> getTarots() {
         return tarots;
     }
 
@@ -23,7 +23,7 @@ public class Tienda {
         comodines.removeIf(comodin -> comodin.esElNombre(comodinSeleccionado.getNombre()));
     }
 
-    public void seleccionar(Tarot tarotSeleccionado) {
+    public void seleccionar(Tarot2 tarotSeleccionado) {
         tarots.removeIf(tarot -> tarot.esElNombre(tarotSeleccionado.getNombre()));
     }
 

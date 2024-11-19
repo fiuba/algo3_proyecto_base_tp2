@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import java.util.Map;
-
-public class Tarot {
+public class Tarot2 {
     private String nombre;
     private String descripcion;
     private String sobre;
@@ -10,7 +8,7 @@ public class Tarot {
     private int  puntos;
     private int  multiplicador;
 
-    public Tarot(String nombre, String descripcion, String sobre, String  ejemplar, int puntos, int multiplicador ) {
+    public Tarot2(String nombre, String descripcion, String sobre, String  ejemplar, int puntos, int multiplicador ) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.sobre = sobre;

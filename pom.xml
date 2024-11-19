@@ -54,18 +54,6 @@
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.30</version>
     </dependency>
-    <!-- Jackson Databind (para trabajar con JSON) -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.15.1</version> <!-- Usar la última versión estable -->
-    </dependency>
-    <!-- Jackson Core (para trabajar con el núcleo de Jackson) -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.15.1</version> <!-- Usar la última versión estable -->
-    </dependency>
   </dependencies>
   <profiles>
     <profile>

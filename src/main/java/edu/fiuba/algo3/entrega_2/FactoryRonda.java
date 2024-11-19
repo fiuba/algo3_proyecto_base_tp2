@@ -41,8 +41,8 @@ public class FactoryRonda {
         return comodines;
     }
 
-    private List<Tarot> crearTarots(List<Map<String, Object>> listaTarots) {
-        List<Tarot> tarots = new ArrayList<Tarot>();
+    private List<Tarot2> crearTarots(List<Map<String, Object>> listaTarots) {
+        List<Tarot2> tarots = new ArrayList<Tarot2>();
         if (listaTarots != null) {
             for (Map<String, Object> tarotData : listaTarots) {
                 String nombre = (String) tarotData.get("nombre");
@@ -55,7 +55,7 @@ public class FactoryRonda {
                 String sobre = (String) tarotData.get("sobre");
                 String ejemplar = (String) tarotData.get("ejemplar");
 
-                Tarot tarot = new Tarot(nombre, descripcion, sobre, ejemplar, puntos, multiplicador);                tarots.add(tarot);
+                Tarot2 tarot = new Tarot2(nombre, descripcion, sobre, ejemplar, puntos, multiplicador);                tarots.add(tarot);
             }
         }
         return tarots;
@@ -67,7 +67,7 @@ public class FactoryRonda {
         List<Map<String, Object>> listaTarots = (List<Map<String, Object>>) datos.get("tarots");
 
         List<Comodin> comodines = crearComodines(listaComodines);
-        List<Tarot> tarots = crearTarots(listaTarots);
+        List<Tarot2> tarots = crearTarots(listaTarots);
 
         Tienda tienda = new Tienda(tarots, comodines);
 
