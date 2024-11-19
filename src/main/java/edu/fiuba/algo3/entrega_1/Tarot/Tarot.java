@@ -1,15 +1,16 @@
 package edu.fiuba.algo3.entrega_1.Tarot;
 
 import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
+import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 
 public class Tarot {
-        private int valor;
+    private Puntaje puntaje;
 
-        public Tarot(int valor) {
-            this.valor = valor;
-        }
-        public void aplicarA(Modificable modificable) {
-            modificable.aplicarModificacion(valor);
-        }
+    public Tarot(int valor, int multiplicador) {
+        this.puntaje = new Puntaje(valor, multiplicador);
     }
+    public void aplicarA(Modificable modificable) {
+        modificable.aplicarModificacion(this.puntaje);
+    }
+}
 
