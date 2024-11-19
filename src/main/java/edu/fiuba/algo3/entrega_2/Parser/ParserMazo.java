@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_2.Parser;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
@@ -15,12 +17,14 @@ import java.util.List;
 
 public class ParserMazo {
 
-    public static List<FakeCarta> convertirDeJsonAFakeCartas(String direccionDeJson) {
-        List<FakeCarta> cartas = new ArrayList<>();
+    public static List<CartaParseada> convertirDeJsonAFakeCartas(String direccionDeJson) {
         Gson gson = new Gson();
+
         try (FileReader reader = new FileReader(direccionDeJson)) {
-            Type tipoLista = new TypeToken<List<FakeCarta>>() {}.getType();
-            return gson.fromJson(reader, tipoLista);
+            Type mazoType = new TypeToken<MazoParseado>(){}.getType();
+            MazoParseado mazo = gson.fromJson(reader, mazoType);
+
+            return mazo.getMazo();
         } catch (IOException e) {
             throw new ErrorAlParsearJson();
         }
@@ -28,24 +32,33 @@ public class ParserMazo {
 
 
 
-    public static List<Carta> parsearDeFakeCartaACarta(List<FakeCarta> fakeCartas){
+    public static List<Carta> parsearDeFakeCartaACarta(List<CartaParseada> fakeCartas) {
         List<Carta> cartas = new ArrayList<>();
 
-        for (FakeCarta fakeCarta : fakeCartas) {
-            Palo palo = PaloFactory.crearPalo(fakeCarta.palo);
-            int valor = traducirNumeroACarta(fakeCarta.numero);
-            Carta carta = new Carta(palo, valor, fakeCarta.puntos);
+        for (CartaParseada fakeCarta : fakeCartas) {
+            String paloStr = fakeCarta.getPalo();
+            String valorStr = fakeCarta.getNumero();
+            String puntosStr = fakeCarta.getPuntos();
+
+            Palo palo = PaloFactory.crearPalo(paloStr);
+            int valor = traducirNumeroACarta(valorStr);
+            int puntos = Integer.parseInt(puntosStr);
+
+            Carta carta = new Carta(palo, valor, puntos);
+
+
             cartas.add(carta);
         }
+
         return cartas;
     }
 
     private static int traducirNumeroACarta(String numero) {
         switch (numero) {
             case "As": return 11;
-            case "K": return 14;
-            case "Q": return 13;
-            case "J": return 12;
+            case "Rey": return 14;
+            case "Reina": return 13;
+            case "Jota": return 12;
             default: return Integer.parseInt(numero);
         }
     }
