@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +57,6 @@ public class jugadorTest {
 
         Jugada jugada = unJugador.armarJugada(cartasParaUsar);
 
-        Assertions.assertEquals(20, jugada.jugar());
+        Assertions.assertEquals(3, jugada.jugar());
     }
 }

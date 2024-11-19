@@ -2,26 +2,25 @@ package edu.fiuba.algo3.entrega_1.ManoDePoker;
 
 import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
-import java.util.Objects;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public abstract class ManoDePoker {
-    protected Puntaje puntaje;
     protected String nombre;
+    protected Puntaje puntaje;
+    protected double probabilidad;
 
-    public int jugar(ArrayList<Carta> cartas){
-        Puntaje sumaDePuntajes = this.puntaje;
+    public void jugar(ArrayList<Carta> cartas){
         for (Carta carta : cartas){
-            Puntaje puntajeDeCarta = carta.calcularPuntaje();
-            sumaDePuntajes.sumarConPuntaje(puntajeDeCarta);
+            this.puntaje.sumarValorDeUnPuntaje(carta.obtenerPuntaje());
         }
-        return this.puntaje.calcularPuntaje();
+
     }
 
-    public Puntaje calcularPuntaje() {
-        return this.puntaje;
+    public int calcularPuntaje(){
+        return this.puntaje.calcularPuntaje();
     }
 
     @Override
@@ -36,6 +35,11 @@ public abstract class ManoDePoker {
     public int hashCode(){
         return Objects.hash(nombre);
     }
+
+    public double obtenerProbabilidad(){
+        return this.probabilidad;
+    }
+
 
 }
 
