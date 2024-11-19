@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class FactoryRonda {
     }
 
     public void crearRondas(String filePath) {
-        List<Map<String, Object>> rondasData = Parser.parsearRondas(filePath);
+        //List<Map<String, Object>> rondasData = Parser.parsearRondas(filePath);
 
         List<Ronda> rondas = new ArrayList<Ronda>();
         for (Map<String, Object> datos : rondasData) {
@@ -87,6 +88,9 @@ public class FactoryRonda {
 
 
 }
+
+
+ */
 
 
 
