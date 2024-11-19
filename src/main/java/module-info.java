@@ -7,4 +7,6 @@ module edu.fiuba.algo {
     exports edu.fiuba.algo3.vistas;
     opens edu.fiuba.algo3.entrega_2.Parser to com.google.gson;
     opens edu.fiuba.algo3.entrega_2.ParserComodin to com.google.gson;
+    opens edu.fiuba.algo3.entrega_1.Mazo to org.mockito.Mockito;
+
 }
