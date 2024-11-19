@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_2.parserRondaTienda;
 import java.util.List;
 
 public class Tienda {
+    /*
     private List<Comodin> comodines;
     private List<Tarot2> tarots;
 
@@ -25,5 +26,5 @@ public class Tienda {
     public void seleccionar(Tarot2 tarotSeleccionado) {
         tarots.removeIf(tarot -> tarot.esElNombre(tarotSeleccionado.getNombre()));
     }
-
+*/
 }

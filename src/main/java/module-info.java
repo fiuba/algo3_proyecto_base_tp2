@@ -1,9 +1,9 @@
-module edu.fiuba.algo3 {
+module edu.fiuba.algo {
     requires javafx.controls;
     requires json.simple;
+    requires junit;
+    requires com.google.gson;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
-    requires com.fasterxml.jackson.databind;
-    requires com.fasterxml.jackson.core;
-    requires com.fasterxml.jackson.annotation;
+    opens edu.fiuba.algo3.entrega_2.Parser to com.google.gson;
 }
