@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1.Puntaje;
 
 import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
+import org.json.simple.JSONObject;
 
 public class Puntaje implements Modificable {
     private int valor;
@@ -30,6 +31,14 @@ public class Puntaje implements Modificable {
     public void aplicarModificacion(Puntaje puntaje) {
         this.valor = puntaje.valor;
         this.multiplicador = puntaje.multiplicador;
+    }
+
+    public int obtenerValor(){
+        return this.valor;
+    }
+
+    public void sumarValorDeUnPuntaje(Puntaje otroPuntaje){
+        this.valor += otroPuntaje.obtenerValor();
     }
 
     public Puntaje sumarConPuntaje(Puntaje otroPuntaje) {
