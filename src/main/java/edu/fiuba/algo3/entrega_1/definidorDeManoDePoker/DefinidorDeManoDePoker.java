@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1.definidorDeManoDePoker;
 
 import edu.fiuba.algo3.entrega_1.ManoDePoker.*;
+import edu.fiuba.algo3.entrega_1.Palo.Pica;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
 import java.util.ArrayList;
@@ -9,11 +10,16 @@ import java.util.Collections;
 public class DefinidorDeManoDePoker {
     private ArrayList<Carta> cartas;
     private int cantidadDeCartas;
+    private Carta as;
+
+    public DefinidorDeManoDePoker(){
+        this.as = new Carta(new Pica(),14,10,1);
+    }
 
     public ManoDePoker definirManoDePoker(ArrayList<Carta> arrayDeCartas){
         this.cartas = arrayDeCartas;
         this.cantidadDeCartas = this.cartas.size();
-        if(this.esEscalera()){
+        if(esEscalera()){
             return definirEscalera();
         }
         else{
@@ -24,7 +30,10 @@ public class DefinidorDeManoDePoker {
 
     private ManoDePoker definirManoComparable(){
         int cantidadDeRepetidas = 0;
-        for(int indice = 0; indice <= this.cantidadDeCartas; indice ++){
+        if(this.mismoColor()){
+            return new Color();
+        }
+        for(int indice = 0; indice < this.cantidadDeCartas; indice ++){
             int repeticiones = Collections.frequency(this.cartas,this.cartas.get(indice));
             if(repeticiones >= 2){ //necesito que se dos cartas sean iguales si su valor (ej: uno,k) es el mismo
                 cantidadDeRepetidas ++ ;
@@ -52,12 +61,12 @@ public class DefinidorDeManoDePoker {
 
 
     private boolean esEscalera(){
-        //necesito un metodo que me diga si dos valores son seguidos
+        if(this.cantidadDeCartas < 5) return false;
         Carta cartaAnterior = this.cartas.get(0);
         Carta cartaActual;
-        for(int indice = 1; indice < this.cantidadDeCartas; indice ++){
+        for(int indice = 1; indice < this.cantidadDeCartas ; indice++){
             cartaActual = this.cartas.get(indice);
-            if( !cartaActual.leSigueA(cartaAnterior)){
+            if( ! cartaActual.esMayor(cartaAnterior)){
                 return false;
             }
             cartaAnterior = cartaActual;
@@ -70,7 +79,7 @@ public class DefinidorDeManoDePoker {
      */
 
     private ManoDePoker definirEscalera(){
-        if(this.cartas.get(0).esAs()){ //crear un metodo en carta que nos diga si es as
+        if(this.cartas.get(0).esIgualA(this.as)){ //nos dice si la primer carta es un as
             return new EscaleraReal();
         }else if(this.mismoColor()){
             return new EscaleraColor();
@@ -89,9 +98,10 @@ public class DefinidorDeManoDePoker {
     }
 
     private boolean mismoColor(){
+        if(this.cantidadDeCartas < 5) return false;
         Carta cartaComparadora = this.cartas.get(0);
-        for(int indice = 1; indice <= this.cantidadDeCartas; indice ++){
-            if(!this.cartas.get(indice).sonMismoPalo(cartaComparadora)){
+        for(int indice = 1; indice < this.cantidadDeCartas; indice ++){
+            if(!this.cartas.get(indice).sonMismoPalo(cartaComparadora) ){
                 return false;
             }
         }
