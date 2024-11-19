@@ -54,10 +54,10 @@ public class ParserMazo {
 
     private static int traducirNumeroACarta(String numero) {
         switch (numero) {
-            case "As": return 11;
-            case "Rey": return 14;
-            case "Reina": return 13;
-            case "Jota": return 12;
+            case "As": return 14;
+            case "Rey": return 13;
+            case "Reina": return 12;
+            case "Jota": return 11;
             default: return Integer.parseInt(numero);
         }
     }

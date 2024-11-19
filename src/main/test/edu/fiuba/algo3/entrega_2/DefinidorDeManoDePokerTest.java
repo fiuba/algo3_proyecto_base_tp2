@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.EscaleraReal;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
+import edu.fiuba.algo3.entrega_1.Palo.Palo;
 import edu.fiuba.algo3.entrega_1.Palo.Pica;
 import edu.fiuba.algo3.entrega_1.Palo.Trebol;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
@@ -19,7 +20,8 @@ public class DefinidorDeManoDePokerTest {
     void test01seSeleccionaUnaEscaleraReal(){
         //arrange
         ArrayList<Carta> cartas = new ArrayList<Carta>();
-        cartas.add(new Carta(new Corazon(),14));
+        cartas.add(new Carta(new Corazon(),));
+        //Palo palo, int valor, int puntajeBase, int multiplicador
         cartas.add(new Carta(new Corazon(),13));
         cartas.add(new Carta(new Pica(),12));
         cartas.add(new Carta(new Corazon(),11));
