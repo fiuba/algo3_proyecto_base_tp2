@@ -42,9 +42,14 @@ public class Carta implements Modificable {
         return this.palo.sonMismoPalo(palo);
     }
 
-    public Boolean esIgualA(Carta otraCarta) {
-        return otraCarta.valor == this.valor;
+    public Puntaje obtenerPuntaje(){
+        return this.puntaje;
     }
+
+    public Boolean esAntecesor(Carta otraCarta) {
+        return otraCarta.valor == this.valor - 1;
+    }
+
 
     @Override
     public boolean equals(Object obj){

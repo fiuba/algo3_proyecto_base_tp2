@@ -12,14 +12,17 @@ public abstract class ManoDePoker {
     protected Puntaje puntaje;
     protected double probabilidad;
 
-    public int jugar(ArrayList<Carta> cartas){
-        Puntaje sumaDePuntajes = this.puntaje;
+    public void jugar(ArrayList<Carta> cartas){
         for (Carta carta : cartas){
-            Puntaje puntajeDeCarta = carta.calcularPuntaje();
-            sumaDePuntajes.sumarConPuntaje(puntajeDeCarta);
+            this.puntaje.sumarValorDeUnPuntaje(carta.obtenerPuntaje());
         }
+
+    }
+
+    public int calcularPuntaje(){
         return this.puntaje.calcularPuntaje();
     }
+
     @Override
     public boolean equals(Object obj){
         if(this == obj)return true;

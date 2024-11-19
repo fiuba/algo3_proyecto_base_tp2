@@ -65,7 +65,7 @@ public class cartaTest {
         Carta unaCarta = new Carta(corazon, 3,3,1);
         Carta otraCarta = new Carta(diamante, 3,3,1);
 
-        Boolean comparacion = unaCarta.esIgualA(otraCarta);
+        Boolean comparacion = unaCarta.equals(otraCarta);
 
         Assertions.assertTrue(comparacion);
     }

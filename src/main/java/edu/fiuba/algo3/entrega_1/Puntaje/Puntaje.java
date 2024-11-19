@@ -33,6 +33,14 @@ public class Puntaje implements Modificable {
         this.multiplicador = puntaje.multiplicador;
     }
 
+    public int obtenerValor(){
+        return this.valor;
+    }
+
+    public void sumarValorDeUnPuntaje(Puntaje otroPuntaje){
+        this.valor += otroPuntaje.obtenerValor();
+    }
+
     public Puntaje sumarConPuntaje(Puntaje otroPuntaje) {
         return new Puntaje(valor + otroPuntaje.valor, multiplicador + otroPuntaje.multiplicador);
     }

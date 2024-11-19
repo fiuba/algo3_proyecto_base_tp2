@@ -15,6 +15,12 @@ public class DefinidorDeManoDePoker {
     public DefinidorDeManoDePoker(){
         this.as = new Carta(new Pica(),14,10,1);
     }
+/*
+    public ManoDePoker definirManoDePoker(String nombreDeLaMano){
+        switch(nombreDeLaMano){
+            case "carta"
+        }
+    }*/
 
     public ManoDePoker definirManoDePoker(ArrayList<Carta> arrayDeCartas){
         this.cartas = arrayDeCartas;
@@ -66,7 +72,7 @@ public class DefinidorDeManoDePoker {
         Carta cartaActual;
         for(int indice = 1; indice < this.cantidadDeCartas ; indice++){
             cartaActual = this.cartas.get(indice);
-            if( ! cartaActual.esMayor(cartaAnterior)){
+            if( ! cartaAnterior.esAntecesor(cartaActual)){
                 return false;
             }
             cartaAnterior = cartaActual;
@@ -79,7 +85,7 @@ public class DefinidorDeManoDePoker {
      */
 
     private ManoDePoker definirEscalera(){
-        if(this.cartas.get(0).esIgualA(this.as)){ //nos dice si la primer carta es un as
+        if(this.cartas.get(0).equals(this.as)){ //nos dice si la primer carta es un as
             return new EscaleraReal();
         }else if(this.mismoColor()){
             return new EscaleraColor();

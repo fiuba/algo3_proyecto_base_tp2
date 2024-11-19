@@ -19,6 +19,15 @@ public class Jugada {
     }
     public void seleccionar(Carta carta){
         this.cartas.add(carta);
+        definirManoDePoker();
+    }
+
+    public void deseleccionar(Carta carta){
+        this.cartas.remove(carta);
+        definirManoDePoker();
+    }
+
+    private void definirManoDePoker(){
         this.manoDePoker = this.definidor.definirManoDePoker(this.cartas);
     }
 
@@ -26,7 +35,12 @@ public class Jugada {
         return this.cartas.size();
     }
 
-    public int jugar(){
-        return this.manoDePoker.jugar(this.cartas);
+    public ManoDePoker jugar(){
+        this.manoDePoker.jugar(this.cartas);
+        return this.manoDePoker;
+    }
+
+    public boolean tieneMano(ManoDePoker otraManoDePoker){
+        return this.manoDePoker.equals(otraManoDePoker);
     }
 }

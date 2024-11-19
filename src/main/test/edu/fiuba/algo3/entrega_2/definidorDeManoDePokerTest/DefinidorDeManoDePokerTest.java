@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_2.definidorDeManoDePokerTest;
 
 import edu.fiuba.algo3.entrega_1.ManoDePoker.*;
 import edu.fiuba.algo3.entrega_1.Palo.Corazon;
@@ -9,7 +9,6 @@ import edu.fiuba.algo3.entrega_1.definidorDeManoDePoker.DefinidorDeManoDePoker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
