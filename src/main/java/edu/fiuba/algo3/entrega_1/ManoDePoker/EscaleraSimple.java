@@ -6,5 +6,6 @@ public class EscaleraSimple extends ManoDePoker{
     public EscaleraSimple(){
         this.nombre = "escalera simple";
         this.puntaje = new Puntaje(30,4);
+        this.probabilidad = 0.3924;
     }
 }

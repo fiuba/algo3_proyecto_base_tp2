@@ -10,6 +10,7 @@ import java.util.Objects;
 public abstract class ManoDePoker {
     protected String nombre;
     protected Puntaje puntaje;
+    protected double probabilidad;
 
     public int jugar(ArrayList<Carta> cartas){
         Puntaje sumaDePuntajes = this.puntaje;
@@ -30,6 +31,10 @@ public abstract class ManoDePoker {
     @Override
     public int hashCode(){
         return Objects.hash(nombre);
+    }
+
+    public double obtenerProbabilidad(){
+        return this.probabilidad;
     }
 
 

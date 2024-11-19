@@ -6,5 +6,6 @@ public class DoblePar extends ManoDePoker{
     public DoblePar(){
         this.nombre = "doble par";
         this.puntaje = new Puntaje(20,2);
+        this.probabilidad = 4.7539;
     }
 }
