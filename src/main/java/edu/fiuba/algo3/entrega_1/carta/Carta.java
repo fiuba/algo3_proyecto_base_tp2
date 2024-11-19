@@ -17,12 +17,12 @@ public class Carta implements Modificable {
     private int multiplicador;
 
     public Carta(Palo palo, int valor){
-           if(valor < 2 || valor > 14){
-               throw new ValorDeCartaInvalido();
-           }
-           this.palo = palo;
-           this.valor = new Puntaje(valor,0);
-           this.multiplicador = 0;
+        if(valor < 2 || valor > 14){
+            throw new ValorDeCartaInvalido();
+        }
+        this.palo = palo;
+        this.valor = new Puntaje(valor,0);
+        this.multiplicador = 0;
     }
 
 
@@ -50,5 +50,13 @@ public class Carta implements Modificable {
 
     public Puntaje calcularPuntaje() {
         return valor;
+    }
+
+    public boolean leSigueA(Carta otraCarta){
+        return true;
+    }
+
+    public boolean esAs(){
+        return true;
     }
 }

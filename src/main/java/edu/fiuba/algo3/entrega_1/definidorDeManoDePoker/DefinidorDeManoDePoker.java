@@ -85,6 +85,7 @@ public class DefinidorDeManoDePoker {
             if(repeticiones == 2){ return new DoblePar(); }
             else if (repeticiones == 4) { return new Poker(); }
         }
+        return new Poker();
     }
 
     private boolean mismoColor(){

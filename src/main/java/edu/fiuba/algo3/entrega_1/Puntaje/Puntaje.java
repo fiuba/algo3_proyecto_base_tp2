@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1.Puntaje;
 
 import edu.fiuba.algo3.entrega_1.Modificable.Modificable;
+import org.json.simple.JSONObject;
 
 public class Puntaje implements Modificable {
     private int valor;
