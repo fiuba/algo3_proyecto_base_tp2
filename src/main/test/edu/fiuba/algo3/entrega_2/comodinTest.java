@@ -4,7 +4,6 @@ import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
 import edu.fiuba.algo3.entrega_2.comodin.ActivacionProbabilidad;
 import edu.fiuba.algo3.entrega_2.comodin.Comodin;
-import edu.fiuba.algo3.entrega_2.Factory.FactoryDeMaso;
 import edu.fiuba.algo3.entrega_2.comodin.Activacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
