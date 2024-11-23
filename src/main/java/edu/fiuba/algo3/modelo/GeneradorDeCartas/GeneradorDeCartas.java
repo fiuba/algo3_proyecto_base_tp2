@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.modelo.GeneradorDeCartas;
 
 import edu.fiuba.algo3.modelo.Palo.*;
-import edu.fiuba.algo3.modelo.Prooveedor.Proveedor;
+import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeneradorDeCartas implements Proveedor {
+public class GeneradorDeCartas implements ProveedorDeCartas {
 
 
     public GeneradorDeCartas(){}

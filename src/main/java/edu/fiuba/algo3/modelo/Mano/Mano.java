@@ -4,22 +4,22 @@ import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
-import edu.fiuba.algo3.modelo.Prooveedor.Proveedor;
+import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.ArrayList;
 import java.util.List;
 public class Mano {
-    private Proveedor proveedor;
+    private ProveedorDeCartas proveedorDeCartas;
     private List<Carta> cartas = new ArrayList();
     private Jugada jugada = new Jugada();
     private int descartes;
     //private MazoDeComodines comodines;
 
 
-    public Mano(Proveedor proveedor,int descartes, MazoDeComodines comodines) {
-        this.proveedor = proveedor;
-        this.cartas = proveedor.generarCartas();
+    public Mano(ProveedorDeCartas proveedorDeCartas, int descartes, MazoDeComodines comodines) {
+        this.proveedorDeCartas = proveedorDeCartas;
+        this.cartas = proveedorDeCartas.generarCartas();
         this.descartes = descartes;         //constructor para poder elegir la cantidad de descartes
         //this.comodines = comodines;         //y para darle los comodines
     }
