@@ -16,14 +16,6 @@ public class Mano {
     private int descartes;
     //private MazoDeComodines comodines;
 
-    public Mano(Proveedor proveedor) {
-        this.proveedor = proveedor;
-        this.cartas = proveedor.generarCartas();
-        this.ordenarMano();
-        this.descartes = 3;
-        //this.comodines = new MazoDeComodines();
-
-    }
 
     public Mano(Proveedor proveedor,int descartes, MazoDeComodines comodines) {
         this.proveedor = proveedor;

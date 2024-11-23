@@ -12,6 +12,7 @@ public class Mazo implements Proveedor{
 
     public Mazo(Proveedor proveedor){
         this.cartas = proveedor.generarCartas();
+        this.mezclar();
     }
     public void mezclar(){
         Collections.shuffle(this.cartas);
