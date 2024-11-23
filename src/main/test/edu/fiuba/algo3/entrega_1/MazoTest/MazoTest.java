@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.entrega_1.MazoTest;
-import edu.fiuba.algo3.entrega_1.GeneradorDeCartas.GeneradorDeCartas;
-import edu.fiuba.algo3.entrega_1.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

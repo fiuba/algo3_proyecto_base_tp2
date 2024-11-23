@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1.puntajeTest;
 
-import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

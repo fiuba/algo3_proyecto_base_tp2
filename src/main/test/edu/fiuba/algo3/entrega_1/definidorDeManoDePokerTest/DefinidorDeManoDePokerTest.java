@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.entrega_1.definidorDeManoDePokerTest;
 
-import edu.fiuba.algo3.entrega_1.ManoDePoker.*;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
-import edu.fiuba.algo3.entrega_1.Palo.Pica;
-import edu.fiuba.algo3.entrega_1.Palo.Trebol;
-import edu.fiuba.algo3.entrega_1.carta.Carta;
-import edu.fiuba.algo3.entrega_1.definidorDeManoDePoker.DefinidorDeManoDePoker;
+import edu.fiuba.algo3.modelo.ManoDePoker.*;
+import edu.fiuba.algo3.modelo.Palo.Corazon;
+import edu.fiuba.algo3.modelo.Palo.Pica;
+import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.definidorDeManoDePoker.DefinidorDeManoDePoker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,19 +1,19 @@
 package edu.fiuba.algo3.entrega_2.comodinTest;
 
 
-import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.EscaleraReal;
-import edu.fiuba.algo3.entrega_1.Puntaje.Puntaje;
-import edu.fiuba.algo3.entrega_2.comodin.ActivacionProbabilidad;
-import edu.fiuba.algo3.entrega_2.comodin.Comodin;
-import edu.fiuba.algo3.entrega_2.comodin.Activacion;
+import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
+import edu.fiuba.algo3.modelo.ManoDePoker.EscaleraReal;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.comodin.ActivacionProbabilidad;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
+import edu.fiuba.algo3.modelo.comodin.Activacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.Trio;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.Par;
-import edu.fiuba.algo3.entrega_2.comodin.ActivacionSiempre;
-import edu.fiuba.algo3.entrega_2.comodin.ActivacionManoDePoker;
+import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.ManoDePoker.Trio;
+import edu.fiuba.algo3.modelo.ManoDePoker.Par;
+import edu.fiuba.algo3.modelo.comodin.ActivacionSiempre;
+import edu.fiuba.algo3.modelo.comodin.ActivacionManoDePoker;
 import java.util.ArrayList;
 import java.util.List;
 

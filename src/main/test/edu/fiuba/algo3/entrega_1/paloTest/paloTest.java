@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1.paloTest;
 
-import edu.fiuba.algo3.entrega_1.Palo.*;
+import edu.fiuba.algo3.modelo.Palo.*;
 import org.junit.jupiter.api.Test;
 
 public class paloTest {

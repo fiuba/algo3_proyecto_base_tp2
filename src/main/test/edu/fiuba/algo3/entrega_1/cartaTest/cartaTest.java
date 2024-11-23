@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_1.cartaTest;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
-import edu.fiuba.algo3.entrega_1.Palo.Diamante;
-import edu.fiuba.algo3.entrega_1.Palo.Palo;
-import edu.fiuba.algo3.entrega_1.carta.Carta;
-import edu.fiuba.algo3.entrega_1.carta.ValorDeCartaInvalido;
+import edu.fiuba.algo3.modelo.Palo.Corazon;
+import edu.fiuba.algo3.modelo.Palo.Diamante;
+import edu.fiuba.algo3.modelo.Palo.Palo;
+import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.carta.ValorDeCartaInvalido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 public class cartaTest {
