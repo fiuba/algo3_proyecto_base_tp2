@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.entrega_1.Mano;
+package edu.fiuba.algo3.modelo.Mano;
 
-import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
-import edu.fiuba.algo3.entrega_1.Mazo.Mazo;
-import edu.fiuba.algo3.entrega_1.MazoDeComodines.MazoDeComodines;
-import edu.fiuba.algo3.entrega_1.Ordenador.OrdenadorDeCartas;
-import edu.fiuba.algo3.entrega_1.carta.Carta;
+import edu.fiuba.algo3.modelo.Jugada.Jugada;
+import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.ArrayList;
 import java.util.List;
