@@ -1,10 +1,16 @@
 package edu.fiuba.algo3.entrega_1.MazoTest;
 import edu.fiuba.algo3.entrega_1.GeneradorDeCartas.GeneradorDeCartas;
 import edu.fiuba.algo3.entrega_1.Mazo.Mazo;
+import edu.fiuba.algo3.entrega_1.Palo.Corazon;
+import edu.fiuba.algo3.entrega_1.Palo.Diamante;
+import edu.fiuba.algo3.entrega_1.Palo.Trebol;
+import edu.fiuba.algo3.entrega_1.carta.Carta;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MazoTest {
@@ -16,18 +22,42 @@ public class MazoTest {
     @Test
 
     public void test01ElMazoDeCartasSeCreaConLaCantidadDeCartasCorrectas(){
-        //arrange
-        int cantidadCorrecta = 52;
-        int cantidadCartas;
         Mazo maso = new Mazo(generadorDeCartas);
 
-        //act
-
-        cantidadCartas = maso.obtenerCantidadDeCartas();
-
-        // assert
+        // Act y assert
         Assertions.assertEquals(52, maso.obtenerCantidadDeCartas());
-        //Assertions.assertEquals(cantidadCorrecta, cantidadCartas);
-        //Assertions.assertTrue(cantidadDeCartas = cantidadCorrecta);
+    }
+    @Test
+    public void test02ElMazoMePuedeRepartirUnaCantidadDeOchoCartasCorrectamente(){
+        //arrange
+        int tamanioMano = 8;
+        List<Carta> cartasMano;
+        Mazo mazo = new Mazo(generadorDeCartas);
+        //act
+        cartasMano = mazo.repartirCartas();
+        //Assert
+        Assertions.assertEquals(tamanioMano, cartasMano.size());
+    }
+
+    @Test
+
+    public void test03ElmazoMeReparteUnaCantidadCorrectaDeCartasTeniendoUnaManoDe3cartas(){
+        //arrange
+        Mazo mazo = new Mazo(generadorDeCartas);
+        int tamanioMano = 8;
+        List<Carta> cartasMano = new ArrayList<>();
+        Carta carta1 = new Carta(new Corazon(), 2, 2, 1);
+        Carta carta2 = new Carta(new Diamante(),3,3,1);
+        Carta carta3 = new Carta(new Trebol(), 10,10,1);
+
+        cartasMano.add(carta1);
+        cartasMano.add(carta2);
+        cartasMano.add(carta3);
+
+        //act
+        mazo.reponer(cartasMano);
+
+        //Asssert
+        Assertions.assertEquals(tamanioMano , cartasMano.size());
     }
 }

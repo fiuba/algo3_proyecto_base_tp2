@@ -2,32 +2,33 @@ package edu.fiuba.algo3.entrega_1.Mano;
 
 import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
 import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.entrega_1.Mazo.Mazo;
 import edu.fiuba.algo3.entrega_1.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.entrega_1.Ordenador.OrdenadorDeCartas;
-import edu.fiuba.algo3.entrega_1.Prooveedor.Proveedor;
 import edu.fiuba.algo3.entrega_1.carta.Carta;
 
 import java.util.ArrayList;
 import java.util.List;
 public class Mano {
-    private Proveedor proveedor;
-    private List<Carta> cartas = new ArrayList();
+
+    private Mazo mazo;
+    private List<Carta> cartas = new ArrayList<>();
     private Jugada jugada = new Jugada();
     private int descartes;
     //private MazoDeComodines comodines;
 
-    public Mano(Proveedor proveedor) {
-        this.proveedor = proveedor;
-        this.cartas = proveedor.generarCartas();
+    public Mano(Mazo mazo) {
+        this.cartas = mazo.repartirCartas();
         this.ordenarMano();
         this.descartes = 3;
         //this.comodines = new MazoDeComodines();
 
     }
 
-    public Mano(Proveedor proveedor,int descartes, MazoDeComodines comodines) {
-        this.proveedor = proveedor;
-        this.cartas = proveedor.generarCartas();
+    public Mano(Mazo mazo,int descartes, MazoDeComodines comodines) {
+        //this.proveedor = proveedor;
+        this.mazo = mazo;
+        this.cartas = mazo.repartirCartas();
         this.descartes = descartes;         //constructor para poder elegir la cantidad de descartes
         //this.comodines = comodines;         //y para darle los comodines
     }
