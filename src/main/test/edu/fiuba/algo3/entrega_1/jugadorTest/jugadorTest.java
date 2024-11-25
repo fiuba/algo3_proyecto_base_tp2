@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -31,7 +32,7 @@ public class jugadorTest {
     @Test
     public void test01aUnJugadorSeLeAsignaUnaJugada(){
     Jugador unJugador = new Jugador("martin");
-    Mano mano = new Mano(mazo);
+    Mano mano = new Mano(mazo, 3,new MazoDeComodines());
 
     unJugador.asignarMano(mano);
 

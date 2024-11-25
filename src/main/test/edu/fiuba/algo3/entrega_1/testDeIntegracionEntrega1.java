@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
 import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
+import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
@@ -37,7 +38,7 @@ public class testDeIntegracionEntrega1{
         cartaDePrueba.add(new Carta(new Pica(),7,7,1));
 
         mazo = Mockito.mock(Mazo.class);
-        mano = new Mano(mazo);
+        mano = new Mano(mazo, 3, new MazoDeComodines());
 
         when(mazo.generarCartas()).thenReturn(cartaDePrueba);
     }

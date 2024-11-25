@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1.manoTest;
 import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
@@ -38,7 +39,7 @@ public class ManoTest {
     public void test01unaManoSeCreaConUnTamanioDe8cartas(){
         //arrange
         Mazo mazo = new Mazo(new FactoryDeMaso("src/main/resources/mazo.json"));
-        Mano mano = new Mano(mazo);
+        Mano mano = new Mano(mazo,3, new MazoDeComodines());
 
     //act assert
         Assertions.assertEquals(true, mano.esManoCompleta());

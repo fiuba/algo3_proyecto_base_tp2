@@ -2,7 +2,7 @@ package edu.fiuba.algo3.controllers.Parser;
 
 public class EfectoParseado {
     private int puntos;
-    private int multiplicador;
+    private double multiplicador;
 
     // Getters y setters
     public int getPuntos() {
@@ -13,11 +13,11 @@ public class EfectoParseado {
         this.puntos = puntos;
     }
 
-    public int getMultiplicador() {
+    public double getMultiplicador() {
         return multiplicador;
     }
 
-    public void setMultiplicador(int multiplicador) {
+    public void setMultiplicador(double multiplicador) {
         this.multiplicador = multiplicador;
     }
 }

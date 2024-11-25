@@ -41,7 +41,7 @@ public class JugadaTest {
         //act
         jugada.seleccionar(carta);
         ManoDePoker manoObtenida = jugada.jugar();
-        int puntosObtenidos = manoObtenida.calcularPuntaje();
+        double puntosObtenidos = manoObtenida.calcularPuntaje();
 
         //assert
         assertEquals(7,puntosObtenidos);
@@ -58,7 +58,7 @@ public class JugadaTest {
         jugada.seleccionar(carta);
         jugada.seleccionar(carta2);
         ManoDePoker manoObtenida = jugada.jugar();
-        int puntosObtenidos = manoObtenida.calcularPuntaje();
+        double puntosObtenidos = manoObtenida.calcularPuntaje();
 
         //assert
         assertEquals(28,puntosObtenidos);

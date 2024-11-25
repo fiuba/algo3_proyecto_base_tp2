@@ -1,18 +1,20 @@
 package edu.fiuba.algo3.modelo.Puntaje;
 
 import edu.fiuba.algo3.modelo.Modificable.Modificable;
+import edu.fiuba.algo3.modelo.Modificable.Modificador;
 
 public class Puntaje implements Modificable {
     private int valor;
-    private int multiplicador;
+    private double multiplicador;
 
-    public Puntaje(int valor, int multiplicador){
+    public Puntaje(int valor, double multiplicador){
         this.valor = valor;
         this.multiplicador = multiplicador;
     }
 
     public int calcularPuntaje(){
-        return valor  * multiplicador;
+        double valorDecimal = (double) valor;
+        return  (int)(valorDecimal * multiplicador);
     }
 
     public void modificarMultiplicador(int valorASumar){
@@ -32,9 +34,16 @@ public class Puntaje implements Modificable {
         this.multiplicador = puntaje.multiplicador;
     }
 
-    public int getMultiplicador(){
+    @Override
+    public Boolean validarModificable(Modificador modificador) {
+        return modificador.validarTipo("puntaje");
+    }
+
+    public double getMultiplicador(){
         return this.multiplicador;
     }
+
+
 
     public int obtenerValor(){
         return this.valor;
