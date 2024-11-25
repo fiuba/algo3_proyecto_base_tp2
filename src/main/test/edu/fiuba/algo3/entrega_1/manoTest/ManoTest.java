@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_1.manoTest;
 
-import edu.fiuba.algo3.entrega_1.GeneradorDeCartas.GeneradorDeCartas;
-import edu.fiuba.algo3.entrega_1.Mano.Mano;
-import edu.fiuba.algo3.entrega_1.Mazo.Mazo;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
-import edu.fiuba.algo3.entrega_1.Palo.Diamante;
-import edu.fiuba.algo3.entrega_1.Palo.Trebol;
-import edu.fiuba.algo3.entrega_1.carta.Carta;
-import edu.fiuba.algo3.entrega_2.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
+import edu.fiuba.algo3.modelo.Mano.Mano;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.Palo.Corazon;
+import edu.fiuba.algo3.modelo.Palo.Diamante;
+import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

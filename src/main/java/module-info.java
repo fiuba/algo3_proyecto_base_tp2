@@ -5,5 +5,6 @@ module edu.fiuba.algo {
     requires com.google.gson;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
-    opens edu.fiuba.algo3.entrega_2.Parser to com.google.gson;
+    opens edu.fiuba.algo3.controllers.Parser to com.google.gson;
+    opens edu.fiuba.algo3.controllers.Factory to com.google.gson;
 }

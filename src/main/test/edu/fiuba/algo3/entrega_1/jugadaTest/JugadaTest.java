@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.entrega_2.jugadaTest;
 
 
-import edu.fiuba.algo3.entrega_1.Jugada.Jugada;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.CartaMasAlta;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.EscaleraSimple;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.ManoDePoker;
-import edu.fiuba.algo3.entrega_1.ManoDePoker.Par;
-import edu.fiuba.algo3.entrega_1.Palo.Corazon;
-import edu.fiuba.algo3.entrega_1.Palo.Diamante;
-import edu.fiuba.algo3.entrega_1.Palo.Pica;
-import edu.fiuba.algo3.entrega_1.Palo.Trebol;
-import edu.fiuba.algo3.entrega_1.carta.Carta;
+import edu.fiuba.algo3.modelo.Jugada.Jugada;
+import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
+import edu.fiuba.algo3.modelo.ManoDePoker.EscaleraSimple;
+import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.ManoDePoker.Par;
+import edu.fiuba.algo3.modelo.Palo.Corazon;
+import edu.fiuba.algo3.modelo.Palo.Diamante;
+import edu.fiuba.algo3.modelo.Palo.Pica;
+import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.carta.Carta;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
