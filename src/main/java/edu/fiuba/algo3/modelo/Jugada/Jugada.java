@@ -18,10 +18,14 @@ public class Jugada {
         this.cartas = new ArrayList<Carta>();
         this.definidor = new DefinidorDeManoDePoker();
     }
-    public void seleccionar(Carta carta){
+    public ManoDePoker seleccionar(Carta carta){
+        if (this.cartas.size() >= 5) {
+            throw new IllegalStateException("Ya se han seleccionado las cartas máximas permitidas (5 cartas).");
+        }
         this.cartas.add(carta);
         OrdenadorDeCartas.ordenarCartas(this.cartas);
         definirManoDePoker();
+        return this.manoDePoker;
     }
 
     public Carta deseleccionar(Carta carta){
