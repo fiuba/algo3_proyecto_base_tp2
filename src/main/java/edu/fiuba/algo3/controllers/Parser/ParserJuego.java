@@ -29,6 +29,6 @@ public class ParserJuego {
         int manos = fakeRonda.getManos();
         int descartes = fakeRonda.getDescarte();
         int puntajeASuperar = fakeRonda.getPuntajeASuperar();
-        return new Ronda(tienda);
+        return new Ronda(tienda, nro, manos, descartes, puntajeASuperar);
     }
 }

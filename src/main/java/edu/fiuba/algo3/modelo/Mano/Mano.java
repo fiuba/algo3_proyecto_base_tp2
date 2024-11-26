@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo.Mano;
-
 import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
 import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.ArrayList;
@@ -39,24 +39,30 @@ public class Mano {
         return cartas;
     }
 
-    public void seleccionarCarta(int posicionMano){
+    public ManoDePoker seleccionarCarta(int posicionMano){
         Carta carta = this.cartas.get(posicionMano);
-        jugada.seleccionar(carta);
         this.cartas.remove(carta);
+        return jugada.seleccionar(carta);
     }
+
+    public ManoDePoker seleccionarCarta(int posicionMano, Tarot tarot){
+        Carta carta = this.cartas.get(posicionMano);
+        this.cartas.remove(carta);
+        tarot.aplicarA(carta);
+        return jugada.seleccionar(carta);
+    }
+
 
     public void desSeleccionarCarta(Carta carta){
         this.cartas.add(jugada.deseleccionar(carta));
         this.ordenarMano();
     }
 
-
     public int jugarCartas(){
         ManoDePoker manoDePoker = jugada.jugar();  //se juegan las cartas seleccionadas y devuelve los puntos obtenidos
         //comodines.aplicar(manoDePoker);
         return manoDePoker.calcularPuntaje();
     }
-
 
     public void descartarCartas(){
         //verificar que hayan descartes

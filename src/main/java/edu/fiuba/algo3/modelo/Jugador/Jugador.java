@@ -37,4 +37,6 @@ public class Jugador {
     public boolean puedeJugar() {
         return this.mano.esManoCompleta();
     }
+
+    public Mano getMano() {return this.mano;}
 }
