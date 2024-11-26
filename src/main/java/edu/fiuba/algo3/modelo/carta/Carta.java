@@ -63,7 +63,8 @@ public class Carta implements Modificable {
     public int hashCode(){
         return Objects.hash(valor);
     }
-    @Override
+
+
     public void aplicarModificacion(Puntaje puntaje) {
         this.puntaje = puntaje;
     }
@@ -71,6 +72,10 @@ public class Carta implements Modificable {
     @Override
     public Boolean validarModificable(Modificador modificador) {
         return modificador.validarTipo("carta");
+    }
+    public boolean esIgual(Modificable otroModificable){
+        if(otroModificable == null || getClass() != otroModificable.getClass()) return false;
+        return true ;
     }
 
     public Puntaje calcularPuntaje() {

@@ -42,13 +42,19 @@ public abstract class ManoDePoker implements Modificable {
         return Objects.hash(nombre);
     }
 
-    public double obtenerProbabilidad(){
-        return this.probabilidad;
+    /*tanto carta como mano de poker tienen puntaje, por lo tanto ellos son los modificables
+    * el puntaje que se modifica debería estar implementado dentro de cada uno de ellos*/
+    public void aplicarModificacion(Puntaje puntaje){
+        this.puntaje = puntaje; //se lo pongo en manoDePoker para respetar el encapsulamiento
+
     }
 
     @Override
     public void aplicarModificacion(Puntaje valor) {
         this.puntaje.aplicarModificacion(valor);
+    }
+    public boolean esIgual(Modificable otroModificable){
+        return this.equals(otroModificable);
     }
 
     @Override
