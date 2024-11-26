@@ -1,13 +1,11 @@
-package edu.fiuba.algo3.entrega_3;
+package edu.fiuba.algo3.entrega_3.parserRondaTest;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
-import edu.fiuba.algo3.controllers.Parseados.ComodinParseado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
-import edu.fiuba.algo3.controllers.Parseados.RondaParseada;
-import edu.fiuba.algo3.controllers.Parser.ParserJuego;
+
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
