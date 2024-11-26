@@ -26,8 +26,15 @@ public class Jugada {
 
     public Carta deseleccionar(Carta carta){
         this.cartas.remove(carta);  //devuleve la carta para que la mano la vuelva a guadar en su array
-        definirManoDePoker();
+        this.definirManoDePoker();
         return carta;
+    }
+
+    public Carta deseleccionar(int posicion){
+        Carta cartaARemover = this.cartas.get(posicion);
+        this.cartas.remove(posicion);  //devuleve la carta para que la mano la vuelva a guadar en su array
+        this.definirManoDePoker();
+        return cartaARemover;
     }
 
     private void definirManoDePoker(){

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.ronda;
 
 public class Tienda {
+
+    public Tienda(){}
     /*
     private List<Comodin> comodines;
     private List<Tarot> tarots;
