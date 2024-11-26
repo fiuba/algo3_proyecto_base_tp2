@@ -17,13 +17,21 @@ public class Puntaje implements Modificable {
         return  (int)(valorDecimal * multiplicador);
     }
 
-    public void modificarMultiplicador(int valorASumar){
+    public void modificarMultiplicador(double valorASumar){
         this.multiplicador += valorASumar;
+    }
+
+    public void multiplicarMultiplicador(double valorAMultiplicar) {
+        this.multiplicador *= valorAMultiplicar;
     }
 
     public void modificarValor(int valorASumar){
         this.valor += valorASumar;
     }
+    public void multiplicarValor(int valorAMultiplicar){
+        this.valor *= valorAMultiplicar;
+    }
+
 
     public boolean compararPuntaje(Puntaje puntaje){return puntaje.valor == this.valor && puntaje.multiplicador == this.multiplicador;}
 

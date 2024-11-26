@@ -5,23 +5,26 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import java.util.List;
 
 public class Comodin {
-    private Puntaje puntaje;
+    private Efecto efecto;
     private String descripcion;
     private String nombre;
     private Activacion activacion;
 
-    public Comodin(String nombre, String descripcion, int valor, int multiplicador, Activacion activacion) {
-        this.puntaje = new Puntaje(valor, multiplicador);
+    public Comodin(String nombre, String descripcion,Efecto efecto, Activacion activacion) {
+        this.efecto = efecto;
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.activacion = activacion;
     }
     public Puntaje aplicarA(ManoDePoker mano) {
         Puntaje puntajeMano = mano.devolverPuntaje();
+        Puntaje puntajeModificado;
         if (!activacion.esActivable(mano)) {
-            return puntajeMano;
+            puntajeModificado = puntajeMano;
+        }else {
+            puntajeModificado = efecto.aplicarEfecto(puntajeMano);
         }
-        return puntajeMano.sumarConPuntaje(this.puntaje);
+        return puntajeModificado;
     }
 
 }

@@ -38,4 +38,6 @@ public class ComodinParseado {
         public void setEfecto(EfectoParseado efecto) {
             this.efecto = efecto;
         }
-    }
+
+
+}
