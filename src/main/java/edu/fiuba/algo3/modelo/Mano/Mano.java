@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.modelo.Mano;
 
+import edu.fiuba.algo3.MazoDeTarots;
 import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.ArrayList;
@@ -70,5 +72,9 @@ public class Mano {
         this.descartes--;
         jugada.descartar();
         //comodines.actualizarPorDescarte();
+    }
+    //este le aplica a la mano que le corresponde
+    public void aplicarTarot(Tarot tarot,ManoDePoker manoDePoker){
+        this.jugada.aplicarTarotAMano(tarot,manoDePoker);
     }
 }

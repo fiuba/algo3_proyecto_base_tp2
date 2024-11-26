@@ -62,9 +62,15 @@ public class Carta implements Modificable {
     public int hashCode(){
         return Objects.hash(valor);
     }
-    @Override
+
+
     public void aplicarModificacion(Puntaje puntaje) {
         this.puntaje = puntaje;
+    }
+
+    public boolean esIgual(Modificable otroModificable){
+        if(otroModificable == null || getClass() != otroModificable.getClass()) return false;
+        return true ;
     }
 
     public Puntaje calcularPuntaje() {

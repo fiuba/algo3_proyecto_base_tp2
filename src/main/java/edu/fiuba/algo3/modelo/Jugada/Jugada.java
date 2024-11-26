@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Jugada;
 import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.definidorDeManoDePoker.DefinidorDeManoDePoker;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class Jugada {
+
     private ArrayList<Carta> cartas;
     private ManoDePoker manoDePoker = new CartaMasAlta();
     private DefinidorDeManoDePoker definidor;
@@ -57,5 +59,9 @@ public class Jugada {
 
     public boolean tieneMano(ManoDePoker otraManoDePoker){
         return this.manoDePoker.equals(otraManoDePoker);
+    }
+
+    public void aplicarTarotAMano(Tarot tarot, ManoDePoker mano){
+        this.definidor.aplicarTarotAMano(tarot,mano);
     }
 }

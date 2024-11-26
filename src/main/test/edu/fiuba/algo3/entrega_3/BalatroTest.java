@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.MazoDeTarots;
 import edu.fiuba.algo3.modelo.Mano.Mano;
+import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import org.junit.jupiter.api.Test;
 
@@ -229,6 +232,38 @@ public class BalatroTest {
         //6+5+4+3+2 de las cartas + 100 de la mano de poker (escalera color)
         //multiplicado por el multiplicador de la mano de poker 8
         assertEquals(960,puntosObtenidos);
+
+    }
+
+    @Test
+    void test08jugadorAplicaTarotAManoDePokerSeleccionaUnaCartaYJuegaSinComodines(){
+        //arrange
+        ArrayList<Carta> cartas = new ArrayList<Carta>();
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 3,3,1));
+        cartas.add( new Carta(new Pica(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 3,3,1));
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 12,10,1));
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+
+        Tarot tarot = new Tarot(10,2,new CartaMasAlta());
+        /*MazoDeTarots tarots = new MazoDeTarots();
+        tarots.agregar(tarot);*/
+
+        Mazo mazoDeCartas = new Mazo(cartas);
+        Mano manoDeLaRonda = new Mano(mazoDeCartas);
+        MazoDeComodines comodines = new MazoDeComodines();
+
+        //act
+        //en estos casos voy a actuar como el jugador
+        manoDeLaRonda.seleccionarCarta(1);
+        manoDeLaRonda.aplicarTarot(tarot,new CartaMasAlta()); //provisorio
+        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+
+        //assert
+        assertEquals(26,puntosObtenidos);
 
     }
 }

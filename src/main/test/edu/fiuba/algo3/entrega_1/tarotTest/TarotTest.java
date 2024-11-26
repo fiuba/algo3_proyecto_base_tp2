@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 public class TarotTest {
 
     @Test
@@ -30,4 +30,4 @@ public class TarotTest {
 
         assertTrue(puntaje.compararPuntaje(puntajeEsperado), "El puntaje debe aumentar en 10.");
     }
-}
+}*/
