@@ -3,6 +3,8 @@ package edu.fiuba.algo3.controllers.Parser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.controllers.Factory.FactoryModificador;
+import edu.fiuba.algo3.controllers.Parseados.EfectoParseado;
+import edu.fiuba.algo3.controllers.Parseados.TarotParseado;
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;

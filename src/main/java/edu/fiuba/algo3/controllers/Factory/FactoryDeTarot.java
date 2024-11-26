@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controllers.Factory;
 
 import edu.fiuba.algo3.controllers.Parser.ParserTarot;
-import edu.fiuba.algo3.controllers.Parser.TarotParseado;
+import edu.fiuba.algo3.controllers.Parseados.TarotParseado;
 import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeTarots;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 
@@ -16,6 +16,10 @@ public class FactoryDeTarot implements ProveedorDeTarots {
     @Override
     public List<Tarot> generarTarots() {
         List<TarotParseado> tarotsFake = ParserTarot.convertirDeJsonAFakeTarot(this.ruta);
+        List<Tarot> tarots = ParserTarot.parsearDeFakeTarotATarot(tarotsFake);
+        return tarots;
+    }
+    public List<Tarot> generarTarots( List<TarotParseado> tarotsFake) {
         List<Tarot> tarots = ParserTarot.parsearDeFakeTarotATarot(tarotsFake);
         return tarots;
     }

@@ -7,4 +7,5 @@ module edu.fiuba.algo {
     exports edu.fiuba.algo3.vistas;
     opens edu.fiuba.algo3.controllers.Parser to com.google.gson;
     opens edu.fiuba.algo3.controllers.Factory to com.google.gson;
+    opens edu.fiuba.algo3.controllers.Parseados to com.google.gson;
 }

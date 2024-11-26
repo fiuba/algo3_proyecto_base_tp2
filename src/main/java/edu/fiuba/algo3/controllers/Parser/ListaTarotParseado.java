@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.controllers.Parser;
 
+import edu.fiuba.algo3.controllers.Parseados.TarotParseado;
+
 import java.util.List;
 
 public class ListaTarotParseado {

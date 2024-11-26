@@ -3,6 +3,8 @@ import com.google.gson.Gson;
 
 import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.controllers.Factory.PaloFactory;
+import edu.fiuba.algo3.controllers.Parseados.CartaParseada;
+import edu.fiuba.algo3.controllers.Parseados.MazoParseado;
 import edu.fiuba.algo3.modelo.Palo.Palo;
 import edu.fiuba.algo3.modelo.carta.Carta;
 

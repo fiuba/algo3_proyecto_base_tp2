@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controllers.Parser;
+package edu.fiuba.algo3.controllers.Parseados;
 
 public class CartaParseada {
     private String nombre;
