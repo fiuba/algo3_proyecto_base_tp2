@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.controllers.Factory;
 
-import edu.fiuba.algo3.modelo.comodin.Activacion;
-import edu.fiuba.algo3.modelo.comodin.ActivacionDescarte;
-import edu.fiuba.algo3.modelo.comodin.ActivacionSiempre;
+import edu.fiuba.algo3.modelo.activacion.Activacion;
+import edu.fiuba.algo3.modelo.activacion.ActivacionDescarte;
+import edu.fiuba.algo3.modelo.activacion.ActivacionSiempre;
 
 import java.util.Map;
 

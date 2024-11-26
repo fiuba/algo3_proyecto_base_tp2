@@ -2,7 +2,7 @@ package edu.fiuba.algo3.controllers.Factory;
 
 import edu.fiuba.algo3.controllers.Parseados.EfectoParseado;
 import edu.fiuba.algo3.controllers.Parser.ErrorAlParsearJson;
-import edu.fiuba.algo3.modelo.comodin.*;
+import edu.fiuba.algo3.modelo.efectos.*;
 
 public class EfectoFactory {
 

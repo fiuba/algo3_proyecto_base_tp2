@@ -5,9 +5,9 @@ import com.google.gson.reflect.TypeToken;
 import edu.fiuba.algo3.controllers.Factory.ActivacionFactory;
 import edu.fiuba.algo3.controllers.Factory.EfectoFactory;
 import edu.fiuba.algo3.controllers.Parseados.ComodinParseado;
-import edu.fiuba.algo3.modelo.comodin.Activacion;
+import edu.fiuba.algo3.modelo.activacion.Activacion;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
-import edu.fiuba.algo3.modelo.comodin.Efecto;
+import edu.fiuba.algo3.modelo.efectos.Efecto;
 
 
 import java.io.FileReader;

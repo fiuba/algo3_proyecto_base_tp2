@@ -2,7 +2,8 @@ package edu.fiuba.algo3.modelo.comodin;
 
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
-import java.util.List;
+import edu.fiuba.algo3.modelo.activacion.Activacion;
+import edu.fiuba.algo3.modelo.efectos.Efecto;
 
 public class Comodin {
     private Efecto efecto;
