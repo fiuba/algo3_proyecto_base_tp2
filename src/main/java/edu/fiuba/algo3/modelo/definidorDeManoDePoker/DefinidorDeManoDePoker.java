@@ -134,8 +134,13 @@ public class DefinidorDeManoDePoker {
         return true;
     }
 
-    public void aplicarTarotAMano(Tarot tarot, ManoDePoker mano){
-        tarot.aplicarModificacion(this.manosDePoker);
+    public void aplicarTarotAMano(Tarot tarot){
+        for (ManoDePoker manoDePoker : this.manosDePoker){
+            if(tarot.puedeModificar(manoDePoker)){
+                tarot.aplicarA(manoDePoker);
+            }
+        }
+
     }
 
 }

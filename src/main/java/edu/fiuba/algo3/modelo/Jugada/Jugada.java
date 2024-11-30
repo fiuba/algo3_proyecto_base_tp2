@@ -65,7 +65,7 @@ public class Jugada {
         return this.manoDePoker.equals(otraManoDePoker);
     }
 
-    public void aplicarTarotAMano(Tarot tarot, ManoDePoker mano){
-        this.definidor.aplicarTarotAMano(tarot,mano);
+    public void aplicarTarotAMano(Tarot tarot){
+        this.definidor.aplicarTarotAMano(tarot);
     }
 }

@@ -17,20 +17,22 @@ public class Mano {
     private List<Carta> cartas = new ArrayList<>();
     private Jugada jugada = new Jugada();
     private int descartes;
-    //private MazoDeComodines comodines;
+    private MazoDeComodines comodines;
 
     public Mano(Mazo mazo) {
-        this.cartas = mazo.repartirCartas();
+        this.mazo = mazo;
+        this.cartas = mazo.generarCartas();
         this.ordenarMano();
-        this.descartes = 3;;
-
     }
 
-    public Mano(Mazo mazo,int descartes) {
+
+    public Mano(Mazo mazo,int descartes, MazoDeComodines comodines) {
         //this.proveedor = proveedor;
+        this.comodines = comodines;
         this.mazo = mazo;
         this.cartas = mazo.repartirCartas();
-        this.descartes = descartes;         //constructor para poder elegir la cantidad de descartes
+        this.ordenarMano();
+        this.descartes = descartes;
     }
 
 
@@ -74,7 +76,7 @@ public class Mano {
         //comodines.actualizarPorDescarte();
     }
     //este le aplica a la mano que le corresponde
-    public void aplicarTarot(Tarot tarot,ManoDePoker manoDePoker){
-        this.jugada.aplicarTarotAMano(tarot,manoDePoker);
+    public void aplicarTarot(Tarot tarot){
+        this.jugada.aplicarTarotAMano(tarot);
     }
 }

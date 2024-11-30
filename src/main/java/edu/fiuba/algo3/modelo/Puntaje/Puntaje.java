@@ -35,17 +35,8 @@ public class Puntaje {
 
     public boolean compararPuntaje(Puntaje puntaje){return puntaje.valor == this.valor && puntaje.multiplicador == this.multiplicador;}
 
-/*
-    @Override
-    public void aplicarModificacion(Puntaje puntaje) {
-        this.valor = puntaje.valor;
-        this.multiplicador = puntaje.multiplicador;
-    }*/
 
-    @Override
-    public Boolean validarModificable(Modificador modificador) {
-        return modificador.validarTipo("puntaje");
-    }
+
 
     public double getMultiplicador(){
         return this.multiplicador;
@@ -67,5 +58,10 @@ public class Puntaje {
 
     public boolean esMayor(Puntaje valor) {
         return valor.valor > this.valor;
+    }
+
+    public void aplicarModificacion(Puntaje valor) {
+        this.valor = valor.valor;
+        this.multiplicador = valor.multiplicador;
     }
 }

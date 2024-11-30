@@ -23,14 +23,5 @@ public class TarotTest {
         assertTrue(puntaje.compararPuntaje(puntajeEsperado), "El valor de la carta debe aumentar en 10.");
     }
 
-    @Test
-    public void testAplicarTarotAPuntaje() {
-        Puntaje puntaje = new Puntaje(2, 3.0);
-        Tarot tarot = new Tarot("prueba", "prueba", new Puntaje(4, 2.0), new Modificador("puntaje"));
 
-        tarot.aplicarA(puntaje);
-        Puntaje puntajeEsperado = new Puntaje(4, 2.0);
-
-        assertTrue(puntaje.compararPuntaje(puntajeEsperado), "El puntaje debe aumentar en 10.");
-    }
 }

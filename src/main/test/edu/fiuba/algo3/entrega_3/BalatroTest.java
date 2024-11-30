@@ -5,13 +5,19 @@ import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -19,9 +25,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BalatroTest {
 
+
+
     @Test
     void test01jugadorSeleccionaUnaCartaYJuegaSinComodines(){
-        //arrange
         ArrayList<Carta> cartas = new ArrayList<Carta>();
         cartas.add( new Carta(new Corazon(), 2,2,1));
         cartas.add( new Carta(new Corazon(), 2,2,1));
@@ -32,7 +39,13 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 2,2,1));
         cartas.add( new Carta(new Corazon(), 2,2,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        //arrange
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -48,7 +61,7 @@ public class BalatroTest {
 
     @Test
     void test02jugadorSeleccionaUnaCartaYJuegaSinComodines(){
-        //arrange
+
         ArrayList<Carta> cartas = new ArrayList<Carta>();
         cartas.add( new Carta(new Corazon(), 2,2,1));
         cartas.add( new Carta(new Corazon(), 3,3,1));
@@ -59,7 +72,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 12,10,1));
         cartas.add( new Carta(new Corazon(), 2,2,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -86,7 +102,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 12,10,1));
         cartas.add( new Carta(new Diamante(), 14,10,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -114,7 +133,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 12,10,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -144,7 +166,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 6,6,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -179,7 +204,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 6,6,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -213,7 +241,10 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 6,6,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
@@ -248,18 +279,21 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 12,10,1));
         cartas.add( new Carta(new Corazon(), 2,2,1));
 
-        Tarot tarot = new Tarot(10,2,new CartaMasAlta());
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Tarot tarot = new Tarot("qsy", "aumenta los puntos en 10 y el multi en 2", new Puntaje(10, 2), new Modificador("carta mas alta"));
         /*MazoDeTarots tarots = new MazoDeTarots();
         tarots.agregar(tarot);*/
 
-        Mazo mazoDeCartas = new Mazo(cartas);
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
         Mano manoDeLaRonda = new Mano(mazoDeCartas);
         MazoDeComodines comodines = new MazoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(1);
-        manoDeLaRonda.aplicarTarot(tarot,new CartaMasAlta()); //provisorio
+        manoDeLaRonda.aplicarTarot(tarot); //provisorio
         int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
 
         //assert

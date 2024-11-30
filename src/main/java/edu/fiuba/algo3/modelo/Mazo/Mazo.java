@@ -2,20 +2,16 @@ package edu.fiuba.algo3.modelo.Mazo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import edu.fiuba.algo3.modelo.Prooveedor.Proveedor;
+import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
-public class Mazo implements Proveedor {
+public class Mazo implements ProveedorDeCartas {
     final int TAMANIOMANO = 8;
     private List<Carta> cartas;
 
-    public Mazo(Proveedor proveedor) {
+    public Mazo(ProveedorDeCartas proveedor) {
         this.cartas = proveedor.generarCartas();
         this.mezclar();
-    }
-
-    public Mazo(ArrayList<Carta> cartas){
-        this.cartas = cartas;
     }
 
     public void mezclar() {

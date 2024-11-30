@@ -10,8 +10,6 @@ public class Modificador {
         this.tipoDeModificable = modificicable;
     }
 
-
-
     public boolean modificar(Modificable modificable) {
         return modificable.validarModificable(this);
     }

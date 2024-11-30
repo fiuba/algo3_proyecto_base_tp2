@@ -44,10 +44,6 @@ public abstract class ManoDePoker implements Modificable {
 
     /*tanto carta como mano de poker tienen puntaje, por lo tanto ellos son los modificables
     * el puntaje que se modifica debería estar implementado dentro de cada uno de ellos*/
-    public void aplicarModificacion(Puntaje puntaje){
-        this.puntaje = puntaje; //se lo pongo en manoDePoker para respetar el encapsulamiento
-
-    }
 
     @Override
     public void aplicarModificacion(Puntaje valor) {

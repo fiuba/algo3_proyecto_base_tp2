@@ -39,13 +39,16 @@ public class Ronda {
         this.mazo = mazo;
     }
 
+    /*
     public Puntaje seleccionar(int posicionCarta) {
         return this.jugador.getMano().seleccionarCarta(posicionCarta).devolverPuntaje();
-    }
+    }*/
 
+
+    /*
     public Puntaje seleccionar(int posicionCarta, Tarot tarot) {
         return this.jugador.getMano().seleccionarCarta(posicionCarta,tarot).devolverPuntaje();
-    }
+    }*/
 
     public void jugar() {
         if( this.manos >= 1 ){
