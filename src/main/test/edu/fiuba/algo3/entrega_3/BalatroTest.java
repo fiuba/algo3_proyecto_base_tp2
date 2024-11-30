@@ -210,7 +210,7 @@ public class BalatroTest {
 
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(5);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(6);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(1);   //-> {12,5,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}

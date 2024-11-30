@@ -73,10 +73,7 @@ public class Carta implements Modificable {
     public Boolean validarModificable(Modificador modificador) {
         return modificador.validarTipo("carta");
     }
-    public boolean esIgual(Modificable otroModificable){
-        if(otroModificable == null || getClass() != otroModificable.getClass()) return false;
-        return true ;
-    }
+
 
     public Puntaje calcularPuntaje() {
         return puntaje;

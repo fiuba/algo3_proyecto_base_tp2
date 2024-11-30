@@ -48,12 +48,15 @@ public class Puntaje {
         return this.valor;
     }
 
-    public void sumarValorDeUnPuntaje(Puntaje otroPuntaje){
-        this.valor += otroPuntaje.obtenerValor();
-    }
+
 
     public Puntaje sumarConPuntaje(Puntaje otroPuntaje) {
         return new Puntaje(valor + otroPuntaje.valor, multiplicador + otroPuntaje.multiplicador);
+    }
+
+    public void sumarConPuntajeYMultiplicadorMenos1(Puntaje otroPuntaje) {
+        this.valor += otroPuntaje.obtenerValor();
+        this.multiplicador   += otroPuntaje.getMultiplicador() -1; //le resta uno para no sumar de mas (supuestos)
     }
 
     public boolean esMayor(Puntaje valor) {
@@ -63,5 +66,9 @@ public class Puntaje {
     public void aplicarModificacion(Puntaje valor) {
         this.valor = valor.valor;
         this.multiplicador = valor.multiplicador;
+    }
+
+    public void sumarValorDeUnPuntaje(Puntaje puntaje) {
+        this.valor += puntaje.valor;
     }
 }

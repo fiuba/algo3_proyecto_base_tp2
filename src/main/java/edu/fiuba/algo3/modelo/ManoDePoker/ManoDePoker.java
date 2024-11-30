@@ -16,7 +16,7 @@ public abstract class ManoDePoker implements Modificable {
 
     public void jugar(ArrayList<Carta> cartas){
         for (Carta carta : cartas){
-            this.puntaje.sumarValorDeUnPuntaje(carta.obtenerPuntaje());
+            this.puntaje.sumarConPuntajeYMultiplicadorMenos1(carta.obtenerPuntaje());
         }
 
     }

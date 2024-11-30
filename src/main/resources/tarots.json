@@ -7,8 +7,8 @@
                 "puntos": 10,
                 "multiplicador": 2
             },
-            "sobre": "carta",            //¿puede ser que el profe se haya equivocado y sea sobre mano, ejemplar carta mas alta?
-            "ejemplar": "cualquiera"
+            "sobre": "mano",            //modificado
+            "ejemplar": "carta mas alta"
         },
         {
             "nombre": "El Mago",
