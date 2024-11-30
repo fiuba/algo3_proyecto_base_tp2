@@ -21,8 +21,8 @@ public class Puntaje {
         this.multiplicador += valorASumar;
     }
 
-    public void multiplicarMultiplicador(double valorAMultiplicar) {
-        this.multiplicador *= valorAMultiplicar;
+    public void multiplicarMultiplicador(Puntaje puntaje) {
+        this.multiplicador *= puntaje.multiplicador;
     }
 
     public void modificarValor(int valorASumar){

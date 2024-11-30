@@ -203,11 +203,9 @@ public class BalatroTest {
         cartas.add( new Carta(new Corazon(), 6,6,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
-        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
-
-        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
-        Mano manoDeLaRonda = new Mano(mazoDeCartas);
+        Mazo mazoMock = Mockito.mock(Mazo.class);
+        Mockito.when(mazoMock.generarCartas()).then(invocationOnMock -> cartas);
+        Mano manoDeLaRonda = new Mano(mazoMock);
         MazoDeComodines comodines = new MazoDeComodines();
 
         //act

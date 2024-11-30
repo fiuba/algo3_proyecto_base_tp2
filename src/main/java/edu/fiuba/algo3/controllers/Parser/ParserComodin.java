@@ -40,11 +40,9 @@ public class ParserComodin {
             Object activacionData = fakeComodin.getActivacion();
             Activacion activacion = ActivacionFactory.crearActivacion(activacionData);
             List<Activacion> listaActivaciones = new ArrayList<>();
-            listaActivaciones.add(activacion);  // Puedes agregar más activaciones si es necesario
-            Efecto efecto = EfectoFactory.crearEfecto(descripcion, fakeComodin.getEfecto());
-
-
-            Comodin comodin = new Comodin(nombreStr, descripcion,efecto, listaActivaciones.get(0));
+            listaActivaciones.add(activacion);
+            Efecto efecto = EfectoFactory.crearEfecto(fakeComodin.getEfecto());
+            Comodin comodin = new Comodin(nombreStr, descripcion,efecto, listaActivaciones);
             comodines.add(comodin);
         }
 
