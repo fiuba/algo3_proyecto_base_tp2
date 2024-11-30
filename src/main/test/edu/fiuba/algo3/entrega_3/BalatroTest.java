@@ -14,7 +14,6 @@ import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.Mockito;
@@ -234,18 +233,17 @@ public class BalatroTest {
         Carta cartaASacar = new Carta(new Pica(), 2,2,1);
         cartas.add( new Carta(new Corazon(), 5,5,1));
         cartas.add( new Carta(new Corazon(), 3,3,1));
-        cartas.add( new Carta(new Pica(), 2,2,1));
         cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Trebol(), 2,2,1));
         cartas.add( new Carta(new Corazon(), 4,4,1));
         cartas.add( cartaASacar);
         cartas.add( new Carta(new Corazon(), 6,6,1));
         cartas.add( new Carta(new Diamante(), 12,10,1));
 
-        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
-        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+        Mazo mazoMockeado = Mockito.mock(Mazo.class);
+        Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
-        Mano manoDeLaRonda = new Mano(mazoDeCartas);
+        Mano manoDeLaRonda = new Mano(mazoMockeado);
         MazoDeComodines comodines = new MazoDeComodines();
 
         //act
@@ -256,7 +254,7 @@ public class BalatroTest {
         manoDeLaRonda.desSeleccionarCarta(cartaASacar); //-> {12,4,3,2,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2,2}
-        manoDeLaRonda.seleccionarCarta(3);  //-> {12,2,2}
+        manoDeLaRonda.seleccionarCarta(2);  //-> {12,2,2}
         int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
 
         //assert
