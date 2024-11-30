@@ -210,7 +210,7 @@ public class BalatroTest {
 
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(6);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(7);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(1);   //-> {12,5,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}
@@ -279,6 +279,41 @@ public class BalatroTest {
         Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
 
         Tarot tarot = new Tarot("qsy", "aumenta los puntos en 10 y el multi en 2", new Puntaje(10, 2), new Modificador("carta mas alta"));
+        /*MazoDeTarots tarots = new MazoDeTarots();
+        tarots.agregar(tarot);*/
+
+        Mazo mazoDeCartas = new Mazo(proveedorDeCartasMock);
+        Mano manoDeLaRonda = new Mano(mazoDeCartas);
+        MazoDeComodines comodines = new MazoDeComodines();
+
+        //act
+        //en estos casos voy a actuar como el jugador
+        manoDeLaRonda.seleccionarCarta(1);
+        manoDeLaRonda.aplicarTarot(tarot); //provisorio
+        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+
+        //assert
+        assertEquals(26,puntosObtenidos);
+
+    }
+
+    @Test
+    void test09jugadorAplicaTarotACartaDeValor5YSeleccionaCartaMasAltaYJuegaSinComodines(){
+        //arrange
+        ArrayList<Carta> cartas = new ArrayList<Carta>();
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 3,3,1));
+        cartas.add( new Carta(new Pica(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+        cartas.add( new Carta(new Corazon(), 3,3,1));
+        cartas.add( new Carta(new Corazon(), 5,5,1));
+        cartas.add( new Carta(new Corazon(), 12,10,1));
+        cartas.add( new Carta(new Corazon(), 2,2,1));
+
+        ProveedorDeCartas proveedorDeCartasMock = Mockito.mock(ProveedorDeCartas.class);
+        Mockito.when(proveedorDeCartasMock.generarCartas()).then(invocation -> cartas);
+
+        Tarot tarot = new Tarot("qsy", "aumenta los puntos en 10 y el multi en 2", new Puntaje(10, 2), new Modificador("carta"));
         /*MazoDeTarots tarots = new MazoDeTarots();
         tarots.agregar(tarot);*/
 
