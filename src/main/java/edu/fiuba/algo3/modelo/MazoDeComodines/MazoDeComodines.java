@@ -18,7 +18,6 @@ public class MazoDeComodines {
         this.comodines.add(comodin);
     }
 
-    //va comodin por comodin y los aplica
     public void aplicarA(ManoDePoker mano){
         for(Comodin comodin : this.comodines){
             comodin.aplicarA(mano);

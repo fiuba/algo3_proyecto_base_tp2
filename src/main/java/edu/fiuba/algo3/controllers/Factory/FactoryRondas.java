@@ -3,6 +3,7 @@ import edu.fiuba.algo3.controllers.Parseados.*;
 import edu.fiuba.algo3.controllers.Parser.ParserMazo;
 import edu.fiuba.algo3.controllers.Parser.ParserJuego;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
@@ -14,11 +15,13 @@ public class FactoryRondas {
     String ruta;
     FactoryDeTarot factoryDeTarot;
     FactoryDeMaso factoryDeMaso;
+    FactoryComodines factoryComodines;
 
     public FactoryRondas(String ruta, FactoryDeTarot factoryDeTarot, FactoryDeMaso factoryDeMaso) {
         this.ruta = ruta;
         this.factoryDeTarot = factoryDeTarot;
         this.factoryDeMaso = factoryDeMaso;
+        this.factoryComodines = factoryComodines;
     }
 
     public List<Ronda> generarRondas() throws IOException {
@@ -34,7 +37,8 @@ public class FactoryRondas {
             }
             List<Tarot> tarots = this.factoryDeTarot.generarTarots(tarotsFake);
             List<Carta> cartas = this.factoryDeMaso.generarCartas(cartasFake);
-            Tienda tienda = new Tienda(tarots, comodinesFake, cartas);
+            List<Comodin> comodines = this.factoryComodines.generarComodines(comodinesFake);
+            Tienda tienda = new Tienda(tarots, comodines, cartas);
             Ronda ronda = ParserJuego.parsearDeFakeRondaARonda(fakeRonda, tienda);
             rondas.add(ronda);
         }
