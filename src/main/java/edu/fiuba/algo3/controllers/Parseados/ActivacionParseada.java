@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.controllers.Parseados;
 
+import java.util.Map;
+
 public class ActivacionParseada {
     private Object activacion;
 
