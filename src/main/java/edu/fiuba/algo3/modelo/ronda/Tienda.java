@@ -24,16 +24,18 @@ public class Tienda {
         return tarots;
     }
 
+    public List<Carta> obtenerCartas() {return cartas;}
     public void seleccionar(Comodin comodinSeleccionado) {
-       // comodines.removeIf(comodin -> comodin.esElNombre(comodinSeleccionado.getNombre()));
+        comodines.removeIf(comodin -> comodin.equals(comodinSeleccionado));
     }
 
     public void seleccionar(Tarot tarotSeleccionado) {
-      //  tarots.removeIf(tarot -> tarot.esElNombre(tarotSeleccionado.getNombre()));
+      tarots.removeIf(tarot -> tarot.equals(tarotSeleccionado));
     }
 
     public void seleccionar(Carta cartaSeleccionado) {
-      //  cartas.removeIf(carta -> carta.esElNombre(cartaSeleccionado));
+      cartas.removeIf(carta -> carta.equals(cartaSeleccionado));
     }
+
 
 }

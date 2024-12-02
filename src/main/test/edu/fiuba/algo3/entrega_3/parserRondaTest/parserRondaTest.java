@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.entrega_3.parserRondaTest;
+import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import org.junit.jupiter.api.Assertions;
@@ -15,9 +16,10 @@ public class parserRondaTest {
     @Test
     public void test01SeParseanLasRondasYSeComprueban(){
         List<Ronda> rondas = null;
+        FactoryComodines factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
         FactoryDeMaso factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
         FactoryDeTarot factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json",factoryDeTarot, factoryDeMaso );
+        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json",factoryDeTarot, factoryDeMaso, factoryComodines );
 
         try {
             rondas = factoryRondas.generarRondas();
@@ -31,9 +33,10 @@ public class parserRondaTest {
     @Test
     public void test02ParseamosRondasComprobamosTarots() {
         List<Ronda> rondas = null;
+        FactoryComodines factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
         FactoryDeMaso factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
         FactoryDeTarot factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMaso);
+        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMaso, factoryComodines);
 
         try {
             rondas = factoryRondas.generarRondas();

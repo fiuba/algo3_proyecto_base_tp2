@@ -17,7 +17,7 @@ public class FactoryRondas {
     FactoryDeMaso factoryDeMaso;
     FactoryComodines factoryComodines;
 
-    public FactoryRondas(String ruta, FactoryDeTarot factoryDeTarot, FactoryDeMaso factoryDeMaso) {
+    public FactoryRondas(String ruta, FactoryDeTarot factoryDeTarot, FactoryDeMaso factoryDeMaso, FactoryComodines factoryComodines) {
         this.ruta = ruta;
         this.factoryDeTarot = factoryDeTarot;
         this.factoryDeMaso = factoryDeMaso;
