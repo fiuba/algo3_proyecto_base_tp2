@@ -1,4 +1,4 @@
-package main.java.edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;

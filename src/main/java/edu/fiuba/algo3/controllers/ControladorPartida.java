@@ -1,6 +1,7 @@
-package main.java.edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +19,7 @@ public class ControladorPartida implements EventHandler<ActionEvent>  {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Juego j = Juego.getInstancia();
+        /*Juego j = Juego.getInstancia();
         try {
             j.inicializarBalatro();
         } catch (ArchivoInexistente e) {
@@ -26,13 +27,14 @@ public class ControladorPartida implements EventHandler<ActionEvent>  {
             archivoInexistente.setTitle("Archivo no encontrado");
             archivoInexistente.setHeaderText("No se encontró el archivo de preguntas.");
             archivoInexistente.show();
-        }
+        } *
 
         if (jugador.isEmpty()) {
         } else {
                 j.agregarJugador(jugador);
                 CambiadorDeVistas.cambiarVistaANuevaRonda(stage);
-        }
+        } */
+        CambiadorDeVistas.cambiarVistaANuevaRonda(stage);
     }
 
 }

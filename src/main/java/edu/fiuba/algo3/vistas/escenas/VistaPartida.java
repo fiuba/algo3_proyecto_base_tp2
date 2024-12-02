@@ -1,80 +1,133 @@
-package main.java.edu.fiuba.algo3.vistas.escenas;
+package edu.fiuba.algo3.vistas.escenas;
 
-import java.lang.classfile.Label;
-
+import javafx.animation.ScaleTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import java.util.Objects;
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
+import edu.fiuba.algo3.controllers.ControladorPartida;
 
 public class VistaPartida extends Scene{
     private FlowPane root;
     private String nombreJugador;
 
     public VistaPartida(Stage stage, double width, double height) {
-        double margenAncho = width / 32;
-        double margenAlto = height / 18;
+        super(new FlowPane(), width, height);
         this.root = (FlowPane) this.getRoot();
+
+        // Establecer el fondo para el root
         BackgroundImage imagenFondo = new BackgroundImage(
-            new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/background.png"),
-            BackgroundRepeat.REPEAT,
-            BackgroundRepeat.REPEAT,
-            BackgroundPosition.CENTER,
-            BackgroundSize.DEFAULT
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundPartida.png"))),
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT
         );
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
-    
-        Label textoAgregarJugador = new Label("Ingrese su nombre:");
-        textoAgregarJugador.setStyle("-fx-text-fill: black;" +
-                                      "-fx-font-family: 'Comic Sans MS';" +
-                                      "-fx-text-alignment: center;" +
-                                      "-fx-font-size: 24;");
-    
+        // Crear el texto para agregar el nombre del jugador
+        Label textoAgregarJugador = new Label(" INGRESE SU NOMBRE ");
+        textoAgregarJugador.setStyle("-fx-text-fill: #be453b;" +  // Verde fosforescente
+                "-fx-text-alignment: center;" +
+                "-fx-font-weight: bold;");  // Borde de 2px
+
+        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/potta.ttf"), 36);
+        if (fontCreepster == null) {
+            System.out.println("No se pudo cargar la fuente, usando la fuente predeterminada.");
+            fontCreepster = Font.font("Arial", 36);  // Fuente de respaldo
+        }
+        textoAgregarJugador.setFont(fontCreepster);
+
+        // Crear el campo de texto para el nombre del jugador
         TextField fieldNombreJugador = new TextField();
         fieldNombreJugador.setPrefWidth(300);
         fieldNombreJugador.setStyle("-fx-text-fill: black;" +
-                                     "-fx-font-family: 'Comic Sans MS';" +
-                                     "-fx-text-alignment: center;" +
-                                     "-fx-font-size: 20;" +
-                                     "-fx-background-color: white;" +
-                                     "-fx-border-width: 2px;" +
-                                     "-fx-border-color: black;");
-    
+                "-fx-text-alignment: center;" +
+                "-fx-background-color: #404040;");  // Gris más oscuro
+
+        fieldNombreJugador.setFont(fontCreepster);
+
+        // Crear el botón para jugar
         Button botonJugar = new Button("Jugar");
-        botonJugar.setPrefWidth(100);
-        botonJugar.setStyle("-fx-font-family: 'Comic Sans MS';" +
-                            "-fx-font-size: 16;" +
-                            "-fx-background-color: #90caf9;" +
-                            "-fx-text-fill: black;");
-    
+
+        Image imagenFondoMano = new Image(getClass().getResourceAsStream("/manoJugar.jpg"));
+
+        BackgroundImage imagenBoton = new BackgroundImage(imagenFondoMano,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, new BackgroundSize(100, 50, false, false, true, false));
+
+        Background fondoBoton = new Background(imagenBoton);
+        botonJugar.setBackground(fondoBoton);
+
+        botonJugar.setPrefWidth(200);
+        botonJugar.setPrefHeight(150);
+
+        botonJugar.setStyle("-fx-text-fill: transparent;");
+
+        botonJugar.setOpacity(0);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), botonJugar);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), botonJugar);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+
+        fieldNombreJugador.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.trim().isEmpty() && botonJugar.getOpacity() == 0) {
+                fadeIn.play();
+            }
+            else if (newValue.trim().isEmpty() && botonJugar.getOpacity() == 1) {
+                fadeOut.play();
+            }
+        });
+
+        botonJugar.setOnMouseEntered(e -> {
+            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), botonJugar);
+            scaleUp.setToX(1.1);
+            scaleUp.setToY(1.1);
+            scaleUp.play();
+        });
+
+        botonJugar.setOnMouseExited(e -> {
+            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), botonJugar);
+            scaleDown.setToX(1.0);
+            scaleDown.setToY(1.0);
+            scaleDown.play();
+        });
+
+        ControladorPartida controlador = new ControladorPartida(stage,nombreJugador);
+
         botonJugar.setOnAction(event -> {
-            String nombreJugador = fieldNombreJugador.getText().trim();
+            String nombreJugador= fieldNombreJugador.getText().trim();
             if (!nombreJugador.isEmpty()) {
                 System.out.println("Jugador agregado: " + nombreJugador);
-                
-                ControladorPartida controlador = new ControladorPartida(stage, nombreJugador);
-                controlador.iniciarPartida();
+                this.nombreJugador = nombreJugador;
             } else {
                 System.out.println("El campo de nombre está vacío.");
             }
         });
-    
+
+        botonJugar.setOnAction(controlador);
+
         VBox contenedorIngresoNombre = new VBox(10);
         contenedorIngresoNombre.setAlignment(Pos.CENTER);
         contenedorIngresoNombre.getChildren().addAll(textoAgregarJugador, fieldNombreJugador, botonJugar);
-    
-        FlowPane rootPane = new FlowPane();
-        rootPane.setAlignment(Pos.CENTER);
-        rootPane.setPrefSize(600, 400);
-        rootPane.getChildren().add(contenedorIngresoNombre);
-    
-        rootPane.setStyle("-fx-background-color: #f0f0f0;");
-    
-        this.root.getChildren().add(rootPane);
+
+        // Configuración del FlowPane
+        this.root.setAlignment(Pos.CENTER);
+        this.root.setPrefSize(width, height);
+        this.root.getChildren().add(contenedorIngresoNombre);
     }
-    
+
+
 
 }

@@ -7,16 +7,16 @@ import java.util.List;
 
 
 public class Tienda {
-    private List<ComodinParseado> comodines;
+    private List<Comodin> comodines;
     private List<Tarot> tarots;
     private List<Carta> cartas;
 
-    public Tienda(List<Tarot> tarots, List<ComodinParseado> comodines, List<Carta> cartas) {
+    public Tienda(List<Tarot> tarots, List<Comodin> comodines, List<Carta> cartas) {
         this.comodines = comodines;
         this.tarots = tarots;
         this.cartas = cartas;
     }
-    public List<ComodinParseado> obtenerComodines() {
+    public List<Comodin> obtenerComodines() {
         return comodines;
     }
 
@@ -34,6 +34,10 @@ public class Tienda {
 
     public void seleccionar(Carta cartaSeleccionado) {
       //  cartas.removeIf(carta -> carta.esElNombre(cartaSeleccionado));
+    }
+
+    public List<Carta> obtenerCartas() {
+        return cartas;
     }
 
 }
