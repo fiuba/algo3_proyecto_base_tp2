@@ -2,11 +2,7 @@ package edu.fiuba.algo3.modelo.ronda;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
-import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
-
-import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 
 public class Ronda {
     private Jugador jugador;
@@ -40,24 +36,29 @@ public class Ronda {
     }
 
     /*
+
     public Puntaje seleccionar(int posicionCarta) {
         return this.jugador.getMano().seleccionarCarta(posicionCarta).devolverPuntaje();
-    }*/
+    }
 
 
-    /*
+
     public Puntaje seleccionar(int posicionCarta, Tarot tarot) {
         return this.jugador.getMano().seleccionarCarta(posicionCarta,tarot).devolverPuntaje();
     }*/
 
     public void jugar() {
         if( this.manos >= 1 ){
-        Mano mano = new Mano(mazo,3, new MazoDeComodines());
+        Mano mano = new Mano(mazo,3, new ManoDeComodines());
         this.jugador.asignarMano(mano);
         this.manos = this.manos - 1;
         }  else {
         throw new IllegalStateException("No hay manos disponibles para jugar.");
         }
+    }
+
+    public void jugarConMazo(Mazo mazo){
+        this.mazo = mazo;
     }
 
     public boolean jugar(Mazo mazoDeCartas){

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Modificable.Modificable;
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import org.apache.commons.math3.util.Precision;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -19,6 +20,14 @@ public abstract class ManoDePoker implements Modificable {
             this.puntaje.sumarConPuntajeYMultiplicadorMenos1(carta.obtenerPuntaje());
         }
 
+    }
+
+    public Boolean compararConNombre(String nombre){
+        return this.nombre.equals(nombre);
+    }
+
+    public Boolean compararConProbabilidad(double probabilidad){
+        return  Precision.equals(this.probabilidad, probabilidad, 0.03);
     }
 
     public int calcularPuntaje(){

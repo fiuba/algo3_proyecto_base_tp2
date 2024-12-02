@@ -3,6 +3,7 @@ module edu.fiuba.algo {
     requires json.simple;
     requires junit;
     requires com.google.gson;
+    requires commons.math3;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
     opens edu.fiuba.algo3.controllers.Parser to com.google.gson;

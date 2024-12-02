@@ -22,4 +22,9 @@ public class FactoryComodines implements ProveedorDeComodines {
         List<Comodin> comodines = ParserComodin.parsearDeFakeComodinAComodin(comodinFake);
         return comodines;
     }
+
+    public List<Comodin> generarComodines(List<ComodinParseado> fakeComodines){
+        List<Comodin> comodines = ParserComodin.parsearDeFakeComodinAComodin(fakeComodines);
+        return comodines;
+    }
 }
