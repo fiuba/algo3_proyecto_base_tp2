@@ -35,4 +35,8 @@ public class Tarot implements Seleccionable {
     public boolean equals(Tarot tarot) {
         return this.nombre.equals(tarot.nombre);
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

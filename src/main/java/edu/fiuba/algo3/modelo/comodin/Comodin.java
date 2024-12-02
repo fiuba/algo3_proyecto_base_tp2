@@ -41,6 +41,9 @@ public class Comodin implements Seleccionable {
         return this.nombre.equals(comodin.nombre);
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 }
 
 

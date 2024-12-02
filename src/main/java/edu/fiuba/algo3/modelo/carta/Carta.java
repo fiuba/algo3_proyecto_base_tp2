@@ -52,7 +52,6 @@ public class Carta implements Modificable, Seleccionable {
         return otraCarta.valor == this.valor - 1;
     }
 
-
     @Override
     public boolean equals(Object obj){
         if(this == obj)return true;
@@ -85,4 +84,6 @@ public class Carta implements Modificable, Seleccionable {
         String valorEnString = String.valueOf(valor);
         return valorEnString;
     }
+
+    public Palo getPalo(){ return this.palo;}
 }

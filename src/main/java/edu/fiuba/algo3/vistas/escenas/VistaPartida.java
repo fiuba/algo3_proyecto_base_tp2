@@ -35,11 +35,11 @@ public class VistaPartida extends Scene{
         this.root.setBackground(fondo);
         // Crear el texto para agregar el nombre del jugador
         Label textoAgregarJugador = new Label(" INGRESE SU NOMBRE ");
-        textoAgregarJugador.setStyle("-fx-text-fill: #be453b;" +  // Verde fosforescente
+        textoAgregarJugador.setStyle("-fx-text-fill: white;" +  // Verde fosforescente
                 "-fx-text-alignment: center;" +
                 "-fx-font-weight: bold;");  // Borde de 2px
 
-        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/potta.ttf"), 36);
+        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/bokor.ttf"), 36);
         if (fontCreepster == null) {
             System.out.println("No se pudo cargar la fuente, usando la fuente predeterminada.");
             fontCreepster = Font.font("Arial", 36);  // Fuente de respaldo
@@ -49,7 +49,7 @@ public class VistaPartida extends Scene{
         // Crear el campo de texto para el nombre del jugador
         TextField fieldNombreJugador = new TextField();
         fieldNombreJugador.setPrefWidth(300);
-        fieldNombreJugador.setStyle("-fx-text-fill: black;" +
+        fieldNombreJugador.setStyle("-fx-text-fill: yellow;" +
                 "-fx-text-alignment: center;" +
                 "-fx-background-color: #404040;");  // Gris más oscuro
 
