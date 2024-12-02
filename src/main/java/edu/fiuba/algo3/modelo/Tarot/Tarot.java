@@ -26,4 +26,8 @@ public class Tarot {
     public boolean puedeModificar(Modificable modificable) {
         return modificador.modificar(modificable);
     }
+
+    public boolean equals(Tarot tarot) {
+        return this.nombre.equals(tarot.nombre);
+    }
 }

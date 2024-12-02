@@ -40,6 +40,7 @@ public class Ronda {
     }
 
     /*
+
     public Puntaje seleccionar(int posicionCarta) {
         return this.jugador.getMano().seleccionarCarta(posicionCarta).devolverPuntaje();
     }

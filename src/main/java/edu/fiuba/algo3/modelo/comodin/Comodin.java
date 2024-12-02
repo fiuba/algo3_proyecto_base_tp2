@@ -34,6 +34,10 @@ public class Comodin {
         return puntajeModificado;
     }
 
+    public boolean equals(Comodin comodin) {
+        return this.nombre.equals(comodin.nombre);
+    }
+
 }
 
 
