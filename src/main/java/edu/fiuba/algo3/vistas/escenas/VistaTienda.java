@@ -54,7 +54,7 @@ public class VistaTienda extends Scene{
         textoTituloSuperior.setFont(fontCreepster);
 
         HBox contenedorTitulo = new HBox();
-        contenedorTitulo.setAlignment(Pos.CENTER);
+        contenedorTitulo.setAlignment(Pos.CENTER_LEFT);
         contenedorTitulo.getChildren().addAll(textoTituloSuperior);
         contenedorTitulo.setPadding(new Insets(0, 0, 0, 20));  // Top, Right, Bottom, Left (más espacio a la izquierda)
 
