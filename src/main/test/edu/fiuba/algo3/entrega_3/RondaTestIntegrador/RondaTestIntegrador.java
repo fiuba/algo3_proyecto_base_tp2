@@ -9,8 +9,10 @@ import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
+import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import org.junit.jupiter.api.Assertions;
@@ -58,5 +60,19 @@ public class RondaTestIntegrador {
 
         Assertions.assertEquals(comodines.size(), 2);
     }
+
+     @Test
+    public void test03SePruebaQueLaTiendaTiene1Cartas() throws IOException {
+        List<Ronda> rondas = factoryRondas.generarRondas();
+
+        Ronda ronda = rondas.get(0);
+
+        List<Carta> cartas = ronda.getTienda().obtenerCartas();
+
+        Carta carta = cartas.get(0);
+
+        Carta cartaPrueba = new Carta(new Corazon(), 10, 10, 1);
+        Assertions.assertEquals(carta, cartaPrueba);
+     }
 
 }

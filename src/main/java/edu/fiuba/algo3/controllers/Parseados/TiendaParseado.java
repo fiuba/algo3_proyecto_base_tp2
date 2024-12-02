@@ -4,7 +4,7 @@ import java.util.List;
 public class TiendaParseado {
     private List<ComodinParseado> comodines;
     private List<TarotParseado> tarots;
-    private  List<CartaParseada> cartas;
+    private  CartaParseada carta;
 
     public List<ComodinParseado> getComodines() {
         return comodines;
@@ -22,11 +22,11 @@ public class TiendaParseado {
         this.tarots = tarots;
     }
 
-    public List<CartaParseada>  getCartas() {
-        return cartas;
+    public CartaParseada  getCarta() {
+        return carta;
     }
 
-    public void setCarta(List<CartaParseada> cartas) {
-        this.cartas = cartas;
+    public void setCarta(CartaParseada carta) {
+        this.carta = carta;
     }
 }

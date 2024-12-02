@@ -9,10 +9,7 @@ import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FactoryRondas {
@@ -34,11 +31,9 @@ public class FactoryRondas {
     public List<Ronda> generarRondas() throws IOException {
         List<Ronda> rondas = new ArrayList<>();
 
-
         List<Tarot> tarotsGenerados = factoryDeTarot.generarTarots();
         List<Carta> cartasGeneradas = factoryDeMaso.generarCartas();
         List<Comodin> comodinesGenerados = factoryComodines.generarComodines();
-
 
         List<RondaParseada> rondasFake = ParserJuego.parseRondas(this.ruta);
         for (RondaParseada fakeRonda : rondasFake) {
@@ -48,34 +43,28 @@ public class FactoryRondas {
             List<String> nombresTarots = tiendaFake.getTarots() != null
                     ? tiendaFake.getTarots().stream().map(TarotParseado::getNombre).collect(Collectors.toList())
                     : new ArrayList<>();
-
-            List<String> numerosCartas = tiendaFake.getCartas() != null
-                    ? tiendaFake.getCartas().stream().map(CartaParseada::getNumero).collect(Collectors.toList())
-                    : new ArrayList<>();
-
-            List<String> nombresComodines = tiendaFake.getComodines() != null
-                    ? tiendaFake.getComodines().stream().map(ComodinParseado::getNombre).collect(Collectors.toList())
-                    : new ArrayList<>();
-
-
             List<Tarot> tarotsFiltrados = tarotsGenerados.stream()
                     .filter(tarot -> nombresTarots.contains(tarot.obtenerNombre()))
                     .collect(Collectors.toList());
 
+            Carta cartaFiltrada = null;
+            if (tiendaFake.getCarta() != null) {
+                String nombreCarta = tiendaFake.getCarta().getNumero(); // Obtener el nombre de la carta
+                cartaFiltrada = cartasGeneradas.stream()
+                        .filter(carta -> carta.obtenerNombre().equals(nombreCarta)) // Buscar coincidencia exacta
+                        .findFirst()
+                        .orElse(null);
+            }
 
-            List<Carta> cartasFiltradas = cartasGeneradas.stream()
-                    .filter(carta -> numerosCartas.contains(carta.obtenerNombre()))
-                    .collect(Collectors.toList());
+            List<String> nombresComodines = tiendaFake.getComodines() != null
+                    ? tiendaFake.getComodines().stream().map(ComodinParseado::getNombre).collect(Collectors.toList())
+                    : new ArrayList<>();
+            Map<String, Comodin> comodinesMap = comodinesGenerados.stream()
+                    .filter(comodin -> nombresComodines.contains(comodin.obtenerNombre()))
+                    .collect(Collectors.toMap(Comodin::obtenerNombre, comodin -> comodin, (comodin1, comodin2) -> comodin1));
+            List<Comodin> comodinesFiltrados = new ArrayList<>(comodinesMap.values());
 
-
-            Set<String> nombresUnicosComodines = new HashSet<>(nombresComodines);
-            List<Comodin> comodinesFiltrados = comodinesGenerados.stream()
-                    .filter(comodin -> nombresUnicosComodines.contains(comodin.obtenerNombre()))
-                    .collect(Collectors.toList());
-
-
-            Tienda tienda = new Tienda(tarotsFiltrados, comodinesFiltrados, cartasFiltradas);
-
+            Tienda tienda = new Tienda(tarotsFiltrados, comodinesFiltrados, cartaFiltrada != null ? Collections.singletonList(cartaFiltrada) : new ArrayList<>());
 
             Ronda ronda = ParserJuego.parsearDeFakeRondaARonda(fakeRonda, tienda);
             rondas.add(ronda);
@@ -83,7 +72,8 @@ public class FactoryRondas {
 
         return rondas;
     }
-    }
+
+}
 
 
 
