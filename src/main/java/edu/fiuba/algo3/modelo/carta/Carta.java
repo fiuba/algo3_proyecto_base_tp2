@@ -10,14 +10,16 @@ import edu.fiuba.algo3.modelo.Modificable.Modificable;
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Palo.Palo;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.Seleccionable.Seleccionable;
 
 import java.util.Objects;
 
 
-public class Carta implements Modificable {
+public class Carta implements Modificable, Seleccionable {
     private Palo palo;
     private Puntaje puntaje;
     private int valor;
+
 
     public Carta(Palo palo, int valor, int puntajeBase, int multiplicador){
            if(valor < 2 || valor > 14){
@@ -77,5 +79,9 @@ public class Carta implements Modificable {
 
     public Puntaje calcularPuntaje() {
         return puntaje;
+    }
+
+    public String obtenerNombre(){
+        return "carta";
     }
 }

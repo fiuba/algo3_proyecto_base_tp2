@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
+import edu.fiuba.algo3.modelo.Seleccionable.Seleccionable;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
 
 public class Mazo implements ProveedorDeCartas {
     final int TAMANIOMANO = 8;
@@ -46,6 +48,11 @@ public class Mazo implements ProveedorDeCartas {
         List<Carta> manoJugador = new ArrayList<>(this.cartas.subList(0, cantidadDeCartas));
 
         cartasJugador.addAll(manoJugador);
+    }
+
+    public void guardar(Seleccionable carta){
+        //primero tendría que verificar que es una carta
+        this.cartas.add((Carta) carta);
     }
 
     public void reponer(List<Carta> cartasJugador) {

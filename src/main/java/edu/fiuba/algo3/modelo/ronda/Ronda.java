@@ -2,11 +2,7 @@ package edu.fiuba.algo3.modelo.ronda;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
-import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
-
-import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 
 public class Ronda {
     private Jugador jugador;
@@ -52,7 +48,7 @@ public class Ronda {
 
     public void jugar() {
         if( this.manos >= 1 ){
-        Mano mano = new Mano(mazo,3, new MazoDeComodines());
+        Mano mano = new Mano(mazo,3, new ManoDeComodines());
         this.jugador.asignarMano(mano);
         this.manos = this.manos - 1;
         }  else {

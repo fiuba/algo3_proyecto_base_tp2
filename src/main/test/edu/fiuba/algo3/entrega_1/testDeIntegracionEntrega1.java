@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
-import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
@@ -12,7 +11,6 @@ import edu.fiuba.algo3.modelo.Palo.Trebol;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import static org.mockito.Mockito.*;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -38,7 +36,7 @@ public class testDeIntegracionEntrega1{
         cartaDePrueba.add(new Carta(new Pica(),7,7,1));
 
         mazo = Mockito.mock(Mazo.class);
-        mano = new Mano(mazo, 3, new MazoDeComodines());
+        mano = new Mano(mazo, 3, new ManoDeComodines());
 
         when(mazo.generarCartas()).thenReturn(cartaDePrueba);
     }

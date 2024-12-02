@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.Mano;
 
-import edu.fiuba.algo3.MazoDeTarots;
 import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -17,7 +16,7 @@ public class Mano {
     private List<Carta> cartas = new ArrayList<>();
     private Jugada jugada = new Jugada();
     private int descartes;
-    private MazoDeComodines comodines;
+    private ManoDeComodines comodines;
 
     public Mano(Mazo mazo) {
         this.mazo = mazo;
@@ -26,7 +25,7 @@ public class Mano {
     }
 
 
-    public Mano(Mazo mazo,int descartes, MazoDeComodines comodines) {
+    public Mano(Mazo mazo,int descartes, ManoDeComodines comodines) {
         //this.proveedor = proveedor;
         this.comodines = comodines;
         this.mazo = mazo;
@@ -62,7 +61,7 @@ public class Mano {
     }
 
 
-    public int jugarCartas(MazoDeComodines comodines){
+    public int jugarCartas(ManoDeComodines comodines){
         ManoDePoker manoDePoker = jugada.jugar();  //se juegan las cartas seleccionadas y devuelve los puntos obtenidos
         comodines.aplicarA(manoDePoker);
         return manoDePoker.calcularPuntaje();

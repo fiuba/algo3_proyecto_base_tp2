@@ -1,16 +1,13 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.MazoDeTarots;
 import edu.fiuba.algo3.modelo.Mano.Mano;
-import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
-import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -43,7 +40,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -72,7 +69,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -101,7 +98,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -131,7 +128,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -163,7 +160,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -199,7 +196,7 @@ public class BalatroTest {
         Mazo mazoMock = Mockito.mock(Mazo.class);
         Mockito.when(mazoMock.generarCartas()).then(invocationOnMock -> cartas);
         Mano manoDeLaRonda = new Mano(mazoMock);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -235,7 +232,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -276,7 +273,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -311,7 +308,7 @@ public class BalatroTest {
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
         Mano manoDeLaRonda = new Mano(mazoMockeado);
-        MazoDeComodines comodines = new MazoDeComodines();
+        ManoDeComodines comodines = new ManoDeComodines();
 
         //act
         //en estos casos voy a actuar como el jugador

@@ -2,12 +2,13 @@ package edu.fiuba.algo3.modelo.comodin;
 
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.Seleccionable.Seleccionable;
 import edu.fiuba.algo3.modelo.activacion.Activacion;
 import edu.fiuba.algo3.modelo.efectos.Efecto;
 
 import java.util.List;
 
-public class Comodin {
+public class Comodin implements Seleccionable {
     private Efecto efecto;
     private String descripcion;
     private String nombre;
@@ -32,6 +33,10 @@ public class Comodin {
             puntajeModificado = efecto.aplicarEfecto(puntajeMano);
         }
         return puntajeModificado;
+    }
+
+    public String obtenerNombre(){
+        return this.nombre;
     }
 
 }

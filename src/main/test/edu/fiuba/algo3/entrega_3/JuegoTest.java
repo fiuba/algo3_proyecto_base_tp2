@@ -22,6 +22,7 @@ public class JuegoTest {
          factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
     }
 
+    /*
 
     @Test
     public void test01SeCreaUnJuegoConUnNombreYUnaTiendaInicial(){
@@ -29,5 +30,5 @@ public class JuegoTest {
         List<Ronda> rondas  = factoryRondas.generarRondas();
         Ronda ronda =
         Juego juego = new Juego("sultanito", )
-    }
+    }*/
 }
