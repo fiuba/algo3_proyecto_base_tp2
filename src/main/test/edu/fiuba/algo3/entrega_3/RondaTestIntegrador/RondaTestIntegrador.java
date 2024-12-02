@@ -7,10 +7,11 @@ import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.MazoDeComodines.MazoDeComodines;
+
 import edu.fiuba.algo3.modelo.Modificable.Modificador;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +36,7 @@ public class RondaTestIntegrador {
     }
 
     @Test
-    public void test01SeInstaciaUnaRondaYSeVeSiTieneDosComodines() throws IOException {
-        Jugador jugador = new Jugador("el pepe");
+    public void test01SeInstaciaUnaRondaYSeVeSiTieneDosTarots() throws IOException {
 
         List<Ronda> rondas = factoryRondas.generarRondas();
 
@@ -46,6 +46,17 @@ public class RondaTestIntegrador {
 
         Assertions.assertEquals(tarots.size(), 2);
 
+    }
+
+    @Test
+    public void test02SePruebaQueLaTiendaTiene2Comodines() throws IOException {
+        List<Ronda> rondas = factoryRondas.generarRondas();
+
+        Ronda ronda = rondas.get(0);
+
+        List<Comodin> comodines = ronda.getTienda().obtenerComodines();
+
+        Assertions.assertEquals(comodines.size(), 2);
     }
 
 }

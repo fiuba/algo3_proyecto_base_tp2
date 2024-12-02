@@ -25,6 +25,7 @@ public class Tienda {
     }
 
     public List<Carta> obtenerCartas() {return cartas;}
+
     public void seleccionar(Comodin comodinSeleccionado) {
         comodines.removeIf(comodin -> comodin.equals(comodinSeleccionado));
     }

@@ -82,6 +82,7 @@ public class Carta implements Modificable, Seleccionable {
     }
 
     public String obtenerNombre(){
-        return "carta";
+        String valorEnString = String.valueOf(valor);
+        return valorEnString;
     }
 }

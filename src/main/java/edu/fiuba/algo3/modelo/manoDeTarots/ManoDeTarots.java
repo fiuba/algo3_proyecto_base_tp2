@@ -16,7 +16,7 @@ public class ManoDeTarots {
 
     }
     public void guardar(Seleccionable tarot){
-        //primero tendría que verificar que es un tarot
-        this.tarots.add(tarot);
+        Tarot tarotGuardado = (Tarot) tarot;
+        this.tarots.add(tarotGuardado);
     }
 }

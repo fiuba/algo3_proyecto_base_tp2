@@ -14,17 +14,20 @@ public class Balatro {
         this.mazoDeCartas = mazoDeCartas;
     }
 
-    public boolean jugar(){
-        while(verificarRondaAnteriorGanada()){
+    public Ronda jugar(){
+       // while(verificarRondaAnteriorGanada()){
+            /*
             if(this.rondas.isEmpty()){
-                return true;
-            }
+                return "juego ganado";
+            }*/
             Ronda rondaActual = rondas.get(0);
-            this.rondaGanada = rondaActual.jugar(this.mazoDeCartas);
+            rondaActual.jugarConMazo(mazoDeCartas);
             this.rondas.remove(rondaActual);
-        }
-        return false;
+            return rondaActual;
+       // }
     }
+
+
 
     private boolean verificarRondaAnteriorGanada(){
         return this.rondaGanada;

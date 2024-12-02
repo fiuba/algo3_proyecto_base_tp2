@@ -26,8 +26,8 @@ public class ManoDeComodines {
     }
 
     public void guardar(Seleccionable comodin){
-        //primero tendría que verificar que es un comodin
-        this.comodines.add(comodin);
+        Comodin comodinGuardado = (Comodin) comodin;
+        this.comodines.add(comodinGuardado);
     }
     /*
 

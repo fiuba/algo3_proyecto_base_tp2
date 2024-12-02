@@ -57,6 +57,10 @@ public class Ronda {
         }
     }
 
+    public void jugarConMazo(Mazo mazo){
+        this.mazo = mazo;
+    }
+
     public boolean jugar(Mazo mazoDeCartas){
         return true;
     }
