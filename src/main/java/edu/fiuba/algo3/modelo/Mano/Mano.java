@@ -18,15 +18,8 @@ public class Mano {
     private int descartes;
     private ManoDeComodines comodines;
 
-    public Mano(Mazo mazo) {
-        this.mazo = mazo;
-        this.cartas = mazo.generarCartas();
-        this.ordenarMano();
-    }
-
 
     public Mano(Mazo mazo,int descartes, ManoDeComodines comodines) {
-        //this.proveedor = proveedor;
         this.comodines = comodines;
         this.mazo = mazo;
         this.cartas = mazo.repartirCartas();

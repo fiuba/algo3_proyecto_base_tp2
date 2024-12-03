@@ -65,5 +65,4 @@ public class Ronda {
         return true;
     }
 
-
 }
