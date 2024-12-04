@@ -13,7 +13,7 @@ import java.util.List;
 public class Mano {
 
     private Mazo mazo;
-    private List<Carta> cartas = new ArrayList<>();
+    private List<Carta> cartas;
     private Jugada jugada = new Jugada();
     private int descartes;
     private ManoDeComodines comodines;
@@ -22,7 +22,7 @@ public class Mano {
     public Mano(Mazo mazo,int descartes, ManoDeComodines comodines) {
         this.comodines = comodines;
         this.mazo = mazo;
-        this.cartas = mazo.repartirCartas();
+        this.cartas = mazo.generarCartas();
         this.ordenarMano();
         this.descartes = descartes;
     }
@@ -54,7 +54,7 @@ public class Mano {
     }
 
 
-    public int jugarCartas(ManoDeComodines comodines){
+    public int jugarCartas(){
         ManoDePoker manoDePoker = jugada.jugar();  //se juegan las cartas seleccionadas y devuelve los puntos obtenidos
         comodines.aplicarA(manoDePoker);
         return manoDePoker.calcularPuntaje();
@@ -62,7 +62,7 @@ public class Mano {
 
 
     public void descartarCartas(){
-        //verificar que hayan descartes
+
         this.descartes--;
         jugada.descartar();
         //comodines.actualizarPorDescarte();

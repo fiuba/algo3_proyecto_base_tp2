@@ -5,9 +5,10 @@ import edu.fiuba.algo3.modelo.Seleccionable.Seleccionable;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManoDeComodines {
-    private ArrayList<Comodin> comodines;
+    private List<Comodin> comodines;
     private int capacidadMaxima = 5; //no pueden haber mas de 5 comodines
 
 

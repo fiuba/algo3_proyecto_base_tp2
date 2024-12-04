@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Jugador;
 
 import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Mano.Mano;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
 import java.util.List;
@@ -14,6 +15,10 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.jugada = new Jugada();
+    }
+
+    public void seleccionar(int i) {
+        this.mano.seleccionarCarta(i);
     }
 
 
@@ -39,4 +44,10 @@ public class Jugador {
     }
 
     public Mano getMano() {return this.mano;}
+
+
+
+    public int jugarMano() {
+        return mano.jugarCartas();
+    }
 }

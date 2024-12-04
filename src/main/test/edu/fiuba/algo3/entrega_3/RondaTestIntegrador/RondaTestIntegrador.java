@@ -138,7 +138,6 @@ public class RondaTestIntegrador {
 
         ronda.asignarMazo(mockMazo);
 
-        Mano mano = ronda.repartirMano();
 
      }
 

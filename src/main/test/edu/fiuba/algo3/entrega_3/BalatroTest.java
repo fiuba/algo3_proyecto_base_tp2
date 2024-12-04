@@ -37,15 +37,15 @@ public class BalatroTest {
 
         //arrange
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
-        Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
+        Mockito.when(mazoMockeado.generarCartas()).thenReturn(cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
+
         ManoDeComodines comodines = new ManoDeComodines();
-
+        Mano manoDeLaRonda = new Mano(mazoMockeado,3, comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(2);
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(7,puntosObtenidos);
@@ -68,13 +68,13 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3 ,comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(1);
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(8,puntosObtenidos);
@@ -97,14 +97,14 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado,3,comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(4);
         manoDeLaRonda.seleccionarCarta(6); //verificar mano porque no se puede seleccionar la posicion 7 //no se puede porque mientras se eligen, se van de la lista
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(28,puntosObtenidos);
@@ -127,8 +127,8 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
         ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3, comodines);
 
         //act
         //en estos casos voy a actuar como el jugador
@@ -136,7 +136,7 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(6);
         manoDeLaRonda.seleccionarCarta(1);
         manoDeLaRonda.seleccionarCarta(0);
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(88,puntosObtenidos);
@@ -159,9 +159,9 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3 ,comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(5);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
@@ -171,7 +171,7 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 30 de la mano de poker (escalera simple)
@@ -195,9 +195,9 @@ public class BalatroTest {
 
         Mazo mazoMock = Mockito.mock(Mazo.class);
         Mockito.when(mazoMock.generarCartas()).then(invocationOnMock -> cartas);
-        Mano manoDeLaRonda = new Mano(mazoMock);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMock,3,comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(7);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
@@ -205,7 +205,7 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 100 de la mano de poker (escalera color)
@@ -231,9 +231,9 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3, comodines);
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(7);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
@@ -243,7 +243,7 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2,2}
         manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2,2}
         manoDeLaRonda.seleccionarCarta(2);  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 100 de la mano de poker (escalera color)
@@ -272,14 +272,15 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
         ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3, comodines);
+
 
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(1);
         manoDeLaRonda.aplicarTarot(tarot); //provisorio
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(26,puntosObtenidos);
@@ -307,14 +308,14 @@ public class BalatroTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).then(invocation -> cartas);
 
-        Mano manoDeLaRonda = new Mano(mazoMockeado);
-        ManoDeComodines comodines = new ManoDeComodines();
 
+        ManoDeComodines comodines = new ManoDeComodines();
+        Mano manoDeLaRonda = new Mano(mazoMockeado, 3, comodines);
         //act
         //en estos casos voy a actuar como el jugador
         tarot.aplicarA(cartas.get(6));
         manoDeLaRonda.seleccionarCarta(6);
-        int puntosObtenidos = manoDeLaRonda.jugarCartas(comodines);
+        int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         assertEquals(30,puntosObtenidos);
