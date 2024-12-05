@@ -10,7 +10,9 @@ import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,10 +44,10 @@ public class JugadaTest {
         //act
         jugada.seleccionar(carta);
         ManoDePoker manoObtenida = jugada.jugar();
-        double puntosObtenidos = manoObtenida.calcularPuntaje();
+        Puntaje puntosObtenidos = manoObtenida.calcularPuntaje();
 
         //assert
-        assertEquals(7,puntosObtenidos);
+        Assertions.assertEquals(7,puntosObtenidos.calcularPuntaje());
     }
 
     @Test
@@ -59,10 +61,10 @@ public class JugadaTest {
         jugada.seleccionar(carta);
         jugada.seleccionar(carta2);
         ManoDePoker manoObtenida = jugada.jugar();
-        double puntosObtenidos = manoObtenida.calcularPuntaje();
+        Puntaje puntosObtenidos = manoObtenida.calcularPuntaje();
 
         //assert
-        assertEquals(28,puntosObtenidos);
+        Assertions.assertEquals(28,puntosObtenidos);
     }
 
     @Test
@@ -76,7 +78,7 @@ public class JugadaTest {
         jugada.seleccionar(carta);
 
         //assert
-        assertTrue(jugada.tieneMano(manoEsperada));
+        Assertions.assertTrue(jugada.tieneMano(manoEsperada));
     }
     @Test
     void test05seleccionoUn2DeCorazonesYLuegoUn2DePicasYJugadaTieneComoManoDePokerPar(){
@@ -91,7 +93,7 @@ public class JugadaTest {
         jugada.seleccionar(otraCarta);
 
         //assert
-        assertTrue(jugada.tieneMano(manoEsperada));
+        Assertions.assertTrue(jugada.tieneMano(manoEsperada));
     }
     @Test
     void test06seleccionoUn2DeCorazonesYUn2DePicasYDeseleccionoYJugadaTieneComoManoDePokerCartaMasAlta(){
@@ -107,7 +109,7 @@ public class JugadaTest {
         jugada.deseleccionar(carta);
 
         //assert
-        assertTrue(jugada.tieneMano(manoEsperada));
+        Assertions.assertTrue(jugada.tieneMano(manoEsperada));
     }
 
     @Test
@@ -129,7 +131,7 @@ public class JugadaTest {
         jugada.seleccionar(carta5);
 
         //assert
-        assertTrue(jugada.tieneMano(manoEsperada));
+        Assertions.assertTrue(jugada.tieneMano(manoEsperada));
     }
 
     @Test
@@ -148,10 +150,10 @@ public class JugadaTest {
         jugada.seleccionar(carta3);
         jugada.seleccionar(carta4);
         jugada.seleccionar(carta5);
-        int puntosObtenidos = jugada.jugar().calcularPuntaje();
+        Puntaje puntosObtenidos = jugada.jugar().calcularPuntaje();
 
         //assert
-        Assertions.assertEquals(960,puntosObtenidos);
+        Assertions.assertEquals(960,puntosObtenidos.calcularPuntaje());
     }
 
     @Test
@@ -173,10 +175,10 @@ public class JugadaTest {
         jugada.deseleccionar(carta6);
         jugada.seleccionar(carta5);
         jugada.seleccionar(carta3);
-        int puntosObtenidos = jugada.jugar().calcularPuntaje();
+        Puntaje puntosObtenidos = jugada.jugar().calcularPuntaje();
 
         //assert
-        Assertions.assertEquals(960,puntosObtenidos);
+        Assertions.assertEquals(960,puntosObtenidos.calcularPuntaje());
     }
 /*
     @Test

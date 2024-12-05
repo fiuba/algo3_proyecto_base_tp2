@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
@@ -42,7 +43,7 @@ public class Mano {
         return cartas;
     }
 
-    public void seleccionarCarta(Carta carta) {
+    public Puntaje seleccionarCarta(Carta carta) {
         if (this.cartas.contains(carta)) {
             Carta seleccionada = this.cartas.get(this.cartas.indexOf(carta));
             jugada.seleccionar(seleccionada);
@@ -50,6 +51,7 @@ public class Mano {
         } else {
             throw new CartaNoEncontrada();
         }
+        return jugada.puntajeActual();
     }
 
     public void desSeleccionarCarta(Carta carta){
@@ -58,7 +60,7 @@ public class Mano {
     }
 
 
-    public int jugarCartas(){
+    public Puntaje jugarCartas(){
         ManoDePoker manoDePoker = jugada.jugar();  //se juegan las cartas seleccionadas y devuelve los puntos obtenidos
         comodines.aplicarA(manoDePoker);
         return manoDePoker.calcularPuntaje();

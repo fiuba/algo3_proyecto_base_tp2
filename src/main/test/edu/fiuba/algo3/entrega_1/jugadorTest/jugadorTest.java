@@ -87,7 +87,7 @@ public class jugadorTest {
         jugador.seleccionar(cartasAJugar.get(6));
 
 
-        Assertions.assertEquals(88, jugador.jugarMano());
+        Assertions.assertEquals(88, jugador.jugarMano().calcularPuntaje());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class jugadorTest {
 
         jugador.aplicarTarotAMano(tarots.get(2));
 
-        Assertions.assertEquals(256, jugador.jugarMano());
+        Assertions.assertEquals(256, jugador.jugarMano().calcularPuntaje());
     }
 
 
@@ -134,7 +134,7 @@ public class jugadorTest {
 
 
 
-        Assertions.assertEquals(190, jugador.jugarMano());
+        Assertions.assertEquals(190, jugador.jugarMano().calcularPuntaje());
     }
 
     @Test
@@ -160,7 +160,7 @@ public class jugadorTest {
 
 
 
-        Assertions.assertEquals(1152, jugador.jugarMano());
+        Assertions.assertEquals(1152, jugador.jugarMano().calcularPuntaje());
     }
 
     @Test
@@ -197,7 +197,7 @@ public class jugadorTest {
         jugador.asignarMano(mano);
 
 
-        List<Carta> cartasAJugar = jugador.verCartasEnMano();
+        List<Carta> cartasAJugar;
 
 
         jugador.seleccionar(cartasADescartar.get(0));
@@ -215,8 +215,85 @@ public class jugadorTest {
         jugador.seleccionar(cartasAJugar.get(4));
 
 
-        Assertions.assertEquals(2496, jugador.jugarMano());
+        Assertions.assertEquals(2496, jugador.jugarMano().calcularPuntaje());
     }
 
 
+
+    @Test
+    public void test06UnJugadorJuega3ManosDistintasYDevuelvePuntajeTotal(){
+        List<Carta> cartaRonda1 = new ArrayList<>();
+        cartaRonda1 = cartas;
+
+        List<Carta> cartaRonda2 = new ArrayList<>();
+        cartaRonda2.add(new Carta(new Corazon(), 2, 2, 1));  // Par 1
+        cartaRonda2.add(new Carta(new Pica(), 3, 3, 1));     // Par 1
+        cartaRonda2.add(new Carta(new Diamante(), 4, 4, 1)); // Par 2
+        cartaRonda2.add(new Carta(new Trebol(), 5, 5, 1));   // Par 2
+        cartaRonda2.add(new Carta(new Corazon(), 6, 6, 1));  // Descarte
+        cartaRonda2.add(new Carta(new Trebol(), 2, 2, 1));   // Descarte
+        cartaRonda2.add(new Carta(new Diamante(), 11, 10, 1));// Descarte
+        cartaRonda2.add(new Carta(new Pica(), 13, 10, 1));   // Descarte
+
+
+        List<Carta> cartaRonda3 = new ArrayList<>();
+        cartaRonda3.add(new Carta(new Corazon(), 2, 2, 1));  // Par 1
+        cartaRonda3.add(new Carta(new Pica(), 2, 2, 1));     // Par 1
+        cartaRonda3.add(new Carta(new Diamante(), 3, 3, 1)); // Par 2
+        cartaRonda3.add(new Carta(new Trebol(), 4, 4, 1));   // Par 2
+        cartaRonda3.add(new Carta(new Corazon(), 5, 5, 1));  // Descarte
+        cartaRonda3.add(new Carta(new Corazon(), 2, 2, 1));   // Descarte
+        cartaRonda3.add(new Carta(new Corazon(), 11, 10, 1));// Descarte
+        cartaRonda3.add(new Carta(new Corazon(), 13, 10, 1));   // Descarte
+
+        Mazo mazoMock1 = Mockito.mock(Mazo.class);
+        Mockito.when(mazoMock1.generarCartas()).thenReturn(cartaRonda1);
+
+        Mazo mazoMock2 = Mockito.mock(Mazo.class);
+        Mockito.when(mazoMock2.generarCartas()).thenReturn(cartaRonda2);
+
+        Mazo mazoMock3 = Mockito.mock(Mazo.class);
+        Mockito.when(mazoMock3.generarCartas()).thenReturn(cartaRonda3);
+
+        Mano manoRonda1 = new Mano(mazoMock1, 3, manoComodines);
+        Jugador jugador = Jugador.CrearJugador("pepe");
+        jugador.asignarMano(manoRonda1);
+
+        List<Carta> cartasRonda1 = jugador.verCartasEnMano();
+
+        jugador.seleccionar(cartasRonda1.get(3));
+        jugador.seleccionar(cartasRonda1.get(4));
+        jugador.seleccionar(cartasRonda1.get(5));
+        jugador.seleccionar(cartasRonda1.get(6));
+
+      Puntaje puntajeTotal = jugador.jugarMano();
+
+        Mano manoRonda2 = new Mano(mazoMock2, 3, manoComodines);
+        jugador.asignarMano(manoRonda2);
+
+        List<Carta> cartasRonda2 = jugador.verCartasEnMano();
+
+        jugador.seleccionar(cartasRonda2.get(2));
+        jugador.seleccionar(cartasRonda2.get(3));
+        jugador.seleccionar(cartasRonda2.get(4));
+        jugador.seleccionar(cartasRonda2.get(5));
+        jugador.seleccionar(cartasRonda2.get(6));
+
+        puntajeTotal.sumarConPuntaje(jugador.jugarMano());
+
+        Mano mano3 = new Mano(mazoMock3, 3, manoComodines);
+        jugador.asignarMano(mano3);
+
+        List<Carta> cartasRonda3 = jugador.verCartasEnMano();
+
+        jugador.seleccionar(cartasRonda3.get(0));
+        jugador.seleccionar(cartasRonda3.get(1));
+        jugador.seleccionar(cartasRonda3.get(2));
+        jugador.seleccionar(cartasRonda3.get(5));
+        jugador.seleccionar(cartasRonda3.get(7));
+
+        puntajeTotal.sumarConPuntaje(jugador.jugarMano());
+
+        Assertions.assertEquals(puntajeTotal.calcularPuntaje(), jugador.obtenerPuntajeFinal());
+    }
 }

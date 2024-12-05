@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Palo.Trebol;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.Mockito;
@@ -45,10 +46,10 @@ public class BalatroTest {
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(cartas.get(2));
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(7,puntosObtenidos);
+        Assertions.assertEquals(7,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -74,10 +75,10 @@ public class BalatroTest {
         //act
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(cartas.get(1));
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(8,puntosObtenidos);
+        Assertions.assertEquals(8,puntosObtenidos);
 
     }
 
@@ -104,10 +105,10 @@ public class BalatroTest {
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(cartas.get(4));
         manoDeLaRonda.seleccionarCarta(cartas.get(6)); //verificar mano porque no se puede seleccionar la posicion 7 //no se puede porque mientras se eligen, se van de la lista
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(28,puntosObtenidos);
+        Assertions.assertEquals(28,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -136,10 +137,10 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(cartas.get(6));
         manoDeLaRonda.seleccionarCarta(cartas.get(1));
         manoDeLaRonda.seleccionarCarta(cartas.get(0));
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(88,puntosObtenidos);
+        Assertions.assertEquals(88,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -171,12 +172,12 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,4,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 30 de la mano de poker (escalera simple)
         //multiplicado por el multiplicador de la mano de poker 4
-        assertEquals(200,puntosObtenidos);
+        assertEquals(200,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -205,12 +206,12 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,4,3,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(0));  //-> {12,4,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 100 de la mano de poker (escalera color)
         //multiplicado por el multiplicador de la mano de poker 8
-        assertEquals(960,puntosObtenidos);
+        Assertions.assertEquals(960,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -243,12 +244,12 @@ public class BalatroTest {
         manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,4,2,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2,2}
         manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,2,2}
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
         //6+5+4+3+2 de las cartas + 100 de la mano de poker (escalera color)
         //multiplicado por el multiplicador de la mano de poker 8
-        assertEquals(960,puntosObtenidos);
+        Assertions.assertEquals(960,puntosObtenidos.calcularPuntaje());
 
     }
 
@@ -280,10 +281,10 @@ public class BalatroTest {
         //en estos casos voy a actuar como el jugador
         manoDeLaRonda.seleccionarCarta(cartas.get(1));
         manoDeLaRonda.aplicarTarot(tarot); //provisorio
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(26,puntosObtenidos);
+        Assertions.assertEquals(26,puntosObtenidos);
 
     }
 
@@ -315,10 +316,10 @@ public class BalatroTest {
         //en estos casos voy a actuar como el jugador
         tarot.aplicarA(cartas.get(6));
         manoDeLaRonda.seleccionarCarta(cartas.get(6));
-        int puntosObtenidos = manoDeLaRonda.jugarCartas();
+        Puntaje puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
-        assertEquals(30,puntosObtenidos);
+        Assertions.assertEquals(30,puntosObtenidos);
 
     }
 }

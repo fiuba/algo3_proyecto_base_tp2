@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.definidorDeManoDePoker.DefinidorDeManoDePoker;
@@ -21,6 +22,7 @@ public class Jugada {
         this.cartas = new ArrayList<Carta>();
         this.definidor = new DefinidorDeManoDePoker();
     }
+
     public ManoDePoker seleccionar(Carta carta){
         if (this.cartas.size() >= 5) {
             throw new IllegalStateException("Ya se han seleccionado las cartas máximas permitidas (5 cartas).");
@@ -63,5 +65,9 @@ public class Jugada {
 
     public void aplicarTarotAMano(Tarot tarot){
         this.definidor.aplicarTarotAMano(tarot);
+    }
+
+    public Puntaje puntajeActual() {
+        return this.manoDePoker.calcularPuntaje();
     }
 }

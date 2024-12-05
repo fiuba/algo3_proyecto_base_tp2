@@ -3,11 +3,16 @@ import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.carta.Carta;
+
+import java.util.List;
 
 public class Ronda {
     private Jugador jugador;
     private Tienda tienda;
     private Mazo mazo;
+    private Mano manoActual;
     private int nro;
     private int manos;
     private int descartes;
@@ -25,44 +30,20 @@ public class Ronda {
         return tienda;
     }
 
-    public void asignarJugador(Jugador jugador) {
-        this.jugador = jugador;
+
+    public List<Carta> mostrarCartasDeManos() {
+        return this.jugador.verCartasEnMano();
     }
 
-    public Jugador getJugador() {return this.jugador; }
-
-    public void asignarMazo(Mazo mazo) {
-        this.mazo = mazo;
+    public void empezarRonda(Jugador jugador, Mazo mazo) {
+        this.manoActual = new Mano(mazo, this.descartes, new ManoDeComodines());
+        this.jugador.asignarMano(manoActual);
     }
 
-    /*
-
-    public Puntaje seleccionar(int posicionCarta) {
-        return this.jugador.getMano().seleccionarCarta(posicionCarta).devolverPuntaje();
+    public void seleccionar(Carta carta) {
+        this.jugador.seleccionar(carta);
     }
 
 
-
-    public Puntaje seleccionar(int posicionCarta, Tarot tarot) {
-        return this.jugador.getMano().seleccionarCarta(posicionCarta,tarot).devolverPuntaje();
-    }*/
-
-    public void jugar() {
-        if( this.manos >= 1 ){
-        Mano mano = new Mano(mazo,3, new ManoDeComodines());
-        this.jugador.asignarMano(mano);
-        this.manos = this.manos - 1;
-        }  else {
-        throw new IllegalStateException("No hay manos disponibles para jugar.");
-        }
-    }
-
-    public void jugarConMazo(Mazo mazo){
-        this.mazo = mazo;
-    }
-
-    public boolean jugar(Mazo mazoDeCartas){
-        return true;
-    }
 
 }

@@ -126,7 +126,7 @@ public class RondaTestIntegrador {
      }
 
      @Test
-    public void test04SeJuegan5ManosYSePasaLaRonda(){
+    public void test04SeJueganeManosYSePasaLaRonda(){
 
         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
 
@@ -134,10 +134,15 @@ public class RondaTestIntegrador {
 
         Ronda ronda = new Ronda(tienda, 1, 3, 2, 500);
 
-        ronda.asignarJugador(jugador);
+        ronda.empezarRonda(jugador, mockMazo);
 
-        ronda.asignarMazo(mockMazo);
+        List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
 
+        ronda.seleccionar(cartasDeMano.get(0));
+        ronda.seleccionar(cartasDeMano.get(1));
+        ronda.seleccionar(cartasDeMano.get(2));
+
+//        Puntaje puntajeDeRonda = ronda.jugar();
 
      }
 

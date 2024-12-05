@@ -15,13 +15,13 @@ public class Jugador {
     private String nombre;
     private Mano mano;
     private Jugada jugada;
-    private int puntajeTotal;
+    private Puntaje puntajeTotal;
     private ManoDeTarots manoDeTarots;
 
     private Jugador(String nombre) {
         this.nombre = nombre;
         this.jugada = new Jugada();
-        this.puntajeTotal = 0;
+        this.puntajeTotal = new Puntaje(0,1);
     }
 
     public static Jugador CrearJugador(String nombre) {
@@ -38,7 +38,7 @@ public class Jugador {
     public void asignarMano(Mano mano) {
         this.mano = mano;
     }
-    
+
 
     public List<Carta> verCartasEnMano(){
         return List.copyOf(mano.verCartasEnMano());
@@ -52,9 +52,9 @@ public class Jugador {
 
 
 
-    public int jugarMano() {
-        int puntaje = mano.jugarCartas();
-        this.puntajeTotal += puntaje;
+    public Puntaje jugarMano() {
+        Puntaje puntaje = mano.jugarCartas();
+        this.puntajeTotal.sumarConPuntaje(puntaje);
         return puntaje;
     }
 
@@ -74,5 +74,9 @@ public class Jugador {
 
     public void descartar() {
         mano.descartarCartas();
+    }
+
+    public int obtenerPuntajeFinal(){
+        return puntajeTotal.calcularPuntaje();
     }
 }
