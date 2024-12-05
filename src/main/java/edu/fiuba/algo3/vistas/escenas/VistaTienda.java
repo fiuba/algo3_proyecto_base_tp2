@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -24,15 +25,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class VistaTienda extends Scene{
     private Stage stage;
+    private FlowPane root;
+    private Text descripcion;
+    private List<Carta> cartas;
+    private List<Tarot> tarots;
+    private List<Comodin> comodines;
+    private Object elementoSeleccionado = null;
+    private Button cartaSeleccionada = null;
 
     public VistaTienda(Stage stage, double width, double height, Tienda tienda) {
-        super(new Pane(), width, height);
+        super(new FlowPane(), width, height);
         this.stage = stage;
-        Pane root = (Pane) this.getRoot();
+        this.root = (FlowPane) this.getRoot();
 
+        //background imagen
         BackgroundImage imagenFondo = new BackgroundImage(
                 new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundShop.jpg"))),
                 BackgroundRepeat.NO_REPEAT,
@@ -40,95 +50,152 @@ public class VistaTienda extends Scene{
                 BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, false, true)
         );
+
         Background fondo = new Background(imagenFondo);
-        root.setBackground(fondo);
+        this.root.setBackground(fondo);
 
-        Text textoTituloSuperior = new Text("SHOP");
-        textoTituloSuperior.setStyle("-fx-font-size: 70px; -fx-font-weight: bold; -fx-fill: white;");
+        //titulo shop
 
-        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/bokor.ttf"), 36);
+        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/bokor.ttf"),36);
         if (fontCreepster == null) {
             System.out.println("No se pudo cargar la fuente, usando la fuente predeterminada.");
             fontCreepster = Font.font("Arial", 36);  // Fuente de respaldo
         }
+
+        //HBox contenedorTitulo = new HBox(textoTituloSuperior);
+        //contenedorTitulo.setAlignment(Pos.TOP_CENTER);
+
+        //panel detalles
+        VBox panelDetalles = new VBox();
+        panelDetalles.setAlignment(Pos.TOP_LEFT);
+        panelDetalles.setPrefWidth(400);
+
+        Text textoTituloSuperior = new Text("TIENDA");
+        textoTituloSuperior.setStyle("-fx-font-size: 100px; -fx-font-weight: bold; -fx-fill: red; ");
         textoTituloSuperior.setFont(fontCreepster);
 
-        HBox contenedorTitulo = new HBox();
-        contenedorTitulo.setAlignment(Pos.CENTER_LEFT);
-        contenedorTitulo.getChildren().addAll(textoTituloSuperior);
-        contenedorTitulo.setPadding(new Insets(0, 0, 0, 20));  // Top, Right, Bottom, Left (más espacio a la izquierda)
+        Text titulo = new Text("Detalles de la carta:");
+        titulo.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;  -fx-fill:red; ");
+        titulo.setFont(fontCreepster);
 
-        List<Carta> cartas = tienda.obtenerCartas();
-        List<Tarot> tarots = tienda.obtenerTarots();
-        List<Comodin> comodins = tienda.obtenerComodines();
+        descripcion = new Text();
+        descripcion.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;  -fx-fill:red;-fx-max-height: 150px; ");
+        descripcion.setFont(fontCreepster);
+        descripcion.setWrappingWidth(350);
 
-        FlowPane contenedorCartas = new FlowPane();
-        contenedorCartas.setOrientation(Orientation.HORIZONTAL);
-        contenedorCartas.setPrefHeight(150);  // Establecer altura fija para el contenedor
+// Crear un HBox para contener el texto y centrarlo
+        VBox contenedorTitulo = new VBox(20);  // 10 es el espacio entre los elementos
+        contenedorTitulo.getChildren().addAll(textoTituloSuperior, titulo);
+        contenedorTitulo.setAlignment(Pos.CENTER);  // Alinear el VBox al centro
+
+        StackPane contenedorDescripcion = new StackPane(descripcion);
+        contenedorDescripcion.setAlignment(Pos.CENTER);  // Alinear el VBox dentro del StackPane
+        contenedorDescripcion.setMinHeight(100);
+
+        StackPane botonGuardar = new StackPane();
+        botonGuardar.setStyle("-fx-background-color: red;");
+        botonGuardar.setPrefSize(200, 50);
+
+        Text textoGuardar = new Text("JUGAR CARTAS");
+        textoGuardar.setFont(fontCreepster);
+        textoGuardar.setFill(javafx.scene.paint.Color.WHITE);
+
+        botonGuardar.getChildren().add(textoGuardar);
+        botonGuardar.setOnMouseClicked(event -> {
+            // Lógica de guardar cartas
+            System.out.println("Guardar cartas");
+        });
+
+        StackPane botonEliminar = new StackPane();
+        botonEliminar.setStyle("-fx-background-color: red;");
+        botonEliminar.setPrefSize(200, 50);
+
+        Text textoEliminar = new Text("ELIMINAR CARTA");
+        textoEliminar.setFont(fontCreepster);
+        textoEliminar.setFill(javafx.scene.paint.Color.WHITE);
+
+        // CARTAS CONTENEDORES
+        HBox contenedorCartas = new HBox();
+        contenedorCartas.setPrefHeight(150);
+        contenedorCartas.setSpacing(10);
+        contenedorCartas.setAlignment(Pos.CENTER);
+
+        HBox contenedorTarots = new HBox();
+        contenedorTarots.setPrefHeight(150);
+        contenedorTarots.setSpacing(10);
+        contenedorTarots.setAlignment(Pos.CENTER);
+
+        HBox contenedorComodines = new HBox();
+        contenedorComodines.setPrefHeight(150);
+        contenedorComodines.setSpacing(10);
+        contenedorComodines.setAlignment(Pos.CENTER);
+
+        StackPane cartasStack = new StackPane(contenedorCartas);
+        cartasStack.setAlignment(Pos.CENTER);
+
+        StackPane comodinStack = new StackPane(contenedorComodines);
+        comodinStack.setAlignment(Pos.CENTER);
+
+        StackPane tarotStack = new StackPane(contenedorTarots);
+        tarotStack.setAlignment(Pos.CENTER);
+
+        botonEliminar.getChildren().add(textoEliminar);
+        botonEliminar.setOnMouseClicked(event -> {
+            descripcion.setText("");
+            eliminarElemento();
+            actualizarInterfazCartas(contenedorCartas);
+            actualizarInterfazTarots(contenedorTarots);
+            actualizarInterfazComodines(contenedorComodines);
+            System.out.println("Eliminar carta");
+        });
 
 
-        FlowPane contenedorTarots = new FlowPane();
-        contenedorTarots.setOrientation(Orientation.HORIZONTAL);
-        contenedorTarots.setPrefHeight(150);  // Establecer altura fija para el contenedor
+        VBox panelBotones = new VBox(20);
+        panelBotones.setAlignment(Pos.BOTTOM_CENTER);
+        panelBotones.getChildren().addAll( botonGuardar, botonEliminar);
+        panelBotones.setMinHeight(100);
+        panelBotones.setPrefHeight(300);
 
 
-        FlowPane contenedorComodines = new FlowPane();
-        contenedorComodines.setOrientation(Orientation.HORIZONTAL);
-        contenedorComodines.setPrefHeight(150);  // Establecer altura fija para el contenedor
 
-        for (Carta carta : cartas) {
-            Button botonCarta = new Button();
-            botonCarta.setGraphic(new ImageView(obtenerImagenCarta(carta)));
-            botonCarta.setStyle("-fx-background-color: transparent;");
-            ImageView imagenCarta = (ImageView) botonCarta.getGraphic();
-            imagenCarta.setFitWidth(80);
-            imagenCarta.setFitHeight(120);
-            botonCarta.setOnAction(event -> mostrarDetallesCarta(carta));
-            contenedorCartas.getChildren().add(botonCarta);
-        }
+        panelDetalles.getChildren().addAll(contenedorTitulo, contenedorDescripcion, panelBotones);
 
-        for (Tarot tarot : tarots) {
-            Button botonTarot= new Button();
-            botonTarot.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/tarot.jpg")))));
-            botonTarot.setStyle("-fx-background-color: transparent;");
-            ImageView imagenCarta = (ImageView) botonTarot.getGraphic();
-            imagenCarta.setFitWidth(80);
-            imagenCarta.setFitHeight(120);
-            botonTarot.setOnAction(event -> mostrarDetallesCarta(tarot));
-            contenedorTarots.getChildren().add(botonTarot);
-        }
+        this.cartas = tienda.obtenerCartas();
+        this.tarots = tienda.obtenerTarots();
+        this.comodines = tienda.obtenerComodines();
 
-        for (Comodin comodin : comodins) {
-            Button botonComodin= new Button();
-            botonComodin.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/comodin.jpg")))));
-            botonComodin.setStyle("-fx-background-color: transparent;");
-            ImageView imagenCarta = (ImageView) botonComodin.getGraphic();
-            imagenCarta.setFitWidth(80);
-            imagenCarta.setFitHeight(120);
-            botonComodin.setOnAction(event -> mostrarDetallesCarta(comodin));
-            contenedorComodines.getChildren().add(botonComodin);
-        }
+        actualizarInterfazCartas(contenedorCartas);
+        actualizarInterfazTarots(contenedorTarots);
+        actualizarInterfazComodines(contenedorComodines);
 
         VBox contenedorCartasTarotsComodines = new VBox();
-        contenedorCartasTarotsComodines.setAlignment(Pos.TOP_CENTER);
+        contenedorCartasTarotsComodines.setAlignment(Pos.CENTER);
+
+        Label textoCartaNormal = new Label("NORMALES");
+        textoCartaNormal.setStyle("-fx-text-fill: red; -fx-padding: 5px;");
+        textoCartaNormal.setFont(fontCreepster);
+        Label textoCartaTarot = new Label("TAROTS");
+        textoCartaTarot.setFont(fontCreepster);
+        textoCartaTarot.setStyle("-fx-text-fill: red; -fx-padding: 5px;");
+        Label textoComodin = new Label("COMODINES");
+        textoComodin.setStyle("-fx-text-fill: red; -fx-padding: 5px;");
+        textoComodin.setFont(fontCreepster);
+
+
         contenedorCartasTarotsComodines.getChildren().addAll(
-                new Label("Cartas Normales"), contenedorCartas,
-                new Label("Tarots"), contenedorTarots,
-                new Label("Comodines"), contenedorComodines
+                textoCartaNormal, cartasStack,
+                textoCartaTarot, tarotStack,
+                textoComodin, comodinStack
         );
-
-        VBox contenedorPrincipal = new VBox(20);
-        contenedorPrincipal.setAlignment(Pos.TOP_CENTER);
-        contenedorPrincipal.getChildren().addAll(contenedorTitulo, contenedorCartasTarotsComodines);
-
-        root.getChildren().add(contenedorPrincipal);
-    }
-
-    private Image obtenerImagenCarta(Carta carta) {
-        String palo = compararPalos(carta);
-        String valor = carta.obtenerNombre();
-        String rutaImagen = "/images/Cartas/" + palo + "/" + valor + ".jpg";
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(rutaImagen)));
+        contenedorCartasTarotsComodines.setFillWidth(true);
+        VBox contenedorPrincipal = new VBox();
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+        contenedorPrincipal.getChildren().addAll(
+                contenedorCartasTarotsComodines
+        );
+        this.root.getChildren().add(panelDetalles);
+        this.root.getChildren().add(contenedorPrincipal);
+        this.root.setPrefSize(width, height);
     }
 
 
@@ -154,19 +221,114 @@ public class VistaTienda extends Scene{
     }
 
     private void mostrarDetallesCarta(Object carta) {
-        String detalles = "Nombre: " + carta.toString() + "\nDescripción: " + obtenerDescripcionCarta(carta);
-        System.out.println(detalles);
+        descripcion.setText("");
+        String descripcionTexto = obtenerDescripcionCarta(carta);
+        descripcion.setText(descripcionTexto); // Actualiza el texto de la descripción    }
     }
 
     private String obtenerDescripcionCarta(Object carta) {
         if (carta instanceof Carta) {
-            return "";
+            return "Carta normal";
         } else if (carta instanceof Tarot) {
-            return "Descripción del tarot: " + ((Tarot) carta).getDescripcion();
+            return ((Tarot) carta).getDescripcion();
         } else if (carta instanceof Comodin) {
-            return "Descripción del comodín: " + ((Comodin) carta).getDescripcion();
+            return ((Comodin) carta).getDescripcion();
         }
         return "Descripción no disponible";
     }
+
+    private void eliminarElemento() {
+        if (elementoSeleccionado != null) {
+            if (elementoSeleccionado instanceof Carta) {
+                cartas.remove(elementoSeleccionado);
+                System.out.println("Carta eliminada: " + elementoSeleccionado);
+            } else if (elementoSeleccionado instanceof Tarot) {
+                tarots.remove(elementoSeleccionado);
+                System.out.println("Tarot eliminado: " + elementoSeleccionado);
+            } else if (elementoSeleccionado instanceof Comodin) {
+                comodines.remove(elementoSeleccionado);
+                System.out.println("Comodín eliminado: " + elementoSeleccionado);
+            }
+            elementoSeleccionado = null;
+        } else {
+            System.out.println("No se ha seleccionado ningún elemento para eliminar.");
+        }
+    }
+
+    private Image obtenerImagenCarta(Carta carta) {
+        String palo = compararPalos(carta);
+        String valor = carta.obtenerNombre();
+        String rutaImagen = "/images/Cartas/" + palo + "/" + valor + ".jpg";
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(rutaImagen)));
+    }
+
+    private Image obtenerImagenTarot(Tarot tarot) {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/tarot.jpg")));
+    }
+
+    private Image obtenerImagenComodin(Comodin comodin) {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/comodin.jpg")));
+    }
+
+    private void actualizarInterfazCartas(HBox contenedorCartas) {
+        actualizarInterfaz(contenedorCartas, cartas, this::obtenerImagenCarta);
+    }
+
+    private void actualizarInterfazTarots(HBox contenedorTarots) {
+        actualizarInterfaz(contenedorTarots, tarots, this::obtenerImagenTarot);
+    }
+
+    private void actualizarInterfazComodines(HBox contenedorComodines) {
+        actualizarInterfaz(contenedorComodines, comodines, this::obtenerImagenComodin);
+    }
+
+    private <T> void actualizarInterfaz(HBox contenedor, List<T> elementos, Function<T, Image> obtenerImagen) {
+        contenedor.getChildren().clear();
+
+        for (T elemento : elementos) {
+            Button botonElemento = new Button();
+
+            Image imagen = obtenerImagen.apply(elemento);
+            botonElemento.setGraphic(new ImageView(imagen));
+            botonElemento.setStyle("-fx-background-color: transparent;");
+            ImageView imagenElemento = (ImageView) botonElemento.getGraphic();
+            imagenElemento.setFitWidth(80);
+            imagenElemento.setFitHeight(120);
+
+     //       botonElemento.setOnMouseEntered(event -> {
+     //           imagenElemento.setFitWidth(90);
+     //           imagenElemento.setFitHeight(130);
+     //       });
+
+     //       botonElemento.setOnMouseExited(event -> {
+     //           if (cartaSeleccionada != botonElemento) {
+     //               imagenElemento.setFitWidth(80);
+     //               imagenElemento.setFitHeight(120);
+     //           }
+    //        });
+
+            botonElemento.setOnMouseClicked(event -> {
+                if (elementoSeleccionado != null) {
+                    if (cartaSeleccionada != null) {
+                        ImageView imagenPrevio = (ImageView) cartaSeleccionada.getGraphic();
+                        imagenPrevio.setFitWidth(80);
+                        imagenPrevio.setFitHeight(120);
+                    }
+                }
+
+                // Actualizar la selección
+                cartaSeleccionada = botonElemento;
+                elementoSeleccionado = elemento;
+
+                imagenElemento.setFitWidth(90);
+                imagenElemento.setFitHeight(130);
+
+                mostrarDetallesCarta(elemento);
+            });
+
+            contenedor.getChildren().add(botonElemento);
+        }
+    }
+
 
 }
