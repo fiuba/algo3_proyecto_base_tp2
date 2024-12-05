@@ -42,7 +42,7 @@ public class testDeIntegracionEntrega1{
     }
     @Test
         public void test01SeVerificaQueUnJugadorCuentaConCartasSuficientesParaIniciarElJuegoEnSuMaso() {
-            Jugador jugador = new Jugador("Manuel");
+            Jugador jugador = Jugador.CrearJugador("Manuel");
 
             jugador.asignarMano(mano);
 

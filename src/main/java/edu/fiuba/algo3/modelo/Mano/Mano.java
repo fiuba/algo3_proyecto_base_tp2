@@ -42,10 +42,14 @@ public class Mano {
         return cartas;
     }
 
-    public void seleccionarCarta(int posicionMano){
-        Carta carta = this.cartas.get(posicionMano);
-        jugada.seleccionar(carta);
-        this.cartas.remove(carta);
+    public void seleccionarCarta(Carta carta) {
+        if (this.cartas.contains(carta)) {
+            Carta seleccionada = this.cartas.get(this.cartas.indexOf(carta));
+            jugada.seleccionar(seleccionada);
+            this.cartas.remove(carta);
+        } else {
+            throw new CartaNoEncontrada();
+        }
     }
 
     public void desSeleccionarCarta(Carta carta){
@@ -64,11 +68,23 @@ public class Mano {
     public void descartarCartas(){
 
         this.descartes--;
-        jugada.descartar();
+        jugada.descartar(this.mazo);
+        this.cartas = this.mazo.repartirCartas();
+
         //comodines.actualizarPorDescarte();
     }
     //este le aplica a la mano que le corresponde
     public void aplicarTarot(Tarot tarot){
         this.jugada.aplicarTarotAMano(tarot);
+    }
+
+    public  void aplicarTarotACarta(Tarot tarot, Carta carta) {
+        Carta cartaTaroteada;
+        if(this.cartas.contains(carta)){
+            cartaTaroteada = this.cartas.get(this.cartas.indexOf(carta));
+            tarot.aplicarA(cartaTaroteada);
+        }else{
+            throw new CartaNoEncontrada();
+        }
     }
 }

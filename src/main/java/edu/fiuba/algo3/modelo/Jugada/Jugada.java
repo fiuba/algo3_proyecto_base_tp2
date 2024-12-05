@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Jugada;
 
 import edu.fiuba.algo3.modelo.ManoDePoker.CartaMasAlta;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -36,12 +37,6 @@ public class Jugada {
         return carta;
     }
 
-    public Carta deseleccionar(int posicion){
-        Carta cartaARemover = this.cartas.get(posicion);
-        this.cartas.remove(posicion);  //devuleve la carta para que la mano la vuelva a guadar en su array
-        this.definirManoDePoker();
-        return cartaARemover;
-    }
 
     private void definirManoDePoker(){
         this.manoDePoker = this.definidor.definirManoDePoker(this.cartas);
@@ -57,7 +52,8 @@ public class Jugada {
         return this.manoDePoker;
     }
 
-    public void descartar(){
+    public void descartar(Mazo mazo){
+        mazo.reponer(this.cartas);
         this.cartas.clear();
     }
 

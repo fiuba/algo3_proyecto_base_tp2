@@ -44,7 +44,7 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMockeado,3, comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(2);
+        manoDeLaRonda.seleccionarCarta(cartas.get(2));
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -73,7 +73,7 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMockeado, 3 ,comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(1);
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -102,8 +102,8 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMockeado,3,comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(4);
-        manoDeLaRonda.seleccionarCarta(6); //verificar mano porque no se puede seleccionar la posicion 7 //no se puede porque mientras se eligen, se van de la lista
+        manoDeLaRonda.seleccionarCarta(cartas.get(4));
+        manoDeLaRonda.seleccionarCarta(cartas.get(6)); //verificar mano porque no se puede seleccionar la posicion 7 //no se puede porque mientras se eligen, se van de la lista
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -132,10 +132,10 @@ public class BalatroTest {
 
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(4);
-        manoDeLaRonda.seleccionarCarta(6);
-        manoDeLaRonda.seleccionarCarta(1);
-        manoDeLaRonda.seleccionarCarta(0);
+        manoDeLaRonda.seleccionarCarta(cartas.get(4));
+        manoDeLaRonda.seleccionarCarta(cartas.get(6));
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));
+        manoDeLaRonda.seleccionarCarta(cartas.get(0));
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -164,13 +164,13 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMockeado, 3 ,comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(5);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);   //-> {12,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(5));   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));   //-> {12,5,4,3,2,2}
         manoDeLaRonda.desSeleccionarCarta(new Carta(new Pica(), 2,2,1)); //{12,5,4,3,2,2,2}
-        manoDeLaRonda.seleccionarCarta(6); // -> {12,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(6)); // -> {12,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,4,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2}
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -200,11 +200,11 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMock,3,comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(7);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);   //-> {12,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(7));   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));   //-> {12,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(0));  //-> {12,4,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2}
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -236,13 +236,13 @@ public class BalatroTest {
         Mano manoDeLaRonda = new Mano(mazoMockeado, 3, comodines);
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(7);   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);   //-> {12,5,4,3,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(7));   //{12,6,5,4,3,2,2,2} -> {12,6,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));   //-> {12,5,4,3,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,4,3,2,2}
         manoDeLaRonda.desSeleccionarCarta(cartaASacar); //-> {12,4,3,2,2,2}
-        manoDeLaRonda.seleccionarCarta(2);  //-> {12,4,2,2,2}
-        manoDeLaRonda.seleccionarCarta(1);  //-> {12,2,2,2}
-        manoDeLaRonda.seleccionarCarta(2);  //-> {12,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,4,2,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));  //-> {12,2,2,2}
+        manoDeLaRonda.seleccionarCarta(cartas.get(2));  //-> {12,2,2}
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert
@@ -278,7 +278,7 @@ public class BalatroTest {
 
         //act
         //en estos casos voy a actuar como el jugador
-        manoDeLaRonda.seleccionarCarta(1);
+        manoDeLaRonda.seleccionarCarta(cartas.get(1));
         manoDeLaRonda.aplicarTarot(tarot); //provisorio
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
@@ -314,7 +314,7 @@ public class BalatroTest {
         //act
         //en estos casos voy a actuar como el jugador
         tarot.aplicarA(cartas.get(6));
-        manoDeLaRonda.seleccionarCarta(6);
+        manoDeLaRonda.seleccionarCarta(cartas.get(6));
         int puntosObtenidos = manoDeLaRonda.jugarCartas();
 
         //assert

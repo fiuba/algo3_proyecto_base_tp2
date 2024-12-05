@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2.jugadaTest;
+package edu.fiuba.algo3.entrega_1.jugadaTest;
 
 
 import edu.fiuba.algo3.modelo.Jugada.Jugada;

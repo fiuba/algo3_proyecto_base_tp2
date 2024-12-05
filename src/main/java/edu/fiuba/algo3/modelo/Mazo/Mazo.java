@@ -66,4 +66,8 @@ public class Mazo implements ProveedorDeCartas {
     public void agregarAlMazo(Carta carta){
         this.cartas.add(carta);
     }
+
+
+
+
 }

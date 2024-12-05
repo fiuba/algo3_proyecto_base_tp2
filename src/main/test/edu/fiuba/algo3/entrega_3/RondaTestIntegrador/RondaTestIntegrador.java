@@ -130,7 +130,7 @@ public class RondaTestIntegrador {
 
         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
 
-        Jugador jugador = new Jugador("el pepe");
+        Jugador jugador = Jugador.CrearJugador("el pepe");
 
         Ronda ronda = new Ronda(tienda, 1, 3, 2, 500);
 
