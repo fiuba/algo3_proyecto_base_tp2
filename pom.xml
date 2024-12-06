@@ -91,6 +91,11 @@
       <id>package</id>
       <dependencies>
         <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-math3</artifactId>
+          <version>3.6.1</version>
+        </dependency>
+        <dependency>
           <groupId>com.google.code.gson</groupId>
           <artifactId>gson</artifactId>
           <version>${com.google.code.gson.version}</version>
@@ -159,18 +164,18 @@
     <testSourceDirectory>src/main/test</testSourceDirectory>
 
     <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.1.2</version>
-          <configuration>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-version}</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <argLine>--enable-preview</argLine>
+        </configuration>
+      </plugin>
 
-            <compilerArgs>
-              <arg>--module-path</arg>
-              <arg>${}</arg>
-            </compilerArgs>
-          </configuration>
-        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

@@ -14,13 +14,12 @@ public class Jugador {
     private static Jugador jugador;
     private String nombre;
     private Mano mano;
-    private Jugada jugada;
     private Puntaje puntajeTotal;
     private ManoDeTarots manoDeTarots;
 
     private Jugador(String nombre) {
         this.nombre = nombre;
-        this.jugada = new Jugada();
+
         this.puntajeTotal = new Puntaje(0,1);
     }
 
@@ -54,7 +53,7 @@ public class Jugador {
 
     public Puntaje jugarMano() {
         Puntaje puntaje = mano.jugarCartas();
-        this.puntajeTotal.sumarConPuntaje(puntaje);
+        this.puntajeTotal = this.puntajeTotal.sumarConPuntaje(puntaje);
         return puntaje;
     }
 

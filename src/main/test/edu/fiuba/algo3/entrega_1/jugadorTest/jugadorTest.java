@@ -266,7 +266,7 @@ public class jugadorTest {
         jugador.seleccionar(cartasRonda1.get(5));
         jugador.seleccionar(cartasRonda1.get(6));
 
-      Puntaje puntajeTotal = jugador.jugarMano();
+        jugador.jugarMano();
 
         Mano manoRonda2 = new Mano(mazoMock2, 3, manoComodines);
         jugador.asignarMano(manoRonda2);
@@ -279,8 +279,8 @@ public class jugadorTest {
         jugador.seleccionar(cartasRonda2.get(5));
         jugador.seleccionar(cartasRonda2.get(6));
 
-        puntajeTotal.sumarConPuntaje(jugador.jugarMano());
 
+        jugador.jugarMano();
         Mano mano3 = new Mano(mazoMock3, 3, manoComodines);
         jugador.asignarMano(mano3);
 
@@ -292,8 +292,9 @@ public class jugadorTest {
         jugador.seleccionar(cartasRonda3.get(5));
         jugador.seleccionar(cartasRonda3.get(7));
 
-        puntajeTotal.sumarConPuntaje(jugador.jugarMano());
+        jugador.jugarMano();
 
-        Assertions.assertEquals(puntajeTotal.calcularPuntaje(), jugador.obtenerPuntajeFinal());
+
+        Assertions.assertEquals(1197, jugador.obtenerPuntajeFinal());
     }
 }
