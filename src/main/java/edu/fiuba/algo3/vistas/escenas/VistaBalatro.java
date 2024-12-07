@@ -49,33 +49,28 @@ public class VistaBalatro extends Scene {
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
 
-        // VBox para la información del jugador.
         VBox playerInfo = new VBox(10);
             playerInfo.setStyle("-fx-background-color: #2B2B2B; -fx-padding: 10;");
             playerInfo.setAlignment(Pos.TOP_CENTER);
 
-        // Etiqueta de puntuación.
         Label scoreLabel = new Label("Puntos Necesarios: 200");
-            scoreLabel.setTextFill(Color.WHITE); // Cambia el color del texto a blanco.
+            scoreLabel.setTextFill(Color.WHITE);
             scoreLabel.setFont(new Font("Arial", 16));
 
-        // Etiqueta del número de ronda.
         Label roundLabel = new Label("Ronda: 4 / 12");
             roundLabel.setTextFill(Color.WHITE);
             roundLabel.setFont(new Font("Arial", 16));
 
-        // Botón de opciones.
         Button optionsButton = new Button("Descartar");
             optionsButton.setStyle("-fx-background-color: #FF6600; -fx-text-fill: white;");
 
-        // Agregar etiquetas y botón al VBox.
         playerInfo.getChildren().addAll(scoreLabel, roundLabel, optionsButton);
 
-        // HBox para las cartas activas.
         HBox activeCards = new HBox(10);
-            activeCards.setAlignment(Pos.CENTER); // Centra el contenido horizontalmente.
+            activeCards.setAlignment(Pos.CENTER);
             activeCards.setStyle("-fx-background-color: #4A148C; -fx-padding: 10;");
 
+        actualizarInterfazCartas(activeCards);
             this.root.setTop(playerInfo);
             this.root.setCenter(activeCards);
             this.root.setPrefSize(width, height);
@@ -144,16 +139,22 @@ public class VistaBalatro extends Scene {
         contenedor.getChildren().clear();
 
         for (T elemento : elementos) {
-            Button botonElemento = new Button();
-
             Image imagen = obtenerImagen.apply(elemento);
-            botonElemento.setGraphic(new ImageView(imagen));
-            botonElemento.setStyle("-fx-background-color: transparent;");
-            ImageView imagenElemento = (ImageView) botonElemento.getGraphic();
+            ImageView imagenElemento = new ImageView(imagen);;
             imagenElemento.setFitWidth(80);
             imagenElemento.setFitHeight(120);
 
-            contenedor.getChildren().add(botonElemento);
+            imagenElemento.setOnMouseEntered(event -> {
+                imagenElemento.setTranslateY(-20);
+                imagenElemento.setEffect(new DropShadow(10, Color.BLACK));
+            });
+
+            imagenElemento.setOnMouseExited(event -> {
+                imagenElemento.setTranslateY(0);
+                imagenElemento.setEffect(null);
+            });
+
+            contenedor.getChildren().add(imagenElemento);
         }
     }
 
