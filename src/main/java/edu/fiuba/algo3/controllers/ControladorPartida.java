@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.Balatro.Balatro;
@@ -27,36 +28,18 @@ public class ControladorPartida {
 
     }
 
-    public void handle(String jugador) {
-        FactoryComodines factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        FactoryDeMaso factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
-        FactoryDeTarot factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json",factoryDeTarot, factoryDeMaso, factoryComodines );
-        GeneradorDeCartas generadorDeCartas = new GeneradorDeCartas();
-        Mazo mazo = new Mazo(generadorDeCartas);
+    public void handle(String jugador) throws IOException {
+        Balatro balatro = Balatro.juego();
 
-        List<Ronda> rondasList = new ArrayList<>();
-        try {
-            rondasList = factoryRondas.generarRondas();
-        } catch (IOException e) {
-            System.err.println("Error al generar rondas: " + e.getMessage());
-        }
-
-        // Verificamos si 'jugador' no está vacío antes de proceder
         if (jugador.isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setContentText("El nombre del jugador no puede estar vacío.");
             alerta.showAndWait();
         } else {
-            if (rondasList.isEmpty()) {
-                System.err.println("No se generaron rondas. Iniciando con una lista vacía.");
-            }
-            ArrayList<Ronda> rondas = new ArrayList<>(rondasList);
-            Balatro balatro = Balatro.inicializarBalatro(rondas, mazo, jugador);
-
-            ControladorPrincipal controlador = new ControladorPrincipal(stage);
-            controlador.empezarPartida();
+            balatro.inicializadorDeBalatro("src/main/resources/balatro.json","src/main/resources/mazo.json", "src/main/resources/tarots.json", "src/main/resources/comodines.json", jugador);
+        }
+        ControladorPrincipal controlador = new ControladorPrincipal(stage);
+        controlador.empezarPartida();
         }
     }
 
-}

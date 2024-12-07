@@ -27,15 +27,13 @@ import edu.fiuba.algo3.modelo.ManoDePoker.Par;
 
 public class CambiadorDeVistas {
     public static void cambiarVistaANuevaRonda(Stage stage, Ronda ronda){
-        Balatro balatro = Balatro.getInstancia();
-        if(balatro.juegoTerminado()){
+        Balatro balatro = Balatro.juego();
+     /*   if(balatro.juegoTerminado()){
             //Scene escena = new VistaFinal(stage,1280,720);
             //stage.setScene(escena);
-        }else{
+        }else{ */
             Scene escena = crearVista(ronda,stage);
             stage.setScene(escena);
-        }
-
     }
 
     private static Scene crearVista(Ronda ronda, Stage stage) {

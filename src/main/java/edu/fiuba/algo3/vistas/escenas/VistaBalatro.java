@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.vistas.escenas;
 
+import edu.fiuba.algo3.controllers.ControladorPartida;
+import edu.fiuba.algo3.controllers.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
@@ -15,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -26,10 +30,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 
 public class VistaBalatro extends Scene {
@@ -39,6 +40,10 @@ public class VistaBalatro extends Scene {
     private List<Carta> cartas;
     private List<Tarot> tarots;
     private List<Comodin> comodines;
+    private List<Carta> cartasSeleccionadas;
+    private ControladorPrincipal controlador;
+    private Puntaje puntaje ;
+    private List<ImageView> imagenesOrdenadas = null;
 
     public VistaBalatro(Stage stage, double width, double height, Ronda ronda)  {
         super(new BorderPane(), width, height);
@@ -49,6 +54,13 @@ public class VistaBalatro extends Scene {
         this.cartas = ronda.mostrarCartasDeManos();
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
+        ControladorPrincipal controlador = new ControladorPrincipal(stage);
+        if (this.puntaje == null) {
+            Puntaje puntaje = new Puntaje(0, 0);
+            this.puntaje = puntaje;
+        }
+
+        this.controlador = controlador;
 
         Image fondo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/fondoMenu.jpg")));
 
@@ -115,108 +127,10 @@ public class VistaBalatro extends Scene {
         contenedorIzquierdo.setPadding(new Insets(15)); // Margen interno
         contenedorIzquierdo.setAlignment(Pos.TOP_CENTER); // Alinear al centro
         contenedorIzquierdo.getStyleClass().add("info-panel"); // Clase CSS principal
+        actualizarVbox(contenedorIzquierdo);
 
-        // HBox para "Anota al menos"
-        HBox puntosNecesarios = new HBox(10);
-        puntosNecesarios.setAlignment(Pos.CENTER_LEFT); // Alineación izquierda
-        puntosNecesarios.getStyleClass().add("hbox-puntos-necesarios");
-
-
-        int puntajeASuperar = ronda.verPuntajeASuperar();
-        String puntajeASuperarStr = String.valueOf(puntajeASuperar);
-        Label anotaLabel = new Label("Anota al menos:");
-        Label puntajeAnotaLabel = new Label(puntajeASuperarStr);
-
-        anotaLabel.getStyleClass().add("titulo-label"); // Sin el "."
-        puntajeAnotaLabel.getStyleClass().add("puntaje-label");
-        puntosNecesarios.getChildren().addAll(anotaLabel, puntajeAnotaLabel);
-        contenedorIzquierdo.getChildren().add(puntosNecesarios);
-
-        // segundo VBox
-        HBox puntuacionRonda = new HBox(10);
-        puntuacionRonda.setAlignment(Pos.CENTER_LEFT);
-        puntuacionRonda.getStyleClass().add("hbox-puntuacion-ronda");
-
-        int puntajeRonda = ronda.verPuntajeDeRonda();
-        String puntajeRondaSTR = String.valueOf(puntajeRonda);
-
-        Label puntuacionLabel = new Label("Puntuación ronda:");
-        Label puntajeRondaLabel = new Label(puntajeRondaSTR); // Valor dinámico
-        puntuacionLabel.getStyleClass().add("titulo-label");
-        puntajeRondaLabel.getStyleClass().add("puntaje-label");
-        puntajeRondaLabel.setFont(fontCreepster);
-
-        puntuacionRonda.getChildren().addAll(puntuacionLabel, puntajeRondaLabel);
-
-        // Añadir este HBox al VBox principal
-        contenedorIzquierdo.getChildren().add(puntuacionRonda);
-
-        // HBox para "Manos" y "Descartes"
-        HBox manosDescartes = new HBox(20); // Espaciado entre los dos grupos
-        manosDescartes.setAlignment(Pos.CENTER); // Alineación centrada
-        manosDescartes.getStyleClass().add("hbox-manos-descartes");
-
-        int manos = ronda.verManos();
-        String manosSTR = String.valueOf(manos);
-
-        // Crear labels para "Manos"
-        Label manosLabel = new Label("Manos:");
-        Label manosValorLabel = new Label(manosSTR); // Valor dinámico
-        manosLabel.getStyleClass().add("titulo-label");
-        manosValorLabel.getStyleClass().add("puntaje-label");
-        manosLabel.setFont(fontCreepster);
-
-        // Crear labels para "Descartes"
-        int descartes = ronda.verDescartes();
-        String descartessSTR = String.valueOf(descartes);
-
-        Label descartesLabel = new Label("Descartes:");
-        Label descartesValorLabel = new Label(descartessSTR); // Valor dinámico
-        descartesLabel.getStyleClass().add("titulo-label");
-        descartesValorLabel.getStyleClass().add("puntaje-label");
-        descartesValorLabel.setFont(fontCreepster);
-
-        // Crear VBox para cada sección
-        VBox manosBox = new VBox(5); // espacio
-        manosBox.setAlignment(Pos.CENTER);
-        manosBox.getChildren().addAll(manosLabel, manosValorLabel);
-
-        VBox descartesBox = new VBox(5); // Espacio txt y valor
-        descartesBox.setAlignment(Pos.CENTER);
-        descartesBox.getChildren().addAll(descartesLabel, descartesValorLabel);
-
-        // Añadir VBoxes al HBox
-        manosDescartes.getChildren().addAll(manosBox, descartesBox);
-
-        // Añadir este HBox al VBox principal
-        contenedorIzquierdo.getChildren().add(manosDescartes);
         this.root.setLeft(contenedorIzquierdo);
 
-        // termineeeeeeeeeeeee parte info borde izquierdo
-        //sigo con un par de box mas
-        //creo un Hbox Faltaaa colorrrr al Hbox
-
-        HBox contenedorMultiYValor= new HBox(10);
-        contenedorMultiYValor.getStyleClass().add("hbox-multiplicador-valor");
-
-        contenedorMultiYValor.setAlignment(Pos.CENTER);
-        Label multiplicadorLabel= new Label("Multiplicador: ");
-        Label multiValor = new Label("40"); // el dinamico
-
-
-        multiplicadorLabel.getStyleClass().add("titulo-label");
-        multiValor.getStyleClass().add("puntaje-label");
-        multiplicadorLabel.setFont(fontCreepster);
-        multiValor.setFont(fontCreepster);
-
-        Label valorLabel = new Label("valor: ");
-        Label valor = new Label("2"); // dinamico
-        valorLabel.getStyleClass().add("titulo-label");
-        valor.getStyleClass().add("puntaje-label");
-        contenedorMultiYValor.getChildren().addAll(multiplicadorLabel,multiValor,valorLabel,valor);
-        contenedorIzquierdo.getChildren().add(contenedorMultiYValor);
-        valor.setFont(fontCreepster);
-        valorLabel.setFont(fontCreepster);
 
         //agrego la carta del mazo aca:
         HBox contenedorMazo = new HBox(10);
@@ -299,18 +213,27 @@ public class VistaBalatro extends Scene {
         actualizarInterfaz(contenedorComodines, comodines, this::obtenerImagenComodin);
     }
 
-    private <T> void actualizarInterfaz(HBox contenedor, List<T> elementos, Function<T, Image> obtenerImagen) {
+    private  <T> void actualizarInterfaz(HBox contenedor, List<T> elementos, Function<T, Image> obtenerImagen) {
         contenedor.getChildren().clear();
-
+        List<ImageView> imagenesOrdenadas = new ArrayList<>(); // Lista para guardar las imágenes ordenadas
         for (T elemento : elementos) {
             Image imagen = obtenerImagen.apply(elemento);
-            ImageView imagenElemento = new ImageView(imagen);;
+            ImageView imagenElemento = new ImageView(imagen);
             imagenElemento.setFitWidth(80);
             imagenElemento.setFitHeight(120);
-            aplicarEfectoLevantarYBajar(imagenElemento);
+            //aplicarEfectoLevantarYBajar(imagenElemento);
+            seleccionar(imagenElemento);
+            imagenElemento.setUserData(elemento);
+
+            if (elemento instanceof Carta) {
+                imagenesOrdenadas.add(imagenElemento);
+            }
             contenedor.getChildren().add(imagenElemento);
+            };
+        if (this.imagenesOrdenadas == null) {
+            this.imagenesOrdenadas = imagenesOrdenadas;
         }
-    }
+        }
 
     public void aplicarEfectoLevantarYBajar(ImageView cartaVista) {
         cartaVista.setOnMouseEntered(event -> {
@@ -322,6 +245,48 @@ public class VistaBalatro extends Scene {
             cartaVista.setEffect(null);
         });
     }
+
+    public void seleccionar(ImageView imagenElemento) {
+        imagenElemento.setOnMouseClicked(event -> {
+            Object cartaSeleccionada = imagenElemento.getUserData();
+            System.out.println("Carta seleccionada: " + cartaSeleccionada);
+
+            if (cartaSeleccionada instanceof Carta) {
+                Carta carta = (Carta) cartaSeleccionada;
+
+                // Encuentra el índice de la carta seleccionada en la lista de imágenes ordenadas
+                int indiceCarta = -1;
+                for (int i = 0; i < imagenesOrdenadas.size(); i++) {
+                    if (imagenesOrdenadas.get(i).getUserData().equals(carta)) {
+                        indiceCarta = i;
+                        break;
+                    }
+                }
+
+                if (indiceCarta != -1) {  // Si la carta está en la lista
+                    if (cartasSeleccionadas == null) {
+                        cartasSeleccionadas = new ArrayList<>();
+                    }
+
+                    if (!cartasSeleccionadas.contains(carta) && cartasSeleccionadas.size() < 5) {
+                        this.puntaje = controlador.seleccionar(carta);
+                        System.out.println(puntaje.obtenerValor());
+
+                        cartasSeleccionadas.add(carta);
+                        imagenElemento.setTranslateY(-10);
+                        System.out.println("Carta añadida: " + carta.getPalo());
+                    } else {
+                        cartasSeleccionadas.remove(carta);
+                        imagenElemento.setTranslateY(0);
+                        System.out.println("Carta eliminada: " + carta);
+                    }
+                } else {
+                    System.out.println("La carta no se encuentra en la lista");
+                }
+            }
+        });
+    }
+
 
     public void aplicarBrillo(ImageView cartaVista) {
         Glow glow = new Glow(0);
@@ -359,4 +324,110 @@ public class VistaBalatro extends Scene {
             vibracion.play();
         });
     }
+
+    public void actualizarVbox(VBox contenedor) {
+        contenedor.getChildren().clear();
+        HBox puntosNecesarios = new HBox(10);
+            puntosNecesarios.setAlignment(Pos.CENTER_LEFT); // Alineación izquierda
+            puntosNecesarios.getStyleClass().add("hbox-puntos-necesarios");
+
+
+        int puntajeASuperar = ronda.verPuntajeASuperar();
+        String puntajeASuperarStr = String.valueOf(puntajeASuperar);
+        Label anotaLabel = new Label("Anota al menos:");
+        Label puntajeAnotaLabel = new Label(puntajeASuperarStr);
+
+            anotaLabel.getStyleClass().add("titulo-label"); // Sin el "."
+            puntajeAnotaLabel.getStyleClass().add("puntaje-label");
+            puntosNecesarios.getChildren().addAll(anotaLabel, puntajeAnotaLabel);
+            contenedor.getChildren().add(puntosNecesarios);
+
+        // segundo VBox
+        HBox puntuacionRonda = new HBox(10);
+            puntuacionRonda.setAlignment(Pos.CENTER_LEFT);
+            puntuacionRonda.getStyleClass().add("hbox-puntuacion-ronda");
+
+        int puntajeRonda = ronda.verPuntajeDeRonda();
+        String puntajeRondaSTR = String.valueOf(puntajeRonda);
+
+        Label puntuacionLabel = new Label("Puntuación ronda:");
+        Label puntajeRondaLabel = new Label(puntajeRondaSTR); // Valor dinámico
+            puntuacionLabel.getStyleClass().add("titulo-label");
+            puntajeRondaLabel.getStyleClass().add("puntaje-label");
+            //puntajeRondaLabel.setFont(fontCreepster);
+
+            puntuacionRonda.getChildren().addAll(puntuacionLabel, puntajeRondaLabel);
+
+        // Añadir este HBox al VBox principal
+            contenedor.getChildren().add(puntuacionRonda);
+
+        // HBox para "Manos" y "Descartes"
+        HBox manosDescartes = new HBox(20); // Espaciado entre los dos grupos
+            manosDescartes.setAlignment(Pos.CENTER); // Alineación centrada
+            manosDescartes.getStyleClass().add("hbox-manos-descartes");
+
+        int manos = ronda.verManos();
+        String manosSTR = String.valueOf(manos);
+
+        // Crear labels para "Manos"
+        Label manosLabel = new Label("Manos:");
+        Label manosValorLabel = new Label(manosSTR); // Valor dinámico
+            manosLabel.getStyleClass().add("titulo-label");
+            manosValorLabel.getStyleClass().add("puntaje-label");
+            //manosLabel.setFont(fontCreepster);
+
+        // Crear labels para "Descartes"
+        int descartes = ronda.verDescartes();
+        String descartessSTR = String.valueOf(descartes);
+
+        Label descartesLabel = new Label("Descartes:");
+        Label descartesValorLabel = new Label(descartessSTR); // Valor dinámico
+            descartesLabel.getStyleClass().add("titulo-label");
+            descartesValorLabel.getStyleClass().add("puntaje-label");
+           // descartesValorLabel.setFont(fontCreepster);
+
+        // Crear VBox para cada sección
+        VBox manosBox = new VBox(5); // espacio
+            manosBox.setAlignment(Pos.CENTER);
+            manosBox.getChildren().addAll(manosLabel, manosValorLabel);
+
+        VBox descartesBox = new VBox(5); // Espacio txt y valor
+            descartesBox.setAlignment(Pos.CENTER);
+            descartesBox.getChildren().addAll(descartesLabel, descartesValorLabel);
+
+        // Añadir VBoxes al HBox
+            manosDescartes.getChildren().addAll(manosBox, descartesBox);
+
+        // Añadir este HBox al VBox principal
+        contenedor.getChildren().add(manosDescartes);
+        HBox contenedorMultiYValor= new HBox(10);
+        contenedorMultiYValor.getStyleClass().add("hbox-multiplicador-valor");
+
+        double multiplicador = puntaje.getMultiplicador();
+        String multiplicadorSTR = String.valueOf(multiplicador);
+
+        contenedorMultiYValor.setAlignment(Pos.CENTER);
+        Label multiplicadorLabel= new Label("Multiplicador: ");
+        Label multiValor = new Label(multiplicadorSTR); // el dinamico
+
+        multiplicadorLabel.getStyleClass().add("titulo-label");
+        multiValor.getStyleClass().add("puntaje-label");
+        //multiplicadorLabel.setFont(fontCreepster);
+        //multiValor.setFont(fontCreepster);
+
+        int valorPunto = puntaje.obtenerValor();
+        String valorSTR = String.valueOf(valorPunto);
+
+        Label valorLabel = new Label("valor: ");
+        Label valor = new Label(valorSTR); // dinamico
+        valorLabel.getStyleClass().add("titulo-label");
+        valor.getStyleClass().add("puntaje-label");
+        contenedorMultiYValor.getChildren().addAll(multiplicadorLabel,multiValor,valorLabel,valor);
+        contenedor.getChildren().add(contenedorMultiYValor);
+        //valor.setFont(fontCreepster);
+        //valorLabel.setFont(fontCreepster);
+
+    }
+
+
 }

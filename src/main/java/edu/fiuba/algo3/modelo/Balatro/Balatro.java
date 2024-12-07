@@ -47,7 +47,6 @@ public class Balatro {
         rondas = new ArrayList<>();
         rondas = factoryRondas.generarRondas();
         rondaActual = rondas.get(0);
-        rondaActual.empezarRonda(jugador, mazo);
     }
 
 
@@ -80,4 +79,10 @@ public class Balatro {
         }
         return puntaje.calcularPuntaje();
     }
+
+    public Ronda jugarRonda() {
+        this.rondaActual.empezarRonda(jugador, mazo);
+        return this.rondaActual;
+    }
+
 }

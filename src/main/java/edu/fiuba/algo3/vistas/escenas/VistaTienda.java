@@ -317,14 +317,9 @@ public class VistaTienda extends Scene{
     //        });
 
             botonElemento.setOnMouseClicked(event -> {
-                if (elementoSeleccionado != null) {
-                    if (cartaSeleccionada != null) {
-                        ImageView imagenPrevio = (ImageView) cartaSeleccionada.getGraphic();
-                        imagenPrevio.setFitWidth(80);
-                        imagenPrevio.setFitHeight(120);
-                    }
-                }
-
+               ImageView imagenPrevio = (ImageView) botonElemento.getGraphic();
+               imagenPrevio.setFitWidth(80);
+               imagenPrevio.setFitHeight(120);
                 // Actualizar la selección
                 cartaSeleccionada = botonElemento;
                 elementoSeleccionado = elemento;

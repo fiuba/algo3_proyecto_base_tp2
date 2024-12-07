@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
+
+import java.io.IOException;
 import java.util.Objects;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
@@ -108,12 +110,10 @@ public class VistaPartida extends Scene{
 
         botonJugar.setOnAction(event -> {
             String nombreJugador= fieldNombreJugador.getText().trim();
-            controlador.handle(nombreJugador);
-            if (!nombreJugador.isEmpty()) {
-                System.out.println("Jugador agregado: " + nombreJugador);
-                this.nombreJugador = nombreJugador;
-            } else {
-                System.out.println("El campo de nombre está vacío.");
+            try {
+                controlador.handle(nombreJugador);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
 

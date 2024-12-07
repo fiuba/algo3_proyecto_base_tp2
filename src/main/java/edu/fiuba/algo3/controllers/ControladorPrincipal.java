@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controllers;
+import edu.fiuba.algo3.modelo.carta.Carta;
 
 import edu.fiuba.algo3.modelo.Balatro.Balatro;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -21,15 +23,20 @@ public class ControladorPrincipal {
     }
 
     public void empezarPartida(){
-        Balatro balatro = Balatro.getInstancia();
-        this.ronda = balatro.jugar();
+        Balatro balatro = Balatro.juego();
+        this.ronda = balatro.jugarRonda();
         CambiadorDeVistas.cambiarVistaANuevaRonda(stage, this.ronda);
     }
 
     public void cambiarVistaARonda(List<Object> elementos, Ronda ronda){
+        this.ronda = ronda;
         ControladorJugar controladorJugar = new ControladorJugar(stage);
         controladorJugar.cambiarAVistaRonda(elementos, ronda); // Asigna el controlador al evento.
     }
 
 
+    public Puntaje seleccionar(Carta carta) {
+        Balatro balatro = Balatro.juego();
+        return balatro.seleccionar(carta);
+    }
 }
