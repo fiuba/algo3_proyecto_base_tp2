@@ -44,7 +44,7 @@ public class parserRondaTest {
             e.printStackTrace();
         }
         Ronda ronda = rondas.get(0);
-        Tienda tienda = ronda.getTienda();
+        Tienda tienda = ronda.verTienda();
         List<Tarot> tarots = tienda.obtenerTarots();
         Assertions.assertEquals(2, tarots.size());
     }

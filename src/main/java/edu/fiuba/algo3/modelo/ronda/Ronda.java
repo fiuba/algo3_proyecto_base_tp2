@@ -3,15 +3,23 @@ import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
+
+import java.util.List;
 
 public class Ronda {
     private Jugador jugador;
     private Tienda tienda;
+    private Mano manoActual;
     private Mazo mazo;
     private int nro;
     private int manos;
     private int descartes;
     private int puntajeASuperar;
+    private int puntajeDeRonda;
+    private ManoDeComodines manoDeComodines;
 
     public Ronda(Tienda tienda, int nro, int manos, int descartes, int puntajeASuperar) {
         this.tienda = tienda;
@@ -19,51 +27,55 @@ public class Ronda {
         this.manos = manos;
         this.descartes = descartes;
         this.puntajeASuperar = puntajeASuperar;
+        this.puntajeDeRonda = 0;
+        this.manoDeComodines = new ManoDeComodines();
     }
 
-    public Tienda getTienda() {
+    public Tienda verTienda() {
         return tienda;
     }
 
-    public void asignarJugador(Jugador jugador) {
+
+    public List<Carta> mostrarCartasDeManos() {
+        return this.jugador.verCartasEnMano();
+    }
+
+    public void empezarRonda(Jugador jugador, Mazo mazo) {
+        this.mazo = mazo;
+        this.manoActual = new Mano(this.mazo, this.descartes, manoDeComodines);
         this.jugador = jugador;
+        this.jugador.asignarMano(manoActual);
+    }
+    private void arrancarNuevaMano() {
+        this.manoActual = new Mano(this.mazo, descartes, manoDeComodines);
+
     }
 
-    public Jugador getJugador() {return this.jugador; }
-
-    public void asignarMazo(Mazo mazo) {
-        this.mazo = mazo;
-    }
-
-    /*
-
-    public Puntaje seleccionar(int posicionCarta) {
-        return this.jugador.getMano().seleccionarCarta(posicionCarta).devolverPuntaje();
+    public void seleccionar(Carta carta) {
+        this.jugador.seleccionar(carta);
     }
 
 
-
-    public Puntaje seleccionar(int posicionCarta, Tarot tarot) {
-        return this.jugador.getMano().seleccionarCarta(posicionCarta,tarot).devolverPuntaje();
-    }*/
-
-    public void jugar() {
-        if( this.manos >= 1 ){
-        Mano mano = new Mano(mazo,3, new ManoDeComodines());
-        this.jugador.asignarMano(mano);
-        this.manos = this.manos - 1;
-        }  else {
-        throw new IllegalStateException("No hay manos disponibles para jugar.");
+    public Puntaje jugar() {
+        int manosJugadas = 0;
+        Puntaje puntajeActual = new Puntaje(0, 1);
+        if(manosJugadas <= this.manos) {
+            puntajeActual = this.jugador.jugarMano();
+            this.arrancarNuevaMano();
+            puntajeDeRonda += puntajeActual.calcularPuntaje();
+            manosJugadas++;
+            if(manosJugadas >= this.manos){
+                throw new ManosExedidas();
+            }
         }
+        return puntajeActual;
     }
 
-    public void jugarConMazo(Mazo mazo){
-        this.mazo = mazo;
+    public boolean seGanoLaRonda() {
+        return this.puntajeDeRonda >= this.puntajeASuperar;
     }
 
-    public boolean jugar(Mazo mazoDeCartas){
-        return true;
+    public void comprarComodin(Comodin comodin) {
+        manoDeComodines.guardar(comodin);
     }
-
-
 }

@@ -64,8 +64,8 @@ public class Puntaje {
     }
 
     public void aplicarModificacion(Puntaje valor) {
-        this.valor = valor.valor;
-        this.multiplicador = valor.multiplicador;
+        this.valor += valor.valor;
+        this.multiplicador *= valor.multiplicador;
     }
 
     public void sumarValorDeUnPuntaje(Puntaje puntaje) {

@@ -30,8 +30,8 @@ public abstract class ManoDePoker implements Modificable {
         return  Precision.equals(this.probabilidad, probabilidad, 0.03);
     }
 
-    public int calcularPuntaje(){
-        return this.puntaje.calcularPuntaje();
+    public Puntaje calcularPuntaje(){
+        return this.puntaje;
     }
 
     public Puntaje devolverPuntaje(){

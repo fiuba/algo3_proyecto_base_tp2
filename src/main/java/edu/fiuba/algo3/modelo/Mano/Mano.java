@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Ordenador.OrdenadorDeCartas;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 
@@ -13,23 +14,16 @@ import java.util.List;
 public class Mano {
 
     private Mazo mazo;
-    private List<Carta> cartas = new ArrayList<>();
+    private List<Carta> cartas;
     private Jugada jugada = new Jugada();
     private int descartes;
     private ManoDeComodines comodines;
 
-    public Mano(Mazo mazo) {
-        this.mazo = mazo;
-        this.cartas = mazo.generarCartas();
-        this.ordenarMano();
-    }
-
 
     public Mano(Mazo mazo,int descartes, ManoDeComodines comodines) {
-        //this.proveedor = proveedor;
         this.comodines = comodines;
         this.mazo = mazo;
-        this.cartas = mazo.repartirCartas();
+        this.cartas = mazo.generarCartas();
         this.ordenarMano();
         this.descartes = descartes;
     }
@@ -49,10 +43,15 @@ public class Mano {
         return cartas;
     }
 
-    public void seleccionarCarta(int posicionMano){
-        Carta carta = this.cartas.get(posicionMano);
-        jugada.seleccionar(carta);
-        this.cartas.remove(carta);
+    public Puntaje seleccionarCarta(Carta carta) {
+        if (this.cartas.contains(carta)) {
+            Carta seleccionada = this.cartas.get(this.cartas.indexOf(carta));
+            jugada.seleccionar(seleccionada);
+            this.cartas.remove(carta);
+        } else {
+            throw new CartaNoEncontrada();
+        }
+        return jugada.puntajeActual();
     }
 
     public void desSeleccionarCarta(Carta carta){
@@ -61,7 +60,7 @@ public class Mano {
     }
 
 
-    public int jugarCartas(ManoDeComodines comodines){
+    public Puntaje jugarCartas(){
         ManoDePoker manoDePoker = jugada.jugar();  //se juegan las cartas seleccionadas y devuelve los puntos obtenidos
         comodines.aplicarA(manoDePoker);
         return manoDePoker.calcularPuntaje();
@@ -69,13 +68,25 @@ public class Mano {
 
 
     public void descartarCartas(){
-        //verificar que hayan descartes
+
         this.descartes--;
-        jugada.descartar();
+        jugada.descartar(this.mazo);
+        this.cartas = this.mazo.repartirCartas();
+
         //comodines.actualizarPorDescarte();
     }
     //este le aplica a la mano que le corresponde
     public void aplicarTarot(Tarot tarot){
         this.jugada.aplicarTarotAMano(tarot);
+    }
+
+    public  void aplicarTarotACarta(Tarot tarot, Carta carta) {
+        Carta cartaTaroteada;
+        if(this.cartas.contains(carta)){
+            cartaTaroteada = this.cartas.get(this.cartas.indexOf(carta));
+            tarot.aplicarA(cartaTaroteada);
+        }else{
+            throw new CartaNoEncontrada();
+        }
     }
 }
