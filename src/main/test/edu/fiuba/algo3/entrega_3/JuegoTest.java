@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
+
+
 public class JuegoTest {
     // todo: que las cartas sssno desaparezcanm sino que realmente vuelvan al mazo
     // descartar
@@ -23,7 +25,8 @@ public class JuegoTest {
     Balatro balatro;
     @BeforeEach
     public void setUp() throws IOException{
-     balatro = new Balatro("src/main/resources/balatro.json", "src/main/resources/mazo.json", "src/main/resources/tarots.json", "src/main/resources/comodines.json", "el pepe");
+       balatro = Balatro.juego();
+      balatro.inicializadorDeBalatro("src/main/resources/balatro.json", "src/main/resources/mazo.json", "src/main/resources/tarots.json", "src/main/resources/comodines.json", "el pepe");
     }
 
     @Test

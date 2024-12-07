@@ -25,18 +25,29 @@ public class Balatro {
     private List<Ronda> rondas;
     private Mazo mazo;
     private Ronda rondaActual;
+    private static Balatro balatro;
 
-    public Balatro(String rutaDeBalatro, String rutaDeMazo, String rutaDeTarots, String rutaDeComodines, String nombreDeJugador) throws IOException {
-        this.factoryDeMazo = new FactoryDeMazo(rutaDeMazo);
-        this.factoryDeTarot = new FactoryDeTarot(rutaDeTarots);
-        this.factoryComodines = new FactoryComodines(rutaDeComodines);
-        this.factoryRondas = new FactoryRondas(rutaDeBalatro, this.factoryDeTarot, this.factoryDeMazo, this.factoryComodines);
-        this.jugador = Jugador.CrearJugador(nombreDeJugador);
-        this.mazo = new Mazo(this.factoryDeMazo);
-        this.rondas = new ArrayList<>();
-        this.rondas = factoryRondas.generarRondas();
-        this.rondaActual = this.rondas.get(0);
-        this.rondaActual.empezarRonda(this.jugador, this.mazo);
+    private Balatro(){
+    }
+
+    public static Balatro juego(){
+        if(balatro == null){
+            balatro = new Balatro();
+        }return balatro;
+    }
+
+
+    public void inicializadorDeBalatro(String rutaDeBalatro, String rutaDeMazo, String rutaDeTarots, String rutaDeComodines, String nombreDeJugador) throws IOException {
+        factoryDeMazo = new FactoryDeMazo(rutaDeMazo);
+        factoryDeTarot = new FactoryDeTarot(rutaDeTarots);
+        factoryComodines = new FactoryComodines(rutaDeComodines);
+        factoryRondas = new FactoryRondas(rutaDeBalatro, factoryDeTarot, factoryDeMazo, factoryComodines);
+        jugador = Jugador.CrearJugador(nombreDeJugador);
+        mazo = new Mazo(factoryDeMazo);
+        rondas = new ArrayList<>();
+        rondas = factoryRondas.generarRondas();
+        rondaActual = rondas.get(0);
+        rondaActual.empezarRonda(jugador, mazo);
     }
 
 
