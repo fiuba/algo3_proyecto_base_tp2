@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Modificable.Modificable;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
+import edu.fiuba.algo3.modelo.comodin.Comodin;
 import edu.fiuba.algo3.modelo.manoDeTarots.ManoDeTarots;
 
 import java.util.List;
