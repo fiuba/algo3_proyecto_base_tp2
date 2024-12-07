@@ -44,7 +44,7 @@ public class VistaTienda extends Scene{
 
         //background imagen
         BackgroundImage imagenFondo = new BackgroundImage(
-                new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundShop.jpg"))),
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundShop.png"))),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
