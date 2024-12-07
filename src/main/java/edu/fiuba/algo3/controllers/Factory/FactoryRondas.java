@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controllers.Factory;
 import edu.fiuba.algo3.controllers.Parseados.*;
 import edu.fiuba.algo3.controllers.Parser.ParserComodin;
-import edu.fiuba.algo3.controllers.Parser.ParserMazo;
 import edu.fiuba.algo3.controllers.Parser.ParserJuego;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
@@ -15,15 +14,15 @@ import java.util.stream.Collectors;
 public class FactoryRondas {
     String ruta;
     FactoryDeTarot factoryDeTarot;
-    FactoryDeMaso factoryDeMaso;
+    FactoryDeMazo factoryDeMazo;
     FactoryComodines factoryComodines;
     ParserComodin parserComodin;
 
 
-    public FactoryRondas(String ruta, FactoryDeTarot factoryDeTarot, FactoryDeMaso factoryDeMaso, FactoryComodines factoryComodines) {
+    public FactoryRondas(String ruta, FactoryDeTarot factoryDeTarot, FactoryDeMazo factoryDeMazo, FactoryComodines factoryComodines) {
         this.ruta = ruta;
         this.factoryDeTarot = factoryDeTarot;
-        this.factoryDeMaso = factoryDeMaso;
+        this.factoryDeMazo = factoryDeMazo;
         this.factoryComodines = factoryComodines;
     }
 
@@ -32,7 +31,7 @@ public class FactoryRondas {
         List<Ronda> rondas = new ArrayList<>();
 
         List<Tarot> tarotsGenerados = factoryDeTarot.generarTarots();
-        List<Carta> cartasGeneradas = factoryDeMaso.generarCartas();
+        List<Carta> cartasGeneradas = factoryDeMazo.generarCartas();
         List<Comodin> comodinesGenerados = factoryComodines.generarComodines();
 
         List<RondaParseada> rondasFake = ParserJuego.parseRondas(this.ruta);
@@ -67,6 +66,7 @@ public class FactoryRondas {
             Tienda tienda = new Tienda(tarotsFiltrados, comodinesFiltrados, cartaFiltrada != null ? Collections.singletonList(cartaFiltrada) : new ArrayList<>());
 
             Ronda ronda = ParserJuego.parsearDeFakeRondaARonda(fakeRonda, tienda);
+
             rondas.add(ronda);
         }
 

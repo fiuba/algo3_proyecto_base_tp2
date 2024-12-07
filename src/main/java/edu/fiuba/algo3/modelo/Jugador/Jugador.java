@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
-import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Mano.Mano;
-import edu.fiuba.algo3.modelo.Modificable.Modificable;
+import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -17,11 +17,12 @@ public class Jugador {
     private Mano mano;
     private Puntaje puntajeTotal;
     private ManoDeTarots manoDeTarots;
-
+    private ManoDeComodines manoDeComodines;
     private Jugador(String nombre) {
         this.nombre = nombre;
-
         this.puntajeTotal = new Puntaje(0,1);
+        this.manoDeComodines = new ManoDeComodines();
+        this.manoDeTarots = new ManoDeTarots();
     }
 
     public static Jugador CrearJugador(String nombre) {
@@ -30,25 +31,21 @@ public class Jugador {
         }return jugador;
     }
 
-    public void seleccionar(Carta carta) {
-        this.mano.seleccionarCarta(carta);
+    public Puntaje seleccionar(Carta carta) {
+        return this.mano.seleccionarCarta(carta);
     }
 
 
-    public void asignarMano(Mano mano) {
-        this.mano = mano;
+    public void asignarMano(Mazo mazo, int descartes) {
+        this.mano = new Mano(mazo, descartes, manoDeComodines);
     }
-
 
     public List<Carta> verCartasEnMano(){
         return List.copyOf(mano.verCartasEnMano());
     }
 
-    public boolean puedeJugar() {
-        return this.mano.esManoCompleta();
-    }
 
-    public Mano getMano() {return this.mano;}
+    public Mano mostrarMano() {return this.mano;}
 
 
 
@@ -58,9 +55,14 @@ public class Jugador {
         return puntaje;
     }
 
+    public void comprarTarots(Tarot tarot) {
+        manoDeTarots.guardar(tarot);
+    }
+
     public void asignarTarots(ManoDeTarots manoDeTarots) {
         this.manoDeTarots = manoDeTarots;
     }
+
 
     public void aplicarTarotAMano( Tarot tarot) {
             Tarot tarotJugado = manoDeTarots.usarTarot(tarot);
@@ -78,5 +80,13 @@ public class Jugador {
 
     public int obtenerPuntajeFinal(){
         return puntajeTotal.calcularPuntaje();
+    }
+
+    public void comprarComodin(Comodin comodin) {
+        this.manoDeComodines.guardar(comodin);
+    }
+
+    public Puntaje desSeleccionarUnaCarta(Carta carta) {
+        return mano.desSeleccionarCarta(carta);
     }
 }

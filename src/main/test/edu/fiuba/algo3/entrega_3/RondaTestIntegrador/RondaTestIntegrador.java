@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3.RondaTestIntegrador;
 
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
@@ -28,23 +28,23 @@ import java.util.List;
 
 public class RondaTestIntegrador {
     FactoryComodines factoryComodines;
-    FactoryDeMaso factoryDeMaso;
+    FactoryDeMazo factoryDeMazo;
     FactoryDeTarot factoryDeTarot;
     FactoryRondas factoryRondas;
     FactoryComodines mockFactoryComodines;
     FactoryDeTarot mockFactoryDeTarot;
-    FactoryDeMaso mockFactoryDeMaso;
+    FactoryDeMazo mockFactoryDeMazo;
     Mazo mockMazo;
     @BeforeEach
     public void setUp() {
         factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
+        factoryDeMazo = new FactoryDeMazo("src/main/resources/mazo.json");
         factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMaso, factoryComodines);
+        factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMazo, factoryComodines);
 
         mockFactoryComodines = Mockito.mock(FactoryComodines.class);
         mockFactoryDeTarot = Mockito.mock(FactoryDeTarot.class);
-        mockFactoryDeMaso = Mockito.mock(FactoryDeMaso.class);
+        mockFactoryDeMazo = Mockito.mock(FactoryDeMazo.class);
 
         Comodin comodin = factoryComodines.generarComodines().get(5);
         Comodin otroComodin = factoryComodines.generarComodines().get(4);
@@ -58,7 +58,7 @@ public class RondaTestIntegrador {
         Mockito.when(mockFactoryDeTarot.generarTarots()).thenReturn(tarotsMock);
 
         Carta carta = new Carta(new Corazon(), 11, 10, 1);
-        Mockito.when(mockFactoryDeMaso.generarCartas()).thenReturn(List.of(carta));
+        Mockito.when(mockFactoryDeMazo.generarCartas()).thenReturn(List.of(carta));
 
         List<Carta> cartasMock =new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class RondaTestIntegrador {
      @Test
     public void test04SeJuegaUnaManoDeLaRonda(){
 
-        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
 
         Jugador jugador = Jugador.CrearJugador("el pepe");
 
@@ -156,7 +156,7 @@ public class RondaTestIntegrador {
 
      @Test
      public void test05SeJueganVariasManosHastaPasarLaRonda() {
-         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
 
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
@@ -170,7 +170,7 @@ public class RondaTestIntegrador {
          ronda.seleccionar(cartasDeMano.get(4));
          ronda.seleccionar(cartasDeMano.get(5));
          ronda.seleccionar(cartasDeMano.get(6));
-
+         ronda.seleccionar(cartasDeMano.get(8));
          ronda.jugar();
         //seria la segunda mano
          cartasDeMano = ronda.mostrarCartasDeManos();
@@ -196,21 +196,18 @@ public class RondaTestIntegrador {
 
      @Test
      public void test06ElJugadorCompraUnComodinYEsteSeAplicaEnLaSegundaManoQueArma(){
-         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
-
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
          Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
          Tienda tiendaDeRonda = ronda.verTienda();
+         ronda.empezarRonda(jugador, mockMazo);
          List<Comodin> comodinesDeRonda = tiendaDeRonda.obtenerComodines();
          ronda.comprarComodin(comodinesDeRonda.get(0));
 
          ronda.empezarRonda(jugador, mockMazo);
 
          List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
-
-
-
 
          ronda.seleccionar(cartasDeMano.get(12));
          ronda.seleccionar(cartasDeMano.get(13));
@@ -232,10 +229,96 @@ public class RondaTestIntegrador {
          ronda.seleccionar(cartasDeMano.get(8));
          ronda.seleccionar(cartasDeMano.get(9));
 
+         ronda.jugar();
 
-         Assertions.assertEquals(152, ronda.jugar().calcularPuntaje());
+         Assertions.assertEquals(589, ronda.obtenerPuntajeDeRonda());
      }
 
-     
+     @Test
+     public void test07ElJugadorSeCompraUnTarotYLoAplicaAUnaMano(){
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
+         Jugador jugador = Jugador.CrearJugador("el pepe");
+
+         Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
+         Tienda tiendaDeRonda = ronda.verTienda();
+         ronda.empezarRonda(jugador, mockMazo);
+
+         List<Tarot> tarots = tiendaDeRonda.obtenerTarots();
+         ronda.comprarTarot(tarots.get(1));
+
+
+         List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
+
+         ronda.seleccionar(cartasDeMano.get(12));
+         ronda.seleccionar(cartasDeMano.get(13));
+         ronda.seleccionar(cartasDeMano.get(14));
+         ronda.aplicarTarotAMano(tarots.get(1));
+
+         ronda.jugar();
+         //seria la segunda mano
+         cartasDeMano = ronda.mostrarCartasDeManos();
+
+         ronda.seleccionar(cartasDeMano.get(0));
+         ronda.seleccionar(cartasDeMano.get(1));
+         ronda.seleccionar(cartasDeMano.get(2));
+         ronda.seleccionar(cartasDeMano.get(3));
+
+         ronda.jugar();
+         //seria la tercera mano
+         ronda.seleccionar(cartasDeMano.get(6));
+         ronda.seleccionar(cartasDeMano.get(7));
+         ronda.seleccionar(cartasDeMano.get(8));
+         ronda.seleccionar(cartasDeMano.get(9));
+
+         ronda.jugar();
+
+         Assertions.assertEquals(526, ronda.obtenerPuntajeDeRonda());
+     }
+
+
+    @Test
+    public void test08ElJugadorSeCompra2TarotsYAplicaUnoALaManoYOtroALaOtra(){
+        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
+        Jugador jugador = Jugador.CrearJugador("el pepe");
+
+        Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
+        Tienda tiendaDeRonda = ronda.verTienda();
+        ronda.empezarRonda(jugador, mockMazo);
+
+        List<Tarot> tarots = tiendaDeRonda.obtenerTarots();
+        ronda.comprarTarot(tarots.get(0));
+        ronda.comprarTarot(tarots.get(1));
+
+        List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
+
+        ronda.aplicarTarotACarta(cartasDeMano.get(12),tarots.get(0));
+        ronda.seleccionar(cartasDeMano.get(12));
+        ronda.seleccionar(cartasDeMano.get(13));
+        ronda.seleccionar(cartasDeMano.get(14));
+        ronda.aplicarTarotAMano(tarots.get(1));
+
+        ronda.jugar();
+        //seria la segunda mano
+        cartasDeMano = ronda.mostrarCartasDeManos();
+
+        ronda.seleccionar(cartasDeMano.get(0));
+        ronda.seleccionar(cartasDeMano.get(1));
+        ronda.seleccionar(cartasDeMano.get(2));
+        ronda.seleccionar(cartasDeMano.get(3));
+
+        ronda.jugar();
+        //seria la tercera mano
+        ronda.seleccionar(cartasDeMano.get(6));
+        ronda.seleccionar(cartasDeMano.get(7));
+        ronda.seleccionar(cartasDeMano.get(8));
+        ronda.seleccionar(cartasDeMano.get(9));
+
+        ronda.jugar();
+
+        Assertions.assertEquals(748, ronda.obtenerPuntajeDeRonda());
+    }
+
+
+
 
 }

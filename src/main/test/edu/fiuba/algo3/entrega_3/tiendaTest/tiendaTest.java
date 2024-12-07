@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3.tiendaTest;
 
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class tiendaTest {
     FactoryComodines factoryComodines;
-    FactoryDeMaso factoryDeMaso;
+    FactoryDeMazo factoryDeMazo;
     FactoryDeTarot factoryDeTarot;
     List<Tarot> tarots;
     List<Carta> cartas;
@@ -27,11 +27,11 @@ public class tiendaTest {
     @BeforeEach
     public void setUp() {
         factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
+        factoryDeMazo = new FactoryDeMazo("src/main/resources/mazo.json");
         factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
 
         tarots = factoryDeTarot.generarTarots();
-        cartas = factoryDeMaso.generarCartas();
+        cartas = factoryDeMazo.generarCartas();
         comodines = factoryComodines.generarComodines();
 
         // Crear sublistas de prueba con 8 elementos

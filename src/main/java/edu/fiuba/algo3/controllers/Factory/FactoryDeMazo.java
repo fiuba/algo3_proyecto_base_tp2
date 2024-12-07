@@ -7,10 +7,10 @@ import edu.fiuba.algo3.controllers.Parser.ParserMazo;
 
 import java.util.List;
 
-public class FactoryDeMaso implements ProveedorDeCartas {
+public class FactoryDeMazo implements ProveedorDeCartas {
     String ruta;
 
-    public FactoryDeMaso(String ruta) {
+    public FactoryDeMazo(String ruta) {
         this.ruta = ruta;
     }
 

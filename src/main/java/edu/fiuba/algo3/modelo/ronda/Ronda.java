@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
 
@@ -12,15 +13,13 @@ import java.util.List;
 public class Ronda {
     private Jugador jugador;
     private Tienda tienda;
-    private Mano manoActual;
     private Mazo mazo;
     private int nro;
     private int manos;
     private int descartes;
     private int puntajeASuperar;
     private int puntajeDeRonda;
-    private ManoDeComodines manoDeComodines;
-
+    private int manosJugadas;
     public Ronda(Tienda tienda, int nro, int manos, int descartes, int puntajeASuperar) {
         this.tienda = tienda;
         this.nro = nro;
@@ -28,7 +27,7 @@ public class Ronda {
         this.descartes = descartes;
         this.puntajeASuperar = puntajeASuperar;
         this.puntajeDeRonda = 0;
-        this.manoDeComodines = new ManoDeComodines();
+        this.manosJugadas = 0;
     }
 
     public Tienda verTienda() {
@@ -42,41 +41,66 @@ public class Ronda {
 
     public void empezarRonda(Jugador jugador, Mazo mazo) {
         this.mazo = mazo;
-        this.manoActual = new Mano(this.mazo, this.descartes, manoDeComodines);
         this.jugador = jugador;
-        this.jugador.asignarMano(manoActual);
+        this.jugador.asignarMano(this.mazo, this.descartes);
     }
     private void arrancarNuevaMano() {
-        this.manoActual = new Mano(this.mazo, descartes, manoDeComodines);
+        this.jugador.asignarMano(this.mazo, this.descartes);
 
     }
 
-    public void seleccionar(Carta carta) {
-        this.jugador.seleccionar(carta);
+    public Puntaje seleccionar(Carta carta) {
+        return this.jugador.seleccionar(carta);
     }
 
 
     public Puntaje jugar() {
-        int manosJugadas = 0;
         Puntaje puntajeActual = new Puntaje(0, 1);
         if(manosJugadas <= this.manos) {
             puntajeActual = this.jugador.jugarMano();
             this.arrancarNuevaMano();
             puntajeDeRonda += puntajeActual.calcularPuntaje();
             manosJugadas++;
-            if(manosJugadas >= this.manos){
-                throw new ManosExedidas();
-            }
+
+        } else{
+            throw new ManosExedidas();
         }
         return puntajeActual;
     }
 
     public boolean seGanoLaRonda() {
-        return this.puntajeDeRonda >= this.puntajeASuperar;
+        return this.puntajeDeRonda >= this.puntajeASuperar && this.manosJugadas == this.manos;
+    }
+
+    public boolean sePerdioLaRonda(){
+        return this.puntajeDeRonda <= this.puntajeASuperar && this.manosJugadas == this.manos;
     }
 
     public void comprarComodin(Comodin comodin) {
-        manoDeComodines.guardar(comodin);
+        this.jugador.comprarComodin(comodin);
+    }
+    public int obtenerPuntajeDeRonda(){
+        return this.puntajeDeRonda;
+    }
+
+    public void comprarTarot(Tarot tarot) {
+        jugador.comprarTarots(tarot);
+    }
+
+    public void aplicarTarotAMano(Tarot tarot) {
+        jugador.aplicarTarotAMano(tarot);
+    }
+
+    public void aplicarTarotACarta(Carta carta, Tarot tarot) {
+        jugador.aplicarTarotACarta(tarot, carta);
+    }
+
+    public Puntaje deSeleccionarUnaCarta(Carta carta) {
+        return jugador.desSeleccionarUnaCarta(carta);
+    }
+
+    public void descartar() {
+        jugador.descartar();
     }
 
 

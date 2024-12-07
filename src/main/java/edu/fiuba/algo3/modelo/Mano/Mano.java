@@ -47,16 +47,21 @@ public class Mano {
         if (this.cartas.contains(carta)) {
             Carta seleccionada = this.cartas.get(this.cartas.indexOf(carta));
             jugada.seleccionar(seleccionada);
+            List<Carta> cartasAReponer = new ArrayList<>();
+            cartasAReponer.add(seleccionada);
             this.cartas.remove(carta);
+            mazo.reponer(cartasAReponer);
+
         } else {
             throw new CartaNoEncontrada();
         }
         return jugada.puntajeActual();
     }
 
-    public void desSeleccionarCarta(Carta carta){
+    public Puntaje desSeleccionarCarta(Carta carta){
         this.cartas.add(jugada.deseleccionar(carta));
         this.ordenarMano();
+        return jugada.puntajeActual();
     }
 
 

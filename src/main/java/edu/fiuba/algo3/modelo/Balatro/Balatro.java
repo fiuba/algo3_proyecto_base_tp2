@@ -1,68 +1,83 @@
 package edu.fiuba.algo3.modelo.Balatro;
 
+import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
+import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
+import edu.fiuba.algo3.modelo.ronda.Tienda;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Balatro {
-    private static Balatro instancia;
-    private boolean rondaGanada = true;
-    private ArrayList<Ronda> rondas;
-    private Mazo mazoDeCartas;
+
+    private FactoryRondas factoryRondas;
+    private FactoryDeMazo factoryDeMazo;
+    private FactoryDeTarot factoryDeTarot;
+    private FactoryComodines factoryComodines;
     private Jugador jugador;
+    private List<Ronda> rondas;
+    private Mazo mazo;
+    private Ronda rondaActual;
+    private static Balatro balatro;
 
-    private Balatro(ArrayList<Ronda> rondas, Mazo mazoDeCartas, String jugador) {
-        this.rondas = rondas;
-        this.mazoDeCartas = mazoDeCartas;
-        Jugador player = Jugador.CrearJugador(jugador);
-        this.jugador = player;
-
+    private Balatro(){
     }
 
-    public static Balatro inicializarBalatro(ArrayList<Ronda> rondas, Mazo mazoDeCartas, String jugador) {
-        if (instancia != null) {
-            throw new IllegalStateException("La instancia de Balatro ya ha sido inicializada.");
+    public static Balatro juego(){
+        if(balatro == null){
+            balatro = new Balatro();
+        }return balatro;
+    }
+
+
+    public void inicializadorDeBalatro(String rutaDeBalatro, String rutaDeMazo, String rutaDeTarots, String rutaDeComodines, String nombreDeJugador) throws IOException {
+        factoryDeMazo = new FactoryDeMazo(rutaDeMazo);
+        factoryDeTarot = new FactoryDeTarot(rutaDeTarots);
+        factoryComodines = new FactoryComodines(rutaDeComodines);
+        factoryRondas = new FactoryRondas(rutaDeBalatro, factoryDeTarot, factoryDeMazo, factoryComodines);
+        jugador = Jugador.CrearJugador(nombreDeJugador);
+        mazo = new Mazo(factoryDeMazo);
+        rondas = new ArrayList<>();
+        rondas = factoryRondas.generarRondas();
+        rondaActual = rondas.get(0);
+        rondaActual.empezarRonda(jugador, mazo);
+    }
+
+
+    public List<Carta> mostrarCartasDeLaMano() {
+        return jugador.verCartasEnMano();
+    }
+
+    public Tienda mostrarTienda() {
+        return rondaActual.verTienda();
+    }
+
+    public Puntaje seleccionar(Carta carta) {
+       return rondaActual.seleccionar(carta);
+    }
+
+    public Puntaje deseleccionarCarta(Carta carta) {
+        return rondaActual.deSeleccionarUnaCarta(carta);
+    }
+
+    public void descartar() {
+        rondaActual.descartar();
+    }
+
+    public int jugar() {
+        Puntaje puntaje = rondaActual.jugar();
+        if(rondaActual.seGanoLaRonda()){
+            rondaActual = rondas.iterator().next();
+        }else if(rondaActual.sePerdioLaRonda()){
+            throw new Derrota();
         }
-        if ( rondas == null)
-            throw new IllegalStateException("No hay datos de rondas.");
-        instancia = new Balatro(rondas, mazoDeCartas, jugador);
-        return null;
+        return puntaje.calcularPuntaje();
     }
-
-    public static Balatro getInstancia() {
-        if (instancia == null) {
-            throw new IllegalStateException("La instancia de Balatro aún no ha sido inicializada.");
-        }
-        return instancia;
-    }
-
-    public Ronda jugar() {
-        try {
-            if (!verificarRondaAnteriorGanada()) {
-                throw new IllegalStateException("La ronda anterior no fue ganada. No se puede jugar la siguiente ronda.");
-            }
-            if (this.rondas.isEmpty()) {
-                throw new RondasAgotadasException("No hay más rondas disponibles para jugar.");
-            }
-            Ronda rondaActual = rondas.get(0);
-            rondaActual.empezarRonda(jugador, mazoDeCartas);
-            this.rondas.remove(rondaActual);
-            return rondaActual;
-        } catch (RondasAgotadasException | IllegalStateException e) {
-            System.err.println("Error al intentar jugar: " + e.getMessage());
-            return null;
-        }
-    }
-
-    private boolean verificarRondaAnteriorGanada() {
-        return this.rondaGanada;
-    }
-
-    public boolean juegoTerminado() {
-        return this.rondas.isEmpty();
-    }
-
 }
-
