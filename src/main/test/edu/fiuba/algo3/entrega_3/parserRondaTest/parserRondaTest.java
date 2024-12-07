@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_3.parserRondaTest;
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,9 +17,9 @@ public class parserRondaTest {
     public void test01SeParseanLasRondasYSeComprueban(){
         List<Ronda> rondas = null;
         FactoryComodines factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        FactoryDeMaso factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
+        FactoryDeMazo factoryDeMazo = new FactoryDeMazo("src/main/resources/mazo.json");
         FactoryDeTarot factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json",factoryDeTarot, factoryDeMaso, factoryComodines );
+        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json",factoryDeTarot, factoryDeMazo, factoryComodines );
 
         try {
             rondas = factoryRondas.generarRondas();
@@ -34,9 +34,9 @@ public class parserRondaTest {
     public void test02ParseamosRondasComprobamosTarots() {
         List<Ronda> rondas = null;
         FactoryComodines factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        FactoryDeMaso factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
+        FactoryDeMazo factoryDeMazo = new FactoryDeMazo("src/main/resources/mazo.json");
         FactoryDeTarot factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMaso, factoryComodines);
+        FactoryRondas factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMazo, factoryComodines);
 
         try {
             rondas = factoryRondas.generarRondas();

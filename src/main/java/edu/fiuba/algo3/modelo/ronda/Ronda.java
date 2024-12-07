@@ -19,7 +19,7 @@ public class Ronda {
     private int descartes;
     private int puntajeASuperar;
     private int puntajeDeRonda;
-
+    private int manosJugadas;
     public Ronda(Tienda tienda, int nro, int manos, int descartes, int puntajeASuperar) {
         this.tienda = tienda;
         this.nro = nro;
@@ -27,7 +27,7 @@ public class Ronda {
         this.descartes = descartes;
         this.puntajeASuperar = puntajeASuperar;
         this.puntajeDeRonda = 0;
-
+        this.manosJugadas = 0;
     }
 
     public Tienda verTienda() {
@@ -49,28 +49,31 @@ public class Ronda {
 
     }
 
-    public void seleccionar(Carta carta) {
-        this.jugador.seleccionar(carta);
+    public Puntaje seleccionar(Carta carta) {
+        return this.jugador.seleccionar(carta);
     }
 
 
     public Puntaje jugar() {
-        int manosJugadas = 0;
         Puntaje puntajeActual = new Puntaje(0, 1);
         if(manosJugadas <= this.manos) {
             puntajeActual = this.jugador.jugarMano();
             this.arrancarNuevaMano();
             puntajeDeRonda += puntajeActual.calcularPuntaje();
             manosJugadas++;
-            if(manosJugadas >= this.manos){
-                throw new ManosExedidas();
-            }
+
+        } else{
+            throw new ManosExedidas();
         }
         return puntajeActual;
     }
 
     public boolean seGanoLaRonda() {
-        return this.puntajeDeRonda >= this.puntajeASuperar;
+        return this.puntajeDeRonda >= this.puntajeASuperar && this.manosJugadas == this.manos;
+    }
+
+    public boolean sePerdioLaRonda(){
+        return this.puntajeDeRonda <= this.puntajeASuperar && this.manosJugadas == this.manos;
     }
 
     public void comprarComodin(Comodin comodin) {
@@ -90,5 +93,13 @@ public class Ronda {
 
     public void aplicarTarotACarta(Carta carta, Tarot tarot) {
         jugador.aplicarTarotACarta(tarot, carta);
+    }
+
+    public Puntaje deSeleccionarUnaCarta(Carta carta) {
+        return jugador.desSeleccionarUnaCarta(carta);
+    }
+
+    public void descartar() {
+        jugador.descartar();
     }
 }

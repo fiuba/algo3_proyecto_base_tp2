@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3.RondaTestIntegrador;
 
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
 import edu.fiuba.algo3.controllers.Factory.FactoryRondas;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
@@ -28,23 +28,23 @@ import java.util.List;
 
 public class RondaTestIntegrador {
     FactoryComodines factoryComodines;
-    FactoryDeMaso factoryDeMaso;
+    FactoryDeMazo factoryDeMazo;
     FactoryDeTarot factoryDeTarot;
     FactoryRondas factoryRondas;
     FactoryComodines mockFactoryComodines;
     FactoryDeTarot mockFactoryDeTarot;
-    FactoryDeMaso mockFactoryDeMaso;
+    FactoryDeMazo mockFactoryDeMazo;
     Mazo mockMazo;
     @BeforeEach
     public void setUp() {
         factoryComodines = new FactoryComodines("src/main/resources/comodines.json");
-        factoryDeMaso = new FactoryDeMaso("src/main/resources/mazo.json");
+        factoryDeMazo = new FactoryDeMazo("src/main/resources/mazo.json");
         factoryDeTarot = new FactoryDeTarot("src/main/resources/tarots.json");
-        factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMaso, factoryComodines);
+        factoryRondas = new FactoryRondas("src/main/resources/balatro.json", factoryDeTarot, factoryDeMazo, factoryComodines);
 
         mockFactoryComodines = Mockito.mock(FactoryComodines.class);
         mockFactoryDeTarot = Mockito.mock(FactoryDeTarot.class);
-        mockFactoryDeMaso = Mockito.mock(FactoryDeMaso.class);
+        mockFactoryDeMazo = Mockito.mock(FactoryDeMazo.class);
 
         Comodin comodin = factoryComodines.generarComodines().get(5);
         Comodin otroComodin = factoryComodines.generarComodines().get(4);
@@ -58,7 +58,7 @@ public class RondaTestIntegrador {
         Mockito.when(mockFactoryDeTarot.generarTarots()).thenReturn(tarotsMock);
 
         Carta carta = new Carta(new Corazon(), 11, 10, 1);
-        Mockito.when(mockFactoryDeMaso.generarCartas()).thenReturn(List.of(carta));
+        Mockito.when(mockFactoryDeMazo.generarCartas()).thenReturn(List.of(carta));
 
         List<Carta> cartasMock =new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class RondaTestIntegrador {
      @Test
     public void test04SeJuegaUnaManoDeLaRonda(){
 
-        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(),mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
 
         Jugador jugador = Jugador.CrearJugador("el pepe");
 
@@ -156,7 +156,7 @@ public class RondaTestIntegrador {
 
      @Test
      public void test05SeJueganVariasManosHastaPasarLaRonda() {
-         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
 
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
@@ -196,7 +196,7 @@ public class RondaTestIntegrador {
 
      @Test
      public void test06ElJugadorCompraUnComodinYEsteSeAplicaEnLaSegundaManoQueArma(){
-         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
          Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
@@ -236,7 +236,7 @@ public class RondaTestIntegrador {
 
      @Test
      public void test07ElJugadorSeCompraUnTarotYLoAplicaAUnaMano(){
-         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
          Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
@@ -278,7 +278,7 @@ public class RondaTestIntegrador {
 
     @Test
     public void test08ElJugadorSeCompra2TarotsYAplicaUnoALaManoYOtroALaOtra(){
-        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMazo.generarCartas());
         Jugador jugador = Jugador.CrearJugador("el pepe");
 
         Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);

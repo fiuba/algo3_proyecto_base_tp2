@@ -1,21 +1,14 @@
 package edu.fiuba.algo3.entrega_1.jugadorTest;
 
 import edu.fiuba.algo3.controllers.Factory.FactoryComodines;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
 import edu.fiuba.algo3.controllers.Factory.FactoryDeTarot;
-import edu.fiuba.algo3.modelo.GeneradorDeCartas.GeneradorDeCartas;
-import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
-import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
-import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeCartas;
-import edu.fiuba.algo3.modelo.Prooveedor.ProveedorDeComodines;
-import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
@@ -23,13 +16,10 @@ import edu.fiuba.algo3.modelo.manoDeTarots.ManoDeTarots;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.*;
 
 public class jugadorTest {
 

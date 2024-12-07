@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
-import edu.fiuba.algo3.modelo.Jugada.Jugada;
 import edu.fiuba.algo3.modelo.Mano.Mano;
 import edu.fiuba.algo3.modelo.ManoDeComodines.ManoDeComodines;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.Modificable.Modificable;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -33,8 +31,8 @@ public class Jugador {
         }return jugador;
     }
 
-    public void seleccionar(Carta carta) {
-        this.mano.seleccionarCarta(carta);
+    public Puntaje seleccionar(Carta carta) {
+        return this.mano.seleccionarCarta(carta);
     }
 
 
@@ -46,11 +44,8 @@ public class Jugador {
         return List.copyOf(mano.verCartasEnMano());
     }
 
-    public boolean puedeJugar() {
-        return this.mano.esManoCompleta();
-    }
 
-    public Mano getMano() {return this.mano;}
+    public Mano mostrarMano() {return this.mano;}
 
 
 
@@ -89,5 +84,9 @@ public class Jugador {
 
     public void comprarComodin(Comodin comodin) {
         this.manoDeComodines.guardar(comodin);
+    }
+
+    public Puntaje desSeleccionarUnaCarta(Carta carta) {
+        return mano.desSeleccionarCarta(carta);
     }
 }

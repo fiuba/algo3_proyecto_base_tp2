@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
 import edu.fiuba.algo3.modelo.carta.Carta;
-import edu.fiuba.algo3.controllers.Factory.FactoryDeMaso;
+import edu.fiuba.algo3.controllers.Factory.FactoryDeMazo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public class ManoTest {
     @Test
     public void test01unaManoSeCreaConUnTamanioDe8cartas(){
         //arrange
-        Mazo mazo = new Mazo(new FactoryDeMaso("src/main/resources/mazo.json"));
+        Mazo mazo = new Mazo(new FactoryDeMazo("src/main/resources/mazo.json"));
         Mano mano = new Mano(mazo,3, new ManoDeComodines());
 
     //act assert
