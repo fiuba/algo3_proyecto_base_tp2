@@ -20,9 +20,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -47,11 +45,22 @@ public class VistaBalatro extends Scene {
         this.stage = stage;
         this.root = (BorderPane) this.getRoot();
         this.ronda = ronda;
-
         Tienda tienda = ronda.getTienda();
         this.cartas = tienda.obtenerCartas();
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
+
+        Image fondo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/fondoMenu.jpg")));
+
+        BackgroundImage background = new BackgroundImage(
+                fondo,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,true,true,false, true)
+        );
+
+        this.root.setBackground(new Background(background));
 
         VBox playerInfo = new VBox(10);
             playerInfo.setStyle("-fx-background-color: #2B2B2B; -fx-padding: 10;");
@@ -72,7 +81,7 @@ public class VistaBalatro extends Scene {
 
         HBox cartas = new HBox(10);
             cartas.setAlignment(Pos.CENTER);
-            cartas.setStyle("-fx-background-color: #4A148C; -fx-padding: 10;");
+            cartas.setStyle("-fx-padding: 10;");
 
         VBox vbox = new VBox();
         vbox.getChildren().add(cartas);
@@ -81,7 +90,6 @@ public class VistaBalatro extends Scene {
         //creo los botones
         Button botonJugada = new Button("Jugar Mano");
         Button botonDescarte = new Button("Descartar");
-        // le doy estilo con el css
 
         botonJugada.getStyleClass().add("btn-azul");
         botonDescarte.getStyleClass().add("btn-rojo");
@@ -197,14 +205,12 @@ public class VistaBalatro extends Scene {
         HBox contenedorMazo = new HBox(10);
         contenedorMazo.setAlignment(Pos.CENTER);
 
-        Image cartaMazo = new Image(getClass().getResourceAsStream("/images/cartaVolteada.png"));
+        Image cartaMazo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cartaVolteada.png")));
         ImageView cartaMazoVista = new ImageView(cartaMazo);
         cartaMazoVista.setFitHeight(200);
         cartaMazoVista.setFitWidth(150);
 
-        // Creamos la animación de vibración
         aplicarVibracion(cartaMazoVista);
-        //ending
         contenedorMazo.getChildren().add(cartaMazoVista);
 
         this.root.setRight(contenedorMazo);
