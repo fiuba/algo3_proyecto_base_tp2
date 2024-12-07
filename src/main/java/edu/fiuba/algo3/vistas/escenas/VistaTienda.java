@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vistas.escenas;
 
+import edu.fiuba.algo3.controllers.ControladorJugar;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.ArrayList;
 
 public class VistaTienda extends Scene{
     private Stage stage;
@@ -36,12 +38,13 @@ public class VistaTienda extends Scene{
     private List<Comodin> comodines;
     private Object elementoSeleccionado = null;
     private Button cartaSeleccionada = null;
+    private Tienda tienda;
 
     public VistaTienda(Stage stage, double width, double height, Tienda tienda) {
         super(new FlowPane(), width, height);
         this.stage = stage;
         this.root = (FlowPane) this.getRoot();
-
+        this.tienda = tienda;
         //background imagen
         BackgroundImage imagenFondo = new BackgroundImage(
                 new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundShop.png"))),
@@ -102,8 +105,12 @@ public class VistaTienda extends Scene{
 
         botonGuardar.getChildren().add(textoGuardar);
         botonGuardar.setOnMouseClicked(event -> {
-            // Lógica de guardar cartas
-            System.out.println("Guardar cartas");
+            ControladorJugar controladorJugar = new ControladorJugar(stage);
+            List<Object> elementosSeleccionados = new ArrayList<Object>();
+            elementosSeleccionados.add(this.cartas);
+            elementosSeleccionados.add(this.tarots);
+            elementosSeleccionados.add(this.comodines);
+            controladorJugar.cambiarAVistaRonda(elementosSeleccionados, tienda); // Asigna el controlador al evento.
         });
 
         StackPane botonEliminar = new StackPane();

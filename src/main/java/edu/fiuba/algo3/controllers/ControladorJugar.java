@@ -1,27 +1,38 @@
 package edu.fiuba.algo3.controllers;
 import java.io.File;
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
+import edu.fiuba.algo3.vistas.escenas.VistaBalatro;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import edu.fiuba.algo3.vistas.escenas.VistaTienda;
+import edu.fiuba.algo3.modelo.ronda.Ronda;
 
 
-public abstract class ControladorJugar implements EventHandler<ActionEvent> {
+public class ControladorJugar{
     protected Stage stage;
-
 
     public ControladorJugar(Stage stage) {
         this.stage = stage;
     }
 
-    private void cambiarAVistaRonda(Stage stage){
-        /* Juego j = Juego.getInstancia();
-        Ronda ronda = j.obtenerRondaActual();
-        VistaBalatro nuevaVista = new VistaBalatro(stage, stage.getScene().getWidth(), stage.getScene().getHeight(), ronda);
-        stage.setScene(nuevaVista); */
+    public void cambiarAVistaRonda(List<Object> cartasSeleccionadas, Tienda tienda) {
+        // Guardar las cartas en el modelo
+        //Juego juego = Juego.getInstancia();
+        //juego.agregarCartasSeleccionadas(cartasSeleccionadas);
+        Ronda ronda = new Ronda( tienda, 1,2,3,400);
+        crearVistaBalatro(ronda);
     }
 
+    private void crearVistaBalatro(Ronda ronda){
+        /* Juego j = Juego.getInstancia(); */
+        /*Ronda ronda = new Ronda();*/
+        VistaBalatro nuevaVista = new VistaBalatro(this.stage, this.stage.getScene().getWidth(), this.stage.getScene().getHeight(), ronda);
+        this.stage.setScene(nuevaVista);
+    }
 
 }
