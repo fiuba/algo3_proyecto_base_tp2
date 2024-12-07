@@ -254,13 +254,17 @@ public class VistaBalatro extends Scene {
             if (cartaSeleccionada instanceof Carta) {
                 Carta carta = (Carta) cartaSeleccionada;
 
-                // Encuentra el índice de la carta seleccionada en la lista de imágenes ordenadas
+
                 int indiceCarta = -1;
-                for (int i = 0; i < imagenesOrdenadas.size(); i++) {
-                    if (imagenesOrdenadas.get(i).getUserData().equals(carta)) {
+//
+                int i = 0;
+                Carta cartaSeleccionar = null;
+                while(i < imagenesOrdenadas.size() && cartaSeleccionada == null) {
+                    if (imagenesOrdenadas.get(i).getImage().getUrl().equals(imagenElemento.getImage().getUrl())) {
                         indiceCarta = i;
-                        break;
+                        cartaSeleccionar = cartas.get(i);
                     }
+                    i++;
                 }
 
                 if (indiceCarta != -1) {  // Si la carta está en la lista
@@ -268,15 +272,15 @@ public class VistaBalatro extends Scene {
                         cartasSeleccionadas = new ArrayList<>();
                     }
 
-                    if (!cartasSeleccionadas.contains(carta) && cartasSeleccionadas.size() < 5) {
-                        this.puntaje = controlador.seleccionar(carta);
+                    if (!cartasSeleccionadas.contains(cartaSeleccionar) && cartasSeleccionadas.size() < 5) {
+                        this.puntaje = controlador.seleccionar(cartaSeleccionar);
                         System.out.println(puntaje.obtenerValor());
 
-                        cartasSeleccionadas.add(carta);
+                        cartasSeleccionadas.add(cartaSeleccionar);
                         imagenElemento.setTranslateY(-10);
                         System.out.println("Carta añadida: " + carta.getPalo());
                     } else {
-                        cartasSeleccionadas.remove(carta);
+                        cartasSeleccionadas.remove(cartaSeleccionar);
                         imagenElemento.setTranslateY(0);
                         System.out.println("Carta eliminada: " + carta);
                     }
