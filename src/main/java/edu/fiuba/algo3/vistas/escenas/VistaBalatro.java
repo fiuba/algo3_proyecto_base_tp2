@@ -212,6 +212,7 @@ public class VistaBalatro extends Scene {
         this.root.setTop(contenedorCartasEspeciales);
         this.root.setBottom(vbox);
         this.root.setCenter(cartas);
+        this.root.setLeft(contenedorIzquierdo);
         this.root.setPrefSize(width, height);
     }
 
