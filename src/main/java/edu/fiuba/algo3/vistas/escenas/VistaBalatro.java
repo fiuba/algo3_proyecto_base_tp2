@@ -62,23 +62,6 @@ public class VistaBalatro extends Scene {
 
         this.root.setBackground(new Background(background));
 
-        VBox playerInfo = new VBox(10);
-            playerInfo.setStyle("-fx-background-color: #2B2B2B; -fx-padding: 10;");
-            playerInfo.setAlignment(Pos.TOP_CENTER);
-
-        Label scoreLabel = new Label("Puntos Necesarios: 200");
-            scoreLabel.setTextFill(Color.WHITE);
-            scoreLabel.setFont(new Font("Arial", 16));
-
-        Label roundLabel = new Label("Ronda: 4 / 12");
-            roundLabel.setTextFill(Color.WHITE);
-            roundLabel.setFont(new Font("Arial", 16));
-
-        Button optionsButton = new Button("Descartar");
-        optionsButton.setStyle("-fx-background-color: #FF6600; -fx-text-fill: white;");
-
-        playerInfo.getChildren().addAll(scoreLabel, roundLabel, optionsButton);
-
         HBox cartas = new HBox(10);
             cartas.setAlignment(Pos.CENTER);
             cartas.setStyle("-fx-padding: 10;");
@@ -102,6 +85,7 @@ public class VistaBalatro extends Scene {
 
         BorderPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
         BorderPane.setMargin(vbox, new Insets(10,10,20,10));
+        this.root.setBottom(vbox);
 
         HBox contenedorTarots = new HBox(15);
         contenedorTarots.setAlignment(Pos.CENTER);
@@ -115,6 +99,11 @@ public class VistaBalatro extends Scene {
         HBox contenedorCartasEspeciales = new HBox(200);
         contenedorCartasEspeciales.setAlignment(Pos.CENTER);
         contenedorCartasEspeciales.getChildren().addAll(contenedorTarots, contenedorComodines);
+        this.root.setTop(contenedorCartasEspeciales);
+        BorderPane.setMargin(contenedorCartasEspeciales, new Insets(30,30,0,30));
+
+        this.root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Botones/estilosBotones.css")).toExternalForm());
+        this.root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/estadoDelJuego.css")).toExternalForm());
 
         VBox contenedorIzquierdo = new VBox(10);
         contenedorIzquierdo.setPadding(new Insets(15)); // Margen interno
@@ -209,6 +198,7 @@ public class VistaBalatro extends Scene {
         ImageView cartaMazoVista = new ImageView(cartaMazo);
         cartaMazoVista.setFitHeight(200);
         cartaMazoVista.setFitWidth(150);
+
 
         aplicarVibracion(cartaMazoVista);
         contenedorMazo.getChildren().add(cartaMazoVista);
