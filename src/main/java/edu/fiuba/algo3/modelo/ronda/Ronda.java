@@ -78,4 +78,25 @@ public class Ronda {
     public void comprarComodin(Comodin comodin) {
         manoDeComodines.guardar(comodin);
     }
+
+
+    public int verPuntajeASuperar() {
+        return this.puntajeASuperar;
+    }
+
+    public int verDescartes() {
+        return this.descartes;
+    }
+
+    public int verManos() {
+        return this.manos;
+    }
+
+    public int verNro() {
+        return this.nro;
+    }
+
+    public int verPuntajeDeRonda() {
+        return this.puntajeDeRonda;
+    }
 }

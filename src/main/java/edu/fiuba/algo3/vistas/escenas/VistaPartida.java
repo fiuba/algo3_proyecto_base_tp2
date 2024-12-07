@@ -58,7 +58,7 @@ public class VistaPartida extends Scene{
         // Crear el botón para jugar
         Button botonJugar = new Button("Jugar");
 
-        Image imagenFondoMano = new Image(getClass().getResourceAsStream("/manoJugar.jpg"));
+        Image imagenFondoMano = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/manoJugar.jpg")));
 
         BackgroundImage imagenBoton = new BackgroundImage(imagenFondoMano,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
@@ -104,10 +104,11 @@ public class VistaPartida extends Scene{
             scaleDown.play();
         });
 
-        ControladorPartida controlador = new ControladorPartida(stage,nombreJugador);
+        ControladorPartida controlador = new ControladorPartida(stage);
 
         botonJugar.setOnAction(event -> {
             String nombreJugador= fieldNombreJugador.getText().trim();
+            controlador.handle(nombreJugador);
             if (!nombreJugador.isEmpty()) {
                 System.out.println("Jugador agregado: " + nombreJugador);
                 this.nombreJugador = nombreJugador;
@@ -116,7 +117,6 @@ public class VistaPartida extends Scene{
             }
         });
 
-        botonJugar.setOnAction(controlador);
 
         VBox contenedorIngresoNombre = new VBox(10);
         contenedorIngresoNombre.setAlignment(Pos.CENTER);

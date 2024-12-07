@@ -45,8 +45,8 @@ public class VistaBalatro extends Scene {
         this.stage = stage;
         this.root = (BorderPane) this.getRoot();
         this.ronda = ronda;
-        Tienda tienda = ronda.getTienda();
-        this.cartas = tienda.obtenerCartas();
+        Tienda tienda = ronda.verTienda();
+        this.cartas = ronda.mostrarCartasDeManos();
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
 
@@ -76,6 +76,12 @@ public class VistaBalatro extends Scene {
 
         botonJugada.getStyleClass().add("btn-azul");
         botonDescarte.getStyleClass().add("btn-rojo");
+
+        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/vt.ttf"),36);
+        if (fontCreepster == null) {
+            System.out.println("No se pudo cargar la fuente, usando la fuente predeterminada.");
+            fontCreepster = Font.font("Arial");  // Fuente de respaldo
+        }
 
         HBox botones = new HBox(100);
         botones.setAlignment(Pos.CENTER);
@@ -115,8 +121,11 @@ public class VistaBalatro extends Scene {
         puntosNecesarios.setAlignment(Pos.CENTER_LEFT); // Alineación izquierda
         puntosNecesarios.getStyleClass().add("hbox-puntos-necesarios");
 
+
+        int puntajeASuperar = ronda.verPuntajeASuperar();
+        String puntajeASuperarStr = String.valueOf(puntajeASuperar);
         Label anotaLabel = new Label("Anota al menos:");
-        Label puntajeAnotaLabel = new Label("450"); // Valor dinámico
+        Label puntajeAnotaLabel = new Label(puntajeASuperarStr);
 
         anotaLabel.getStyleClass().add("titulo-label"); // Sin el "."
         puntajeAnotaLabel.getStyleClass().add("puntaje-label");
@@ -128,10 +137,14 @@ public class VistaBalatro extends Scene {
         puntuacionRonda.setAlignment(Pos.CENTER_LEFT);
         puntuacionRonda.getStyleClass().add("hbox-puntuacion-ronda");
 
+        int puntajeRonda = ronda.verPuntajeDeRonda();
+        String puntajeRondaSTR = String.valueOf(puntajeRonda);
+
         Label puntuacionLabel = new Label("Puntuación ronda:");
-        Label puntajeRondaLabel = new Label("0"); // Valor dinámico
+        Label puntajeRondaLabel = new Label(puntajeRondaSTR); // Valor dinámico
         puntuacionLabel.getStyleClass().add("titulo-label");
         puntajeRondaLabel.getStyleClass().add("puntaje-label");
+        puntajeRondaLabel.setFont(fontCreepster);
 
         puntuacionRonda.getChildren().addAll(puntuacionLabel, puntajeRondaLabel);
 
@@ -143,17 +156,25 @@ public class VistaBalatro extends Scene {
         manosDescartes.setAlignment(Pos.CENTER); // Alineación centrada
         manosDescartes.getStyleClass().add("hbox-manos-descartes");
 
+        int manos = ronda.verManos();
+        String manosSTR = String.valueOf(manos);
+
         // Crear labels para "Manos"
         Label manosLabel = new Label("Manos:");
-        Label manosValorLabel = new Label("5"); // Valor dinámico
+        Label manosValorLabel = new Label(manosSTR); // Valor dinámico
         manosLabel.getStyleClass().add("titulo-label");
         manosValorLabel.getStyleClass().add("puntaje-label");
+        manosLabel.setFont(fontCreepster);
 
         // Crear labels para "Descartes"
+        int descartes = ronda.verDescartes();
+        String descartessSTR = String.valueOf(descartes);
+
         Label descartesLabel = new Label("Descartes:");
-        Label descartesValorLabel = new Label("3"); // Valor dinámico
+        Label descartesValorLabel = new Label(descartessSTR); // Valor dinámico
         descartesLabel.getStyleClass().add("titulo-label");
         descartesValorLabel.getStyleClass().add("puntaje-label");
+        descartesValorLabel.setFont(fontCreepster);
 
         // Crear VBox para cada sección
         VBox manosBox = new VBox(5); // espacio
@@ -181,8 +202,12 @@ public class VistaBalatro extends Scene {
         contenedorMultiYValor.setAlignment(Pos.CENTER);
         Label multiplicadorLabel= new Label("Multiplicador: ");
         Label multiValor = new Label("40"); // el dinamico
+
+
         multiplicadorLabel.getStyleClass().add("titulo-label");
         multiValor.getStyleClass().add("puntaje-label");
+        multiplicadorLabel.setFont(fontCreepster);
+        multiValor.setFont(fontCreepster);
 
         Label valorLabel = new Label("valor: ");
         Label valor = new Label("2"); // dinamico
@@ -190,6 +215,9 @@ public class VistaBalatro extends Scene {
         valor.getStyleClass().add("puntaje-label");
         contenedorMultiYValor.getChildren().addAll(multiplicadorLabel,multiValor,valorLabel,valor);
         contenedorIzquierdo.getChildren().add(contenedorMultiYValor);
+        valor.setFont(fontCreepster);
+        valorLabel.setFont(fontCreepster);
+
         //agrego la carta del mazo aca:
         HBox contenedorMazo = new HBox(10);
         contenedorMazo.setAlignment(Pos.CENTER);

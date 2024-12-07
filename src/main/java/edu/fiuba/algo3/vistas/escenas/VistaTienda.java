@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.vistas.escenas;
 
 import edu.fiuba.algo3.controllers.ControladorJugar;
+import edu.fiuba.algo3.controllers.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
 import edu.fiuba.algo3.modelo.Palo.Trebol;
+import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -39,12 +41,14 @@ public class VistaTienda extends Scene{
     private Object elementoSeleccionado = null;
     private Button cartaSeleccionada = null;
     private Tienda tienda;
+    private Ronda ronda;
 
-    public VistaTienda(Stage stage, double width, double height, Tienda tienda) {
+    public VistaTienda(Stage stage, double width, double height, Ronda ronda) {
         super(new FlowPane(), width, height);
         this.stage = stage;
         this.root = (FlowPane) this.getRoot();
-        this.tienda = tienda;
+        this.tienda = ronda.verTienda();
+        this.ronda = ronda;
         //background imagen
         BackgroundImage imagenFondo = new BackgroundImage(
                 new Image(Objects.requireNonNull(getClass().getResourceAsStream("/backgroundShop.png"))),
@@ -56,6 +60,7 @@ public class VistaTienda extends Scene{
 
         Background fondo = new Background(imagenFondo);
         this.root.setBackground(fondo);
+
 
         //titulo shop
 
@@ -102,12 +107,12 @@ public class VistaTienda extends Scene{
 
         botonGuardar.getChildren().add(textoGuardar);
         botonGuardar.setOnMouseClicked(event -> {
-            ControladorJugar controladorJugar = new ControladorJugar(stage);
+            ControladorPrincipal controlador = new ControladorPrincipal(stage);
             List<Object> elementosSeleccionados = new ArrayList<Object>();
             elementosSeleccionados.add(this.cartas);
             elementosSeleccionados.add(this.tarots);
             elementosSeleccionados.add(this.comodines);
-            controladorJugar.cambiarAVistaRonda(elementosSeleccionados, tienda); // Asigna el controlador al evento.
+            controlador.cambiarVistaARonda(elementosSeleccionados, ronda); // Asigna el controlador al evento.
         });
 
         StackPane botonEliminar = new StackPane();

@@ -20,11 +20,10 @@ public class ControladorJugar{
         this.stage = stage;
     }
 
-    public void cambiarAVistaRonda(List<Object> cartasSeleccionadas, Tienda tienda) {
+    public void cambiarAVistaRonda(List<Object> cartasSeleccionadas, Ronda ronda) {
         // Guardar las cartas en el modelo
         //Juego juego = Juego.getInstancia();
         //juego.agregarCartasSeleccionadas(cartasSeleccionadas);
-        Ronda ronda = new Ronda( tienda, 1,2,3,400);
         crearVistaBalatro(ronda);
     }
 
