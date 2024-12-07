@@ -170,7 +170,7 @@ public class RondaTestIntegrador {
          ronda.seleccionar(cartasDeMano.get(4));
          ronda.seleccionar(cartasDeMano.get(5));
          ronda.seleccionar(cartasDeMano.get(6));
-
+         ronda.seleccionar(cartasDeMano.get(8));
          ronda.jugar();
         //seria la segunda mano
          cartasDeMano = ronda.mostrarCartasDeManos();
@@ -197,20 +197,17 @@ public class RondaTestIntegrador {
      @Test
      public void test06ElJugadorCompraUnComodinYEsteSeAplicaEnLaSegundaManoQueArma(){
          Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
-
          Jugador jugador = Jugador.CrearJugador("el pepe");
 
          Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
          Tienda tiendaDeRonda = ronda.verTienda();
+         ronda.empezarRonda(jugador, mockMazo);
          List<Comodin> comodinesDeRonda = tiendaDeRonda.obtenerComodines();
          ronda.comprarComodin(comodinesDeRonda.get(0));
 
          ronda.empezarRonda(jugador, mockMazo);
 
          List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
-
-
-
 
          ronda.seleccionar(cartasDeMano.get(12));
          ronda.seleccionar(cartasDeMano.get(13));
@@ -232,10 +229,96 @@ public class RondaTestIntegrador {
          ronda.seleccionar(cartasDeMano.get(8));
          ronda.seleccionar(cartasDeMano.get(9));
 
+         ronda.jugar();
 
-         Assertions.assertEquals(152, ronda.jugar().calcularPuntaje());
+         Assertions.assertEquals(589, ronda.obtenerPuntajeDeRonda());
      }
 
-     
+     @Test
+     public void test07ElJugadorSeCompraUnTarotYLoAplicaAUnaMano(){
+         Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+         Jugador jugador = Jugador.CrearJugador("el pepe");
+
+         Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
+         Tienda tiendaDeRonda = ronda.verTienda();
+         ronda.empezarRonda(jugador, mockMazo);
+
+         List<Tarot> tarots = tiendaDeRonda.obtenerTarots();
+         ronda.comprarTarot(tarots.get(1));
+
+
+         List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
+
+         ronda.seleccionar(cartasDeMano.get(12));
+         ronda.seleccionar(cartasDeMano.get(13));
+         ronda.seleccionar(cartasDeMano.get(14));
+         ronda.aplicarTarotAMano(tarots.get(1));
+
+         ronda.jugar();
+         //seria la segunda mano
+         cartasDeMano = ronda.mostrarCartasDeManos();
+
+         ronda.seleccionar(cartasDeMano.get(0));
+         ronda.seleccionar(cartasDeMano.get(1));
+         ronda.seleccionar(cartasDeMano.get(2));
+         ronda.seleccionar(cartasDeMano.get(3));
+
+         ronda.jugar();
+         //seria la tercera mano
+         ronda.seleccionar(cartasDeMano.get(6));
+         ronda.seleccionar(cartasDeMano.get(7));
+         ronda.seleccionar(cartasDeMano.get(8));
+         ronda.seleccionar(cartasDeMano.get(9));
+
+         ronda.jugar();
+
+         Assertions.assertEquals(526, ronda.obtenerPuntajeDeRonda());
+     }
+
+
+    @Test
+    public void test08ElJugadorSeCompra2TarotsYAplicaUnoALaManoYOtroALaOtra(){
+        Tienda tienda = new Tienda(mockFactoryDeTarot.generarTarots(), mockFactoryComodines.generarComodines(), mockFactoryDeMaso.generarCartas());
+        Jugador jugador = Jugador.CrearJugador("el pepe");
+
+        Ronda ronda = new Ronda(tienda, 1, 3, 2, 200);
+        Tienda tiendaDeRonda = ronda.verTienda();
+        ronda.empezarRonda(jugador, mockMazo);
+
+        List<Tarot> tarots = tiendaDeRonda.obtenerTarots();
+        ronda.comprarTarot(tarots.get(0));
+        ronda.comprarTarot(tarots.get(1));
+
+        List<Carta> cartasDeMano = ronda.mostrarCartasDeManos();
+
+        ronda.aplicarTarotACarta(cartasDeMano.get(12),tarots.get(0));
+        ronda.seleccionar(cartasDeMano.get(12));
+        ronda.seleccionar(cartasDeMano.get(13));
+        ronda.seleccionar(cartasDeMano.get(14));
+        ronda.aplicarTarotAMano(tarots.get(1));
+
+        ronda.jugar();
+        //seria la segunda mano
+        cartasDeMano = ronda.mostrarCartasDeManos();
+
+        ronda.seleccionar(cartasDeMano.get(0));
+        ronda.seleccionar(cartasDeMano.get(1));
+        ronda.seleccionar(cartasDeMano.get(2));
+        ronda.seleccionar(cartasDeMano.get(3));
+
+        ronda.jugar();
+        //seria la tercera mano
+        ronda.seleccionar(cartasDeMano.get(6));
+        ronda.seleccionar(cartasDeMano.get(7));
+        ronda.seleccionar(cartasDeMano.get(8));
+        ronda.seleccionar(cartasDeMano.get(9));
+
+        ronda.jugar();
+
+        Assertions.assertEquals(748, ronda.obtenerPuntajeDeRonda());
+    }
+
+
+
 
 }

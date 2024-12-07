@@ -67,6 +67,7 @@ public class FactoryRondas {
             Tienda tienda = new Tienda(tarotsFiltrados, comodinesFiltrados, cartaFiltrada != null ? Collections.singletonList(cartaFiltrada) : new ArrayList<>());
 
             Ronda ronda = ParserJuego.parsearDeFakeRondaARonda(fakeRonda, tienda);
+
             rondas.add(ronda);
         }
 

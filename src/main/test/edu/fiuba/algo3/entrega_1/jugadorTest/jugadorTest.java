@@ -75,10 +75,8 @@ public class jugadorTest {
         Mockito.when(mazoMockeado.generarCartas()).thenReturn(cartas);
 
 
-        Mano mano = new Mano(mazoMockeado, 3, manoComodines);
-
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(mano);
+        jugador.asignarMano(mazoMockeado, 3);
         List<Carta> cartasAJugar = jugador.verCartasEnMano();
 
         jugador.seleccionar(cartasAJugar.get(3));
@@ -94,11 +92,11 @@ public class jugadorTest {
     public void test02UnJugadorSeJuega1TarotYJuegaLaJugada(){
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).thenReturn(cartas);
-        Mano mano = new Mano(mazoMockeado, 3, manoComodines);
+
 
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(mano);
-        jugador.asignarTarots(manoDeTarots);
+        jugador.asignarMano(mazoMockeado, 3);
+        jugador.comprarTarots(tarots.get(2));
 
         List<Carta> cartasAJugar = jugador.verCartasEnMano();
 
@@ -110,7 +108,7 @@ public class jugadorTest {
 
         jugador.aplicarTarotAMano(tarots.get(2));
 
-        Assertions.assertEquals(256, jugador.jugarMano().calcularPuntaje());
+        Assertions.assertEquals(2624, jugador.jugarMano().calcularPuntaje());
     }
 
 
@@ -118,13 +116,14 @@ public class jugadorTest {
     public void test03UnJugadorSeJuega1TarotACartaYJuegaLaJugada(){
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).thenReturn(cartas);
-        Mano mano = new Mano(mazoMockeado, 3, manoComodines);
 
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(mano);
-        jugador.asignarTarots(manoDeTarots);
+        jugador.asignarMano(mazoMockeado, 3 );
+        jugador.comprarTarots(tarots.get(3));
 
         List<Carta> cartasAJugar = jugador.verCartasEnMano();
+
+
 
         jugador.aplicarTarotACarta(tarots.get(3), cartasAJugar.get(3));
         jugador.seleccionar(cartasAJugar.get(3));
@@ -142,15 +141,13 @@ public class jugadorTest {
         Mazo mazoMockeado = Mockito.mock(Mazo.class);
         Mockito.when(mazoMockeado.generarCartas()).thenReturn(cartas);
 
-        ManoDeComodines manoDeComodinesEnEsteTest = new ManoDeComodines();
-        manoDeComodinesEnEsteTest.guardar(comodines.get(0));
-        manoDeComodinesEnEsteTest.guardar(comodines.get(1));
-        Mano mano = new Mano(mazoMockeado, 3, manoDeComodinesEnEsteTest);
+
 
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(mano);
-        jugador.asignarTarots(manoDeTarots);
+        jugador.asignarMano(mazoMockeado, 3);
 
+        jugador.comprarComodin(comodines.get(0));
+        jugador.comprarComodin(comodines.get(1));
         List<Carta> cartasAJugar = jugador.verCartasEnMano();
 
         jugador.seleccionar(cartasAJugar.get(3));
@@ -190,11 +187,10 @@ public class jugadorTest {
         Mockito.when(mazoSpy.generarCartas()).thenReturn(cartas);
         Mockito.when(mazoSpy.repartirCartas()).thenReturn(cartasPostDescartar);
 
-        Mano mano = new Mano(mazoSpy, 3, manoComodines);
 
 
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(mano);
+        jugador.asignarMano(mazoSpy, 3);
 
 
         List<Carta> cartasAJugar;
@@ -215,7 +211,7 @@ public class jugadorTest {
         jugador.seleccionar(cartasAJugar.get(4));
 
 
-        Assertions.assertEquals(2496, jugador.jugarMano().calcularPuntaje());
+        Assertions.assertEquals(312, jugador.jugarMano().calcularPuntaje());
     }
 
 
@@ -255,9 +251,9 @@ public class jugadorTest {
         Mazo mazoMock3 = Mockito.mock(Mazo.class);
         Mockito.when(mazoMock3.generarCartas()).thenReturn(cartaRonda3);
 
-        Mano manoRonda1 = new Mano(mazoMock1, 3, manoComodines);
+
         Jugador jugador = Jugador.CrearJugador("pepe");
-        jugador.asignarMano(manoRonda1);
+        jugador.asignarMano(mazoMock1, 3);
 
         List<Carta> cartasRonda1 = jugador.verCartasEnMano();
 
@@ -268,8 +264,7 @@ public class jugadorTest {
 
         jugador.jugarMano();
 
-        Mano manoRonda2 = new Mano(mazoMock2, 3, manoComodines);
-        jugador.asignarMano(manoRonda2);
+        jugador.asignarMano(mazoMock2, 3);
 
         List<Carta> cartasRonda2 = jugador.verCartasEnMano();
 
@@ -281,8 +276,8 @@ public class jugadorTest {
 
 
         jugador.jugarMano();
-        Mano mano3 = new Mano(mazoMock3, 3, manoComodines);
-        jugador.asignarMano(mano3);
+
+        jugador.asignarMano(mazoMock3, 3);
 
         List<Carta> cartasRonda3 = jugador.verCartasEnMano();
 
