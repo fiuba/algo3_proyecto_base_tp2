@@ -39,7 +39,7 @@ public class VistaPartida extends Scene{
                 "-fx-text-alignment: center;" +
                 "-fx-font-weight: bold;");  // Borde de 2px
 
-        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/bokor.ttf"), 36);
+        Font fontCreepster = Font.loadFont(getClass().getResourceAsStream("/fonts/vt.ttf"), 36);
         if (fontCreepster == null) {
             System.out.println("No se pudo cargar la fuente, usando la fuente predeterminada.");
             fontCreepster = Font.font("Arial", 36);  // Fuente de respaldo

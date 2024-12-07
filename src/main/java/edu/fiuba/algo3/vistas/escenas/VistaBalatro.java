@@ -9,11 +9,15 @@ import edu.fiuba.algo3.modelo.carta.Carta;
 import edu.fiuba.algo3.modelo.comodin.Comodin;
 import edu.fiuba.algo3.modelo.ronda.Ronda;
 import edu.fiuba.algo3.modelo.ronda.Tienda;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -22,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,18 +66,153 @@ public class VistaBalatro extends Scene {
             roundLabel.setFont(new Font("Arial", 16));
 
         Button optionsButton = new Button("Descartar");
-            optionsButton.setStyle("-fx-background-color: #FF6600; -fx-text-fill: white;");
+        optionsButton.setStyle("-fx-background-color: #FF6600; -fx-text-fill: white;");
 
         playerInfo.getChildren().addAll(scoreLabel, roundLabel, optionsButton);
 
-        HBox activeCards = new HBox(10);
-            activeCards.setAlignment(Pos.CENTER);
-            activeCards.setStyle("-fx-background-color: #4A148C; -fx-padding: 10;");
+        HBox cartas = new HBox(10);
+            cartas.setAlignment(Pos.CENTER);
+            cartas.setStyle("-fx-background-color: #4A148C; -fx-padding: 10;");
 
-        actualizarInterfazCartas(activeCards);
-            this.root.setTop(playerInfo);
-            this.root.setCenter(activeCards);
-            this.root.setPrefSize(width, height);
+        VBox vbox = new VBox();
+        vbox.getChildren().add(cartas);
+        vbox.setSpacing(20);
+
+        //creo los botones
+        Button botonJugada = new Button("Jugar Mano");
+        Button botonDescarte = new Button("Descartar");
+        // le doy estilo con el css
+
+        botonJugada.getStyleClass().add("btn-azul");
+        botonDescarte.getStyleClass().add("btn-rojo");
+
+        HBox botones = new HBox(100);
+        botones.setAlignment(Pos.CENTER);
+        botones.getChildren().addAll(botonJugada, botonDescarte);
+
+        vbox.getChildren().add(botones);
+
+        BorderPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
+        BorderPane.setMargin(vbox, new Insets(10,10,20,10));
+
+        HBox contenedorTarots = new HBox(15);
+        contenedorTarots.setAlignment(Pos.CENTER);
+
+        HBox contenedorComodines = new HBox(15);
+
+        actualizarInterfazCartas(cartas);
+        actualizarInterfazTarots(contenedorTarots);
+        actualizarInterfazComodines(contenedorComodines);
+
+        HBox contenedorCartasEspeciales = new HBox(200);
+        contenedorCartasEspeciales.setAlignment(Pos.CENTER);
+        contenedorCartasEspeciales.getChildren().addAll(contenedorTarots, contenedorComodines);
+
+        VBox contenedorIzquierdo = new VBox(10);
+        contenedorIzquierdo.setPadding(new Insets(15)); // Margen interno
+        contenedorIzquierdo.setAlignment(Pos.TOP_CENTER); // Alinear al centro
+        contenedorIzquierdo.getStyleClass().add("info-panel"); // Clase CSS principal
+
+        // HBox para "Anota al menos"
+        HBox puntosNecesarios = new HBox(10);
+        puntosNecesarios.setAlignment(Pos.CENTER_LEFT); // Alineación izquierda
+        puntosNecesarios.getStyleClass().add("hbox-puntos-necesarios");
+
+        Label anotaLabel = new Label("Anota al menos:");
+        Label puntajeAnotaLabel = new Label("450"); // Valor dinámico
+
+        anotaLabel.getStyleClass().add("titulo-label"); // Sin el "."
+        puntajeAnotaLabel.getStyleClass().add("puntaje-label");
+        puntosNecesarios.getChildren().addAll(anotaLabel, puntajeAnotaLabel);
+        contenedorIzquierdo.getChildren().add(puntosNecesarios);
+
+        // segundo VBox
+        HBox puntuacionRonda = new HBox(10);
+        puntuacionRonda.setAlignment(Pos.CENTER_LEFT);
+        puntuacionRonda.getStyleClass().add("hbox-puntuacion-ronda");
+
+        Label puntuacionLabel = new Label("Puntuación ronda:");
+        Label puntajeRondaLabel = new Label("0"); // Valor dinámico
+        puntuacionLabel.getStyleClass().add("titulo-label");
+        puntajeRondaLabel.getStyleClass().add("puntaje-label");
+
+        puntuacionRonda.getChildren().addAll(puntuacionLabel, puntajeRondaLabel);
+
+        // Añadir este HBox al VBox principal
+        contenedorIzquierdo.getChildren().add(puntuacionRonda);
+
+        // HBox para "Manos" y "Descartes"
+        HBox manosDescartes = new HBox(20); // Espaciado entre los dos grupos
+        manosDescartes.setAlignment(Pos.CENTER); // Alineación centrada
+        manosDescartes.getStyleClass().add("hbox-manos-descartes");
+
+        // Crear labels para "Manos"
+        Label manosLabel = new Label("Manos:");
+        Label manosValorLabel = new Label("5"); // Valor dinámico
+        manosLabel.getStyleClass().add("titulo-label");
+        manosValorLabel.getStyleClass().add("puntaje-label");
+
+        // Crear labels para "Descartes"
+        Label descartesLabel = new Label("Descartes:");
+        Label descartesValorLabel = new Label("3"); // Valor dinámico
+        descartesLabel.getStyleClass().add("titulo-label");
+        descartesValorLabel.getStyleClass().add("puntaje-label");
+
+        // Crear VBox para cada sección
+        VBox manosBox = new VBox(5); // espacio
+        manosBox.setAlignment(Pos.CENTER);
+        manosBox.getChildren().addAll(manosLabel, manosValorLabel);
+
+        VBox descartesBox = new VBox(5); // Espacio txt y valor
+        descartesBox.setAlignment(Pos.CENTER);
+        descartesBox.getChildren().addAll(descartesLabel, descartesValorLabel);
+
+        // Añadir VBoxes al HBox
+        manosDescartes.getChildren().addAll(manosBox, descartesBox);
+
+        // Añadir este HBox al VBox principal
+        contenedorIzquierdo.getChildren().add(manosDescartes);
+        this.root.setLeft(contenedorIzquierdo);
+
+        // termineeeeeeeeeeeee parte info borde izquierdo
+        //sigo con un par de box mas
+        //creo un Hbox Faltaaa colorrrr al Hbox
+
+        HBox contenedorMultiYValor= new HBox(10);
+        contenedorMultiYValor.getStyleClass().add("hbox-multiplicador-valor");
+
+        contenedorMultiYValor.setAlignment(Pos.CENTER);
+        Label multiplicadorLabel= new Label("Multiplicador: ");
+        Label multiValor = new Label("40"); // el dinamico
+        multiplicadorLabel.getStyleClass().add("titulo-label");
+        multiValor.getStyleClass().add("puntaje-label");
+
+        Label valorLabel = new Label("valor: ");
+        Label valor = new Label("2"); // dinamico
+        valorLabel.getStyleClass().add("titulo-label");
+        valor.getStyleClass().add("puntaje-label");
+        contenedorMultiYValor.getChildren().addAll(multiplicadorLabel,multiValor,valorLabel,valor);
+        contenedorIzquierdo.getChildren().add(contenedorMultiYValor);
+        //agrego la carta del mazo aca:
+        HBox contenedorMazo = new HBox(10);
+        contenedorMazo.setAlignment(Pos.CENTER);
+
+        Image cartaMazo = new Image(getClass().getResourceAsStream("/images/cartaVolteada.png"));
+        ImageView cartaMazoVista = new ImageView(cartaMazo);
+        cartaMazoVista.setFitHeight(200);
+        cartaMazoVista.setFitWidth(150);
+
+        // Creamos la animación de vibración
+        aplicarVibracion(cartaMazoVista);
+        //ending
+        contenedorMazo.getChildren().add(cartaMazoVista);
+
+        this.root.setRight(contenedorMazo);
+        BorderPane.setMargin(contenedorMazo, new Insets(30, 30, 0, 60));
+        this.root.setTop(contenedorCartasEspeciales);
+        this.root.setBottom(vbox);
+        this.root.setCenter(cartas);
+        this.root.setPrefSize(width, height);
     }
 
     private String compararPalos(Carta carta){
@@ -142,19 +282,56 @@ public class VistaBalatro extends Scene {
             ImageView imagenElemento = new ImageView(imagen);;
             imagenElemento.setFitWidth(80);
             imagenElemento.setFitHeight(120);
-
-            imagenElemento.setOnMouseEntered(event -> {
-                imagenElemento.setTranslateY(-20);
-                imagenElemento.setEffect(new DropShadow(10, Color.BLACK));
-            });
-
-            imagenElemento.setOnMouseExited(event -> {
-                imagenElemento.setTranslateY(0);
-                imagenElemento.setEffect(null);
-            });
-
+            aplicarEfectoLevantarYBajar(imagenElemento);
             contenedor.getChildren().add(imagenElemento);
         }
     }
 
+    public void aplicarEfectoLevantarYBajar(ImageView cartaVista) {
+        cartaVista.setOnMouseEntered(event -> {
+            cartaVista.setTranslateY(-20);
+            cartaVista.setEffect(new DropShadow(10, Color.BLACK));
+        });
+        cartaVista.setOnMouseExited(event -> {
+            cartaVista.setTranslateY(0);
+            cartaVista.setEffect(null);
+        });
+    }
+
+    public void aplicarBrillo(ImageView cartaVista) {
+        Glow glow = new Glow(0);
+        cartaVista.setEffect(glow);
+        cartaVista.setOnMouseClicked(event -> {
+            if (glow.getLevel() == 0) {
+                glow.setLevel(0.8);
+            } else {
+                glow.setLevel(0);
+            }
+            cartaVista.setEffect(glow);
+        });
+    }
+    public void aplicarVibracion(ImageView cartaVista) {
+        Timeline vibracion = new Timeline(
+                new KeyFrame(Duration.ZERO, event -> {
+                    cartaVista.setTranslateX(0);
+                }),
+                new KeyFrame(Duration.millis(50), event -> {
+                    cartaVista.setTranslateX(-5);
+                }),
+                new KeyFrame(Duration.millis(100), event -> {
+                    cartaVista.setTranslateX(5);
+                }),
+                new KeyFrame(Duration.millis(150), event -> {
+                    cartaVista.setTranslateX(-5);
+                }),
+                new KeyFrame(Duration.millis(200), event -> {
+                        cartaVista.setTranslateX(0);
+                })
+        );
+        vibracion.setCycleCount(2);
+        vibracion.setAutoReverse(true);
+        cartaVista.setOnMouseClicked(event -> {
+            vibracion.play();
+        });
+    }
 }
