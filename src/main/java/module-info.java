@@ -5,6 +5,7 @@ module edu.fiuba.algo {
     requires com.google.gson;
     requires commons.math3;
     requires net.bytebuddy;
+    requires java.desktop;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
     opens edu.fiuba.algo3.controllers.Parser to com.google.gson;
