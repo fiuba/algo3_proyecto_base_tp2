@@ -7,18 +7,20 @@ import edu.fiuba.algo3.modelo.Palo.Trebol;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import javafx.scene.image.Image;
 
-import javax.swing.text.html.ImageView;
+import javax.swing.text.Element;
+
+import javafx.scene.image.ImageView;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class CartaVista {
+public class CartaVista{
 
-    private ImageView imagen;
+
     private Carta carta;
 
     public CartaVista(Carta carta) {
-
         this.carta = carta;
     }
 
@@ -47,7 +49,16 @@ public class CartaVista {
         String palo = compararPalos(this.carta);
         String valor = this.carta.obtenerNombre();
         String rutaImagen = "/images/Cartas/" + palo + "/" + valor + ".jpg";
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(rutaImagen)));
+        InputStream stream = getClass().getResourceAsStream(rutaImagen);
+        if (stream == null) {
+            throw new IllegalArgumentException("No se encontró la imagen en la ruta: " + rutaImagen);
+        }
+        return new Image(stream);
+    }
+
+    public ImageView obtenerVistaImagen(){
+        Image imagen = this.obtenerImagenCarta();
+        return new ImageView(imagen);
     }
 
     public Carta obtenerCarta() {

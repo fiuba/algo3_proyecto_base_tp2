@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.vistas.escenas;
 
+import edu.fiuba.algo3.controllers.CartaVista;
 import edu.fiuba.algo3.controllers.ControladorPartida;
 import edu.fiuba.algo3.controllers.ControladorPrincipal;
+import edu.fiuba.algo3.controllers.GenerarCartasVista;
 import edu.fiuba.algo3.modelo.Palo.Corazon;
 import edu.fiuba.algo3.modelo.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Palo.Pica;
@@ -40,6 +42,7 @@ public class VistaBalatro extends Scene {
     private List<Carta> cartas;
     private List<Tarot> tarots;
     private List<Comodin> comodines;
+    private List<CartaVista> cartasVista;
     private List<Carta> cartasSeleccionadas;
     private ControladorPrincipal controlador;
     private Puntaje puntaje ;
@@ -52,6 +55,7 @@ public class VistaBalatro extends Scene {
         this.ronda = ronda;
         Tienda tienda = ronda.verTienda();
         this.cartas = ronda.mostrarCartasDeManos();
+        this.cartasVista = GenerarCartasVista.generarCarta(this.cartas);
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
         ControladorPrincipal controlador = new ControladorPrincipal(stage);
@@ -74,12 +78,12 @@ public class VistaBalatro extends Scene {
 
         this.root.setBackground(new Background(background));
 
-        HBox cartas = new HBox(10);
-            cartas.setAlignment(Pos.CENTER);
-            cartas.setStyle("-fx-padding: 10;");
+        HBox boxCartas = new HBox(10);
+            boxCartas.setAlignment(Pos.CENTER);
+            boxCartas.setStyle("-fx-padding: 10;");
 
         VBox vbox = new VBox();
-        vbox.getChildren().add(cartas);
+        vbox.getChildren().add(boxCartas);
         vbox.setSpacing(20);
 
         //creo los botones
@@ -110,7 +114,7 @@ public class VistaBalatro extends Scene {
 
         HBox contenedorComodines = new HBox(15);
 
-        actualizarInterfazCartas(cartas);
+        actualizarInterfazCartas(boxCartas);
         actualizarInterfazTarots(contenedorTarots);
         actualizarInterfazComodines(contenedorComodines);
 
@@ -149,34 +153,15 @@ public class VistaBalatro extends Scene {
         BorderPane.setMargin(contenedorMazo, new Insets(30, 30, 0, 60));
         this.root.setTop(contenedorCartasEspeciales);
         this.root.setBottom(vbox);
-        this.root.setCenter(cartas);
+        this.root.setCenter(boxCartas);
         this.root.setLeft(contenedorIzquierdo);
         this.root.setPrefSize(width, height);
     }
 
-    private String compararPalos(Carta carta){
-        Map<String, Carta> palos = new HashMap<>();
 
-        Carta corazon = new Carta(new Corazon(), 2, 2, 1);
-        Carta pica = new Carta(new Pica(), 3, 3, 1);
-        Carta trebol = new Carta(new Trebol(), 2, 2, 1);
-        Carta diamante = new Carta(new Diamante(), 3, 3, 1);
-
-        palos.put("corazones", corazon);
-        palos.put("picas", pica);
-        palos.put("trebol", trebol);
-        palos.put("diamantes", diamante);
-
-        for (Map.Entry<String, Carta> entry : palos.entrySet()) {
-            if (carta.sonMismoPalo(entry.getValue())) {
-                return entry.getKey();
-            }
-        }
-        return "Palo desconocido";
-    }
 
     private String obtenerDescripcionCarta(Object carta) {
-        if (carta instanceof Carta) {
+        if (carta instanceof CartaVista) {
             return "Carta normal";
         } else if (carta instanceof Tarot) {
             return ((Tarot) carta).getDescripcion();
@@ -186,12 +171,7 @@ public class VistaBalatro extends Scene {
         return "Descripción no disponible";
     }
 
-    private Image obtenerImagenCarta(Carta carta) {
-        String palo = compararPalos(carta);
-        String valor = carta.obtenerNombre();
-        String rutaImagen = "/images/Cartas/" + palo + "/" + valor + ".jpg";
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(rutaImagen)));
-    }
+
 
     private Image obtenerImagenTarot(Tarot tarot) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/tarot.jpg")));
@@ -202,7 +182,7 @@ public class VistaBalatro extends Scene {
     }
 
     private void actualizarInterfazCartas(HBox contenedorCartas) {
-        actualizarInterfaz(contenedorCartas, cartas, this::obtenerImagenCarta);
+        actualizarInterfaz(contenedorCartas, cartasVista, CartaVista::obtenerImagenCarta);
     }
 
     private void actualizarInterfazTarots(HBox contenedorTarots) {
@@ -222,7 +202,7 @@ public class VistaBalatro extends Scene {
             imagenElemento.setFitWidth(80);
             imagenElemento.setFitHeight(120);
             //aplicarEfectoLevantarYBajar(imagenElemento);
-            seleccionar(imagenElemento);
+            seleccionar();
             imagenElemento.setUserData(elemento);
 
             if (elemento instanceof Carta) {
@@ -246,48 +226,17 @@ public class VistaBalatro extends Scene {
         });
     }
 
-    public void seleccionar(ImageView imagenElemento) {
-        imagenElemento.setOnMouseClicked(event -> {
-            Object cartaSeleccionada = imagenElemento.getUserData();
+    public void seleccionar(CartaVista cartaVista) {
+        ImageView imagen = cartaVista.obtenerVistaImagen();
+        imagen.setOnMouseClicked(event -> {
+            Carta cartaSeleccionada = cartaVista.obtenerCarta();
             System.out.println("Carta seleccionada: " + cartaSeleccionada);
-
-            if (cartaSeleccionada instanceof Carta) {
-                Carta carta = (Carta) cartaSeleccionada;
-
-
-                int indiceCarta = -1;
-//
-                int i = 0;
-                Carta cartaSeleccionar = null;
-                while(i < imagenesOrdenadas.size() && cartaSeleccionada == null) {
-                    if (imagenesOrdenadas.get(i).getImage().getUrl().equals(imagenElemento.getImage().getUrl())) {
-                        indiceCarta = i;
-                        cartaSeleccionar = cartas.get(i);
-                    }
-                    i++;
-                }
-
-                if (indiceCarta != -1) {  // Si la carta está en la lista
-                    if (cartasSeleccionadas == null) {
-                        cartasSeleccionadas = new ArrayList<>();
-                    }
-
-                    if (!cartasSeleccionadas.contains(cartaSeleccionar) && cartasSeleccionadas.size() < 5) {
-                        this.puntaje = controlador.seleccionar(cartaSeleccionar);
-                        System.out.println(puntaje.obtenerValor());
-
-                        cartasSeleccionadas.add(cartaSeleccionar);
-                        imagenElemento.setTranslateY(-10);
-                        System.out.println("Carta añadida: " + carta.getPalo());
-                    } else {
-                        cartasSeleccionadas.remove(cartaSeleccionar);
-                        imagenElemento.setTranslateY(0);
-                        System.out.println("Carta eliminada: " + carta);
-                    }
-                } else {
-                    System.out.println("La carta no se encuentra en la lista");
-                }
+            if(!cartasSeleccionadas.contains(cartaSeleccionada)) {
+                cartasSeleccionadas.add(cartaSeleccionada);
+            }else{
+                cartasSeleccionadas.remove(cartaSeleccionada);
             }
+
         });
     }
 
