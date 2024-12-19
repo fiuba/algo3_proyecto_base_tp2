@@ -55,7 +55,10 @@ public class VistaBalatro extends Scene {
         this.ronda = ronda;
         Tienda tienda = ronda.verTienda();
         this.cartas = ronda.mostrarCartasDeManos();
-        this.cartasVista = GenerarCartasVista.generarCarta(this.cartas);
+
+        List<CartaVista> cartasVista = GenerarCartasVista.generarCarta(this.cartas);
+
+
         this.tarots = tienda.obtenerTarots();
         this.comodines = tienda.obtenerComodines();
         ControladorPrincipal controlador = new ControladorPrincipal(stage);
@@ -78,12 +81,15 @@ public class VistaBalatro extends Scene {
 
         this.root.setBackground(new Background(background));
 
-        HBox boxCartas = new HBox(10);
-            boxCartas.setAlignment(Pos.CENTER);
-            boxCartas.setStyle("-fx-padding: 10;");
+        //HBox boxCartas = new HBox(10);
+        //    boxCartas.setAlignment(Pos.CENTER);
+        //    boxCartas.setStyle("-fx-padding: 10;");
+
+        VistaCartas vistaCartas = new VistaCartas(cartasVista, controlador);
+
 
         VBox vbox = new VBox();
-        vbox.getChildren().add(boxCartas);
+        vbox.getChildren().add(vistaCartas);
         vbox.setSpacing(20);
 
         //creo los botones
@@ -114,7 +120,6 @@ public class VistaBalatro extends Scene {
 
         HBox contenedorComodines = new HBox(15);
 
-        actualizarInterfazCartas(boxCartas);
         actualizarInterfazTarots(contenedorTarots);
         actualizarInterfazComodines(contenedorComodines);
 
@@ -153,7 +158,7 @@ public class VistaBalatro extends Scene {
         BorderPane.setMargin(contenedorMazo, new Insets(30, 30, 0, 60));
         this.root.setTop(contenedorCartasEspeciales);
         this.root.setBottom(vbox);
-        this.root.setCenter(boxCartas);
+        this.root.setCenter(vistaCartas);
         this.root.setLeft(contenedorIzquierdo);
         this.root.setPrefSize(width, height);
     }
@@ -172,7 +177,6 @@ public class VistaBalatro extends Scene {
     }
 
 
-
     private Image obtenerImagenTarot(Tarot tarot) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/tarot.jpg")));
     }
@@ -181,9 +185,6 @@ public class VistaBalatro extends Scene {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/comodin.jpg")));
     }
 
-    private void actualizarInterfazCartas(HBox contenedorCartas) {
-        actualizarInterfaz(contenedorCartas, cartasVista, CartaVista::obtenerImagenCarta);
-    }
 
     private void actualizarInterfazTarots(HBox contenedorTarots) {
         actualizarInterfaz(contenedorTarots, tarots, this::obtenerImagenTarot);
@@ -202,7 +203,6 @@ public class VistaBalatro extends Scene {
             imagenElemento.setFitWidth(80);
             imagenElemento.setFitHeight(120);
             //aplicarEfectoLevantarYBajar(imagenElemento);
-            seleccionar();
             imagenElemento.setUserData(elemento);
 
             if (elemento instanceof Carta) {
@@ -213,7 +213,7 @@ public class VistaBalatro extends Scene {
         if (this.imagenesOrdenadas == null) {
             this.imagenesOrdenadas = imagenesOrdenadas;
         }
-        }
+    }
 
     public void aplicarEfectoLevantarYBajar(ImageView cartaVista) {
         cartaVista.setOnMouseEntered(event -> {

@@ -56,15 +56,17 @@ public class CartaVista{
         return new Image(stream);
     }
 
-    public ImageView obtenerVistaImagen(){
+    public ImageView obtenerVistaImagen() {
         Image imagen = this.obtenerImagenCarta();
-        return new ImageView(imagen);
+        ImageView imagenView = new ImageView(imagen);
+        imagenView.setFitWidth(80);
+        imagenView.setFitHeight(120);
+        return imagenView;
     }
 
     public Carta obtenerCarta() {
         return this.carta;
     }
-
 
 
 }

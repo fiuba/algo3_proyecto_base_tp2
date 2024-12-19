@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControladorPrincipal {
+public class ControladorPrincipal implements CartaSeleccionadaListener {
     private Stage stage;
     private Ronda ronda;
 
@@ -34,8 +34,8 @@ public class ControladorPrincipal {
         controladorJugar.cambiarAVistaRonda(elementos, ronda); // Asigna el controlador al evento.
     }
 
-
-    public Puntaje seleccionar(Carta carta) {
+    @Override
+    public Puntaje onCartaSeleccionada(Carta carta) {
         Balatro balatro = Balatro.juego();
         return balatro.seleccionar(carta);
     }
