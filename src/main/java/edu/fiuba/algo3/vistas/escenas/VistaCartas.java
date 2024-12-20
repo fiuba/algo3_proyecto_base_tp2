@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vistas.escenas;
 
 import edu.fiuba.algo3.controllers.CartaSeleccionadaListener;
 import edu.fiuba.algo3.controllers.CartaVista;
+import edu.fiuba.algo3.controllers.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.carta.Carta;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -15,9 +16,8 @@ import java.util.function.Function;
 public class VistaCartas extends HBox {
     private final List<CartaVista> cartasVista;
     private final List<CartaVista> cartasSeleccionadas;
-    private final CartaSeleccionadaListener listener;
-
-    public VistaCartas(List<CartaVista> cartasVista , CartaSeleccionadaListener listener) {
+    private final ControladorPrincipal listener;
+    public VistaCartas(List<CartaVista> cartasVista , ControladorPrincipal listener) {
         super(10);
         this.setAlignment(Pos.CENTER);
         this.setStyle("-fx-padding: 10;");
@@ -30,15 +30,16 @@ public class VistaCartas extends HBox {
 
     private void inicializarCartas() {
         this.getChildren().clear();
+        System.out.println(cartasVista.size());
         for (CartaVista cartaVista : cartasVista) {
             ImageView imagenElemento = cartaVista.obtenerVistaImagen();
             aplicarEfectoLevantarYBajar(imagenElemento);
             imagenElemento.setOnMouseClicked(event -> {
                 if (cartasSeleccionadas.contains(cartaVista)) {
                     deseleccionarCarta(cartaVista);
+
                 } else {
                     seleccionarCarta(cartaVista);
-                    listener.onCartaSeleccionada(cartaVista.obtenerCarta());
                 }
             });
             this.getChildren().add(imagenElemento);
@@ -47,6 +48,8 @@ public class VistaCartas extends HBox {
 
     private void seleccionarCarta(CartaVista cartaVista) {
         cartasSeleccionadas.add(cartaVista);
+        Carta carta = cartaVista.obtenerCarta();
+        this.listener.onCartaSeleccionada( carta );
         ImageView imagen = cartaVista.obtenerVistaImagen();
         System.out.println("Carta seleccionada: " + cartaVista.obtenerCarta().obtenerNombre());
         aplicarEfectoLevantarYBajar(imagen);
@@ -54,6 +57,8 @@ public class VistaCartas extends HBox {
 
     private void deseleccionarCarta(CartaVista cartaVista) {
         cartasSeleccionadas.remove(cartaVista);
+        Carta carta = cartaVista.obtenerCarta();
+        this.listener.deselecionarCarta( carta );
         cartaVista.obtenerVistaImagen().setEffect(null);
     }
 

@@ -1,13 +1,8 @@
 package edu.fiuba.algo3.vistas.escenas;
 
 import edu.fiuba.algo3.controllers.CartaVista;
-import edu.fiuba.algo3.controllers.ControladorPartida;
 import edu.fiuba.algo3.controllers.ControladorPrincipal;
 import edu.fiuba.algo3.controllers.GenerarCartasVista;
-import edu.fiuba.algo3.modelo.Palo.Corazon;
-import edu.fiuba.algo3.modelo.Palo.Diamante;
-import edu.fiuba.algo3.modelo.Palo.Pica;
-import edu.fiuba.algo3.modelo.Palo.Trebol;
 import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.carta.Carta;
@@ -20,7 +15,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -33,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public class VistaBalatro extends Scene {
@@ -47,6 +42,8 @@ public class VistaBalatro extends Scene {
     private ControladorPrincipal controlador;
     private Puntaje puntaje ;
     private List<ImageView> imagenesOrdenadas = null;
+    private  Button botonJugada;
+    private  Button botonDescarte;
 
     public VistaBalatro(Stage stage, double width, double height, Ronda ronda)  {
         super(new BorderPane(), width, height);
@@ -92,9 +89,9 @@ public class VistaBalatro extends Scene {
         vbox.getChildren().add(vistaCartas);
         vbox.setSpacing(20);
 
-        //creo los botones
-        Button botonJugada = new Button("Jugar Mano");
-        Button botonDescarte = new Button("Descartar");
+
+         botonJugada = new Button("Jugar Mano");
+         botonDescarte = new Button("Descartar");
 
         botonJugada.getStyleClass().add("btn-azul");
         botonDescarte.getStyleClass().add("btn-rojo");
@@ -153,7 +150,6 @@ public class VistaBalatro extends Scene {
 
         aplicarVibracion(cartaMazoVista);
         contenedorMazo.getChildren().add(cartaMazoVista);
-
         this.root.setRight(contenedorMazo);
         BorderPane.setMargin(contenedorMazo, new Insets(30, 30, 0, 60));
         this.root.setTop(contenedorCartasEspeciales);
@@ -195,6 +191,7 @@ public class VistaBalatro extends Scene {
     }
 
     private  <T> void actualizarInterfaz(HBox contenedor, List<T> elementos, Function<T, Image> obtenerImagen) {
+
         contenedor.getChildren().clear();
         List<ImageView> imagenesOrdenadas = new ArrayList<>(); // Lista para guardar las imágenes ordenadas
         for (T elemento : elementos) {
@@ -232,9 +229,9 @@ public class VistaBalatro extends Scene {
             Carta cartaSeleccionada = cartaVista.obtenerCarta();
             System.out.println("Carta seleccionada: " + cartaSeleccionada);
             if(!cartasSeleccionadas.contains(cartaSeleccionada)) {
-                cartasSeleccionadas.add(cartaSeleccionada);
+                this.cartasSeleccionadas.add(cartaSeleccionada);
             }else{
-                cartasSeleccionadas.remove(cartaSeleccionada);
+                this.cartasSeleccionadas.remove(cartaSeleccionada);
             }
 
         });
@@ -300,8 +297,8 @@ public class VistaBalatro extends Scene {
             puntuacionRonda.setAlignment(Pos.CENTER_LEFT);
             puntuacionRonda.getStyleClass().add("hbox-puntuacion-ronda");
 
-        int puntajeRonda = ronda.verPuntajeDeRonda();
-        String puntajeRondaSTR = String.valueOf(puntajeRonda);
+        AtomicInteger puntajeRonda = new AtomicInteger(ronda.verPuntajeDeRonda());
+        String puntajeRondaSTR = String.valueOf(puntajeRonda.get());
 
         Label puntuacionLabel = new Label("Puntuación ronda:");
         Label puntajeRondaLabel = new Label(puntajeRondaSTR); // Valor dinámico
@@ -379,6 +376,9 @@ public class VistaBalatro extends Scene {
         contenedor.getChildren().add(contenedorMultiYValor);
         //valor.setFont(fontCreepster);
         //valorLabel.setFont(fontCreepster);
+        botonJugada.setOnAction(event -> {
+            puntajeRonda.addAndGet(this.controlador.jugarMano(cartasSeleccionadas));
+        });
 
     }
 

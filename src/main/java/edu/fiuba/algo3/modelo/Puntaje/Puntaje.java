@@ -71,4 +71,9 @@ public class Puntaje {
     public void sumarValorDeUnPuntaje(Puntaje puntaje) {
         this.valor += puntaje.valor;
     }
+
+    public void restarConPuntaje(Puntaje puntaje) {
+        this.valor -= puntaje.valor;
+        this.multiplicador *= puntaje.multiplicador;
+    }
 }

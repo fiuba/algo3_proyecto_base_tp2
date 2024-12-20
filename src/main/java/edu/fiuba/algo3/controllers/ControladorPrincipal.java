@@ -37,6 +37,18 @@ public class ControladorPrincipal implements CartaSeleccionadaListener {
     @Override
     public Puntaje onCartaSeleccionada(Carta carta) {
         Balatro balatro = Balatro.juego();
+
         return balatro.seleccionar(carta);
+    }
+
+    public int jugarMano(List<Carta> cartasSeleccionadas) {
+            Balatro balatro = Balatro.juego();
+            System.out.println(balatro.jugar());
+            return  balatro.jugar();
+    }
+
+    public void deselecionarCarta(Carta cartaSeleccionada) {
+        Balatro balatro = Balatro.juego();
+        balatro.deseleccionarCarta( cartaSeleccionada );
     }
 }
